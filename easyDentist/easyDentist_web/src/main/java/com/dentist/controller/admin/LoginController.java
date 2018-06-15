@@ -1,5 +1,7 @@
 package com.dentist.controller.admin;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String LoginPost(User user, Model model) {
+	public String LoginPost(User user, Model model,HttpServletRequest request) {
 
 		if (user == null || StringUtil.isEmptyStr(user.getUsername())
 				|| StringUtil.isEmptyStr(user.getPassword())) {
@@ -38,7 +40,7 @@ public class LoginController {
 			return "/admin/login";
 		} 
 		//查询菜单列表
-
+        request.getSession().setAttribute("user", u);
 		return "/admin/index";
 	}
 
