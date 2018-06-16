@@ -48,7 +48,7 @@
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
 		</table>
 		
-	<!-- 	<table schema="" tableName="t_role" 
+		<table schema="" tableName="t_role" 
 			domainObjectName="Role" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
@@ -70,7 +70,7 @@
 			domainObjectName="RoleMenu" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
-		</table> -->
+		</table> 
 		
 		
 		

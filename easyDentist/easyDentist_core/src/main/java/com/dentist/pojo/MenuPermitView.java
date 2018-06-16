@@ -9,6 +9,8 @@ import com.dentist.entity.Menu;
  */
 public class MenuPermitView {
 	
+	private String menuId;
+	
 	private String menuName;
 	
 	private String menuDescribe;
@@ -47,6 +49,14 @@ public class MenuPermitView {
 
 	public void setMenuDescribe(String menuDescribe) {
 		this.menuDescribe = menuDescribe;
+	}
+
+	public String getMenuId() {
+		return menuId;
+	}
+
+	public void setMenuId(String menuId) {
+		this.menuId = menuId;
 	}
 	
 	
