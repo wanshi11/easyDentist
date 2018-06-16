@@ -705,73 +705,63 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andVersionIsNull() {
-            addCriterion("version is null");
+        public Criteria andAdminIsNull() {
+            addCriterion("admin is null");
             return (Criteria) this;
         }
 
-        public Criteria andVersionIsNotNull() {
-            addCriterion("version is not null");
+        public Criteria andAdminIsNotNull() {
+            addCriterion("admin is not null");
             return (Criteria) this;
         }
 
-        public Criteria andVersionEqualTo(String value) {
-            addCriterion("version =", value, "version");
+        public Criteria andAdminEqualTo(Boolean value) {
+            addCriterion("admin =", value, "admin");
             return (Criteria) this;
         }
 
-        public Criteria andVersionNotEqualTo(String value) {
-            addCriterion("version <>", value, "version");
+        public Criteria andAdminNotEqualTo(Boolean value) {
+            addCriterion("admin <>", value, "admin");
             return (Criteria) this;
         }
 
-        public Criteria andVersionGreaterThan(String value) {
-            addCriterion("version >", value, "version");
+        public Criteria andAdminGreaterThan(Boolean value) {
+            addCriterion("admin >", value, "admin");
             return (Criteria) this;
         }
 
-        public Criteria andVersionGreaterThanOrEqualTo(String value) {
-            addCriterion("version >=", value, "version");
+        public Criteria andAdminGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("admin >=", value, "admin");
             return (Criteria) this;
         }
 
-        public Criteria andVersionLessThan(String value) {
-            addCriterion("version <", value, "version");
+        public Criteria andAdminLessThan(Boolean value) {
+            addCriterion("admin <", value, "admin");
             return (Criteria) this;
         }
 
-        public Criteria andVersionLessThanOrEqualTo(String value) {
-            addCriterion("version <=", value, "version");
+        public Criteria andAdminLessThanOrEqualTo(Boolean value) {
+            addCriterion("admin <=", value, "admin");
             return (Criteria) this;
         }
 
-        public Criteria andVersionLike(String value) {
-            addCriterion("version like", value, "version");
+        public Criteria andAdminIn(List<Boolean> values) {
+            addCriterion("admin in", values, "admin");
             return (Criteria) this;
         }
 
-        public Criteria andVersionNotLike(String value) {
-            addCriterion("version not like", value, "version");
+        public Criteria andAdminNotIn(List<Boolean> values) {
+            addCriterion("admin not in", values, "admin");
             return (Criteria) this;
         }
 
-        public Criteria andVersionIn(List<String> values) {
-            addCriterion("version in", values, "version");
+        public Criteria andAdminBetween(Boolean value1, Boolean value2) {
+            addCriterion("admin between", value1, value2, "admin");
             return (Criteria) this;
         }
 
-        public Criteria andVersionNotIn(List<String> values) {
-            addCriterion("version not in", values, "version");
-            return (Criteria) this;
-        }
-
-        public Criteria andVersionBetween(String value1, String value2) {
-            addCriterion("version between", value1, value2, "version");
-            return (Criteria) this;
-        }
-
-        public Criteria andVersionNotBetween(String value1, String value2) {
-            addCriterion("version not between", value1, value2, "version");
+        public Criteria andAdminNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("admin not between", value1, value2, "admin");
             return (Criteria) this;
         }
     }

@@ -21,7 +21,7 @@ public class User {
 
     private String ip;
 
-    private String version;
+    private Boolean admin;
 
     public Integer getId() {
         return id;
@@ -95,11 +95,11 @@ public class User {
         this.ip = ip == null ? null : ip.trim();
     }
 
-    public String getVersion() {
-        return version;
+    public Boolean getAdmin() {
+        return admin;
     }
 
-    public void setVersion(String version) {
-        this.version = version == null ? null : version.trim();
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 }

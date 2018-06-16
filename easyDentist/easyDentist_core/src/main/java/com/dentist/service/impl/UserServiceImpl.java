@@ -17,7 +17,7 @@ import com.dentist.utils.LayuiPageParam;
 
 @Transactional
 @Service("userService")
-public class UserServiceImpl implements UserService<User> {
+public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserMapper userMapper;
