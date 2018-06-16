@@ -97,32 +97,34 @@ public class LoginController {
 	private List<MenuPermitView> toMenuPermitList(List<Menu> menus){
 		
 		List<MenuPermitView> list = new ArrayList<MenuPermitView>();
-		for (Menu menu : menus) {
+		 for (int i = 0; i < menus.size(); i++) {
+			Menu menu = menus.get(i);
 			MenuPermitView mp = new MenuPermitView();
 			if(null == menu.getParentid()){
+				mp.setMenuId(menu.getId());
 				mp.setMenuName(menu.getMenuname());
 				mp.setMenuDescribe(menu.getMenudescribe());
 				mp.setUrl(menu.getUrl());
+				mp.setChildrens(new ArrayList<Menu>());
 				list.add(mp);
-			}
-			
-		}
-		
-		for (Menu menu : menus) {
-			if(null != menu.getParentid()){
-				for (MenuPermitView menuPermitView : list) {
-					if(menuPermitView.getMenuId().equals(menu.getParentid())){
-						menuPermitView.getChildrens().add(menu);
-					}
-					break;
-				}
 				
+				menus.remove(i);
+				i--;
 			}
-			
 		}
 		
+		for (MenuPermitView menuPermitView : list) { 
+				 for (int i = 0; i < menus.size(); i++) {
+								Menu menu = menus.get(i);
+						if(null != menu.getParentid() && menuPermitView.getMenuId().equals(menu.getParentid())){
+							menuPermitView.getChildrens().add(menu);
+							
+							menus.remove(menu);
+							i--;
+						}
+				 }
+		}
 		return list;
-		
 	}
 
 }
