@@ -6,21 +6,36 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+                         <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
                         <li>
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <#list menuPermitList as menuPermit>
+                       <#if LOGIN_MENUPERMITLIST?exists && (LOGIN_MENUPERMITLIST?size>0)>
+                       
+                        <#list LOGIN_MENUPERMITLIST as menuPermit>
                         <li>
                             <a href="#">${menuPermit.menuName}<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                              <#list menuPermit.childrens as child>
                                 <li>
-                                    <a href="${child.url}">${child.menuname}</a>
+                                    <a href="${request.contextPath}${child.url}">${child.menuname}</a>
                                 </li>
                              </#list>
                             </ul>
                         </li>
                         </#list>
+                        
+                        </#if>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

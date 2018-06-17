@@ -20,6 +20,7 @@ import com.dentist.service.MenuService;
 import com.dentist.service.RoleMenuService;
 import com.dentist.service.UserRoleService;
 import com.dentist.service.UserService;
+import com.dentist.utils.Constant;
 import com.dentist.utils.StringUtil;
 
 @Controller
@@ -62,8 +63,8 @@ public class LoginController {
 		if(u.getAdmin() == true){ //超级管理员拥有所有权限
 			List<Menu> menus = menuService.getAllMenus();
 			List<MenuPermitView> list = toMenuPermitList(menus);
-			request.getSession().setAttribute("menuPermitList", list);
-			request.getSession().setAttribute("user", u);
+			request.getSession().setAttribute(Constant.LOGIN_MENUPERMITLIST, list);
+			request.getSession().setAttribute(Constant.LOGIN_USER, u);
 			return "/admin/index";
 		}
 		
@@ -84,9 +85,18 @@ public class LoginController {
 		
 		
 		
-        request.getSession().setAttribute("user", u);
+		request.getSession().setAttribute(Constant.LOGIN_MENUPERMITLIST, null);
+		request.getSession().setAttribute(Constant.LOGIN_USER, u);
 		return "/admin/index";
 	}
+	
+	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request) {
+	    request.getSession().removeAttribute(Constant.LOGIN_USER);
+	    request.getSession().removeAttribute(Constant.LOGIN_MENUPERMITLIST);
+	    return "redirect:/admin/login";
+	  }
 	
 	
 	
