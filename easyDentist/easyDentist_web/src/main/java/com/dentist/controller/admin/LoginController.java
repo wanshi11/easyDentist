@@ -99,6 +99,13 @@ public class LoginController {
 	  }
 	
 	
+	@RequestMapping("/index")
+	public String toIndex(HttpServletRequest request) {
+		//TODO查询统计数据
+		
+	    return "/admin/index";
+	  }
+	
 	
 	/**
 	 * @param menus

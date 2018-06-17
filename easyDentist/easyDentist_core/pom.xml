@@ -9,7 +9,10 @@
   <artifactId>easyDentist_core</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+  
      <dependencies>
+ 
+   
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
