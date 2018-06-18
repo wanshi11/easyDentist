@@ -1,7 +1,9 @@
 package com.dentist.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,11 +49,11 @@ public class UserServiceImpl implements UserService {
 
 	public List<User> getList(User model) throws FormException {
 		UserExample example = new UserExample();
-		UserExample.Criteria c = example.createCriteria();
+		/*UserExample.Criteria c = example.createCriteria();
 		if(model.getUsername() != null){
 			c.andUsernameLike("%" + model.getUsername() + "%");
-		}
-		// TODO Auto-generated method stub
+		}*/
+		
 		return userMapper.selectByExample(example);
 	}
 
@@ -71,6 +73,18 @@ public class UserServiceImpl implements UserService {
 		if(!CollectionUtils.isEmpty(list)){
 			return list.get(0);
 		}
+		return null;
+	}
+
+	@Override
+	public LayuiPage<User> selectWithPageByExample(
+			@Param("example") UserExample example,
+			@Param("params") Map<String, String> params) {
+		
+		
+		
+		
+		
 		return null;
 	}
 
