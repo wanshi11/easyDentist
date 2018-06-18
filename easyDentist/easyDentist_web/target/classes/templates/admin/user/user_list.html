@@ -29,7 +29,7 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                        <p><a type="button" class="btn btn-primary" href="${pageContext.request.contextPath}/admin/user/add">添加用户</a></p>
+                        <p><a type="button" class="btn btn-primary" href="${request.contextPath}/admin/user/edit">添加用户</a></p>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                                                                    用户列表
@@ -67,8 +67,12 @@
                                         <td>${user.ip}</td>
                                         <td>${user.createtime?string("yyyy-MM-dd HH:mm:ss")}</td>
                                         <td>
-                                        <a>修改</a>
-                                        <a>删除</a>
+                                        <a type="button" class="btn btn-primary btn-sm"
+                                        href="${pageContext.request.contextPath}/admin/user/update/${user.id}">修改
+                                        </a>
+                                         <a type="button" class="btn btn-danger btn-sm"
+                                          href="${pageContext.request.contextPath}/admin/user/delete/${user.id}">删除
+                                        </a>
                                         </td>
                                     </tr>
                                     </#list>

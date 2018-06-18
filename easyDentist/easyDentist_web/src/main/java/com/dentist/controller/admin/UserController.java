@@ -25,6 +25,9 @@ public class UserController {
 	private UserService userService;
 	
 	
+	/**
+	 * 到后台用户列表页面 
+	 */
 	@RequestMapping(value = "/toBgUser", method = RequestMethod.GET)
 	public String toBgUser(Model model) {
 
@@ -42,6 +45,9 @@ public class UserController {
 	}
 	
 	
+	/**
+	 * 查询用户列表 
+	 */
 	@RequestMapping(value = "/userList")
 	public String userList(HttpServletRequest request,UserExample example,Map<String, String> params) {
 		List<User> list = null;
@@ -53,6 +59,16 @@ public class UserController {
 		}
 		
        return "/admin/user/list";
+	}
+	
+	
+	/**
+	 * 到添加或者修改用户页面 
+	 */
+	@RequestMapping(value = "/edit")
+	public String editUser(){
+		
+		return "/admin/user/user_edit";
 	}
 	
 
