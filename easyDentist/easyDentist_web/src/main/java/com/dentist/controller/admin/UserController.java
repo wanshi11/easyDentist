@@ -33,10 +33,8 @@ public class UserController {
 	@RequestMapping(value = "/toBgUser", method = RequestMethod.GET)
 	public String toBgUser(Model model) {
 
-		List<User> list = userService.getList(null);
-		
+		List<User>  list = userService.getList(null);
 		model.addAttribute("userlist", list);
-		
 		return "/admin/user/user_list";
 	}
 	
@@ -45,10 +43,11 @@ public class UserController {
 	 * 查询用户列表 
 	 */
 	@RequestMapping(value = "/userList")
-	public String userList(HttpServletRequest request,UserExample example,Map<String, String> params) {
+	@ResponseBody
+	public List<User> userList(HttpServletRequest request,UserExample example,Map<String, String> params) {
 		List<User>  list = userService.getList(null);
 		
-       return "/admin/user/list";
+       return list;
 	}
 	
 	

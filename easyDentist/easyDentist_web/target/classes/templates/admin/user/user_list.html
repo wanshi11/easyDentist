@@ -102,9 +102,22 @@
     $(document).ready(function() {
     	
     	
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
+    	 $(document).ready(function() {
+    	        $('#dataTables-example').DataTable({
+    	            responsive: true
+    	        });
+    	    });
+    	 
+    /* 	$.ajax({
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "${request.contextPath}/admin/user/userList" ,//url
+                data: {},
+                success: function (result) {
+              
+                }
+            }); */
+       
         
         
         
