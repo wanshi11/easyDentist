@@ -10,10 +10,15 @@ import com.dentist.utils.LayuiPage;
 
 public interface UserService extends IBaseService<User> {
 	
-	//根据用户名查询用户
+	//根据用户名查用户
 	User queryUserByUserName(String userName);
 
-	//分页查询
+	
 	LayuiPage<User> selectWithPageByExample(@Param("example") UserExample example,@Param("params") Map<String, String> params);
+	
+	//根据ID名查用户
+	User queryUserById(Integer id);
+
+	
 
 }

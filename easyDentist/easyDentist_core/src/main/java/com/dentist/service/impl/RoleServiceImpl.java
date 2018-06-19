@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dentist.entity.Role;
-import com.dentist.exception.FormException;
 import com.dentist.service.RoleService;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
@@ -16,38 +15,38 @@ import com.dentist.utils.LayuiPageParam;
 public class RoleServiceImpl implements RoleService {
 
 	@Override
-	public int add(Role model) throws FormException {
+	public int add(Role model)  {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int delete(Role model) throws FormException {
+	public int delete(Role model)  {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(Role model) throws FormException {
+	public int update(Role model)  {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public Role detail(Role model) throws FormException {
+	public Role detail(Role model)  {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Role> getList(Role model) throws FormException {
+	public List<Role> getList(Role model)  {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public LayuiPage<Role> page(Role model, LayuiPageParam param)
-			throws FormException {
+			 {
 		// TODO Auto-generated method stub
 		return null;
 	}

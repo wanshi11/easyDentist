@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dentist.entity.UserRole;
 import com.dentist.entity.UserRoleExample;
-import com.dentist.exception.FormException;
 import com.dentist.mapper.UserRoleMapper;
 import com.dentist.service.UserRoleService;
 import com.dentist.utils.LayuiPage;
@@ -22,31 +21,31 @@ public class UserRoleServiceImpl implements UserRoleService {
 	private UserRoleMapper userRoleMapper;
 
 	@Override
-	public int add(UserRole model) throws FormException {
+	public int add(UserRole model)  {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int delete(UserRole model) throws FormException {
+	public int delete(UserRole model)  {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(UserRole model) throws FormException {
+	public int update(UserRole model)  {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public UserRole detail(UserRole model) throws FormException {
+	public UserRole detail(UserRole model)  {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<UserRole> getList(UserRole model) throws FormException {
+	public List<UserRole> getList(UserRole model)  {
 		
 	     List<UserRole> list = null;
 		try {
@@ -64,7 +63,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 
 	@Override
 	public LayuiPage<UserRole> page(UserRole model, LayuiPageParam param)
-			throws FormException {
+			 {
 		// TODO Auto-generated method stub
 		return null;
 	}

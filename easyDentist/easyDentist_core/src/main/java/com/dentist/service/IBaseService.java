@@ -22,7 +22,7 @@ public interface IBaseService<T> {
 	 * @return
 	 * @throws FormException
 	 */
-	public int add(T model) throws FormException;
+	public int add(T model);
 	
 	/**
 	 * 通过主键删除一条记录的方法
@@ -30,7 +30,7 @@ public interface IBaseService<T> {
 	 * @return
 	 * @throws FormException
 	 */
-	public int delete(T model) throws FormException;
+	public int delete(T model);
 	
 	/**
 	 * 修改一条数据的方法
@@ -38,7 +38,7 @@ public interface IBaseService<T> {
 	 * @return
 	 * @throws FormException
 	 */
-	public int update(T model) throws FormException;
+	public int update(T model);
 	
 	/**
 	 * 通过主键查询数据详细的方法
@@ -46,7 +46,7 @@ public interface IBaseService<T> {
 	 * @return
 	 * @throws FormException
 	 */
-	public T detail(T model) throws FormException;
+	public T detail(T model);
 	
 	/**
 	 * 条件查询列表的方法
@@ -54,7 +54,7 @@ public interface IBaseService<T> {
 	 * @return
 	 * @throws FormException
 	 */
-	public List<T> getList(T model) throws FormException;
+	public List<T> getList(T model);
 	
 	/**
 	 * 符合Layui的分页查询返回的方法
@@ -63,6 +63,6 @@ public interface IBaseService<T> {
 	 * @return
 	 * @throws FormException
 	 */
-	public LayuiPage<T> page(T model,LayuiPageParam param) throws FormException;
+	public LayuiPage<T> page(T model,LayuiPageParam param);
 	
 }

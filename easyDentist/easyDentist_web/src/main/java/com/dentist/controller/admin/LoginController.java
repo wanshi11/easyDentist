@@ -71,11 +71,9 @@ public class LoginController {
 		//根据用户ID查询所有的角色集合
 		UserRole ur = new UserRole();
 		ur.setUserid(u.getId());
-		try {
-			List<UserRole> userRoles =  userRoleService.getList(ur);
-		} catch (FormException e) {
-			e.printStackTrace();
-		}
+		
+		List<UserRole> userRoles =  userRoleService.getList(ur);
+		
 		//根据角色Id查询出所有的菜单集合
 		
 		//对菜单集合进行组装程List<MenuPermitView>

@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/dentist/service/IBaseService.java=UTF-8
+encoding//src/main/java/com/dentist/service/UserService.java=UTF-8
+encoding//src/main/java/com/dentist/utils/IPUtils.java=UTF-8
 encoding//src/main/java/com/dentist/utils/UploadUtils.java=UTF-8
 encoding/<project>=UTF-8
