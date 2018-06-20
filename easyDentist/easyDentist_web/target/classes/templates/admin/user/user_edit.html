@@ -100,7 +100,7 @@
 		            data: {"username":username},
 		            success: function (result) {
 		               if(result == "1"){
-		            	   alert("该用户名已存在！");
+		            	   layer.alert('该用户名已存在！');
 		            	   $("#username").val("");
 		               }
 		            },
@@ -119,12 +119,12 @@
 		var qq = $("#qq").val();
 		var sex = $("#sex").val();
 		if(username == "" || realname == "" || password == "" || phoneno == "" || qq == "" ){
-			alert("表单数据不可以为空！");
+			layer.alert('表单数据不可以为空！');
 			return false;
 		}
 		
 		if(!(/^1[34578]\d{9}$/.test(phoneno))){ 
-	        alert("手机号码有误！");  
+	        layer.alert('手机号码有误！');
 	        return false; 
 	    } 
 		
@@ -136,16 +136,16 @@
             success: function (result) {
             	
                 if(result == "ADD_SUCCESS"){
-                	alert("新增用户成功！");
+                	layer.msg('新增用户成功！');
                 	//跳转到列表
                 	window.location.href="${request.contextPath}/admin/user/toBgUser";
                 }
                 if(result == "ADD_FAIL"){
-                	alert("新增用户失败！");
+                	layer.msg('新增用户失败！');
                 	//跳转到新增
                 }
                 if(result == "UPD_SUCCESS"){
-                	alert("修改用户成功！");
+                	layer.msg('修改用户成功！');
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
