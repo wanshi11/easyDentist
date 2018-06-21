@@ -68,6 +68,12 @@ public class UserController {
 	public String edit(User u){
 		String result = "";
 		
+		User user = userService.queryUserByUserName(u.getUsername());
+		if(user != null){
+			result = "USER_EXIST";
+			return result;
+		}
+		
 		if(u.getId() == null){ //新增
 			u.setCreatetime(new Date());
 			u.setAdmin(false);

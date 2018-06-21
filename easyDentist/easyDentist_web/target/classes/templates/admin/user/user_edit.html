@@ -44,13 +44,15 @@
 									<div class="col-lg-5 jz10">
 										<label>用戶名</label>
 										<input class="form-control" name="username"
-											id="username" placeholder="请输入用户名" onblur="checkUserName()"><br /> 
+											id="username" placeholder="请输入用户名"><br /> 
 											<label>姓名</label>
-										<input class="form-control" name="realname" id="realname"
+										<input class="form-control" name="realname"  id="realname"
 											placeholder="请输入姓名" ><br /> 
-											<label>密码</label> 
-										<input class="form-control" name="password" id="password"
-											placeholder="请输入密码"><br /> 
+											 <label>密码</label> 
+										<input class="form-control" name="text_password" id="text_password"  type="text"
+											placeholder="请输入密码">
+											<input class="form-control" value="" type="password" name="password" placeholder="请输入密码" id="password" style="display: none" readonly="true" />
+											<br />  
 											<label>手机号</label>
 									    <input class="form-control" name="phoneno" id="phoneno"
 											placeholder="请输入手机号码"><br />
@@ -59,18 +61,14 @@
 										<div class="form-group">
 											<label>性别</label>
 											<div class="radio">
-												<label> <input type="radio" name="sex" id="sex"
-													value="1" checked>男
-												</label>
-											</div>
-											<div class="radio">
-												<label> <input type="radio" name="sex" id="sex"
+												<label> <input type="radio" name="sex" 
+													value="1" checked>男    &nbsp;&nbsp;&nbsp;
+													<label> <input type="radio" name="sex" 
 													value="0" checked>女
 												</label>
 											</div>
 										</div>
 										<div  class="jz">
-										<!-- <button class="btn btn-default" onclick="addOrEdit()" >提交</button> -->
 										<input type="button" value="提交" class="btn btn-default" onclick="addOrEdit()"  />
 										&nbsp;&nbsp;&nbsp;&nbsp;
 										<button class="btn btn-default" type="reset">重置</button>
@@ -89,6 +87,9 @@
     <#include "/common/admin_js.html"/>
 	<!-- 后台公共js -->
 	<script type="text/javascript">
+	$(function(){
+		
+	})
 	
 	function checkUserName(){
 		var username = $("#username").val();
@@ -109,6 +110,16 @@
 		            }
 		        });
 	}
+	
+	/**
+	*  解决总是记住密码的问题！！
+	*/
+	$("[name=text_password]").on('focus', function () {
+	    /*当前文本框隐藏*/
+	    $(this).hide();
+	    /*隐藏的密码框显示并且获取焦点 只读属性去掉*/
+	    $('#password').show().attr('readonly', false).focus();
+	})
 		
 	function addOrEdit() {
 		
@@ -135,17 +146,28 @@
             data: $('#subform').serialize(),
             success: function (result) {
             	
-                if(result == "ADD_SUCCESS"){
-                	layer.msg('新增用户成功！');
-                	//跳转到列表
-                	window.location.href="${request.contextPath}/admin/user/toBgUser";
-                }
-                if(result == "ADD_FAIL"){
-                	layer.msg('新增用户失败！');
+            	if(result == "USER_EXIST"){
+                	layer.alert('该用户名已存在！',function(index){
+                	window.location.href='${request.contextPath}/admin/user/toEdit';
+                	});
                 	//跳转到新增
                 }
+            	
+                if(result == "ADD_SUCCESS"){
+                	layer.msg('新增用户成功！',function(index){
+                		window.location.href="${request.contextPath}/admin/user/toBgUser";
+                	});
+                	//跳转到列表
+                }
+                if(result == "ADD_FAIL"){
+                	layer.alert('新增用户失败！',function(index){
+                	window.location.href='${request.contextPath}/admin/user/toEdit';
+                	});
+                }
                 if(result == "UPD_SUCCESS"){
-                	layer.msg('修改用户成功！');
+                	layer.msg('修改用户成功！',function(index){
+                		window.location.href="${request.contextPath}/admin/user/toBgUser";
+                	});
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {

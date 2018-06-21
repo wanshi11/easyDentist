@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.dentist.entity.Menu;
 import com.dentist.entity.User;
 import com.dentist.entity.UserRole;
-import com.dentist.exception.FormException;
 import com.dentist.pojo.MenuPermitView;
 import com.dentist.service.MenuService;
 import com.dentist.service.RoleMenuService;
@@ -46,16 +45,19 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String LoginPost(User user, Model model,HttpServletRequest request) {
+	public String LoginPost(Model model,HttpServletRequest request) {
+		
+		String name = request.getParameter("name");
+		String pwd = request.getParameter("pwd");
 
-		if (user == null || StringUtil.isEmptyStr(user.getUsername())
-				|| StringUtil.isEmptyStr(user.getPassword())) {
+		if ( StringUtil.isEmptyStr(name)
+				|| StringUtil.isEmptyStr(pwd)) {
 			model.addAttribute("loginErr", "用户名或密码为空！");
 			return "/admin/login";
 		}
 
-		User u = (User) userService.queryUserByUserName(user.getUsername());
-		if (null == u || !u.getPassword().equals(user.getPassword())) {
+		User u = (User) userService.queryUserByUserName(name);
+		if (null == u || !u.getPassword().equals(pwd)) {
 			model.addAttribute("loginErr", "用户名或密码错误！");
 			return "/admin/login";
 		} 
