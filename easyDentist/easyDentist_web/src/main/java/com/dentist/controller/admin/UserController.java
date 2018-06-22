@@ -17,6 +17,7 @@ import com.dentist.entity.User;
 import com.dentist.entity.UserExample;
 import com.dentist.service.UserService;
 import com.dentist.utils.IPUtils;
+import com.dentist.utils.LayuiPage;
 
 
 @Controller
@@ -33,8 +34,8 @@ public class UserController {
 	@RequestMapping(value = "/toBgUser", method = RequestMethod.GET)
 	public String toBgUser(Model model) {
 
-		List<User>  list = userService.getList(null);
-		model.addAttribute("userlist", list);
+		/*List<User>  list = userService.getList(null);
+		model.addAttribute("userlist", list);*/
 		return "/admin/user/user_list";
 	}
 	
@@ -42,12 +43,20 @@ public class UserController {
 	/**
 	 * 查询用户列表 
 	 */
-	@RequestMapping(value = "/userList")
+	@RequestMapping(value = "/userList",method=RequestMethod.POST)
 	@ResponseBody
-	public List<User> userList(HttpServletRequest request,UserExample example,Map<String, String> params) {
+	public LayuiPage<User> userList(HttpServletRequest request,User u) {
 		List<User>  list = userService.getList(null);
 		
-       return list;
+		String username = request.getParameter("username");
+		
+		LayuiPage<User> page = new LayuiPage<User>();
+		page.setCode(0);
+		page.setCount(list.size());
+		page.setData(list);
+		page.setMsg("SUCCESS");
+		
+       return page;
 	}
 	
 	
