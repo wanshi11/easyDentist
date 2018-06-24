@@ -188,6 +188,28 @@
 			    } else if(obj.event === 'del'){
 			      layer.confirm('真的删除行么', function(index){
 			        
+			    	     $.ajax({
+			    	         //几个参数需要注意一下
+			    	             type: "POST",//方法类型
+			    	             url: "${request.contextPath}/admin/user/delete" ,//url
+			    	             data: {"id":data.id},
+			    	             success: function (result) {
+			    	                 if(result == "DELETE_SUCCESS"){
+			    	                 	layer.alert('删除用户成功！',function(index){
+			    	                 		alert(index);
+			    	                		window.location.href="${request.contextPath}/admin/user/toBgUser";
+			    	                	});
+			    	                 	//跳转到列表
+			    	                 }
+			    	                 if(result == "DELETE_FAIL"){
+			    	                 	layer.alert('删除用户失败！',function(index){
+			    	                		window.location.href="${request.contextPath}/admin/user/toBgUser";
+			    	                	});
+			    	                 }
+			    	             },
+			    	            
+			    	         });
+			    	  
 			        layer.close(index);
 			      });
 			    } else if(obj.event === 'edit'){
@@ -198,7 +220,7 @@
 
     	});
     
-    function searchBtn(){
+      function searchBtn(){
 		
 		//条件查询
 		 mytable.reload({

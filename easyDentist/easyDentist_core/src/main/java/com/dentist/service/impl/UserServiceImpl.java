@@ -112,8 +112,8 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		UserExample example = new UserExample();
 		UserExample.Criteria c  = example.createCriteria();
-		if(null != user && user.getUsername() != null){
-			c.andUsernameLike(user.getUsername());
+		if(null != user && !StringUtils.isEmpty(user.getUsername())){
+			c.andUsernameLike('%'+user.getUsername()+'%');
 		}
 		List<User> list =  userMapper.selectByExample(example);
 		if(!CollectionUtils.isEmpty(list)){
