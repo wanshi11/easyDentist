@@ -1,9 +1,9 @@
 package com.dentist.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,7 +58,10 @@ public class UserServiceImpl implements UserService {
 
 	public LayuiPage<User> page(User model, LayuiPageParam param) {
 		// TODO Auto-generated method stub
-		return null;
+		LayuiPage<User> layuiPage = new LayuiPage<>();
+		layuiPage.setData(selectWithPageByExample(model, param));
+		layuiPage.setCount(selectCountByExample(model));
+		return layuiPage;
 	}
 
 	@Override
@@ -74,13 +77,7 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-	@Override
-	public LayuiPage<User> selectWithPageByExample(
-			@Param("example") UserExample example,
-			@Param("params") Map<String, String> params) {
-		
-		return null;
-	}
+
 
 	@Override
 	public User queryUserById(Integer id) {
@@ -93,6 +90,42 @@ public class UserServiceImpl implements UserService {
 			return list.get(0);
 		}
 		return null;
+	}
+
+	@Override
+	public List<User> selectWithPageByExample(User user,
+			LayuiPageParam param) {
+		// TODO Auto-generated method stub
+		UserExample example = new UserExample();
+		UserExample.Criteria c  = example.createCriteria();
+		if(null != user && user.getUsername() != null){
+			c.andUsernameLike(user.getUsername());
+		}
+		
+		Map<String, String> params = new HashMap<>();
+		params.put("order", param.getOrder());
+		params.put("sort", param.getSort());	
+		params.put("rowStart", (param.getPage()-1)*param.getLimit()+"");	
+		params.put("pageSize", param.getLimit()+"");	
+		
+		
+		
+		return userMapper.selectWithPageByExample(example, params);
+	}
+
+	@Override
+	public int selectCountByExample(User user) {
+		// TODO Auto-generated method stub
+		UserExample example = new UserExample();
+		UserExample.Criteria c  = example.createCriteria();
+		if(null != user && user.getUsername() != null){
+			c.andUsernameLike(user.getUsername());
+		}
+		List<User> list =  userMapper.selectByExample(example);
+		if(!CollectionUtils.isEmpty(list)){
+			return list.size();
+		}
+		return 0;
 	}
 
 }

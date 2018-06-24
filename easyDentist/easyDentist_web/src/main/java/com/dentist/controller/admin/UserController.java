@@ -2,9 +2,6 @@ package com.dentist.controller.admin;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dentist.entity.User;
-import com.dentist.entity.UserExample;
 import com.dentist.service.UserService;
 import com.dentist.utils.IPUtils;
 import com.dentist.utils.LayuiPage;
+import com.dentist.utils.LayuiPageParam;
 
 
 @Controller
@@ -34,8 +31,7 @@ public class UserController {
 	@RequestMapping(value = "/toBgUser", method = RequestMethod.GET)
 	public String toBgUser(Model model) {
 
-		/*List<User>  list = userService.getList(null);
-		model.addAttribute("userlist", list);*/
+	
 		return "/admin/user/user_list";
 	}
 	
@@ -45,18 +41,9 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/userList",method=RequestMethod.POST)
 	@ResponseBody
-	public LayuiPage<User> userList(HttpServletRequest request,User u) {
-		List<User>  list = userService.getList(null);
-		
-		String username = request.getParameter("username");
-		
-		LayuiPage<User> page = new LayuiPage<User>();
-		page.setCode(0);
-		page.setCount(list.size());
-		page.setData(list);
-		page.setMsg("SUCCESS");
-		
-       return page;
+	public LayuiPage<User> userList(User u,LayuiPageParam param) {
+	
+		return userService.page(u, param);
 	}
 	
 	

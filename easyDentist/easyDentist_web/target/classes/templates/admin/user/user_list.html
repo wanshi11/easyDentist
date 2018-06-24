@@ -12,6 +12,11 @@
     <title>用户管理</title>
 
     <#include "/common/admin_css.html"/>
+    <style>
+    .layui-laypage-btn{
+    color: #333;
+    }
+    </style>
 </head>
 
 <body>
@@ -115,7 +120,7 @@
     layui.use('table', function(){
     	  var table = layui.table;
     	  
-    	  table.render({
+    	 var mytable =  table.render({
     	    elem: '#userTable'
     	    ,url:'${request.contextPath}/admin/user/userList'
     	    ,method:'post'
@@ -124,47 +129,53 @@
               {type: 'checkbox'}
     	      ,{field:'id', width:50, title: 'ID', sort: true}
     	      ,{field:'username', width:100, title: '用户名'}
-    	      ,{field:'realname', width:100, title: '姓名'}
-    	      ,{field:'sex', width:80, title: '性别'}
+    	      ,{field:'realname', width:100, title: '姓名' }
+    	      ,{field:'sex', width:80, title: '性别',templet: function(d){
+    	    	 if(d.sex){
+    	    		return '男';
+    	    	 }else{
+    	    		 return '女';
+    	    	 }
+    	      }}
     	      ,{field:'phoneno', width:120, title: '手机号'}
     	      ,{field:'qq', width:120, title: 'QQ' }
     	      ,{field:'ip', width:120, title: 'IP'}
-    	      ,{field:'createtime', width:140, title: 'TIME', sort: true,templet:'#createtime'}
+    	      ,{field:'createtime', width:140, title: 'TIME', sort: true}
     	    ]]
+    	    ,count:15
+    	    ,theme:'orange'
     	    ,where: {
-    	    	username: "111"
+    	    	
   		      }
-    	    ,page: true
+    	    ,page: {layout: ['limit', 'count', 'prev', 'page', 'next', 'skip']
+    	       //,curr: 5 //设定初始在第 5 页
+    	      //,groups: 1 //只显示 1 个连续页码
+    	      //,first: false //不显示首页
+    	      //,last: false //不显示尾页
+    	    }
+    	    ,jump: function(obj, first){
+    	        //obj包含了当前分页的所有参数，比如：
+    	        console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+    	        console.log(obj.limit); //得到每页显示的条数
+    	        
+    	        //首次不执行
+    	        if(!first){
+    	          //do something
+    	        }
+    	      }
     	  });
 
     	});
-    
-    
-    
- 
-    
-    
-    $(document).ready(function() {
-    	
-    	
-    	/*  $(document).ready(function() {
-    	        $('#dataTables-example').DataTable({
-    	            responsive: true
-    	        });
-    	    }); */
-    	 
-    /* 	$.ajax({
-                type: "POST",//方法类型
-                dataType: "json",//预期服务器返回的数据类型
-                url: "${request.contextPath}/admin/user/userList" ,//url
-                data: {},
-                success: function (result) {
-              
-                }
-            }); */
 
-    });
     </script>
+    
+    <script type="text/html" id="sexTpl">
+  {{#  if(data.sex === false){ }}
+    <span style="color: #F581B1;">{{ data.sex }}</span>
+  {{#  } else { }}
+    {{ data.sex }}
+  {{#  } }}
+</script>
 
 </body>
 
