@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import com.dentist.entity.User;
 import com.dentist.entity.UserExample;
@@ -15,6 +16,7 @@ import com.dentist.mapper.UserMapper;
 import com.dentist.service.UserService;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
+import com.dentist.utils.StringUtil;
 
 @Transactional
 @Service("userService")
@@ -81,15 +83,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User queryUserById(Integer id) {
-
-		UserExample example = new UserExample();
-		UserExample.Criteria c = example.createCriteria();
-		c.andIdEqualTo(id);
-		List<User> list =  userMapper.selectByExample(example);
-		if(!CollectionUtils.isEmpty(list)){
-			return list.get(0);
-		}
-		return null;
+		return  userMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
@@ -98,8 +92,8 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		UserExample example = new UserExample();
 		UserExample.Criteria c  = example.createCriteria();
-		if(null != user && user.getUsername() != null){
-			c.andUsernameLike(user.getUsername());
+		if(null != user && !StringUtils.isEmpty(user.getUsername())){
+			c.andUsernameLike('%'+user.getUsername()+'%');
 		}
 		
 		Map<String, String> params = new HashMap<>();
@@ -126,6 +120,20 @@ public class UserServiceImpl implements UserService {
 			return list.size();
 		}
 		return 0;
+	}
+
+	@Override
+	public User queryUserNotRepeatByUserName(String username, Integer id) {
+		// TODO Auto-generated method stub
+		UserExample example = new UserExample();
+		UserExample.Criteria c = example.createCriteria();
+		c.andUsernameEqualTo(username);
+		c.andIdNotEqualTo(id);
+		List<User> list =  userMapper.selectByExample(example);
+		if(!CollectionUtils.isEmpty(list)){
+			return list.get(0);
+		}
+		return null;
 	}
 
 }

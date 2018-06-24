@@ -18,6 +18,9 @@ public interface UserService extends IBaseService<User> {
 	
 	//根据条件查询总数据条数
 	int selectCountByExample(User user);
+
+	//排除当前用户查询
+	User queryUserNotRepeatByUserName(String username,Integer id);
 	
 
 	

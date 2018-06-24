@@ -48,20 +48,32 @@ public class UserController {
 	
 	
 	/**
-	 * 到添加或者修改用户页面 
+	 * 到添加页面 
+	 */
+	@RequestMapping(value = "/toAdd")
+	public String addUser(){
+		
+		return "/admin/user/user_add";
+	}
+	
+	/**
+	 * 到修改页面 
 	 */
 	@RequestMapping(value = "/toEdit")
-	public String editUser(){
+	public String editUser(Model model,int id){
+		
+		User u = userService.queryUserById(id);
+		model.addAttribute("user", u);
 		
 		return "/admin/user/user_edit";
 	}
 	
 	/**
-	 * 添加或者修改用户
+	 * 添加用户
 	 */
-	@RequestMapping(value = "/edit",method=RequestMethod.POST)
+	@RequestMapping(value = "/add",method=RequestMethod.POST)
 	@ResponseBody
-	public String edit(User u){
+	public String add(User u){
 		String result = "";
 		
 		User user = userService.queryUserByUserName(u.getUsername());
@@ -69,8 +81,6 @@ public class UserController {
 			result = "USER_EXIST";
 			return result;
 		}
-		
-		if(u.getId() == null){ //新增
 			u.setCreatetime(new Date());
 			u.setAdmin(false);
 			u.setIp(IPUtils.getLocalHostLANAddress().getHostAddress());
@@ -80,14 +90,42 @@ public class UserController {
 			}else{
 				result = "ADD_FAIL";
 			}
-		}else{ //修改
-			 u.setCreatetime(new Date());
-			 userService.update(u);
-			 result = "UPD_SUCCESS";
-		}
+	
 		return result;
 	}
 	
+	
+	
+	/**
+	 * 修改用户
+	 */
+	@RequestMapping(value = "/edit",method=RequestMethod.POST)
+	@ResponseBody
+	public String edit(User u){
+		String result = "";
+		
+		User user = userService.queryUserNotRepeatByUserName(u.getUsername(),u.getId());
+		User us = userService.queryUserById(u.getId());
+		if(user != null){
+			result = "USER_EXIST";
+			return result;
+		}
+		    us.setCreatetime(new Date());
+		    us.setIp(IPUtils.getLocalHostLANAddress().getHostAddress());
+		    us.setUsername(u.getUsername());
+		    us.setRealname(u.getRealname());
+		    us.setPhoneno(u.getPhoneno());
+		    us.setSex(u.getSex());
+		    us.setQq(u.getQq());
+			int num = userService.update(us);
+			if(num !=0){
+				result = "EDIT_SUCCESS";
+			}else{
+				result = "EDIT_FAIL";
+			}
+	
+		return result;
+	}
 	
 	/**
 	 * 校验用户名保证唯一 
