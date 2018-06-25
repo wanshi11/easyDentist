@@ -3,6 +3,8 @@ package com.dentist.mapper;
 import com.dentist.entity.Role;
 import com.dentist.entity.RoleExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface RoleMapper {
@@ -27,4 +29,7 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+	List<Role> selectWithPageByExample(@Param("example")RoleExample roleExample,
+			@Param("params")Map<String, String> params);
 }
