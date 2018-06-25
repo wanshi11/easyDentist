@@ -12,7 +12,6 @@ import org.springframework.util.StringUtils;
 
 import com.dentist.entity.Role;
 import com.dentist.entity.RoleExample;
-import com.dentist.entity.User;
 import com.dentist.mapper.RoleMapper;
 import com.dentist.service.RoleService;
 import com.dentist.utils.LayuiPage;
@@ -34,13 +33,13 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public int delete(Role model)  {
 		// TODO Auto-generated method stub
-		return 0;
+		return roleMapper.deleteByPrimaryKey(model.getId());
 	}
 
 	@Override
 	public int update(Role model)  {
 		// TODO Auto-generated method stub
-		return 0;
+		return roleMapper.updateByPrimaryKey(model);
 	}
 
 	@Override
@@ -121,6 +120,20 @@ public class RoleServiceImpl implements RoleService {
 			
 		}
 		return null;
+	}
+
+	@Override
+	public Role queryRoleNotRepeatByRoleName(String rolename, Integer id) {
+		
+				RoleExample example = new RoleExample();
+				RoleExample.Criteria c = example.createCriteria();
+				c.andRolenameEqualTo(rolename);
+				c.andIdNotEqualTo(id);
+				List<Role> list =  roleMapper.selectByExample(example);
+				if(!CollectionUtils.isEmpty(list)){
+					return list.get(0);
+				}
+				return null;
 	}
 
 }

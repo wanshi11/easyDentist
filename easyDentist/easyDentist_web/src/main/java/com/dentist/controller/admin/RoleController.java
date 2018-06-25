@@ -63,7 +63,7 @@ public class RoleController {
 	public String editRole(Model model,int id){
 		
 		Role r = roleService.queryRoleById(id);
-		model.addAttribute("user", r);
+		model.addAttribute("role", r);
 		
 		return "/admin/role/role_edit";
 	}
@@ -91,6 +91,57 @@ public class RoleController {
 	
 	
 	/**
+	 * 修改角色
+	 */
+	@RequestMapping(value = "/edit",method=RequestMethod.POST)
+	@ResponseBody
+	public String edit(Role r,HttpServletRequest request){
+		String result = "";
+		
+		User u = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		
+		Role role = roleService.queryRoleNotRepeatByRoleName(r.getRolename(),r.getId());
+		Role ro = roleService.queryRoleById(r.getId());
+		if(role != null){
+			result = "ROLE_EXIST";
+			return result;
+		}
+		 ro.setDescription(r.getDescription());
+		 ro.setOperationtime(new Date());
+		 ro.setOperatorid(u.getId());
+		 ro.setRolename(r.getRolename());
+			int num = roleService.update(ro);
+			if(num !=0){
+				result = "EDIT_SUCCESS";
+			}else{
+				result = "EDIT_FAIL";
+			}
+	
+		return result;
+	}
+	
+	
+	/**
+	 * 删除用户
+	 */
+	@RequestMapping(value = "/delete",method=RequestMethod.POST)
+	@ResponseBody
+	public String delete(Integer id){
+		String result = "";
+		Role r = roleService.queryRoleById(id);
+		int num = roleService.delete(r);
+		if(num > 0){
+			result="DELETE_SUCCESS";
+		}else{
+			result="DELETE_FAIL";
+		}
+	
+		return result;
+	}
+	
+	
+	
+	/**
 	 * 校验角色名保证唯一 
 	 */
 	@RequestMapping(value = "/checkRoleName",method=RequestMethod.POST)
@@ -103,6 +154,8 @@ public class RoleController {
 		}
 		return "0";
 	}
+	
+	
 	
 	
 }

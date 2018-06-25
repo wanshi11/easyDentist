@@ -19,7 +19,8 @@ public interface RoleService extends IBaseService<Role> {
 	//根据条件查询总数据条数
 	int selectCountByExample(Role role);
 	
-
 	Role queryRoleByRoleName(String rolename);
+
+	Role queryRoleNotRepeatByRoleName(String rolename, Integer id);
 
 }

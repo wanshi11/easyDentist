@@ -129,7 +129,7 @@ public class UserController {
 	
 	
 	/**
-	 * 修改用户
+	 * 删除用户
 	 */
 	@RequestMapping(value = "/delete",method=RequestMethod.POST)
 	@ResponseBody
