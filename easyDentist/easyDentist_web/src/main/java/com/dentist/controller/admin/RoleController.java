@@ -15,7 +15,6 @@ import com.dentist.entity.Role;
 import com.dentist.entity.User;
 import com.dentist.service.RoleService;
 import com.dentist.utils.Constant;
-import com.dentist.utils.IPUtils;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
 
@@ -66,6 +65,15 @@ public class RoleController {
 		model.addAttribute("role", r);
 		
 		return "/admin/role/role_edit";
+	}
+	
+	/**
+	 * 到赋予角色页面
+	 */
+	@RequestMapping(value = "/toGiveRoles",method=RequestMethod.GET)
+	public String toGiveRoles(Model model){
+		
+		return "/admin/role/role_give";
 	}
 	
 	/**

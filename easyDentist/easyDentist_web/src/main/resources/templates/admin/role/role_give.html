@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>赋予角色</title> <#include "/common/admin_css.html"/>
+<style type="text/css">
+.jz10 {
+	margin-left: 10%;
+}
+.jz {
+	margin-left: 25%;
+}
+    #main{width:70%;height:500px;}
+    .left{float:left;width:35%;height:400px;margin:10px 10px 10px 10px;border:1px solid #C0C0C0;}
+    .center{float:left;width:15%;height:400px;}
+    .right{float:right;width:35%;height:400px;margin:10px 10px 10px 10px;border:1px solid #C0C0C0;}
+</style>
+</head>
+
+<body>
+
+	<div id="wrapper">
+		<#include "/common/admin_header_left.html"/>
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header">赋予角色</h3>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">GIVE_ROLES</div>
+						<div class="panel-body">
+							<div class="row">
+                            <div id="main">
+                             <div class="left">
+                             
+                             </div >
+                             <div class="center">
+                               <span style="display: table-cell;vertical-align:middle;text-align:center;font-weight:bold;">--赋予角色-->></span>
+                             </div>
+                            <div class="right">
+                             
+                             </div>
+                            </div>
+
+
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+    <#include "/common/admin_js.html"/>
+	<!-- 后台公共js -->
+	<script type="text/javascript">
+		
+	function edit() {
+		
+		
+		
+		
+        $.ajax({
+        //几个参数需要注意一下
+            type: "POST",//方法类型
+            url: "${request.contextPath}/admin/role/edit" ,//url
+            data: $('#subform').serialize(),
+            success: function (result) {
+            	
+            }
+        });
+    }
+	
+
+	</script>
+	
+
+</body>
+
+</html>

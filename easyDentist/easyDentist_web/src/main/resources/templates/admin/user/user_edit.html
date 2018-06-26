@@ -55,12 +55,13 @@
 											 <label>QQ号</label>
 										<input class="form-control" name="qq" id="qq" value="${user.qq}" placeholder="请输入QQ号码"><br />
 										<div class="form-group">
+										<input class="form-control"  id="sex" type="hidden" value="${user.sex}" />
 											<label>性别</label>
 											<div class="radio">
 												<label> <input type="radio" name="sex" 
-													 checked value="1" >男    &nbsp;&nbsp;&nbsp;
+													  value="1" >男    &nbsp;&nbsp;&nbsp;
 													<label> <input type="radio" name="sex" value="0"
-													 checked>女
+													 >女
 												</label>
 											</div>
 										</div>
@@ -81,6 +82,16 @@
     <#include "/common/admin_js.html"/>
 	<!-- 后台公共js -->
 	<script type="text/javascript">
+	$(function(){
+		
+		var sexInp = $("#sex").val();
+		 if(sexInp){
+			 $("input[type='radio'][name='sex'][value='1']").attr("checked","checked");
+		 }else{
+			 $("input[type='radio'][name='sex'][value='0']").attr("checked","checked");
+		 }
+		
+	});
 		
 	function edit() {
 		
