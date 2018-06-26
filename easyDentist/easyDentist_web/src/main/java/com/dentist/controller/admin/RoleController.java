@@ -1,6 +1,7 @@
 package com.dentist.controller.admin;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dentist.entity.Role;
 import com.dentist.entity.User;
 import com.dentist.service.RoleService;
+import com.dentist.service.UserService;
 import com.dentist.utils.Constant;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
@@ -25,6 +27,9 @@ public class RoleController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private UserService userService;
 	 
 	
 	/**
@@ -72,6 +77,12 @@ public class RoleController {
 	 */
 	@RequestMapping(value = "/toGiveRoles",method=RequestMethod.GET)
 	public String toGiveRoles(Model model){
+		
+		List<User> ulist = userService.getList(null);
+		List<Role> rlist = roleService.getList(null);
+		
+		model.addAttribute("ulist", ulist);
+		model.addAttribute("rlist", rlist);
 		
 		return "/admin/role/role_give";
 	}

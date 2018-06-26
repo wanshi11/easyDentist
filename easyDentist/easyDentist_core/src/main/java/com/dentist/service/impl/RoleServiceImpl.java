@@ -51,7 +51,8 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public List<Role> getList(Role model)  {
 		// TODO Auto-generated method stub
-		return null;
+		RoleExample example = new RoleExample();
+		return roleMapper.selectByExample(example);
 	}
 
 	@Override
