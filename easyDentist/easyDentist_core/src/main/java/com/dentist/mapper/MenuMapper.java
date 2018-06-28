@@ -2,7 +2,12 @@ package com.dentist.mapper;
 
 import com.dentist.entity.Menu;
 import com.dentist.entity.MenuExample;
+import com.dentist.entity.Role;
+import com.dentist.entity.RoleExample;
+
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface MenuMapper {
@@ -27,4 +32,7 @@ public interface MenuMapper {
     int updateByPrimaryKeySelective(Menu record);
 
     int updateByPrimaryKey(Menu record);
+    
+    List<Menu> selectWithPageByExample(@Param("example")MenuExample menuExample,
+			@Param("params")Map<String, String> params);
 }

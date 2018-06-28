@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>添加角色</title> 
+<title>添加菜单</title> 
 <#include "/common/admin_css.html"/>
 <style type="text/css">
 .jz10 {
@@ -43,13 +43,22 @@
 
 								<form role="form" id="subform">
 									<div class="col-lg-5 jz10">
-										<label>角色名</label>
+										<label>菜单名称</label>
 										<input class="form-control" name="menuname"
-											id="menuname" placeholder="请输入菜单名称" onblur="return checkMenuName();" ><br /> 
+											id="menuname" placeholder="请输入菜单名称" autocomplete="off" onblur="return checkMenuName();" ><br /> 
 											<label>菜单描述</label>
-										<input class="form-control" name="description"  id="description"
+										<input class="form-control" name="menudescribe"  id="menudescribe"
 											placeholder="请输入菜单描述" ><br /> 
-										
+											<label>菜单父ID</label> 
+											<select
+											name="parentid" id="parentid" class="form-control">
+											<option value="" >NULL(空)</option> <#list parentMenus as menu>
+											<option value="${menu.id}">${menu.menuname}</option>
+											</#list>
+										</select><br /> 
+										<label>菜单url</label> <input
+											class="form-control" name="url" id="url"  onkeyup="return checkUrl();"
+											placeholder="请输入菜单URL地址" /><br />
 										<div  class="jz">
 										<input type="button" value="提交" class="btn btn-default" onclick="add()"  />
 										&nbsp;&nbsp;&nbsp;&nbsp;
@@ -72,29 +81,30 @@
 	
 	function add() {
 		
-		var rolename = $("#rolename").val();
-		var description = $("#description").val();
-		if(rolename == "" || description == ""){
-			layer.alert('表单数据不可以为空！');
+		var menuname = $("#menuname").val();
+		var menudescribe = $("#menudescribe").val();
+		
+		if(menuname == "" || menudescribe == ""){
+			layer.alert('菜单名称和菜单描述不可以为空！');
 			return false;
 		}
 	
         $.ajax({
         //几个参数需要注意一下
             type: "POST",//方法类型
-            url: "${request.contextPath}/admin/role/add" ,//url
+            url: "${request.contextPath}/admin/menu/add" ,//url
             data: $('#subform').serialize(),
             success: function (result) {
             	
                 if(result == "ADD_SUCCESS"){
-                	layer.alert('新增角色成功！',function(index){
-                		window.location.href="${request.contextPath}/admin/role/toRoles";
+                	layer.alert('新增菜单成功！',function(index){
+                		window.location.href="${request.contextPath}/admin/menu/toMenus";
                 	});
                 	//跳转到列表
                 }
                 if(result == "ADD_FAIL"){
-                	layer.alert('新增角色失败！',function(index){
-                	window.location.href='${request.contextPath}/admin/role/toAdd';
+                	layer.alert('新增菜单失败！',function(index){
+                	window.location.href='${request.contextPath}/admin/menu/toAdd';
                 	});
                 }
             },
@@ -104,21 +114,41 @@
             	 alert(XMLHttpRequest.responseText);
             	 alert(textStatus);
             	   }
-        });
+        }); 
     }
 	
 	
-	function checkRoleName(){
-		var rolename = $("#rolename").val();
+	function checkMenuName(){
+		var menuname = $("#menuname").val();
 		 $.ajax({
 		        //几个参数需要注意一下
 		            type: "POST",//方法类型
-		            url: "${request.contextPath}/admin/role/checkRoleName" ,//url
-		            data: {"rolename":rolename},
+		            url: "${request.contextPath}/admin/menu/checkMenuName" ,//url
+		            data: {"menuname":menuname},
 		            success: function (result) {
 		               if(result == "1"){
-		            	   layer.alert('该角色名已存在！');
-		            	   $("#rolename").val("");
+		            	   layer.alert('该菜单名已存在！');
+		            	   $("#menuname").val("");
+		               }
+		            },
+		            error : function() {
+		                alert("异常！");
+		            }
+		        });
+	}
+	
+	
+	function checkUrl(){
+		var url = $("#url").val();
+		 $.ajax({
+		        //几个参数需要注意一下
+		            type: "POST",//方法类型
+		            url: "${request.contextPath}/admin/menu/checkUrl" ,//url
+		            data: {"url":url},
+		            success: function (result) {
+		               if(result == "1"){
+		            	   layer.alert('该菜单URL已存在！');
+		            	   $("#url").val("");
 		               }
 		            },
 		            error : function() {

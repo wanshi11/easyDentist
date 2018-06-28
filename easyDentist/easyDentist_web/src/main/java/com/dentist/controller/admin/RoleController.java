@@ -1,20 +1,25 @@
 package com.dentist.controller.admin;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dentist.entity.Role;
 import com.dentist.entity.User;
+import com.dentist.entity.UserRole;
 import com.dentist.service.RoleService;
+import com.dentist.service.UserRoleService;
 import com.dentist.service.UserService;
 import com.dentist.utils.Constant;
 import com.dentist.utils.LayuiPage;
@@ -30,6 +35,9 @@ public class RoleController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRoleService userRoleService;
 	 
 	
 	/**
@@ -168,10 +176,19 @@ public class RoleController {
 	public String checkRoleName(String rolename){
 		
 		Role r = roleService.queryRoleByRoleName(rolename);
-		if(r != null){  //已有该用户
+		if(r != null){  //已有该角色
 			return "1";
 		}
 		return "0";
+	}
+	
+	@RequestMapping(value="/queryRolesByUserId",method=RequestMethod.POST)
+	public List<Role> queryRolesByUserId(@RequestParam String userId){
+		List<Role> list = new ArrayList<>();
+		
+		List<UserRole> urlist =  userRoleService.queryRolesByUserId(userId);
+		
+		return list;
 	}
 	
 	

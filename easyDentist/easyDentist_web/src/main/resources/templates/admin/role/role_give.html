@@ -57,8 +57,9 @@
 										<div class="left">
 											<div class="layui-form-item">
 												<div class="layui-input-inline">
-													<select id="selectInp" lay-verify="required" lay-search="">
-														<option value="">选择用户分配角色</option> <#list ulist as user>
+													<select id="selectInp" lay-verify="required" lay-filter="myselect">
+														<option value="">选择用户分配角色</option>
+													    <#list ulist as user>
 														<option value="${user.id}">${user.username}</option>
 														</#list>
 													</select>
@@ -97,11 +98,32 @@
     <#include "/common/admin_js.html"/>
 	<!-- 后台公共js -->
 	<script type="text/javascript">
+	
+	
+	layui.use(['layer', 'form'], function(){
+		  
+		  var form = layui.form;
+		  form.on('select(myselect)', function(data){
+			  console.log(data.value); 
+	   $.ajax({
+		                type: 'POST',
+		                url: '${request.contextPath}/admin/role/queryRolesByUserId',
+		                data: {"userId":data.value},
+		                success: function(data){
+		                   //修改角色checkbox的选中
+		                  
+		                }
+		        });  
+		});
+
+		}); 
+	
+	
+	
+	
 		
 	function giveRoles() {
-		
-		
-		
+
         /* $.ajax({
         //几个参数需要注意一下
             type: "POST",//方法类型
@@ -113,7 +135,10 @@
         }); */
     }
 	
-	$("#selectInp").on("change",function(){
+	
+	
+	
+	$("#selectInp").change(function(){
 		alert(11);
 		alert($(this).children('option:selected').val()); 
 	});
