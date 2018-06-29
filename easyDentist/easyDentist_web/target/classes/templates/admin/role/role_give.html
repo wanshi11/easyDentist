@@ -72,8 +72,8 @@
 										</div>
 										<div class="right">
 											<div class="layui-input-block">
-												<#list rlist as role> <input name="${role.rolename}"
-													value="${role.id}" title="${role.rolename}" type="checkbox"><br />
+												<#list rlist as role> 
+												<input name="roleId_${role.id}" value="${role.id}" title="${role.rolename}" type="checkbox"><br />
 												</#list>
 											</div>
 										</div>
@@ -109,9 +109,16 @@
 		                type: 'POST',
 		                url: '${request.contextPath}/admin/role/queryRolesByUserId',
 		                data: {"userId":data.value},
-		                success: function(data){
+		                success: function(result){
 		                   //修改角色checkbox的选中
-		                  
+		                  console.log(result);
+		                    //遍历list列表，将chexkbox中value值等于list中的ID的话，选择该chexkbox
+		                  $("#selectInp").each(function(){
+		              		console.info($(this).val());
+		                      
+		              		
+		                  });
+		                   
 		                }
 		        });  
 		});

@@ -182,6 +182,7 @@ public class RoleController {
 	//=================用户与角色=========
 	
 	@RequestMapping(value="/queryRolesByUserId",method=RequestMethod.POST)
+	@ResponseBody
 	public List<Role> queryRolesByUserId(@RequestParam String userId){
 		
 		return userRoleService.queryRolesByUserId(userId);
