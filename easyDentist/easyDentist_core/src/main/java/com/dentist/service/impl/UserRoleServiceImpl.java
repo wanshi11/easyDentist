@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import com.dentist.entity.Role;
 import com.dentist.entity.UserRole;
 import com.dentist.entity.UserRoleExample;
 import com.dentist.mapper.UserRoleMapper;
@@ -70,15 +71,14 @@ public class UserRoleServiceImpl implements UserRoleService {
 	}
 
 	@Override
-	public List<UserRole> queryRolesByUserId(String userId) {
+	public List<Role> queryRolesByUserId(String userId) {
 		// TODO Auto-generated method stub
-		UserRoleExample example = new UserRoleExample();
-		UserRoleExample.Criteria c = example.createCriteria();
 		if(!StringUtils.isEmpty(userId)){
-			c.andUseridEqualTo(Integer.valueOf(userId));
+			List<Role> list = userRoleMapper.queryRolesByUserId(Integer.valueOf(userId));
+			return list;
 		}
+		 return null;
 		
-		return userRoleMapper.selectByExample(example);
 	}
 
 }

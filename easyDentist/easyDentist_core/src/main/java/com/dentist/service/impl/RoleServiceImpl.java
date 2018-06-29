@@ -99,11 +99,7 @@ public class RoleServiceImpl implements RoleService {
 			c.andRolenameLike('%'+role.getRolename()+'%');
 		}
 		
-		List<Role> list =  roleMapper.selectByExample(roleExample);
-		if(!CollectionUtils.isEmpty(list)){
-			return list.size();
-		}
-		return 0;
+		return roleMapper.countByExample(roleExample);
 	}
 
 	@Override

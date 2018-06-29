@@ -63,6 +63,26 @@ public class MenuController {
 	
 	
 	/**
+	 * 到修改页面 
+	 */
+	@RequestMapping(value = "/toEdit")
+	public String editMenu(Model model,int id){
+		
+		Menu m = menuService.queryMenuById(id);
+		if(m.getParentid() == null){
+			model.addAttribute("isParentMenu", "1");
+		}else{
+			List<Menu> list = menuService.getAllParentMenus();
+			model.addAttribute("parentMenus", list);
+			model.addAttribute("isParentMenu", "0");
+		}
+		
+		model.addAttribute("menu", m);
+		
+		return "/admin/menu/menu_edit";
+	}
+	
+	/**
 	 * 添加菜单
 	 */
 	@RequestMapping(value = "/add",method=RequestMethod.POST)
@@ -98,6 +118,42 @@ public class MenuController {
 		}else{
 			result="DELETE_FAIL";
 		}
+	
+		return result;
+	}
+	
+	/**
+	 * 修改菜单
+	 */
+	@RequestMapping(value = "/edit",method=RequestMethod.POST)
+	@ResponseBody
+	public String edit(Menu m,HttpServletRequest request){
+		String result = "";
+		
+		User u = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		
+		Menu menu1 = menuService.queryMenuNotRepeatByMenuName(m.getMenuname(),m.getId());
+		Menu menu2 = menuService.queryMenuNotRepeatByMenuUrl(m.getUrl(),m.getId());
+		Menu me = menuService.queryMenuById(m.getId());
+		if(menu1 != null){
+			result = "MENU_NAME_EXIST";
+			return result;
+		}
+		if(menu2 != null){
+			result = "MENU_URL_EXIST";
+			return result;
+		}
+		 me.setMenudescribe(m.getMenudescribe());
+		 me.setCreatetime(new Date());
+		 me.setOperatorid(u.getId());
+		 me.setMenuname(m.getMenuname());
+		 me.setParentid(m.getParentid());
+			int num = menuService.update(me);
+			if(num !=0){
+				result = "EDIT_SUCCESS";
+			}else{
+				result = "EDIT_FAIL";
+			}
 	
 		return result;
 	}

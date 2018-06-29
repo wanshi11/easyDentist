@@ -1,7 +1,9 @@
 package com.dentist.mapper;
 
+import com.dentist.entity.Role;
 import com.dentist.entity.UserRole;
 import com.dentist.entity.UserRoleExample;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,6 @@ public interface UserRoleMapper {
     int updateByPrimaryKeySelective(UserRole record);
 
     int updateByPrimaryKey(UserRole record);
+    
+    List<Role> queryRolesByUserId(Integer userId);
 }

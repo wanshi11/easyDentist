@@ -8,6 +8,15 @@
     <result column="operationTime" property="operationtime" jdbcType="TIMESTAMP" />
     <result column="operatorId" property="operatorid" jdbcType="INTEGER" />
   </resultMap>
+  
+  <resultMap id="RoleResultMap" type="com.dentist.entity.Role" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="rolename" property="rolename" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="operationTime" property="operationtime" jdbcType="TIMESTAMP" />
+    <result column="operatorId" property="operatorid" jdbcType="INTEGER" />
+  </resultMap>
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -209,4 +218,10 @@
       operatorId = #{operatorid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 根据userID查询某人的角色集 -->
+  <select id="queryRolesByUserId" parameterType="Integer" resultMap="RoleResultMap">
+   select tr.* from t_user_role tur INNER  JOIN t_user tu on tur.userid = tu.id 
+    INNER JOIN t_role tr on tur.roleid = tr.id  where tu.id=#{userId,jdbcType=INTEGER};
+  </select>
 </mapper>

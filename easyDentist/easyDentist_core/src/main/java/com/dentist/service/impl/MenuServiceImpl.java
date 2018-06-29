@@ -39,7 +39,7 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public int update(Menu model)  {
 		// TODO Auto-generated method stub
-		return 0;
+		return mapper.updateByPrimaryKey(model);
 	}
 
 	@Override
@@ -98,11 +98,7 @@ public class MenuServiceImpl implements MenuService {
 			c.andMenunameLike('%'+menu.getMenuname()+'%');
 		}
 		
-		List<Menu> list =  mapper.selectByExample(menuExample);
-		if(!CollectionUtils.isEmpty(list)){
-			return list.size();
-		}
-		return 0;
+		return  mapper.countByExample(menuExample);
 	}
 
 	@Override
@@ -149,6 +145,38 @@ public class MenuServiceImpl implements MenuService {
 	public Menu queryMenuById(Integer id) {
 		
 		return mapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public Menu queryMenuNotRepeatByMenuName(String menuname, Integer id) {
+		
+		MenuExample menuExample = new MenuExample();
+		MenuExample.Criteria c = menuExample.createCriteria();
+	     if(!StringUtils.isEmpty(menuname)){
+	    	 c.andMenunameEqualTo(menuname);
+	     }
+	     c.andIdNotEqualTo(id);
+		List<Menu> list =  mapper.selectByExample(menuExample);
+		if(!CollectionUtils.isEmpty(list)){
+			return list.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public Menu queryMenuNotRepeatByMenuUrl(String url, Integer id) {
+		
+		MenuExample menuExample = new MenuExample();
+		MenuExample.Criteria c = menuExample.createCriteria();
+	     if(!StringUtils.isEmpty(url)){
+	    	 c.andUrlEqualTo(url);
+	     }
+	     c.andIdNotEqualTo(id);
+		List<Menu> list =  mapper.selectByExample(menuExample);
+		if(!CollectionUtils.isEmpty(list)){
+			return list.get(0);
+		}
+		return null;
 	}
 	
 	

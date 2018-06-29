@@ -115,11 +115,8 @@ public class UserServiceImpl implements UserService {
 		if(null != user && !StringUtils.isEmpty(user.getUsername())){
 			c.andUsernameLike('%'+user.getUsername()+'%');
 		}
-		List<User> list =  userMapper.selectByExample(example);
-		if(!CollectionUtils.isEmpty(list)){
-			return list.size();
-		}
-		return 0;
+		return  userMapper.countByExample(example);
+		
 	}
 
 	@Override

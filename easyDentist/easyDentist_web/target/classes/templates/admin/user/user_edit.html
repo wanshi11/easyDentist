@@ -119,7 +119,7 @@
             	
             	if(result == "USER_EXIST"){
                 	layer.alert('该用户名已存在！',function(index){
-                	window.location.href='${request.contextPath}/admin/user/toEdit?id=1';
+                	window.location.href='${request.contextPath}/admin/user/toEdit?id='+$("#id").val();
                 	});
                 	//跳转到新增
                 }
@@ -132,7 +132,7 @@
                 }
                 if(result == "EDIT_FAIL"){
                 	layer.alert('修改用户失败！',function(index){
-                	window.location.href='${request.contextPath}/admin/user/toEdit?id=1';
+                	window.location.href='${request.contextPath}/admin/user/toEdit?id='+$("#id").val();
                 	});
                 }
             },

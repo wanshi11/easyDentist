@@ -1,12 +1,10 @@
 package com.dentist.controller.admin;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dentist.entity.Role;
 import com.dentist.entity.User;
-import com.dentist.entity.UserRole;
 import com.dentist.service.RoleService;
 import com.dentist.service.UserRoleService;
 import com.dentist.service.UserService;
@@ -180,15 +177,14 @@ public class RoleController {
 			return "1";
 		}
 		return "0";
-	}
+	}	
+	
+	//=================用户与角色=========
 	
 	@RequestMapping(value="/queryRolesByUserId",method=RequestMethod.POST)
 	public List<Role> queryRolesByUserId(@RequestParam String userId){
-		List<Role> list = new ArrayList<>();
 		
-		List<UserRole> urlist =  userRoleService.queryRolesByUserId(userId);
-		
-		return list;
+		return userRoleService.queryRolesByUserId(userId);
 	}
 	
 	
