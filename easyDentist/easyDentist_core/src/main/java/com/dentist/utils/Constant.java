@@ -13,8 +13,8 @@ public class Constant {
   //文章类型
   public static final String  ARTICLE_NEWS = "ARTICLE_NEWS";//新闻
   public static final String  ARTICLE_HEALTH = "ARTICLE_HEALTH";//保健知识
-  public static final String  ARTICLE_ACTIVITY = "ARTICLE_ACTIVITY";//活动
-  
+  public static final String  ARTICLE_GY_ACTIVITY = "ARTICLE_GY_ACTIVITY";//公益活动
+  public static final String  ARTICLE_YH_ACTIVITY = "ARTICLE_YH_ACTIVITY";//优惠活动
   
   //留言类型
   public static final String  LEAVE_MSG_ADVICE = "LEAVE_MSG_ADVICE"; //建议

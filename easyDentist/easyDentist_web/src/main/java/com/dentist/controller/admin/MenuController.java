@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dentist.entity.Menu;
-import com.dentist.entity.Role;
 import com.dentist.entity.User;
 import com.dentist.service.MenuService;
 import com.dentist.utils.Constant;
