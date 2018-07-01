@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dentist.entity.Role;
 import com.dentist.entity.User;
+import com.dentist.entity.UserRole;
 import com.dentist.service.RoleService;
 import com.dentist.service.UserRoleService;
 import com.dentist.service.UserService;
@@ -77,36 +78,7 @@ public class RoleController {
 		return "/admin/role/role_edit";
 	}
 	
-	/**
-	 * 到赋予角色页面
-	 */
-	@RequestMapping(value = "/toGiveRoles",method=RequestMethod.GET)
-	public String toGiveRoles(Model model){
-		
-		List<User> ulist = userService.getList(null);
-		List<Role> rlist = roleService.getList(null);
-		
-		model.addAttribute("ulist", ulist);
-		model.addAttribute("rlist", rlist);
-		
-		return "/admin/role/role_give";
-	}
 	
-	/**
-	 * 给用户分配角色
-	 * @param userId
-	 * @param roleIds
-	 * @return
-	 */
-	@RequestMapping(value="/giveRoles",method=RequestMethod.POST)
-	@ResponseBody
-	public String giveRoles(@RequestParam String userId,@RequestParam(required = false,value = "roleIds[]") 
-	Integer[] roleIds){
-		
-		
-		
-	return "SUCCESS";	
-	}
 	
 	/**
 	 * 添加角色
@@ -202,6 +174,51 @@ public class RoleController {
 	public List<Role> queryRolesByUserId(@RequestParam String userId){
 		
 		return userRoleService.queryRolesByUserId(userId);
+	}
+	
+	
+	/**
+	 * 到赋予角色页面
+	 */
+	@RequestMapping(value = "/toGiveRoles",method=RequestMethod.GET)
+	public String toGiveRoles(Model model){
+		
+		List<User> ulist = userService.getList(null);
+		List<Role> rlist = roleService.getList(null);
+		
+		model.addAttribute("ulist", ulist);
+		model.addAttribute("rlist", rlist);
+		
+		return "/admin/role/role_give";
+	}
+	
+	/**
+	 * 给用户分配角色
+	 * @param userId
+	 * @param roleIds
+	 * @return
+	 */
+	@RequestMapping(value="/giveRoles",method=RequestMethod.POST)
+	@ResponseBody
+	public String giveRoles(HttpServletRequest request,@RequestParam String userId,@RequestParam(required = false,value = "roleIds[]") 
+	Integer[] roleIds){
+		
+		User u = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		//根据userId 删除该用户所有的角色
+		int  num = userRoleService.deleteMoreByUserId(Integer.valueOf(userId));
+		//根据userId 赋值该用用户新的角色
+		if(roleIds != null && roleIds.length > 0){
+			for (int i = 0; i < roleIds.length; i++) {
+				UserRole ur = new UserRole();
+				ur.setUserid(Integer.valueOf(userId));
+				ur.setRoleid(roleIds[i]);
+				ur.setOperationtime(new Date());
+				ur.setOperatorid(u.getId());
+				userRoleService.add(ur);
+			}
+		}
+		          
+	      return "SUCCESS";	
 	}
 	
 	

@@ -28,6 +28,7 @@
     .layui-form-item{margin-top: 50%;margin-left: 12%;}
     .layui-input-block{margin:10px 0px 10px 10px;}
     .layui-btn{margin-left: 33%;}
+    .hiddenBtn{display:none; }
 </style>
 </head>
 
@@ -39,7 +40,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header">赋予角色</h3>
+					<h3 class="page-header">查询用户角色</h3>
 				</div>
 			</div>
 
@@ -47,7 +48,10 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">GIVE_ROLES &nbsp;&nbsp;&nbsp;(每个用户可分配多个角色)</div>
+						<div class="panel-heading"><span class="cloumn_title">QUERY_ROLES</span> &nbsp;&nbsp;&nbsp;(每个用户可分配多个角色)
+						  <div style="float: right;">
+						  <input type="checkbox" id="giveRole_flag" onchange="giveRoleChange()" >点击勾选可以进行赋予角色的操作</div>
+						</div>
 						<div class="panel-body">
 							<div class="row">
 
@@ -68,7 +72,7 @@
 										</div>
 										<div class="center">
 											<div
-												style="text-align: center; font-weight: bold; margin-top: 100%;">--赋予角色-->></div>
+												style="text-align: center; font-weight: bold; margin-top: 100%;">--查询角色-->></div>
 										</div>
 										<div class="right">
 											<div class="layui-input-block">
@@ -80,7 +84,7 @@
 										<div>
 											<div class="layui-form-item">
 												<div class="layui-input-block"><br/>
-													<a href="javascript:void(0);" onclick="giveRoles()" class="layui-btn">点击分配角色</a>
+													<a href="javascript:void(0);" onclick="giveRoles()" id="fpjs" class="layui-btn hiddenBtn">点击分配角色</a>
 												</div>
 											</div>
 										</div>
@@ -142,7 +146,6 @@
 			              			}
 		              		 }
 		                  });
-		                   
 		                }
 		        });  
 		});
@@ -173,13 +176,28 @@
         	            	,"roleIds":_list
         	            },
         	            success: function (result) {
-        	            	alert(result);
+        	            	if(result == "SUCCESS"){
+        	            		layer.alert("成功赋予角色！");
+        	            	}
         	            }
         	        }); 
          }
          
          return false;
     }
+	
+	  function giveRoleChange(){
+		  var flag = $("#giveRole_flag").prop("checked");  //取checkbox的checked属性值
+		  if(flag){
+			  $(".cloumn_title").html("GIVE_ROLES");
+			  $(".page-header").html("赋予用户角色");
+			  $("#fpjs").removeClass("hiddenBtn");
+		  }else{
+			  $(".cloumn_title").html("QUERY_ROLES"); 
+			  $(".page-header").html("查询用户角色");
+			  $("#fpjs").addClass("hiddenBtn");
+		  }
+	  }
 	
 	
 

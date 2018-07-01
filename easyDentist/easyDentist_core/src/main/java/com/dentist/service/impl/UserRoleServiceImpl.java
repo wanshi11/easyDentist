@@ -25,7 +25,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 	@Override
 	public int add(UserRole model)  {
 		// TODO Auto-generated method stub
-		return 0;
+		return userRoleMapper.insert(model);
 	}
 
 	@Override
@@ -79,6 +79,15 @@ public class UserRoleServiceImpl implements UserRoleService {
 		}
 		 return null;
 		
+	}
+
+	@Override
+	public int deleteMoreByUserId(Integer userId) {
+		
+		UserRoleExample example = new UserRoleExample();
+		UserRoleExample.Criteria c = example.createCriteria();
+		c.andUseridEqualTo(userId);
+		return userRoleMapper.deleteByExample(example);
 	}
 
 }
