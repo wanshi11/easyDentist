@@ -73,7 +73,7 @@
 										<div class="right">
 											<div class="layui-input-block">
 												<#list rlist as role> 
-												<input name="roleId_${role.id}" value="${role.id}" title="${role.rolename}" type="checkbox"><br />
+												<input class="inp" name="roleId_${role.id}" lay-filter="mycheckbox" value="${role.id}" title="${role.rolename}" type="checkbox"><br />
 												</#list>
 											</div>
 										</div>
@@ -99,24 +99,48 @@
 	<!-- 后台公共js -->
 	<script type="text/javascript">
 	
-	
+	   var myform = null;
 	layui.use(['layer', 'form'], function(){
 		  
-		  var form = layui.form;
-		  form.on('select(myselect)', function(data){
-			  console.log(data.value); 
+		 myform = layui.form;
+		 myform.on('checkbox(mycheckbox)', function(data){
+			  if(data.elem.checked){
+				  $("input[value="+data.value+"][type='checkbox']").attr("checked",true);  
+			  }else{
+				  $("input[value="+data.value+"][type='checkbox']").attr("checked",false); 
+			  }
+			  });
+		  
+		 myform.on('select(myselect)', function(data){
 	   $.ajax({
 		                type: 'POST',
 		                url: '${request.contextPath}/admin/role/queryRolesByUserId',
 		                data: {"userId":data.value},
 		                success: function(result){
+		                	
+		                	//删除选中
+                       	 $("input[type='checkbox']").attr("checked",false);
+                       	 //加样式
+                       	 $("input[type='checkbox']").next().removeClass("layui-form-checked");
+		                	
 		                   //修改角色checkbox的选中
 		                  console.log(result);
 		                    //遍历list列表，将chexkbox中value值等于list中的ID的话，选择该chexkbox
-		                  $("#selectInp").each(function(){
-		              		console.info($(this).val());
-		                      
-		              		
+		                  $(".layui-input-block > .inp").each(function(){
+		              		//console.info($(this).val());
+		              		 var roleId = $(this).val();
+		              		 if(result != null){
+		              			for(var index in result){
+			              			  //其实index 就是个索引
+			              			   var rid =result[index].id;
+                                         if(roleId == rid){
+                                        	 //加选中
+                                        	 $("input[value="+rid+"][type='checkbox']").attr("checked",true);
+                                        	 //加样式
+                                        	 $("input[value="+rid+"][type='checkbox']").next().addClass("layui-form-checked");
+                                         }
+			              			}
+		              		 }
 		                  });
 		                   
 		                }
@@ -126,29 +150,39 @@
 		}); 
 	
 	
-	
-	
 		
 	function giveRoles() {
-
-        /* $.ajax({
-        //几个参数需要注意一下
-            type: "POST",//方法类型
-            url: "${request.contextPath}/admin/role/edit" ,//url
-            data: $('#subform').serialize(),
-            success: function (result) {
-            	
-            }
-        }); */
+         //获取用户Id
+        var userId = $("select option:selected").attr("value") ;
+        var _list = new Array();
+         //获取roleId集合
+         $(".layui-input-block > .inp").each(function(){
+        	 if($(this).attr("checked")){
+        	 var a = $(this).val();
+        	 _list.push(a);
+        	 }
+         });
+         
+         if(userId !=null && userId !="" && _list != null){
+        	  $.ajax({
+        	        //几个参数需要注意一下
+        	            type: "POST",//方法类型
+        	            url: "${request.contextPath}/admin/role/giveRoles",//url
+        	            data:{
+        	            	"userId":userId
+        	            	,"roleIds":_list
+        	            },
+        	            success: function (result) {
+        	            	alert(result);
+        	            }
+        	        }); 
+         }
+         
+         return false;
     }
 	
 	
-	
-	
-	$("#selectInp").change(function(){
-		alert(11);
-		alert($(this).children('option:selected').val()); 
-	});
+
 
 	</script>
 	

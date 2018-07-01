@@ -1,6 +1,6 @@
 com\dentist\service\impl\MenuServiceImpl.class
-com\dentist\service\RoleMenuService.class
 com\dentist\pojo\MenuPermitView.class
+com\dentist\service\RoleMenuService.class
 com\dentist\service\impl\RoleMenuServiceImpl.class
 com\dentist\service\impl\UserRoleServiceImpl.class
 com\dentist\utils\Constant.class

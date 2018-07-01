@@ -42,7 +42,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
- 		<table schema="" tableName="t_user" 
+ 		<!-- <table schema="" tableName="t_user" 
 			domainObjectName="User" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
@@ -70,8 +70,32 @@
 			domainObjectName="RoleMenu" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
+		</table> --> 
+		
+		
+		<table schema="" tableName="t_article" 
+			domainObjectName="Article" enableCountByExample="true"
+			enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="true"> 
 		</table> 
 		
+		<table schema="" tableName="t_article_ext" 
+			domainObjectName="ArticleExt" enableCountByExample="true"
+			enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="true"> 
+		</table>
+		
+		<table schema="" tableName="t_banner" 
+			domainObjectName="Banner" enableCountByExample="true"
+			enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="true"> 
+		</table>
+		
+		<table schema="" tableName="t_config" 
+			domainObjectName="SysConfig" enableCountByExample="true"
+			enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="true"> 
+		</table>
 		
 		
 	</context>

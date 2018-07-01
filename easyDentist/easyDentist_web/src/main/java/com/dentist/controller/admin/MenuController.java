@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -132,16 +133,18 @@ public class MenuController {
 		
 		User u = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
 		
-		Menu menu1 = menuService.queryMenuNotRepeatByMenuName(m.getMenuname(),m.getId());
-		Menu menu2 = menuService.queryMenuNotRepeatByMenuUrl(m.getUrl(),m.getId());
+		Menu menu1 = menuService.queryMenuNotRepeatByMenuName(m.getMenuname(),m.getId());	
 		Menu me = menuService.queryMenuById(m.getId());
 		if(menu1 != null){
 			result = "MENU_NAME_EXIST";
 			return result;
 		}
+		if(!StringUtils.isEmpty(m.getUrl())){
+		Menu menu2 = menuService.queryMenuNotRepeatByMenuUrl(m.getUrl(),m.getId());
 		if(menu2 != null){
 			result = "MENU_URL_EXIST";
 			return result;
+		}
 		}
 		 me.setMenudescribe(m.getMenudescribe());
 		 me.setCreatetime(new Date());

@@ -2,12 +2,14 @@ package com.dentist.controller.admin;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,6 +92,22 @@ public class RoleController {
 		model.addAttribute("rlist", rlist);
 		
 		return "/admin/role/role_give";
+	}
+	
+	/**
+	 * 给用户分配角色
+	 * @param userId
+	 * @param roleIds
+	 * @return
+	 */
+	@RequestMapping(value="/giveRoles",method=RequestMethod.POST)
+	@ResponseBody
+	public String giveRoles(@RequestParam String userId,@RequestParam(required = false,value = "roleIds[]") 
+	Integer[] roleIds){
+		
+		
+		
+	return "SUCCESS";	
 	}
 	
 	/**
