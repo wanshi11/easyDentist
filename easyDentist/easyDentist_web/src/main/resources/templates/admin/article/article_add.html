@@ -139,22 +139,22 @@
 		
 		
 	
-        /* $.ajax({
+         $.ajax({
         //几个参数需要注意一下
             type: "POST",//方法类型
-            url: "${request.contextPath}/admin/role/add" ,//url
+            url: "${request.contextPath}/admin/article/add" ,//url
             data: $('#subform').serialize(),
             success: function (result) {
             	
                 if(result == "ADD_SUCCESS"){
-                	layer.alert('新增角色成功！',function(index){
-                		window.location.href="${request.contextPath}/admin/role/toRoles";
+                	layer.alert('新增文章成功！',function(index){
+                		window.location.href="${request.contextPath}/admin/article/toRoles";
                 	});
                 	//跳转到列表
                 }
                 if(result == "ADD_FAIL"){
-                	layer.alert('新增角色失败！',function(index){
-                	window.location.href='${request.contextPath}/admin/role/toAdd';
+                	layer.alert('新增文章失败！',function(index){
+                	window.location.href='${request.contextPath}/admin/article/toAdd';
                 	});
                 }
             },
@@ -164,7 +164,7 @@
             	 alert(XMLHttpRequest.responseText);
             	 alert(textStatus);
             	   }
-        }); */
+        }); 
     }
 	
 	
@@ -249,13 +249,24 @@
     //KindEditor脚本
     var editor;
     KindEditor.ready(function(K) {
-        editor = K.create('#content', {
-        	  uploadJson : '${request.contextPath}/kindeditor/fileUpload',  
-        	  fileManagerJson : '${request.contextPath}/kindeditor/fileManager',
-        	  allowFileManager : true,
-        });
-    });
- </script>
+        
+		editor = K.create('#content',{
+										uploadJson : '${request.contextPath}/kindeditor/fileUpload',
+										allowImageUpload : true,  //开启图片上传
+										
+										fileManagerJson : '${request.contextPath}/kindeditor/fileManager',
+										allowFileManager : false,  //开启图片空间
+										autoHeightMode : true,
+										afterCreate : function() {
+											this.loadPlugin('autoheight');
+										},
+										afterBlur : function() {
+											this.sync();
+										} //Kindeditor下获取文本框信息
+
+									});
+				});
+	</script>
 	
 
 </body>
