@@ -245,14 +245,17 @@
 	
 
 	</script>
-<script type="text/javascript">
+ <script type="text/javascript">
     //KindEditor脚本
     var editor;
     KindEditor.ready(function(K) {
         editor = K.create('#content', {
+        	  uploadJson : '${request.contextPath}/kindeditor/fileUpload',  
+        	  fileManagerJson : '${request.contextPath}/kindeditor/fileManager',
+        	  allowFileManager : true,
         });
     });
-</script>
+ </script>
 	
 
 </body>
