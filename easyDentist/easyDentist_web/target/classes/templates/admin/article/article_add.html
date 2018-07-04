@@ -18,6 +18,15 @@
 .jz {
 	margin-left: 25%;
 }
+.form-group-myfile{
+   position:relative;
+   margin-bottom:15px;
+   height:120px;
+   width:420px;
+}
+.help-block{
+  width:220px;
+}
 </style>
 </head>
 
@@ -45,7 +54,7 @@
 									<div class="col-lg-5 jz10">
 										<label>文章标题</label>
 										<input class="form-control" name="title"
-											id="title" placeholder="请输入文章标题" onblur="return checkRoleName();" ><br /> 
+											id="title" placeholder="请输入文章标题" onblur="return checkTitle();" ><br /> 
 											
 											<label>关键字</label>
 										<input class="form-control" name="keywords"  id="keywords"
@@ -69,12 +78,13 @@
 											<textarea class="form-control" id="introduction" name="introduction" rows="3" placeholder="输入简介信息(150字内)"></textarea>
 										</div>
 
-										<div class="form-group">
+										<div class="form-group-myfile">
 											<label for="inputfile">选择缩略图</label> <input type="file" 
 												id="thumbnailurl" name="thumbnailurl" onchange="uploadImage(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
-											<p class="help-block">尺寸要求 188*128。</p>
+											<p class="help-block">尺寸要求 200*120。</p>
+										<img style="position:absolute;top:0;right:0;" id="thumbnail"  width="200px;" height="120px;" src="/images/admin/thumb_default.jpg">
 										</div>
-
+                                        
 										<div class="form-group">
 											<label class="radio-inline"> <input type="radio"
 												name="top" id="optionsRadios1" value="0"
@@ -113,6 +123,7 @@
 
     <#include "/common/admin_js.html"/>
     <script charset="utf-8" src="/kindeditor/kindeditor-all-min.js"></script>
+    <script charset="utf-8" src="/js/ajaxfileupload.js"></script>
 	<!-- 后台公共js -->
 	<script type="text/javascript">
 	
@@ -168,7 +179,7 @@
     }
 	
 	
-	function checkRoleName(){
+	function checkTitle(){
 		var rolename = $("#rolename").val();
 		 $.ajax({
 		        //几个参数需要注意一下
@@ -188,11 +199,14 @@
 	}
 	
 	function uploadImage(e) {
+		
+	
+	    //上传缩略图
+	    ajaxFileUpload();
 	    //图片的提前校验,如果返回false,则代表校验不成功
-	    if(!preSubmitFileCheck(e)){
-	        console.info("验证失败，显示提示框");
-	        return;
-	    }
+	   //  if(preSubmitFileCheck(e)){
+	        
+	    //} 
 	}
 	
 	//ie浏览器必须是图片的后缀,非ie还会校验图片大小,不能超过5兆
@@ -243,6 +257,36 @@
 	    return true;
 	}
 	
+	
+	   function ajaxFileUpload() {
+		   alert(11);
+           $.ajaxFileUpload
+           (
+               {
+                   url: '${request.contextPath}/admin/article/uploadThumbnail', //用于文件上传的服务器端请求地址
+                   secureuri: false, //是否需要安全协议，一般设置为false
+                   fileElementId: 'thumbnailurl', //文件上传域的ID
+                   dataType: 'json', //返回值类型 一般设置为json
+                   type:'post',
+                   success: function (data, status)  //服务器成功响应处理函数
+                   {
+                       if (typeof (data.error) != 'undefined') {
+                           if (data.error != '') {
+                               layer.alert(data.error);
+                           } else {
+                              $("#thumbnail").attr("src", data.imgurl);
+                              layer.alert(data.msg);
+                           }
+                       }
+                   },
+                   error: function (data, status, e)//服务器响应失败处理函数
+                   {
+                       layer.alert(e);
+                   }
+               }
+           )
+           return false;
+       }
 
 	</script>
  <script type="text/javascript">
