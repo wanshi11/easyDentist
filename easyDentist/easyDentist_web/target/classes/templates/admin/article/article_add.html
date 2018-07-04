@@ -27,6 +27,13 @@
 .help-block{
   width:220px;
 }
+.image-thumb{
+  position:absolute;
+  top:0;right:0;
+  border:solid 2px #CCC;
+  width:200px;
+  height:120px;
+}
 </style>
 </head>
 
@@ -80,9 +87,9 @@
 
 										<div class="form-group-myfile">
 											<label for="inputfile">选择缩略图</label> <input type="file" 
-												id="thumbnailurl" name="thumbnailurl" onchange="uploadImage(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
+												id="thumbnailurl" name="myfile" onchange="uploadImage(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
 											<p class="help-block">尺寸要求 200*120。</p>
-										<img style="position:absolute;top:0;right:0;" id="thumbnail"  width="200px;" height="120px;" src="/images/admin/thumb_default.jpg">
+										<img class="image-thumb" id="thumbnail"   src="/images/admin/thumb_default.jpg">
 										</div>
                                         
 										<div class="form-group">
@@ -137,6 +144,7 @@
 		var status = $("input[name='status']:checked").val();
 		var top = $("input[name='top']:checked").val();
 		var content = $("#content").val();
+		console.log(title+"||"+keywords+"||"+articletype+"||"+introduction+"||"+thumbnailurl+"||"+status+"||"+top+"||"+content);
 		
 		
 		if(content == ""){
@@ -202,11 +210,11 @@
 		
 	
 	    //上传缩略图
-	    ajaxFileUpload();
 	    //图片的提前校验,如果返回false,则代表校验不成功
-	   //  if(preSubmitFileCheck(e)){
-	        
+	     //if(!preSubmitFileCheck(e)){
+	     //    return ;
 	    //} 
+	    ajaxFileUpload();
 	}
 	
 	//ie浏览器必须是图片的后缀,非ie还会校验图片大小,不能超过5兆
@@ -259,7 +267,6 @@
 	
 	
 	   function ajaxFileUpload() {
-		   alert(11);
            $.ajaxFileUpload
            (
                {
@@ -270,22 +277,21 @@
                    type:'post',
                    success: function (data, status)  //服务器成功响应处理函数
                    {
-                       if (typeof (data.error) != 'undefined') {
-                           if (data.error != '') {
-                               layer.alert(data.error);
-                           } else {
+                           if (data.error == 'error') {  
+                        	   layer.alert(data.msg);
+                               //清空file  input框
+                               $("#thumbnail").val("");
+                           } else {                       //success
                               $("#thumbnail").attr("src", data.imgurl);
                               layer.alert(data.msg);
                            }
-                       }
                    },
                    error: function (data, status, e)//服务器响应失败处理函数
                    {
-                       layer.alert(e);
+                	   layer.alert(e);
                    }
                }
            )
-           return false;
        }
 
 	</script>

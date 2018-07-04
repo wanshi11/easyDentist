@@ -1,11 +1,11 @@
 package com.dentist.controller.admin;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -62,6 +62,11 @@ public class ArticleController {
 		String result = "";
 		
 		    User u = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		    
+		    article.setCreatetime(new Date());
+		    article.setOperatorid(u.getId());
+		   
+		    
 			
 			/*if(num !=0){
 				result = "ADD_SUCCESS";
@@ -77,7 +82,7 @@ public class ArticleController {
 	 * 上传文章中的缩略图
 	 * @return
 	 */
-	@RequestMapping(value = "/uploadThumbnail",method=RequestMethod.POST)
+	@RequestMapping(value = "/uploadThumbnail",headers = "Accept=application/json",produces = {"application/json;charset=UTF-8"},method=RequestMethod.POST)
 	@ResponseBody
 	public String uploadThumbnail(@RequestParam MultipartFile myfile,HttpServletRequest request){
 		
@@ -88,15 +93,16 @@ public class ArticleController {
        } else{
              String originalFilename=myfile.getOriginalFilename();
              String fileBaseName=FilenameUtils.getBaseName(originalFilename);
-             String floderName=fileBaseName+"_" +DateUtil.getNowDate();
+             String floderName=fileBaseName+"_" +DateUtil.format(new Date(), "yyyyMMddHHmmss");
               try{
                    
-                   String genePicPath=request.getSession().getServletContext().getRealPath("/upload/" +floderName);
+                   String genePicPath=request.getSession().getServletContext().getRealPath("/UPLOAD_IMAGE/" +floderName);
                     //把上传的图片放到服务器的文件夹下
                    FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(genePicPath,originalFilename));
                     //coding
-                   map.put( "error", "上传成功！");
-                   map.put( "imgurl", "1111");
+                   map.put( "error", "success");
+                   map.put( "msg", "上传成功！");
+                   map.put( "imgurl", "/UPLOAD_IMAGE/"+floderName+"/"+originalFilename);
                    
              } catch (Exception e) {
                    map.put( "error", "error");
