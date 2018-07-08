@@ -2,7 +2,10 @@ package com.dentist.mapper;
 
 import com.dentist.entity.Article;
 import com.dentist.entity.ArticleExample;
+
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ArticleMapper {
@@ -15,6 +18,8 @@ public interface ArticleMapper {
     int insert(Article record);
 
     int insertSelective(Article record);
+    
+    int insertArticle(Article record);
 
     List<Article> selectByExample(ArticleExample example);
 
@@ -27,4 +32,8 @@ public interface ArticleMapper {
     int updateByPrimaryKeySelective(Article record);
 
     int updateByPrimaryKey(Article record);
+    
+    List<Article> selectWithPageByExample(@Param("example") ArticleExample example,@Param("params") Map<String, String> params);
+
+    
 }

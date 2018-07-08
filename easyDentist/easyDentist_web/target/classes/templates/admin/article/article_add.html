@@ -24,9 +24,7 @@
    height:120px;
    width:420px;
 }
-.help-block{
-  width:220px;
-}
+
 .image-thumb{
   position:absolute;
   top:0;right:0;
@@ -78,7 +76,7 @@
 											</select>
 										</div>
                                         <label for="name">编辑文章</label>
-                                       <textarea style="height: 400px;" id="content" name="content"></textarea><br/>
+                                       <textarea style="width:650px;height: 400px;" id="content" name="content"></textarea><br/>
 
 										<div class="form-group">
 											<label for="name">文章简介</label>
@@ -188,16 +186,16 @@
 	
 	
 	function checkTitle(){
-		var rolename = $("#rolename").val();
+		var title = $("#title").val();
 		 $.ajax({
 		        //几个参数需要注意一下
 		            type: "POST",//方法类型
-		            url: "${request.contextPath}/admin/role/checkRoleName" ,//url
-		            data: {"rolename":rolename},
+		            url: "${request.contextPath}/admin/article/checkTitle" ,//url
+		            data: {"title":title},
 		            success: function (result) {
 		               if(result == "1"){
-		            	   layer.alert('该角色名已存在！');
-		            	   $("#rolename").val("");
+		            	   layer.alert('该文章已存在！');
+		            	   $("#title").val("");
 		               }
 		            },
 		            error : function() {
@@ -207,7 +205,6 @@
 	}
 	
 	function uploadImage(e) {
-		
 	
 	    //上传缩略图
 	    //图片的提前校验,如果返回false,则代表校验不成功

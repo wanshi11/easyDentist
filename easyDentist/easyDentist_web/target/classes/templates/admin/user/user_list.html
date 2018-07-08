@@ -136,6 +136,7 @@
     	    elem: '#userTable'
     	    ,url:'${request.contextPath}/admin/user/userList'
     	    ,method:'post'
+    	    ,even: true
     	    ,cols: [[
                /* {type:'numbers'} */
               {type: 'checkbox'}
@@ -157,8 +158,6 @@
     	      }}
     	      ,{field:'right', title: '操作', width:120,toolbar:"#barDemo"}
     	    ]]
-    	    ,count:15
-    	    ,theme:'#FF5722'
     	    ,where: {
     	    	
   		      }
@@ -229,8 +228,6 @@
 		}); 
 		};
 		
-	
-
     </script>
     
     <script type="text/html" id="barDemo">

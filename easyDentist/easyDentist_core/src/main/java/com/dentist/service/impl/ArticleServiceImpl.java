@@ -1,12 +1,17 @@
 package com.dentist.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import com.dentist.entity.Article;
+import com.dentist.entity.ArticleExample;
 import com.dentist.mapper.ArticleMapper;
 import com.dentist.service.ArticleService;
 import com.dentist.utils.LayuiPage;
@@ -52,13 +57,67 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public LayuiPage<Article> page(Article model, LayuiPageParam param) {
 		// TODO Auto-generated method stub
-		return null;
+		LayuiPage<Article> page = new LayuiPage<>();
+		page.setData(selectWithPageByExample(model, param));
+		page.setCount(selectCountByExample(model));
+		return page;
 	}
 
 	@Override
 	public Integer addArticle(Article article) {
 		// TODO Auto-generated method stub
-		return articleMapper.insertSelective(article);
+		return articleMapper.insertArticle(article);
+	}
+
+	@Override
+	public Article queryArticleByTitle(String title) {
+		// TODO Auto-generated method stub
+		ArticleExample example  = new ArticleExample();
+		ArticleExample.Criteria c = example.createCriteria();
+		c.andTitleEqualTo(title);
+		
+		List<Article> list = articleMapper.selectByExample(example);
+		if(!CollectionUtils.isEmpty(list)){
+			return list.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Article> selectWithPageByExample(Article article,
+			LayuiPageParam param) {
+
+		ArticleExample example = new ArticleExample();
+		ArticleExample.Criteria c  = example.createCriteria();
+		if(null != article && !StringUtils.isEmpty(article.getTitle())){
+			c.andTitleLike('%'+article.getTitle()+'%');
+		}
+		
+		Map<String, String> params = new HashMap<>();
+		params.put("order", param.getOrder());
+		params.put("sort", param.getSort());	
+		params.put("rowStart", (param.getPage()-1)*param.getLimit()+"");	
+		params.put("pageSize", param.getLimit()+"");	
+		
+		return articleMapper.selectWithPageByExample(example, params);
+	}
+
+	@Override
+	public int selectCountByExample(Article article) {
+		// TODO Auto-generated method stub
+		ArticleExample example = new ArticleExample();
+		ArticleExample.Criteria c  = example.createCriteria();
+		if(null != article && !StringUtils.isEmpty(article.getTitle())){
+			c.andTitleLike('%'+article.getTitle()+'%');
+		}
+		
+		return articleMapper.countByExample(example);
+	}
+
+	@Override
+	public Article queryArticleById(int id) {
+		// TODO Auto-generated method stub
+		return articleMapper.selectByPrimaryKey(id);
 	}
 
 }

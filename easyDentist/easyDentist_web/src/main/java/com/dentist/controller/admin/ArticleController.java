@@ -21,10 +21,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dentist.entity.Article;
 import com.dentist.entity.ArticleExt;
 import com.dentist.entity.User;
+import com.dentist.service.ArticleExtService;
 import com.dentist.service.ArticleService;
 import com.dentist.utils.Constant;
 import com.dentist.utils.DateUtil;
 import com.dentist.utils.JsonUtils;
+import com.dentist.utils.LayuiPage;
+import com.dentist.utils.LayuiPageParam;
 
 @Controller
 @RequestMapping(value = "/admin/article")
@@ -32,7 +35,8 @@ public class ArticleController {
 	
 	@Autowired
 	private  ArticleService articleService;
-	
+	@Autowired
+    private ArticleExtService articleExtService;	
 	
 	/**
 	 * 到文章列表页 
@@ -65,14 +69,17 @@ public class ArticleController {
 		    
 		    article.setCreatetime(new Date());
 		    article.setOperatorid(u.getId());
-		   
+		    article.setThumbnailurl("urlurl");
+		    articleService.addArticle(article);
 		    
-			
-			/*if(num !=0){
+		    articleExt.setArticleid(article.getId());
+		    articleExt.setReadvalue(0);
+		    int num = articleExtService.add(articleExt);
+			if(num !=0){
 				result = "ADD_SUCCESS";
 			}else{
 				result = "ADD_FAIL";
-			}*/
+			}
 	
 		return result;
 	}
@@ -112,6 +119,48 @@ public class ArticleController {
        }
        String result= JsonUtils.objectToString(map);
         return result;
+	}
+	
+	/**
+	 * 校验文章标题唯一性
+	 * @param title
+	 * @return
+	 */
+	@RequestMapping(value="/checkTitle",method=RequestMethod.POST)
+	@ResponseBody
+	public String  checkTitle(String title){
+		
+		Article a = articleService.queryArticleByTitle(title);
+		if(a != null){  //已有该角色
+			return "1";
+		}
+		return "0";
+		
+	}
+	
+	/**
+	 * 到修改页面 
+	 */
+	@RequestMapping(value = "/toEdit")
+	public String editArticle(Model model,int id){
+		
+		Article art = articleService.queryArticleById(id);
+		ArticleExt artE = articleExtService.queryArticleExtByarticleId(id);
+		model.addAttribute("art", art);
+		model.addAttribute("artE", artE);
+		
+		return "/admin/article/article_edit";
+	}
+	
+	/**
+	 * 分页查询
+	 * @return
+	 */
+	@RequestMapping(value="/articleList",method=RequestMethod.POST)
+	@ResponseBody
+	public LayuiPage<Article> articleList(Article article,LayuiPageParam param){
+		
+		return articleService.page(article, param);
 	}
 
 }

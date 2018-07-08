@@ -289,4 +289,32 @@
       thumbnailUrl = #{thumbnailurl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <insert id="insertArticle" parameterType="com.dentist.entity.Article" >
+        insert into t_article (id, title, keyWords, 
+      articleType, createTime, introduction, 
+      top, status, operatorId, 
+      thumbnailUrl)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
+      #{articletype,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{introduction,jdbcType=VARCHAR}, 
+      #{top,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{operatorid,jdbcType=INTEGER}, 
+      #{thumbnailurl,jdbcType=VARCHAR})
+      <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+      </selectKey>
+   </insert>
+   
+   <select id="selectWithPageByExample" resultMap="BaseResultMap"
+		parameterType="map">
+		select * from t_article
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+		<if test="example.orderByClause != null">
+			order by
+			${params.order} ${params.sort}
+		</if>
+		limit ${params.rowStart}, ${params.pageSize}
+	</select>
+    
 </mapper>
