@@ -1,0 +1,48 @@
+   <div class="navbar-header">
+                <a class="navbar-brand" href="${request.contextPath}/admin/index">轻松牙医后台管理</a>
+                <span class="navbar-brand">欢迎您,${LOGIN_USER.username?if_exists}.</span>
+            </div>
+            <!-- /.navbar-header -->
+            
+      <!--       <div style="margin-left:5cm">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="#">iOS</a></li>
+			<li><a href="#">SVN</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					Java
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="#">jmeter</a></li>
+					<li><a href="#">EJB</a></li>
+					<li><a href="#">Jasper Report</a></li>
+					<li class="divider"></li>
+					<li><a href="#">分离的链接</a></li>
+					<li class="divider"></li>
+					<li><a href="#">另一个分离的链接</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div> -->
+            
+            <ul class="nav navbar-top-links navbar-right">
+                
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li class="divider"></li><!-- 分割样式 -->
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
+                        </li>
+                        <li class="divider"></li><!-- 分割样式 -->
+                        <li><a href="${request.contextPath}/admin/logout"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->

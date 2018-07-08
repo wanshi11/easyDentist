@@ -26,6 +26,7 @@ E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\denti
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\UserExample.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\mapper\RoleMapper.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\utils\CountChineseWordsNum.java
+E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\cfg\Constant.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\mapper\RoleMenuMapper.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\service\MenuService.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\mapper\ArticleExtMapper.java
@@ -36,6 +37,7 @@ E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\denti
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\service\impl\UserRoleServiceImpl.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\service\RoleService.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\service\impl\MenuServiceImpl.java
+E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\cfg\MyWebAppConfigurer.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\service\RoleMenuService.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\Article.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\utils\LayuiPageParam.java
@@ -45,7 +47,6 @@ E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\denti
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\utils\LayuiPage.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\Banner.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\service\impl\RoleServiceImpl.java
-E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\utils\Constant.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\MenuExample.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\BannerExample.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\service\UserRoleService.java

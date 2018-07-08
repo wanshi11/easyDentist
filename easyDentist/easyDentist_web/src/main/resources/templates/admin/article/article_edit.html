@@ -75,7 +75,7 @@
 											</select>
 										</div>
                                         <label for="name">编辑文章</label>
-                                       <textarea style="width:650px;height: 400px;" id="content" name="content">${artE.content}</textarea><br/>
+                                       <textarea style="width:650px;height: 400px;" id="content" name="content"></textarea><br/>
 
 										<div class="form-group">
 											<label for="name">文章简介</label>
@@ -112,9 +112,7 @@
 										</div>
 
 										<div  class="jz">
-										<input type="button" value="提交" class="btn btn-default" onclick="add()"  />
-										&nbsp;&nbsp;&nbsp;&nbsp;
-										<button class="btn btn-default" type="reset">重置</button>
+										<input type="button" value="点击修改" class="btn btn-default" onclick="edit()"  />
 										</div>
 									</div>
 								</form>
@@ -134,8 +132,8 @@
 	<script type="text/javascript">
 	$(function(){
 		//editor 回显数据
+		
 		//select，radio回显
-		alert(${art.top});
 		$("select option[value='${art.articletype}']").attr("selected",true); 
 		$("input[name='top'][value='${art.top}']").attr("checked","checked");
 		$("input[name='status'][value='${art.status}']").attr("checked","checked");
@@ -143,12 +141,23 @@
 	});
 	
 	
-		
 	function edit() {
 		
-		var rolename = $("#rolename").val();
-		var description = $("#description").val();
-		if(rolename == "" || description == ""){
+		var title = $("#title").val();
+		var keywords = $("#keywords").val();
+		var articletype = $("#articletype option:selected").val();
+		var introduction = $("#introduction").val();
+		var thumbnailurl = $("#thumbnailurl").val();
+		var status = $("input[name='status']:checked").val();
+		var top = $("input[name='top']:checked").val();
+		var content = $("#content").val();
+		console.log(title+"||"+keywords+"||"+articletype+"||"+introduction+"||"+thumbnailurl+"||"+status+"||"+top+"||"+content);
+		
+		if(content == ""){
+			layer.alert('文章内容不可以为空！');
+			return false;
+		}
+		if(title == "" || keywords == "" || articletype == "" || introduction == "" || thumbnailurl == ""){
 			layer.alert('表单数据不可以为空！');
 			return false;
 		}
@@ -157,26 +166,26 @@
         $.ajax({
         //几个参数需要注意一下
             type: "POST",//方法类型
-            url: "${request.contextPath}/admin/role/edit" ,//url
+            url: "${request.contextPath}/admin/article/edit" ,//url
             data: $('#subform').serialize(),
             success: function (result) {
             	
-            	if(result == "ROLE_EXIST"){
+            	if(result == "ARTICLE_EXIST"){
                 	layer.alert('该角色名已存在！',function(index){
-                	window.location.href='${request.contextPath}/admin/role/toEdit?id='+$("#id").val();;
+                	window.location.href='${request.contextPath}/admin/article/toEdit?id='+$("#id").val();;
                 	});
                 	//跳转到新增
                 }
             	
                 if(result == "EDIT_SUCCESS"){
                 	layer.alert('修改角色成功！',function(index){
-                		window.location.href="${request.contextPath}/admin/role/toRoles";
+                		window.location.href="${request.contextPath}/admin/article/toArticles";
                 	});
                 	//跳转到列表
                 }
                 if(result == "EDIT_FAIL"){
                 	layer.alert('修改角色失败！',function(index){
-                	window.location.href='${request.contextPath}/admin/role/toEdit?id='+$("#id").val();;
+                	window.location.href='${request.contextPath}/admin/article/toEdit?id='+$("#id").val();;
                 	});
                 }
             },
@@ -211,7 +220,9 @@
 										} //Kindeditor下获取文本框信息
 
 									});
+		editor.html(${artE.content});
 				});
+    
 	</script>
 
 </body>

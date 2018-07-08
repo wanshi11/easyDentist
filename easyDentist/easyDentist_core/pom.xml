@@ -19,6 +19,11 @@
             <version>1.3.0</version>
         </dependency>
         
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+        
         <!-- JustFresh 2018-04-13 Begin 引入Mysql连接包 -->
 		<dependency>
             <groupId>mysql</groupId>

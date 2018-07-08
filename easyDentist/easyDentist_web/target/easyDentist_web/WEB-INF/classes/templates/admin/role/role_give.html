@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>赋予角色</title> <#include "/common/admin_css.html"/>
+<style type="text/css">
+.jz10 {
+	margin-left: 10%;
+}
+.jz {
+	margin-left: 25%;
+}
+    #main{width:70%;height:500px;}
+    .left{float:left;width:35%;height:400px;margin:10px 10px 10px 10px;border:1px solid #C0C0C0;}
+    .center{float:left;width:21%;height:400px;margin:10px 10px 10px 10px;}
+    .right{float:right;width:35%;height:400px;margin:10px 10px 10px 10px;
+       border:1px solid #C0C0C0;
+       overflow-y:scroll; 
+    }
+    
+    .layui-form-item{margin-top: 50%;margin-left: 12%;}
+    .layui-input-block{margin:10px 0px 10px 10px;}
+    .layui-btn{margin-left: 33%;}
+    .hiddenBtn{display:none; }
+</style>
+</head>
+
+<body>
+
+	<div id="wrapper">
+		<#include "/common/admin_header_left.html"/>
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header">查询用户角色</h3>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading"><span class="cloumn_title">QUERY_ROLES</span> &nbsp;&nbsp;&nbsp;(每个用户可分配多个角色)
+						  <div style="float: right;">
+						  <input type="checkbox" id="giveRole_flag" onchange="giveRoleChange()" >点击勾选可以进行赋予角色的操作</div>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+
+								<form class="layui-form" >
+									<div id="main">
+
+										<div class="left">
+											<div class="layui-form-item">
+												<div class="layui-input-inline">
+													<select id="selectInp" lay-verify="required" lay-filter="myselect">
+														<option value="">选择用户分配角色</option>
+													    <#list ulist as user>
+														<option value="${user.id}">${user.username}</option>
+														</#list>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="center">
+											<div
+												style="text-align: center; font-weight: bold; margin-top: 100%;">--查询角色-->></div>
+										</div>
+										<div class="right">
+											<div class="layui-input-block">
+												<#list rlist as role> 
+												<input class="inp" name="roleId_${role.id}" lay-filter="mycheckbox" value="${role.id}" title="${role.rolename}" type="checkbox"><br />
+												</#list>
+											</div>
+										</div>
+										<div>
+											<div class="layui-form-item">
+												<div class="layui-input-block"><br/>
+													<a href="javascript:void(0);" onclick="giveRoles()" id="fpjs" class="layui-btn hiddenBtn">点击分配角色</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+    <#include "/common/admin_js.html"/>
+	<!-- 后台公共js -->
+	<script type="text/javascript">
+	
+	   var myform = null;
+	layui.use(['layer', 'form'], function(){
+		  
+		 myform = layui.form;
+		 myform.on('checkbox(mycheckbox)', function(data){
+			  if(data.elem.checked){
+				  $("input[value="+data.value+"][type='checkbox']").attr("checked",true);  
+			  }else{
+				  $("input[value="+data.value+"][type='checkbox']").attr("checked",false); 
+			  }
+			  });
+		  
+		 myform.on('select(myselect)', function(data){
+	   $.ajax({
+		                type: 'POST',
+		                url: '${request.contextPath}/admin/role/queryRolesByUserId',
+		                data: {"userId":data.value},
+		                success: function(result){
+		                	
+		                	//删除选中
+                       	 $("input[type='checkbox']").attr("checked",false);
+                       	 //加样式
+                       	 $("input[type='checkbox']").next().removeClass("layui-form-checked");
+		                	
+		                   //修改角色checkbox的选中
+		                  console.log(result);
+		                    //遍历list列表，将chexkbox中value值等于list中的ID的话，选择该chexkbox
+		                  $(".layui-input-block > .inp").each(function(){
+		              		//console.info($(this).val());
+		              		 var roleId = $(this).val();
+		              		 if(result != null){
+		              			for(var index in result){
+			              			  //其实index 就是个索引
+			              			   var rid =result[index].id;
+                                         if(roleId == rid){
+                                        	 //加选中
+                                        	 $("input[value="+rid+"][type='checkbox']").attr("checked",true);
+                                        	 //加样式
+                                        	 $("input[value="+rid+"][type='checkbox']").next().addClass("layui-form-checked");
+                                         }
+			              			}
+		              		 }
+		                  });
+		                }
+		        });  
+		});
+
+		}); 
+	
+	
+		
+	function giveRoles() {
+         //获取用户Id
+        var userId = $("select option:selected").attr("value") ;
+        var _list = new Array();
+         //获取roleId集合
+         $(".layui-input-block > .inp").each(function(){
+        	 if($(this).attr("checked")){
+        	 var a = $(this).val();
+        	 _list.push(a);
+        	 }
+         });
+         
+         if(userId !=null && userId !="" && _list != null){
+        	  $.ajax({
+        	        //几个参数需要注意一下
+        	            type: "POST",//方法类型
+        	            url: "${request.contextPath}/admin/role/giveRoles",//url
+        	            data:{
+        	            	"userId":userId
+        	            	,"roleIds":_list
+        	            },
+        	            success: function (result) {
+        	            	if(result == "SUCCESS"){
+        	            		layer.alert("成功赋予角色！");
+        	            	}
+        	            }
+        	        }); 
+         }
+         
+         return false;
+    }
+	
+	  function giveRoleChange(){
+		  var flag = $("#giveRole_flag").prop("checked");  //取checkbox的checked属性值
+		  if(flag){
+			  $(".cloumn_title").html("GIVE_ROLES");
+			  $(".page-header").html("赋予用户角色");
+			  $("#fpjs").removeClass("hiddenBtn");
+		  }else{
+			  $(".cloumn_title").html("QUERY_ROLES"); 
+			  $(".page-header").html("查询用户角色");
+			  $("#fpjs").addClass("hiddenBtn");
+		  }
+	  }
+	
+	
+
+
+	</script>
+	
+
+</body>
+
+</html>

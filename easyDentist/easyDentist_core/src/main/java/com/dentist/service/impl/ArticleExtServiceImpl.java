@@ -59,14 +59,25 @@ public class ArticleExtServiceImpl implements ArticleExtService {
 
 	@Override
 	public ArticleExt queryArticleExtByarticleId(int id) {
-		// TODO Auto-generated method stub
-		ArticleExtExample articleExtExample = new ArticleExtExample();
-		ArticleExtExample.Criteria c = articleExtExample.createCriteria();
-		c.andArticleidEqualTo(id);
-		
-		List<ArticleExt> list = articleExtMapper.selectByExample(articleExtExample);
-		if(!CollectionUtils.isEmpty(list)){
-			return list.get(0);
+		try {
+			// TODO Auto-generated method stub
+			ArticleExtExample articleExtExample = new ArticleExtExample();
+			ArticleExtExample.Criteria c = articleExtExample.createCriteria();
+			c.andArticleidEqualTo(id);
+			
+			List<ArticleExt> list = articleExtMapper.selectByExample(articleExtExample);
+			System.out.println(list.size());
+			for (ArticleExt articleExt : list) {
+				
+				System.out.println(articleExt.getContent());
+				System.out.println(articleExt.getArticleid());
+			}
+			if(!CollectionUtils.isEmpty(list)){
+				return list.get(0);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

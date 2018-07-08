@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dentist.cfg.Constant;
 import com.dentist.entity.Article;
 import com.dentist.entity.ArticleExt;
 import com.dentist.entity.User;
 import com.dentist.service.ArticleExtService;
 import com.dentist.service.ArticleService;
-import com.dentist.utils.Constant;
 import com.dentist.utils.DateUtil;
 import com.dentist.utils.JsonUtils;
 import com.dentist.utils.LayuiPage;
@@ -41,6 +41,9 @@ public class ArticleController {
 	private  ArticleService articleService;
 	@Autowired
     private ArticleExtService articleExtService;
+	
+	@Value("${pic_db_Path}")
+	private String pic_db_Path;
 	
 	@Value("${picPath}")
 	private String picPath;
@@ -110,13 +113,13 @@ public class ArticleController {
               try{
             	  
                    
-                   String genePicPath=request.getSession().getServletContext().getRealPath(picPath);
+                   //String genePicPath=request.getSession().getServletContext().getRealPath(picPath+"art_thumbnail/");
                     //把上传的图片放到服务器的文件夹下
-                   FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(genePicPath,file_db_name));
+                   FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(picPath+"art_thumbnail/",file_db_name));
                     //coding
                    map.put( "error", "success");
                    map.put( "msg", "上传成功！");
-                   map.put( "imgurl", picPath+file_db_name);
+                   map.put( "imgurl", pic_db_Path+"art_thumbnail/"+file_db_name);
                    
              } catch (Exception e) {
                    map.put( "error", "error");

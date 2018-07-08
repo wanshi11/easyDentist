@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dentist.cfg.Constant;
 import com.dentist.entity.Menu;
 import com.dentist.entity.User;
 import com.dentist.entity.UserRole;
@@ -19,7 +20,6 @@ import com.dentist.service.MenuService;
 import com.dentist.service.RoleMenuService;
 import com.dentist.service.UserRoleService;
 import com.dentist.service.UserService;
-import com.dentist.utils.Constant;
 import com.dentist.utils.StringUtil;
 
 @Controller

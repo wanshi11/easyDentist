@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dentist.cfg.Constant;
 import com.dentist.entity.Role;
 import com.dentist.entity.User;
 import com.dentist.entity.UserRole;
 import com.dentist.service.RoleService;
 import com.dentist.service.UserRoleService;
 import com.dentist.service.UserService;
-import com.dentist.utils.Constant;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
 

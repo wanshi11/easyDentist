@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>添加文章</title> 
+<#include "/common/admin_css.html"/>
+<style type="text/css">
+.jz10 {
+	margin-left: 10%;
+}
+.jz {
+	margin-left: 25%;
+}
+.form-group-myfile{
+   position:relative;
+   margin-bottom:15px;
+   height:120px;
+   width:420px;
+}
+
+.image-thumb{
+  position:absolute;
+  top:0;right:0;
+  border:solid 2px #CCC;
+  width:200px;
+  height:120px;
+}
+</style>
+</head>
+
+<body>
+
+	<div id="wrapper">
+		<#include "/common/admin_header_left.html"/>
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header">添加文章</h3>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">添加一篇新文章吧</div>
+						<div class="panel-body">
+							<div class="row">
+
+								<form role="form" id="subform">
+									<div class="col-lg-5 jz10">
+										<label>文章标题</label>
+										<input class="form-control" name="title"
+											id="title" placeholder="请输入文章标题" onblur="return checkTitle();" ><br /> 
+											
+											<label>关键字</label>
+										<input class="form-control" name="keywords"  id="keywords"
+											placeholder="请输入角文章关键字" ><br />
+
+										<div class="form-group">
+											<label for="name">文章类型</label> 
+											<select id="articletype" name="articletype" class="form-control">
+												<option>-请选择文章类型-</option>
+												<option value="ARTICLE_NEWS">新闻动态</option>
+												<option value="ARTICLE_HEALTH">口腔健康</option>
+												<option value="ARTICLE_GY_ACTIVITY">公益活动</option>
+												<option value="ARTICLE_YH_ACTIVITY">优惠活动</option>
+											</select>
+										</div>
+                                        <label for="name">编辑文章</label>
+                                       <textarea style="width:650px;height: 400px;" id="content" name="content"></textarea><br/>
+
+										<div class="form-group">
+											<label for="name">文章简介</label>
+											<textarea class="form-control" id="introduction" name="introduction" rows="3" placeholder="输入简介信息(150字内)"></textarea>
+										</div>
+
+										<div class="form-group-myfile">
+											<label for="inputfile">选择缩略图</label>
+											<input type="text" id="thumbnailurl" name="thumbnailurl" hidden="hidden"  />
+											 <input type="file" 
+												id="thumbtext" name="myfile" onchange="uploadImage(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
+											<p class="help-block">尺寸要求 200*120。</p>
+										<img class="image-thumb" id="thumbnail"   src="/images/admin/thumb_default.jpg">
+										</div>
+                                        
+										<div class="form-group">
+											<label class="radio-inline"> <input type="radio"
+												name="top" id="optionsRadios1" value="0"
+												checked> 正常排序
+											</label> <label class="radio-inline"> <input type="radio"
+												name="top" id="optionsRadios2" value="1">
+												文章置顶
+											</label>
+										</div>
+										
+										<div class="form-group">
+											<label class="radio-inline"> <input type="radio"
+												name="status" id="optionsRadios3" value="1"
+												checked> 启用文章
+											</label> <label class="radio-inline"> <input type="radio"
+												name="status" id="optionsRadios4" value="0">
+												禁用文章
+											</label>
+										</div>
+
+										<div  class="jz">
+										<input type="button" value="提交" class="btn btn-default" onclick="add()"  />
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<button class="btn btn-default" type="reset">重置</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+    <#include "/common/admin_js.html"/>
+    <script charset="utf-8" src="/kindeditor/kindeditor-all-min.js"></script>
+    <script charset="utf-8" src="/js/ajaxfileupload.js"></script>
+	<!-- 后台公共js -->
+	<script type="text/javascript">
+	
+	function add() {
+		
+		var title = $("#title").val();
+		var keywords = $("#keywords").val();
+		var articletype = $("#articletype option:selected").val();
+		var introduction = $("#introduction").val();
+		var thumbnailurl = $("#thumbnailurl").val();
+		var status = $("input[name='status']:checked").val();
+		var top = $("input[name='top']:checked").val();
+		var content = $("#content").val();
+		console.log(title+"||"+keywords+"||"+articletype+"||"+introduction+"||"+thumbnailurl+"||"+status+"||"+top+"||"+content);
+		
+		if(content == ""){
+			layer.alert('文章内容不可以为空！');
+			return false;
+		}
+		if(title == "" || keywords == "" || articletype == "" || introduction == "" || thumbnailurl == ""){
+			layer.alert('表单数据不可以为空！');
+			return false;
+		}
+		
+		
+	
+         $.ajax({
+        //几个参数需要注意一下
+            type: "POST",//方法类型
+            url: "${request.contextPath}/admin/article/add" ,//url
+            data: $('#subform').serialize(),
+            success: function (result) {
+            	
+                if(result == "ADD_SUCCESS"){
+                	layer.alert('新增文章成功！',function(index){
+                		window.location.href="${request.contextPath}/admin/article/toArticles";
+                	});
+                	//跳转到列表
+                }
+                if(result == "ADD_FAIL"){
+                	layer.alert('新增文章失败！',function(index){
+                	window.location.href='${request.contextPath}/admin/article/toAdd';
+                	});
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            	 alert(XMLHttpRequest.status);
+            	 alert(XMLHttpRequest.readyState);
+            	 alert(XMLHttpRequest.responseText);
+            	 alert(textStatus);
+            	   }
+        }); 
+    }
+	
+	
+	function checkTitle(){
+		var title = $("#title").val();
+		 $.ajax({
+		        //几个参数需要注意一下
+		            type: "POST",//方法类型
+		            url: "${request.contextPath}/admin/article/checkTitle" ,//url
+		            data: {"title":title},
+		            success: function (result) {
+		               if(result == "1"){
+		            	   layer.alert('该文章已存在！');
+		            	   $("#title").val("");
+		               }
+		            },
+		            error : function() {
+		                alert("异常！");
+		            }
+		        });
+	}
+	
+	function uploadImage(e) {
+	
+	    //上传缩略图
+	    //图片的提前校验,如果返回false,则代表校验不成功
+	     //if(!preSubmitFileCheck(e)){
+	     //    return ;
+	    //} 
+	    ajaxFileUpload();
+	}
+	
+	//ie浏览器必须是图片的后缀,非ie还会校验图片大小,不能超过5兆
+	function preSubmitFileCheck(e){
+	    var fileTypes =["jpeg","jpg","png","gif"];
+
+	    if(window.navigator.userAgent.indexOf("MSIE")>=1){
+	        //ie浏览器
+	        //只看后缀是不是给定的四种,不是就不通过
+	        //ie暂时还没有获得文件大小的合适方法,欢迎前端大神在评论区补充
+	        var filePath = document.selection.createRange().text;
+	        var type = filePath.substring(filePath.lastIndexOf('.') + 1);
+	        for (var i = 0; i < fileTypes.length; i++) {
+	            if (fileTypes[i] == type) {
+	                typeFlag = true;
+	                break;
+	            }
+	        }
+	        if (!typeFlag) {
+	        	layer.alert("上传格式不符，请重新上传！");
+	            return false;
+	        }
+	    }else{
+	        //非ie浏览器
+	        var files = e.target.files, fs = files.length, s = 0;
+	        for (var i = 0; i < fs; i++) {
+	            var name = files[i].name;
+	            console.log("图片大小:size:"+files[i].size)
+	            if(files[i].size > 5*1024*1024){
+	                //对图片大小限制,大于5兆也不行
+	                sizeFlag = true;
+	            }
+	            var type = name.substring(name.lastIndexOf('.') + 1);
+	            typeFlag = false;
+	            for (var j = 0; j < fileTypes.length; j++) {
+	                if (fileTypes[j] == type) {
+	                    typeFlag = true;
+	                    break;
+	                }
+	            }
+	            if (!typeFlag || sizeFlag) {
+	            	layer.alert("上传格式不符，请重新上传！");
+	            	$("#thumbnailurl").val(""); //清空file
+	            }
+	        }
+	    }
+	    //到这里代表校验通过了
+	    return true;
+	}
+	
+	
+	   function ajaxFileUpload() {
+           $.ajaxFileUpload
+           (
+               {
+                   url: '${request.contextPath}/admin/article/uploadThumbnail', //用于文件上传的服务器端请求地址
+                   secureuri: false, //是否需要安全协议，一般设置为false
+                   fileElementId: 'thumbtext', //文件上传域的ID
+                   dataType: 'json', //返回值类型 一般设置为json
+                   type:'post',
+                   success: function (data, status)  //服务器成功响应处理函数
+                   {
+                           if (data.error == 'error') {  
+                        	   layer.alert(data.msg);
+                               //清空file  input框
+                               $("#thumbtext").val("");
+                           } else {                       //success
+                        	   $("#thumbnailurl").val(data.imgurl);
+                              $("#thumbnail").attr("src", data.imgurl);
+                              layer.alert(data.msg);
+                           }
+                   },
+                   error: function (data, status, e)//服务器响应失败处理函数
+                   {
+                	   layer.alert(e);
+                   }
+               }
+           )
+       }
+
+	</script>
+ <script type="text/javascript">
+    //KindEditor脚本
+    var editor;
+    KindEditor.ready(function(K) {
+        
+		editor = K.create('#content',{
+										uploadJson : '${request.contextPath}/kindeditor/fileUpload',
+										allowImageUpload : true,  //开启图片上传
+										
+										fileManagerJson : '${request.contextPath}/kindeditor/fileManager',
+										allowFileManager : false,  //开启图片空间
+										autoHeightMode : true,
+										afterCreate : function() {
+											this.loadPlugin('autoheight');
+										},
+										afterBlur : function() {
+											this.sync();
+										} //Kindeditor下获取文本框信息
+
+									});
+				});
+	</script>
+	
+
+</body>
+
+</html>
