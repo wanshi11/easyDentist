@@ -17,11 +17,21 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter{
 	
 	@Value("${picPath}")
 	private String picPath;  //真实图片磁盘路径
+	
+	
+	@Value("${kindeditor_files_path}")
+	private String kindeditor_files_path;
+	
+	@Value("${kindeditor_files_db_path}")
+	private String kindeditor_files_db_path;
 
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		//文件上传路径地址配置
+		//图片上传路径地址配置
         registry.addResourceHandler(pic_db_Path+"**").addResourceLocations("file:"+picPath);
+        
+        //kindeditor文件上传路径地址配置
+        registry.addResourceHandler(kindeditor_files_db_path+"**").addResourceLocations("file:"+kindeditor_files_path);
         super.addResourceHandlers(registry);
     }
 	

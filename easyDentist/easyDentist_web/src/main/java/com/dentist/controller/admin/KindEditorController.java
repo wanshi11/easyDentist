@@ -26,6 +26,8 @@ import org.apache.tomcat.util.http.fileupload.FileItemFactory;
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,8 +40,14 @@ import com.google.common.io.ByteStreams;
 
 @Controller
 @RequestMapping("/kindeditor")
+@PropertySource("classpath:config.properties")
 public class KindEditorController {
 	
+	@Value("${kindeditor_files_path}")
+	private String kindeditor_files_path;
+	
+	@Value("${kindeditor_files_db_path}")
+	private String kindeditor_files_db_path;
 	
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -56,11 +64,14 @@ public class KindEditorController {
 	      @ResponseBody
 	      public Map<String, Object> fileUpload(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException,
 	              FileUploadException {
-	          ServletContext application = request.getSession().getServletContext();
-	          String savePath = application.getRealPath("/") + "kindeditor_files/";
+//	          ServletContext application = request.getSession().getServletContext();
+//	          String savePath = application.getRealPath("/") + "kindeditor_files/";
+//   上面注释掉的代码是获取项目的根路径，之所以是不要这种方式是因为，这种方式生成的临时文件，再次重启项目后图片会找不到
+	    	  String savePath = kindeditor_files_path;       //磁盘实际存储路径
+	    	  String saveUrl = kindeditor_files_db_path;  //存入数据库的路径
 	 
 	          // 文件保存目录URL
-	          String saveUrl = request.getContextPath() + "/kindeditor_files/";
+	          //String saveUrl = request.getContextPath() + "/kindeditor_files/";
 	  
 	          // 定义允许上传的文件扩展名
 	          HashMap<String, String> extMap = new HashMap<String, String>();

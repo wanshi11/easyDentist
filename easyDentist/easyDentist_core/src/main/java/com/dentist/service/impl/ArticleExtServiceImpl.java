@@ -65,13 +65,8 @@ public class ArticleExtServiceImpl implements ArticleExtService {
 			ArticleExtExample.Criteria c = articleExtExample.createCriteria();
 			c.andArticleidEqualTo(id);
 			
-			List<ArticleExt> list = articleExtMapper.selectByExample(articleExtExample);
-			System.out.println(list.size());
-			for (ArticleExt articleExt : list) {
-				
-				System.out.println(articleExt.getContent());
-				System.out.println(articleExt.getArticleid());
-			}
+			List<ArticleExt> list = articleExtMapper.selectByExampleWithBLOBs(articleExtExample);
+			
 			if(!CollectionUtils.isEmpty(list)){
 				return list.get(0);
 			}
