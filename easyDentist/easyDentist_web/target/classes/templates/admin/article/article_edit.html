@@ -83,10 +83,12 @@
 										</div>
 
 										<div class="form-group-myfile">
-											<label for="inputfile">选择缩略图</label> <input type="file" 
-												id="thumbnailurl" name="myfile" onchange="uploadImage(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
+											<label for="inputfile">选择缩略图</label>
+											<input type="text" id="thumbnailurl" name="thumbnailurl" hidden="hidden"  />
+											 <input type="file" 
+												id="thumbtext" name="myfile" onchange="uploadImage(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
 											<p class="help-block">尺寸要求 200*120。</p>
-										<img class="image-thumb" id="thumbnail"   src="/images/admin/thumb_default.jpg">
+										<img class="image-thumb" id="thumbnail"   src="${art.thumbnailurl}">
 										</div>
                                         
 										<div class="form-group">

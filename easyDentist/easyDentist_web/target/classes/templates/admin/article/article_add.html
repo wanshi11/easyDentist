@@ -84,8 +84,10 @@
 										</div>
 
 										<div class="form-group-myfile">
-											<label for="inputfile">选择缩略图</label> <input type="file" 
-												id="thumbnailurl" name="myfile" onchange="uploadImage(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
+											<label for="inputfile">选择缩略图</label>
+											<input type="text" id="thumbnailurl" name="thumbnailurl" hidden="hidden"  />
+											 <input type="file" 
+												id="thumbtext" name="myfile" onchange="uploadImage(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
 											<p class="help-block">尺寸要求 200*120。</p>
 										<img class="image-thumb" id="thumbnail"   src="/images/admin/thumb_default.jpg">
 										</div>
@@ -144,7 +146,6 @@
 		var content = $("#content").val();
 		console.log(title+"||"+keywords+"||"+articletype+"||"+introduction+"||"+thumbnailurl+"||"+status+"||"+top+"||"+content);
 		
-		
 		if(content == ""){
 			layer.alert('文章内容不可以为空！');
 			return false;
@@ -165,7 +166,7 @@
             	
                 if(result == "ADD_SUCCESS"){
                 	layer.alert('新增文章成功！',function(index){
-                		window.location.href="${request.contextPath}/admin/article/toRoles";
+                		window.location.href="${request.contextPath}/admin/article/toArticles";
                 	});
                 	//跳转到列表
                 }
@@ -269,7 +270,7 @@
                {
                    url: '${request.contextPath}/admin/article/uploadThumbnail', //用于文件上传的服务器端请求地址
                    secureuri: false, //是否需要安全协议，一般设置为false
-                   fileElementId: 'thumbnailurl', //文件上传域的ID
+                   fileElementId: 'thumbtext', //文件上传域的ID
                    dataType: 'json', //返回值类型 一般设置为json
                    type:'post',
                    success: function (data, status)  //服务器成功响应处理函数
@@ -277,8 +278,9 @@
                            if (data.error == 'error') {  
                         	   layer.alert(data.msg);
                                //清空file  input框
-                               $("#thumbnail").val("");
+                               $("#thumbtext").val("");
                            } else {                       //success
+                        	   $("#thumbnailurl").val(data.imgurl);
                               $("#thumbnail").attr("src", data.imgurl);
                               layer.alert(data.msg);
                            }

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,14 +31,19 @@ import com.dentist.utils.JsonUtils;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
 
+
 @Controller
 @RequestMapping(value = "/admin/article")
+@PropertySource("classpath:config.properties")//如果是application.properties，就不用写@PropertyScource("application.properties")，其他名字用些  
 public class ArticleController {
 	
 	@Autowired
 	private  ArticleService articleService;
 	@Autowired
-    private ArticleExtService articleExtService;	
+    private ArticleExtService articleExtService;
+	
+	@Value("${picPath}")
+	private String picPath;
 	
 	/**
 	 * 到文章列表页 
@@ -69,7 +76,6 @@ public class ArticleController {
 		    
 		    article.setCreatetime(new Date());
 		    article.setOperatorid(u.getId());
-		    article.setThumbnailurl("urlurl");
 		    articleService.addArticle(article);
 		    
 		    articleExt.setArticleid(article.getId());
@@ -99,17 +105,18 @@ public class ArticleController {
              map.put( "msg", "上传文件不能为空" );
        } else{
              String originalFilename=myfile.getOriginalFilename();
-             String fileBaseName=FilenameUtils.getBaseName(originalFilename);
-             String floderName=fileBaseName+"_" +DateUtil.format(new Date(), "yyyyMMddHHmmss");
+//             String fileBaseName=FilenameUtils.getBaseName(originalFilename);
+             String file_db_name = DateUtil.format(new Date(), "yyyyMMddHHmmss")+"_"+originalFilename;
               try{
+            	  
                    
-                   String genePicPath=request.getSession().getServletContext().getRealPath("/UPLOAD_IMAGE/" +floderName);
+                   String genePicPath=request.getSession().getServletContext().getRealPath(picPath);
                     //把上传的图片放到服务器的文件夹下
-                   FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(genePicPath,originalFilename));
+                   FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(genePicPath,file_db_name));
                     //coding
                    map.put( "error", "success");
                    map.put( "msg", "上传成功！");
-                   map.put( "imgurl", "/UPLOAD_IMAGE/"+floderName+"/"+originalFilename);
+                   map.put( "imgurl", picPath+file_db_name);
                    
              } catch (Exception e) {
                    map.put( "error", "error");
