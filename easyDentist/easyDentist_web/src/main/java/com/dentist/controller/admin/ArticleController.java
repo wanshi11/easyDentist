@@ -156,6 +156,14 @@ public class ArticleController {
 		
 		Article art = articleService.queryArticleById(id);
 		ArticleExt artE = articleExtService.queryArticleExtByarticleId(id);
+		
+		
+	/*	String content=artE.getContent().replaceAll("&","&amp")
+		                                .replaceAll("<","&lt")
+		                                .replaceAll(">","&gt");*/
+		
+//		String content=artE.getContent().replaceAll(" ", "");
+//		artE.setContent(content);
 		model.addAttribute("art", art);
 		model.addAttribute("artE", artE);
 		

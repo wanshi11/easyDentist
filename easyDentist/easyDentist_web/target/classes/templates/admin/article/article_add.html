@@ -76,7 +76,7 @@
 											</select>
 										</div>
                                         <label for="name">编辑文章</label>
-                                       <textarea style="width:650px;height: 400px;" id="content" name="content"></textarea><br/>
+                                       <textarea style="width:650px;height:400px;" id="content" name="content"></textarea><br/>
 
 										<div class="form-group">
 											<label for="name">文章简介</label>
@@ -305,7 +305,8 @@
 										
 										fileManagerJson : '${request.contextPath}/kindeditor/fileManager',
 										allowFileManager : false,  //开启图片空间
-										autoHeightMode : true,
+										//autoHeightMode : true,开启自适应高度模式后，就不会有滚动条
+										allowPreviewEmoticons:true, //鼠标移到表情上显示
 										afterCreate : function() {
 											this.loadPlugin('autoheight');
 										},
