@@ -93,6 +93,7 @@ public class LoginController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
+		
 	    request.getSession().removeAttribute(Constant.LOGIN_USER);
 	    request.getSession().removeAttribute(Constant.LOGIN_MENUPERMITLIST);
 	    return "redirect:/admin/login";
