@@ -73,7 +73,7 @@
 		</table> --> 
 		
 		
-		<table schema="" tableName="t_article" 
+		<!-- <table schema="" tableName="t_article" 
 			domainObjectName="Article" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
@@ -83,7 +83,7 @@
 			domainObjectName="ArticleExt" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
-		</table>
+		</table> -->
 		
 		<table schema="" tableName="t_banner" 
 			domainObjectName="Banner" enableCountByExample="true"

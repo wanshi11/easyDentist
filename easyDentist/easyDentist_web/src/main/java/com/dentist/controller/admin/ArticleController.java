@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -23,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dentist.cfg.Constant;
 import com.dentist.entity.Article;
 import com.dentist.entity.ArticleExt;
-import com.dentist.entity.Role;
 import com.dentist.entity.User;
 import com.dentist.service.ArticleExtService;
 import com.dentist.service.ArticleService;
