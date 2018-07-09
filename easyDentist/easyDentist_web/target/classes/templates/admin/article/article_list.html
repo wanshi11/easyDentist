@@ -116,18 +116,18 @@
 			    	     $.ajax({
 			    	         //几个参数需要注意一下
 			    	             type: "POST",//方法类型
-			    	             url: "${request.contextPath}/admin/role/delete" ,//url
+			    	             url: "${request.contextPath}/admin/article/delete" ,//url
 			    	             data: {"id":data.id},
 			    	             success: function (result) {
 			    	                 if(result == "DELETE_SUCCESS"){
-			    	                 	layer.alert('删除角色成功！',function(index){
-			    	                		window.location.href="${request.contextPath}/admin/role/toRoles";
+			    	                 	layer.alert('删除文章成功！',function(index){
+			    	                		window.location.href="${request.contextPath}/admin/article/toArticles";
 			    	                	});
 			    	                 	//跳转到列表
 			    	                 }
 			    	                 if(result == "DELETE_FAIL"){
-			    	                 	layer.alert('删除角色失败！',function(index){
-			    	                		window.location.href="${request.contextPath}/admin/role/toRoles";
+			    	                 	layer.alert('删除文章失败！',function(index){
+			    	                		window.location.href="${request.contextPath}/admin/article/toArticles";
 			    	                	});
 			    	                 }
 			    	             },

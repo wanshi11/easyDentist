@@ -22,4 +22,6 @@ public interface ArticleService extends IBaseService<Article>{
     List<Article> selectWithPageByExample(Article article,LayuiPageParam param);
 
 	Article queryArticleById(int id);
+
+	Article queryArticleNotRepeatByTitle(String title, Integer id);
 }

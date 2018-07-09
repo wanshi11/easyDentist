@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dentist.cfg.Constant;
 import com.dentist.entity.Article;
 import com.dentist.entity.ArticleExt;
+import com.dentist.entity.Role;
 import com.dentist.entity.User;
 import com.dentist.service.ArticleExtService;
 import com.dentist.service.ArticleService;
@@ -179,6 +180,70 @@ public class ArticleController {
 	public LayuiPage<Article> articleList(Article article,LayuiPageParam param){
 		
 		return articleService.page(article, param);
+	}
+	
+	
+	/**
+	 * 删除文章
+	 */
+	@RequestMapping(value = "/delete",method=RequestMethod.POST)
+	@ResponseBody
+	public String delete(Integer id){
+		String result = "";
+		Article a = articleService.queryArticleById(id);
+		int num1= articleService.delete(a);
+		
+		ArticleExt artE = articleExtService.queryArticleExtByarticleId(id);
+		int num2 = articleExtService.delete(artE);
+		
+		
+		if(num1 > 0 && num2 > 0){
+			result="DELETE_SUCCESS";
+		}else{
+			result="DELETE_FAIL";
+		}
+	
+		return result;
+	}
+	
+	/**
+	 * 修改文章
+	 */
+	@RequestMapping(value = "/edit",method=RequestMethod.POST)
+	@ResponseBody
+	public String edit(Article art,ArticleExt artE,HttpServletRequest request){
+		String result = "";
+		
+		User u = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		
+        Article a = articleService.queryArticleNotRepeatByTitle(art.getTitle(),art.getId());
+		if(a != null){
+			result = "ARTICLE_EXIST";
+			return result;
+		}
+		    Article article = articleService.queryArticleById(art.getId());
+		    article.setCreatetime(new Date());
+		    article.setOperatorid(u.getId());
+		    article.setArticletype(art.getArticletype());
+		    article.setIntroduction(art.getIntroduction());
+		    article.setKeywords(art.getKeywords());
+		    article.setStatus(art.getStatus());
+		    article.setThumbnailurl(art.getThumbnailurl());
+		    article.setTitle(art.getTitle());
+		    article.setTop(art.getTop());
+			int num1 = articleService.update(article);
+			
+			ArticleExt artExt = articleExtService.queryArticleExtByarticleId(art.getId());
+			artExt.setContent(artE.getContent());
+			int num2 = articleExtService.update(artExt);
+			
+			if(num1 !=0 && num2 !=0 ){
+				result = "EDIT_SUCCESS";
+			}else{
+				result = "EDIT_FAIL";
+			}
+	
+		return result;
 	}
 
 }

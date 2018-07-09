@@ -33,13 +33,13 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public int delete(Article model) {
 		// TODO Auto-generated method stub
-		return 0;
+		return articleMapper.deleteByPrimaryKey(model.getId());
 	}
 
 	@Override
 	public int update(Article model) {
 		// TODO Auto-generated method stub
-		return 0;
+		return articleMapper.updateByPrimaryKey(model);
 	}
 
 	@Override
@@ -118,6 +118,21 @@ public class ArticleServiceImpl implements ArticleService {
 	public Article queryArticleById(int id) {
 		// TODO Auto-generated method stub
 		return articleMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public Article queryArticleNotRepeatByTitle(String title, Integer id) {
+		// TODO Auto-generated method stub
+		ArticleExample example = new ArticleExample();
+		ArticleExample.Criteria c  = example.createCriteria();
+		c.andTitleEqualTo(title);
+		c.andIdNotEqualTo(id);
+		
+		List<Article> list = articleMapper.selectByExample(example);
+		if(!CollectionUtils.isEmpty(list)){
+			return list.get(0);
+		}
+		return null;
 	}
 
 }

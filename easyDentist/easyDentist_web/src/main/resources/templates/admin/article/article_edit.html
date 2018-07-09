@@ -57,8 +57,9 @@
 									<form role="form" id="subform">
 									<div class="col-lg-5 jz10">
 										<label>文章标题</label>
+										<input hidden="hidden" name="id" value="${art.id}" />
 										<input class="form-control" name="title" value="${art.title}"
-											id="title" placeholder="请输入文章标题" onblur="return checkTitle();" ><br /> 
+											id="title" placeholder="请输入文章标题" ><br /> 
 											
 											<label>关键字</label>
 										<input class="form-control" name="keywords"  id="keywords" value="${art.keywords}"
@@ -75,7 +76,7 @@
 											</select>
 										</div>
                                         <label for="name">编辑文章</label>
-                                       <textarea style="width:650px;height: 400px;" id="content" name="content"></textarea><br/>
+                                       <textarea style="width:650px;height: 400px;" id="content" value="${artE.content}" name="content"></textarea><br/>
 
 										<div class="form-group">
 											<label for="name">文章简介</label>
@@ -84,7 +85,7 @@
 
 										<div class="form-group-myfile">
 											<label for="inputfile">选择缩略图</label>
-											<input type="text" id="thumbnailurl" name="thumbnailurl" hidden="hidden"  />
+											<input type="text" id="thumbnailurl" name="thumbnailurl" hidden="hidden" value="${art.thumbnailurl}"  />
 											 <input type="file" 
 												id="thumbtext" name="myfile" onchange="uploadImage(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
 											<p class="help-block">尺寸要求 200*120。</p>

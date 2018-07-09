@@ -30,7 +30,10 @@ public class ArticleExtServiceImpl implements ArticleExtService {
 	@Override
 	public int delete(ArticleExt model) {
 		// TODO Auto-generated method stub
-		return 0;
+		ArticleExtExample example = new ArticleExtExample();
+		ArticleExtExample.Criteria c = example.createCriteria();
+		c.andArticleidEqualTo(model.getArticleid());
+		return articleExtMapper.deleteByExample(example);
 	}
 
 	@Override
