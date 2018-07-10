@@ -1,9 +1,12 @@
 package com.dentist.mapper;
 
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.dentist.entity.Banner;
 import com.dentist.entity.BannerExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface BannerMapper {
     int countByExample(BannerExample example);
@@ -27,4 +30,7 @@ public interface BannerMapper {
     int updateByPrimaryKeySelective(Banner record);
 
     int updateByPrimaryKey(Banner record);
+    
+    List<Banner> selectWithPageByExample(@Param("example")BannerExample bannerExample,
+			@Param("params")Map<String, String> params);
 }
