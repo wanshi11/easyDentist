@@ -31,13 +31,13 @@ public class BannerServiceImpl implements BannerService {
 	@Override
 	public int delete(Banner model) {
 		// TODO Auto-generated method stub
-		return 0;
+		return bannerMapper.deleteByPrimaryKey(model.getId());
 	}
 
 	@Override
 	public int update(Banner model) {
 		// TODO Auto-generated method stub
-		return 0;
+		return bannerMapper.updateByPrimaryKeySelective(model);
 	}
 
 	@Override
@@ -80,6 +80,12 @@ public class BannerServiceImpl implements BannerService {
 	public int selectCountByExample(Banner banner) {
 		// TODO Auto-generated method stub
 		return bannerMapper.countByExample(null);
+	}
+
+	@Override
+	public Banner queryBannerById(int id) {
+		// TODO Auto-generated method stub
+		return bannerMapper.selectByPrimaryKey(id);
 	}
 
 }

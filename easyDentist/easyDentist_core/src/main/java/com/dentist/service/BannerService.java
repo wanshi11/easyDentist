@@ -8,11 +8,14 @@ import com.dentist.utils.LayuiPageParam;
 public interface BannerService extends IBaseService<Banner> {
 	
 	
-	//¸ù¾İÌõ¼ş²éÑ¯·ÖÒ³Êı¾İ
+	//æ ¹æ®åˆ†é¡µæ¡ä»¶æŸ¥è¯¢è®°å½•
     List<Banner> selectWithPageByExample(Banner banner,LayuiPageParam param);
     
     
-  //¸ù¾İÌõ¼ş²éÑ¯×ÜÊı¾İÌõÊı
+    //æŸ¥è¯¢è®°å½•æ•°
   	int selectCountByExample(Banner banner);
+
+
+	Banner queryBannerById(int id);
 
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,6 +80,56 @@ public class BannerController {
 		return result;
 	}
 	
+	
+	/**
+	 * 到修改页面 
+	 */
+	@RequestMapping(value = "/toEdit")
+	public String editBanner(Model model,int id){
+		
+		Banner banner = bannerService.queryBannerById(id);
+		model.addAttribute("banner", banner);
+		
+		return "/admin/banner/banner_edit";
+	}
+	
+	
+	/**
+	 * 修改Banner
+	 */
+	@RequestMapping(value = "/edit",method=RequestMethod.POST)
+	@ResponseBody
+	public String edit(Banner banner,HttpServletRequest request){
+		String result = "";
+		
+			int num = bannerService.update(banner);
+			if(num !=0){
+				result = "EDIT_SUCCESS";
+			}else{
+				result = "EDIT_FAIL";
+			}
+	
+		return result;
+	}
+	
+	/**
+	 * 删除
+	 */
+	@RequestMapping(value = "/delete",method=RequestMethod.POST)
+	@ResponseBody
+	public String delete(int id){
+		
+		String result = "";
+		Banner b = new Banner();
+		b.setId(id);
+		int num = bannerService.delete(b);
+		if(num > 0){
+			result="DELETE_SUCCESS";
+		}else{
+			result="DELETE_FAIL";
+		}
+		return result;
+	}
 	
 	/**
 	 * 查询轮播列表 

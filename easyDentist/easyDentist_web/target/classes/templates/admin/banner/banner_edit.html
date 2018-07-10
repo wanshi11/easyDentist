@@ -9,13 +9,27 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>修改角色</title> <#include "/common/admin_css.html"/>
+<title>修改轮播</title> <#include "/common/admin_css.html"/>
 <style type="text/css">
 .jz10 {
 	margin-left: 10%;
 }
 .jz {
 	margin-left: 25%;
+}
+.form-group-myfile{
+   position:relative;
+   margin-bottom:15px;
+   height:120px;
+   width:420px;
+}
+
+.image-lunbo{
+  position:absolute;
+  top:0;right:0;
+  border:solid 2px #CCC;
+  width:200px;
+  height:120px;
 }
 </style>
 </head>
@@ -28,7 +42,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header">修改角色</h3>
+					<h3 class="page-header">修改轮播</h3>
 				</div>
 			</div>
 
@@ -36,20 +50,40 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">EDIT_ROLE</div>
+						<div class="panel-heading">EDIT_BANNER</div>
 						<div class="panel-body">
 							<div class="row">
 
 								<form role="form" id="subform">
 									<div class="col-lg-5 jz10">
-										<label>角色名称</label>
-										<input  name="id" id="id" type="hidden" value="${role.id}" />
-										<input class="form-control" name="rolename"
-											id="rolename" value="${role.rolename}" placeholder="请输入角色名称" ><br /> 
-											<label>角色描述</label>
-										<input class="form-control" name="description" value="${role.description}"  id="description"
-											placeholder="请输入角色描述" ><br /> 
+									<input hidden="hidden"  name="id" value="${banner.id}" id="id" />
+										<label>轮播图片名称(或描述)</label>
+										<input class="form-control" name="bannername" value="${banner.bannername}"
+											id="bannername" placeholder="请输入轮播图片名称(或描述)" ><br /> 
+											<label>超链接URL</label>
+										<input class="form-control" name="href"  id="href" value="${banner.href}"
+											placeholder="请输入图片超链接地址" ><br /> 
 											
+										<div class="form-group">
+											<label class="radio-inline"> <input type="radio"
+												name="status" id="optionsRadios3" value="1"
+												> 启用图片
+											</label> <label class="radio-inline"> <input type="radio"
+												name="status" id="optionsRadios4" value="0">
+												禁用图片
+											</label>
+											<input hidden="hidden" name="_status" id="_status" value="${banner.status}" >
+										</div>
+										
+										<div class="form-group-myfile">
+											<label for="inputfile">选择轮播图</label>
+											<input type="text" id="picurl" name="picurl" hidden="hidden" value="${banner.picurl}" />
+											 <input type="file" 
+												id="pictext" name="myfile" onchange="ajaxFileUpload();" accept="image/jpg,image/jpeg,image/gif,image/png">
+											<p class="help-block">尺寸要求 1440*440。</p>
+										<img class="image-lunbo" id="pic"   src="${banner.picurl}">
+										</div>
+										
 										<div  class="jz">
 										<input type="button" value="点击修改" class="btn btn-default" onclick="edit()"  />
 										</div>
@@ -67,52 +101,85 @@
     <#include "/common/admin_js.html"/>
 	<!-- 后台公共js -->
 	<script type="text/javascript">
+ 	$(function(){
 		
+		var  status = $("#_status").val();
+		
+		if(status)
+		$("input[name='status'][value='1']").attr("checked","checked");
+		else
+	   $("input[name='status'][value='0']").attr("checked","checked");
+		
+		
+	}); 
+	
 	function edit() {
 		
-		var rolename = $("#rolename").val();
-		var description = $("#description").val();
-		if(rolename == "" || description == ""){
+		var bannername = $("#bannername").val();
+		var picurl = $("#picurl").val();
+		var status = $("input[name='status']:checked").val();
+		if(bannername == "" || picurl == "" || status == ""){
 			layer.alert('表单数据不可以为空！');
 			return false;
 		}
 		
-		
-        $.ajax({
-        //几个参数需要注意一下
-            type: "POST",//方法类型
-            url: "${request.contextPath}/admin/role/edit" ,//url
-            data: $('#subform').serialize(),
-            success: function (result) {
-            	
-            	if(result == "ROLE_EXIST"){
-                	layer.alert('该角色名已存在！',function(index){
-                	window.location.href='${request.contextPath}/admin/role/toEdit?id='+$("#id").val();;
-                	});
-                	//跳转到新增
-                }
-            	
-                if(result == "EDIT_SUCCESS"){
-                	layer.alert('修改角色成功！',function(index){
-                		window.location.href="${request.contextPath}/admin/role/toRoles";
-                	});
-                	//跳转到列表
-                }
-                if(result == "EDIT_FAIL"){
-                	layer.alert('修改角色失败！',function(index){
-                	window.location.href='${request.contextPath}/admin/role/toEdit?id='+$("#id").val();;
-                	});
-                }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-            	 alert(XMLHttpRequest.status);
-            	 alert(XMLHttpRequest.readyState);
-            	 alert(XMLHttpRequest.responseText);
-            	 alert(textStatus);
-            	   }
-        });
+		 $.ajax({
+		        //几个参数需要注意一下
+		            type: "POST",//方法类型
+		            url: "${request.contextPath}/admin/banner/edit" ,//url
+		            data: $('#subform').serialize(),
+		            success: function (result) {
+		            	
+		                if(result == "EDIT_SUCCESS"){
+		                	layer.alert('修改轮播成功！',function(index){
+		                		window.location.href="${request.contextPath}/admin/banner/toBanners";
+		                	});
+		                	//跳转到列表
+		                }
+		                if(result == "EDIT_FAIL"){
+		                	layer.alert('修改轮播失败！',function(index){
+		                	window.location.href='${request.contextPath}/admin/banner/toEdit?id='+$("#id").val();;
+		                	});
+		                }
+		            },
+		            error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            	 alert(XMLHttpRequest.status);
+		            	 alert(XMLHttpRequest.readyState);
+		            	 alert(XMLHttpRequest.responseText);
+		            	 alert(textStatus);
+		            	   }
+		        });
     }
 	
+	
+	function ajaxFileUpload() {
+        $.ajaxFileUpload
+        (
+            {
+                url: '${request.contextPath}/admin/banner/uploadPic', //用于文件上传的服务器端请求地址
+                secureuri: false, //是否需要安全协议，一般设置为false
+                fileElementId: 'pictext', //文件上传域的ID
+                dataType: 'json', //返回值类型 一般设置为json
+                type:'post',
+                success: function (data, status)  //服务器成功响应处理函数
+                {
+                        if (data.error == 'error') {  
+                     	   layer.alert(data.msg);
+                            //清空file  input框
+                            $("#pictext").val("");
+                        } else {                       //success
+                     	   $("#picurl").val(data.imgurl);
+                           $("#pic").attr("src", data.imgurl);
+                           layer.alert(data.msg);
+                        }
+                },
+                error: function (data, status, e)//服务器响应失败处理函数
+                {
+             	   layer.alert(e);
+                }
+            }
+        )
+    }
 
 	</script>
 	

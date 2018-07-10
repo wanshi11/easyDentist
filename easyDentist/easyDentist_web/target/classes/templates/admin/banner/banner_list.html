@@ -62,9 +62,9 @@
                /* {type:'numbers'} */
               /* {type: 'checkbox'} */
     	      {field:'id', width:70, title: 'ID', sort: true}
-    	      ,{field:'bannername', width:160, title: '轮播图名称(或描述)'}
-    	      ,{field:'href', width:200, title: '轮播链接' }
-    	      ,{field:'status', width:100, title: '轮播状态'}
+    	      ,{field:'bannername', width:200, title: '轮播图名称(或描述)'}
+    	      ,{field:'href', width:300, title: '轮播链接' }
+    	      ,{field:'status', width:150, title: '轮播状态'}
     	      ,{field:'right', title: '操作', width:120,toolbar:"#barDemo"}
     	    ]]
     	    ,where: {
@@ -92,6 +92,7 @@
 			    	             data: {"id":data.id},
 			    	             success: function (result) {
 			    	                 if(result == "DELETE_SUCCESS"){
+			    	                	 
 			    	                 	layer.alert('删除轮播成功！',function(index){
 			    	                		window.location.href="${request.contextPath}/admin/banner/toBanners";
 			    	                	});
