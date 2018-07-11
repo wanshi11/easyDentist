@@ -76,7 +76,7 @@
 											</select>
 										</div>
                                         <label for="name">编辑文章</label>
-                                       <textarea style="width:650px;height: 400px;" id="content" value="${artE.content}" name="content"></textarea><br/>
+                                       <textarea style="width:650px;height: 400px;" id="content" name="content">${artE.content}</textarea><br/><br/>
 
 										<div class="form-group">
 											<label for="name">文章简介</label>
@@ -221,7 +221,7 @@
 										} //Kindeditor下获取文本框信息
 
 									});
-		editor.html('${artE.content}');
+		editor.html(content,'${artE.content}');
 				});
     
 	</script>
