@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,8 @@ import com.dentist.utils.StringUtil;
 @Controller
 @RequestMapping(value = "/admin")
 public class LoginController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
 	private UserService userService;
@@ -37,6 +41,7 @@ public class LoginController {
 	
 	@Autowired
 	private MenuService menuService;
+	
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String LoginGet() {
@@ -46,6 +51,8 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String LoginPost(Model model,HttpServletRequest request) {
+		
+		logger.info("执行方法---> /login");
 		
 		String name = request.getParameter("name");
 		String pwd = request.getParameter("pwd");
