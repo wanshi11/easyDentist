@@ -446,9 +446,24 @@
 </div>
 
     <script type="text/javascript">
-        <#list lunbo_banners as lunbo>
+    
+ /*    var userList = ${lunbo_banners}; */
+$(function(){
+	alert(11);
+	
+  /*   var contactInfoListSize = ${lunbo_banners?size};
+    alert(contactInfoListSize) */
+});
+  　　/* $.each(userList,function(i,item){
+
+  　　　　console.log(i, item.picurl);
+
+  　　}); */
+    
+    
+        /* <#list lunbo_banners as lunbo>
             console.log(lunbo);
-        </#list>
+        </#list> */
     </script>
 </body>
 </html>
