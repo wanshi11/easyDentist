@@ -88,4 +88,16 @@ public class BannerServiceImpl implements BannerService {
 		return bannerMapper.selectByPrimaryKey(id);
 	}
 
+	@Override
+	public List<Banner> queryBannerByType(String bannerType) {
+
+		BannerExample bannerExample = new BannerExample();
+		BannerExample.Criteria c = bannerExample.createCriteria();
+		c.andTypeEqualTo(bannerType);
+		c.andStatusEqualTo(true);
+		bannerExample.setOrderByClause("id desc");
+		
+		return bannerMapper.selectByExampleLimit6(bannerExample);
+	}
+
 }

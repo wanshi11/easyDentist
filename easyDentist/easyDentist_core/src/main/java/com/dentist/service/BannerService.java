@@ -18,4 +18,7 @@ public interface BannerService extends IBaseService<Banner> {
 
 	Banner queryBannerById(int id);
 
+	
+	List<Banner> queryBannerByType(String bannerType);
+
 }

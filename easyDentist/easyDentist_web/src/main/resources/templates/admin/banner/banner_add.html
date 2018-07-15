@@ -43,7 +43,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header">添加轮播图片</h3>
+					<h3 class="page-header">添加BANNER图片</h3>
 				</div>
 			</div>
 
@@ -51,18 +51,29 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">添加一个新轮播图片</div>
+						<div class="panel-heading">添加一个新BANNER图片</div>
 						<div class="panel-body">
 							<div class="row">
 
 								<form role="form" id="subform">
 									<div class="col-lg-5 jz10">
-										<label>轮播图片名称(或描述)</label>
+										<label>BANNER名称(或描述)</label>
 										<input class="form-control" name="bannername"
 											id="bannername" placeholder="请输入轮播图片名称(或描述)" ><br /> 
 											<label>超链接URL</label>
 										<input class="form-control" name="href"  id="href"
 											placeholder="请输入图片超链接地址" ><br /> 
+											
+										<div class="form-group">
+											<label for="name">BANNER类型</label> 
+											<select id="type" name="type" class="form-control">
+												<option>-请选择banner类型-</option>
+												<option value="BANNER_LUNBO">轮播宣传</option>
+												<option value="BANNER_ENVIRONMENT">医院环境</option>
+												<option value="BANNER_HOROR">医院荣誉</option>
+												<option value="BANNER_FACILITY">医院设备</option>
+											</select>
+										</div>
 											
 										<div class="form-group">
 											<label class="radio-inline"> <input type="radio"
@@ -75,11 +86,11 @@
 										</div>
 										
 										<div class="form-group-myfile">
-											<label for="inputfile">选择轮播图</label>
+											<label for="inputfile">选择BANNER图</label>
 											<input type="text" id="picurl" name="picurl" hidden="hidden"  />
 											 <input type="file" 
 												id="pictext" name="myfile" onchange="ajaxFileUpload();" accept="image/jpg,image/jpeg,image/gif,image/png">
-											<p class="help-block">尺寸要求 1440*440。</p>
+											<p class="help-block">轮播尺寸要求： 1440*440。</p>
 										<img class="image-lunbo" id="pic"   src="/images/admin/thumb_default.jpg">
 										</div>
 										
@@ -108,8 +119,9 @@
 		
 		var bannername = $("#bannername").val();
 		var picurl = $("#picurl").val();
+		var type = $("#type option:selected").val();
 		var status = $("input[name='status']:checked").val();
-		if(bannername == "" || picurl == "" || status == ""){
+		if(bannername == "" || picurl == "" || status == "" || type == ""){
 			layer.alert('表单数据不可以为空！');
 			return false;
 		}

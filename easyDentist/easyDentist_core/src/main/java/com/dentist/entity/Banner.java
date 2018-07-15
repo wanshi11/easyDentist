@@ -5,6 +5,8 @@ public class Banner {
 
     private String bannername;
 
+    private String type;
+
     private String picurl;
 
     private Boolean status;
@@ -25,6 +27,14 @@ public class Banner {
 
     public void setBannername(String bannername) {
         this.bannername = bannername == null ? null : bannername.trim();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
     public String getPicurl() {

@@ -31,6 +31,8 @@ public interface BannerMapper {
 
     int updateByPrimaryKey(Banner record);
     
-    List<Banner> selectWithPageByExample(@Param("example")BannerExample bannerExample,
-			@Param("params")Map<String, String> params);
+    List<Banner> selectWithPageByExample(@Param("example") BannerExample example,@Param("params") Map<String, String> params);
+
+	List<Banner> selectByExampleLimit6(BannerExample bannerExample);
+
 }

@@ -21,6 +21,13 @@ public class Constant {
   public static final String  LEAVE_MSG_YUYUE = "LEAVE_MSG_YUYUE"; //预约
   public static final String  LEAVE_MSG_ZIXUN = "LEAVE_MSG_ZIXUN"; //咨询
   
+  //BANNER类型
+  public static final String  BANNER_LUNBO = "BANNER_LUNBO"; //轮播
+  public static final String  BANNER_ENVIRONMENT = "BANNER_ENVIRONMENT"; //环境
+  public static final String  BANNER_HOROR = "BANNER_HOROR"; //荣誉
+  public static final String  BANNER_FACILITY = "BANNER_FACILITY"; //设备
+  
+  
   
   
 

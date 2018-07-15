@@ -91,11 +91,11 @@
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
 		</table>
 		
-		<table schema="" tableName="t_config" 
+		<!-- <table schema="" tableName="t_config" 
 			domainObjectName="SysConfig" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
-		</table>
+		</table> -->
 		
 		
 	</context>
