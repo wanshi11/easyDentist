@@ -21,6 +21,7 @@ import com.dentist.service.BannerService;
  * 主页控制器
  */
 @Controller
+@RequestMapping(value ="/home")
 public class IndexController {
 	
 	@Autowired
@@ -47,6 +48,13 @@ public class IndexController {
 		mv.addObject("envir_banners", envir_banners);
 		mv.addObject("facility_banners", facility_banners);
 		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/tomap", method = RequestMethod.GET)
+	public String toMap(Model model) {
+		
+		return "/home/map";
 	}
 
 }

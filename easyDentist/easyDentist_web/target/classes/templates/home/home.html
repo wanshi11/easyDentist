@@ -30,7 +30,7 @@
   <div id="CdNav">
     <div class="CdNavBox">
       <ul>
-        <li class="qaDH"> 口腔问题导航
+        <li class="qaDH"> 口腔问题简介
           <div id="NavSub-1">
             <ul><li>
                 <div id="NavCont"><span></span> <a href="/prussian">
@@ -61,23 +61,14 @@
         <li><a href="/zjtd" title="医生团队">医生团队</a></li>
         <li><a href="/about/guahao/" title="挂号中心">预约中心</a></li>
         <!-- <li><a href="/zt/yjk/" title="公益活动">8020牙健康公益行</a></li> -->
-        <li><a href="/jzzl/" title="就诊路线">就诊路线</a></li> 
+        <li><a href="/home/tomap" title="就诊路线">就诊路线</a></li> 
       </ul>
     </div>
   </div>
 </header> 
-<!--导航栏 -->
-
- <div class="banner">
-  <div style="position:relative" id="allabout">
-    <div id="jflash"></div>
-    <div class="jinbox">
-      <div id="litindct"></div>
-    </div>
-    <span id="leftarr"></span> <span id="rightar"></span> </div>
-   <script src="/js/n-banner.js" type="text/javascript"></script> 
-</div> 
-<!--导航栏 -->
+<!--轮播器 -->
+   <#include "/common/home_lunbo.html"/>
+<!--轮播器 -->
 <div id="CdDh">
   <div class="section_icon_nav_box1">
     <div class="section_icon_nav_box2 center">
@@ -109,7 +100,7 @@
         <li class="icon_nav9"><i></i><a href="/jchlzx/" target="_blank"><em></em>
           <p>口腔疾病</p>
           </a></li>
-        <li class="icon_nav10"><i></i><a href="/swt/" target="_blank"><em></em>
+        <li class="icon_nav10"><i></i><a href="" target="_blank"><em></em>
           <p>更多项目</p>
           </a> </li>
       </ul>
@@ -445,25 +436,5 @@
 
 </div>
 
-    <script type="text/javascript">
-    
- /*    var userList = ${lunbo_banners}; */
-$(function(){
-	alert(11);
-	
-  /*   var contactInfoListSize = ${lunbo_banners?size};
-    alert(contactInfoListSize) */
-});
-  　　/* $.each(userList,function(i,item){
-
-  　　　　console.log(i, item.picurl);
-
-  　　}); */
-    
-    
-        /* <#list lunbo_banners as lunbo>
-            console.log(lunbo);
-        </#list> */
-    </script>
 </body>
 </html>
