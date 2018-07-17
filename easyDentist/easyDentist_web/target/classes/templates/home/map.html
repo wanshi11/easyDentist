@@ -2,63 +2,92 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="°Ù¶ÈµØÍ¼API×Ô¶¨ÒåµØÍ¼£¬°ïÖúÓÃ»§ÔÚ¿ÉÊÓ»¯²Ù×÷ÏÂÉú³É°Ù¶ÈµØÍ¼" />
-<title>°Ù¶ÈµØÍ¼API×Ô¶¨ÒåµØÍ¼</title>
-<!--ÒıÓÃ°Ù¶ÈµØÍ¼API-->
+<meta name="description" content="" />
+<title>æ–°åŒ—å£è…”åœ°å€</title>
+<link type="text/css" href="/css/style.css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="/css/index.css"  />
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+<!--å¼•ç”¨ç™¾åº¦åœ°å›¾API-->
 <style type="text/css">
     html,body{margin:0;padding:0;}
     .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
     .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+    .mzlx{
+    margin-left: 30%;
+    }
+    .lxboard{
+    background-color: #EEEEE0;
+    float: left;
+    margin-top:3%;
+    width: 250px;
+    height: 350px;
+    margin-left:10%;
+    }
 </style>
 <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 </head>
 
 <body>
-  <!--°Ù¶ÈµØÍ¼ÈİÆ÷-->
-  <div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
+<#include "/common/home_header.html"/>
+<img style="width: 100%;height: 350px;margin-top: 1px;" src="/images/ycdh/yc_03.jpg">
+
+<div class="lxboard">
+
+</div>
+<div class="mzlx">
+    <div class="abname"> é—¨è¯Šè·¯çº¿</div>
+    <div class="lxc1" style="margin: 0px; padding: 20px 0px 0px; width: 700px; height: 30px; font-size: 18px; color: rgb(68, 68, 68); font-family: å¾®è½¯é›…é»‘, 'Microsoft Yahei', Tahoma, SimSun; line-height: 18px; "> åŒ»é™¢åœ°å€ï¼š</div>
+    <div class="lxc2" style="margin: 0px 0px 5px; padding: 0px; width: 700px; height: 60px; font-size: 14px; line-height: 24px; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(153, 153, 153); color: rgb(68, 68, 68); font-family: å¾®è½¯é›…é»‘, 'Microsoft Yahei', Tahoma, SimSun; "> ä¸Šæµ·é•¿å®åŒºè™¹æ¡¥è·¯1386å·æ–‡å¹¿å¤§å¦2æ¥¼ã€‚å’¨è¯¢ç”µè¯ï¼š021-52908085</div>
+    <!--ç™¾åº¦åœ°å›¾å®¹å™¨-->
+    <div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
+  </div>
+</div>
+
+
+
+  <#include "/common/home_footer.html"/>
 </body>
 <script type="text/javascript" charset="UTF-8" >
-    //´´½¨ºÍ³õÊ¼»¯µØÍ¼º¯Êı£º
+     //åˆ›å»ºå’Œåˆå§‹åŒ–åœ°å›¾å‡½æ•°ï¼š
     function initMap(){
-        createMap();//´´½¨µØÍ¼
-        setMapEvent();//ÉèÖÃµØÍ¼ÊÂ¼ş
-        addMapControl();//ÏòµØÍ¼Ìí¼Ó¿Ø¼ş
-        addMarker();//ÏòµØÍ¼ÖĞÌí¼Ómarker
+        createMap();//åˆ›å»ºåœ°å›¾
+        setMapEvent();//è®¾ç½®åœ°å›¾äº‹ä»¶
+        addMapControl();//å‘åœ°å›¾æ·»åŠ æ§ä»¶
+        addMarker();//å‘åœ°å›¾ä¸­æ·»åŠ marker
     }
     
-    //´´½¨µØÍ¼º¯Êı£º
-    function createMap(){
-        var map = new BMap.Map("dituContent");//ÔÚ°Ù¶ÈµØÍ¼ÈİÆ÷ÖĞ´´½¨Ò»¸öµØÍ¼
-        var point = new BMap.Point(116.331599,40.044881);//¶¨ÒåÒ»¸öÖĞĞÄµã×ø±ê
-        map.centerAndZoom(point,15);//Éè¶¨µØÍ¼µÄÖĞĞÄµãºÍ×ø±ê²¢½«µØÍ¼ÏÔÊ¾ÔÚµØÍ¼ÈİÆ÷ÖĞ
-        window.map = map;//½«map±äÁ¿´æ´¢ÔÚÈ«¾Ö
+
+     function createMap(){
+        var map = new BMap.Map("dituContent");//åœ¨ç™¾åº¦åœ°å›¾å®¹å™¨ä¸­åˆ›å»ºä¸€ä¸ªåœ°å›¾
+        var point = new BMap.Point(116.331599,40.044881);//å®šä¹‰ä¸€ä¸ªä¸­å¿ƒç‚¹åæ ‡
+        map.centerAndZoom(point,15);//è®¾å®šåœ°å›¾çš„ä¸­å¿ƒç‚¹å’Œåæ ‡å¹¶å°†åœ°å›¾æ˜¾ç¤ºåœ¨åœ°å›¾å®¹å™¨ä¸­
+        window.map = map;//å°†mapå˜é‡å­˜å‚¨åœ¨å…¨å±€
     }
     
-    //µØÍ¼ÊÂ¼şÉèÖÃº¯Êı£º
     function setMapEvent(){
-        map.enableDragging();//ÆôÓÃµØÍ¼ÍÏ×§ÊÂ¼ş£¬Ä¬ÈÏÆôÓÃ(¿É²»Ğ´)
-        map.disableScrollWheelZoom();//½ûÓÃµØÍ¼¹öÂÖ·Å´óËõĞ¡£¬Ä¬ÈÏ½ûÓÃ(¿É²»Ğ´)
-        map.disableDoubleClickZoom();//½ûÓÃÊó±êË«»÷·Å´ó
-        map.disableKeyboard();//½ûÓÃ¼üÅÌÉÏÏÂ×óÓÒ¼üÒÆ¶¯µØÍ¼£¬Ä¬ÈÏ½ûÓÃ(¿É²»Ğ´)
+        map.enableDragging();//å¯ç”¨åœ°å›¾æ‹–æ‹½äº‹ä»¶ï¼Œé»˜è®¤å¯ç”¨(å¯ä¸å†™)
+        map.disableScrollWheelZoom();//ç¦ç”¨åœ°å›¾æ»šè½®æ”¾å¤§ç¼©å°ï¼Œé»˜è®¤ç¦ç”¨(å¯ä¸å†™)
+        map.disableDoubleClickZoom();//ç¦ç”¨é¼ æ ‡åŒå‡»æ”¾å¤§
+        map.disableKeyboard();//ç¦ç”¨é”®ç›˜ä¸Šä¸‹å·¦å³é”®ç§»åŠ¨åœ°å›¾ï¼Œé»˜è®¤ç¦ç”¨(å¯ä¸å†™)
     }
     
-    //µØÍ¼¿Ø¼şÌí¼Óº¯Êı£º
+
     function addMapControl(){
-        //ÏòµØÍ¼ÖĞÌí¼ÓËõ·Å¿Ø¼ş
+    	//å‘åœ°å›¾ä¸­æ·»åŠ ç¼©æ”¾æ§ä»¶
 	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
 	map.addControl(ctrl_nav);
-        //ÏòµØÍ¼ÖĞÌí¼ÓËõÂÔÍ¼¿Ø¼ş
+	   //å‘åœ°å›¾ä¸­æ·»åŠ ç¼©ç•¥å›¾æ§ä»¶
 	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
 	map.addControl(ctrl_ove);
-        //ÏòµØÍ¼ÖĞÌí¼Ó±ÈÀı³ß¿Ø¼ş
+	   //å‘åœ°å›¾ä¸­æ·»åŠ æ¯”ä¾‹å°ºæ§ä»¶
 	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
 	map.addControl(ctrl_sca);
     }
     
-    //±ê×¢µãÊı×é
-    var markerArr = [{title:"ĞÂ±±¿ÚÇ»âùÃÀµê",content:"µç»°&nbsp;010-62880056",point:"116.329335|40.046483",isOpen:1,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+    //æ ‡æ³¨ç‚¹æ•°ç»„
+    var markerArr = [{title:"æ–°åŒ—å£è…”æ€¡ç¾åº—",content:"ç”µè¯&nbsp;010-62880056",point:"116.329335|40.046483",isOpen:1,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
 		 ];
-    //´´½¨marker
+    //åˆ›å»ºmarker
     function addMarker(){
         for(var i=0;i<markerArr.length;i++){
             var json = markerArr[i];
@@ -100,18 +129,18 @@
 			})()
         }
     }
-    //´´½¨InfoWindow
+  //åˆ›å»ºInfoWindow
     function createInfoWindow(i){
         var json = markerArr[i];
         var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
         return iw;
     }
-    //´´½¨Ò»¸öIcon
+  //åˆ›å»ºä¸€ä¸ªIcon
     function createIcon(json){
         var icon = new BMap.Icon("http://api.map.baidu.com/lbsapi/creatmap/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
         return icon;
     }
     
-    initMap();//´´½¨ºÍ³õÊ¼»¯µØÍ¼
+    initMap();//åˆ›å»ºå’Œåˆå§‹åŒ–åœ°å›¾
 </script>
 </html>

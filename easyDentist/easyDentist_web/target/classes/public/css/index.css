@@ -126,7 +126,7 @@ section { width:100%;}
 .CdNavBox .qaDHOn{ width:190px; color:#fff; font-size:18px; font-weight:700;background:url(../images/icon10.png) right center no-repeat; height:45px; line-height:40px; text-align:center;margin-right:20px; position:relative; cursor:pointer;}
 
 /*CSS导航特效======================================*/
-#CdDh { width:88.5%;height:80px; margin:0 auto; background:#fff;}
+#easyDh { width:88.5%;height:80px; margin:0 auto; background:#fff;}
 .section_icon_nav_box2{height:90px; width:1190px; margin:0 auto;}
 .section_icon_nav_box2 ul{ position:absolute}
 .section_icon_nav_box2 ul li {height:90px; position: relative; float: left; display:inline; width:118px; border-left:solid 1px #eaeaea; background:#fff; }

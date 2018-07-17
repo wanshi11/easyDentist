@@ -469,4 +469,3 @@ $(window).on("load scroll DomMouseScroll", function() {
 		huameiV3.followNav();
 	}
 })
-
