@@ -299,10 +299,10 @@ section { width:100%;}
 
 /*新闻中心======================================*/
 #CdCont { width:1200px;margin:12px auto 0 ; height:300px; font-size:12px;color:#6b6b6b;line-height:22px; }
-.Pearl { width:273px;height:255px; float:left;margin:0 20px 0 0; border:1px solid #e3e3e3;}
-.Pearl p {margin:10px 0 0 0;}
-.Pearl p a{color:#5d94de}
-.Pearl p a:hover{color:#ff9f00}
+.EasyD { width:273px;height:255px; float:left;margin:0 20px 0 0; border:1px solid #e3e3e3;}
+.EasyD p {margin:10px 0 0 0;}
+.EasyD p a{color:#5d94de}
+.EasyD p a:hover{color:#ff9f00}
 .News {width:483px;height:255px;float:left;margin:0 20px 0 0; border:1px solid #e3e3e3;}
 .Video {width:248px;height:255px;float:left; border:1px solid #e3e3e3;}
 .Video .video { width:250px;height:180px;}
@@ -618,25 +618,25 @@ filter:alpha(opacity=40);position:absolute;bottom:0;z-index:1111;color:#fff;}
 #mdm2{ top:174px;}
 #mdm3{ top:295px;}
 /**质量体系**/
-.GY2Pearl{
+.GY2EasyD{
 	width:1200px;
 	height:auto;
 	margin:20px auto 0;
 	}
-.GY2Pearl_title{
+.GY2EasyD_title{
 	width:1200px;
 	height:auto;
 	margin:20px auto;
 	}
 
-.GY2Pearl_tubiao{
+.GY2EasyD_tubiao{
 	background:#2585d1;
 	width:7px;
 	height:25px;
 	border-radius:25px;
 	float:left;
 	}
-.GY2Pearl_wenzi{
+.GY2EasyD_wenzi{
 	width:1000px;
 	height:25px;
 	float:left;
@@ -646,20 +646,20 @@ filter:alpha(opacity=40);position:absolute;bottom:0;z-index:1111;color:#fff;}
 	color:#333333;
 	}
 	
-.GY2Pearl_wenzi span{
+.GY2EasyD_wenzi span{
 	font-size:14px;
 	line-height:31px;
 	color:#999999;
 	}
-.GY2Pearl_left{
+.GY2EasyD_left{
 	width:450px;
 	height:500px;
 	float:left;
 	overflow:hidden;
 	}
 
-.GY2Pearl_right{
-	background:#e3e3e3;
+.GY2EasyD_right{
+	background:#f5caca;/*#e3e3e3*/
 	width:735px;
 	height:500px;
 	float:left;
@@ -685,20 +685,20 @@ filter:alpha(opacity=40);position:absolute;bottom:0;z-index:1111;color:#fff;}
 	color:#555555;
 	}
 /*****************************************/
-.GY3Pearl_title{
+.GY3EasyD_title{
 	width:1200px;
 	height:25px;
 	margin:10px auto;
 	}
 
-.GY3Pearl_tubiao{
+.GY3EasyD_tubiao{
 	background:#2585d1;
 	width:7px;
 	height:25px;
 	border-radius:25px;
 	float:left;
 	}
-.GY3Pearl_wenzi{
+.GY3EasyD_wenzi{
 	width:1000px;
 	height:25px;
 	float:left;
@@ -708,7 +708,7 @@ filter:alpha(opacity=40);position:absolute;bottom:0;z-index:1111;color:#fff;}
 	color:#333333;
 	}
 	
-.GY3Pearl_wenzi span{
+.GY3EasyD_wenzi span{
 	font-size:14px;
 	line-height:31px;
 	color:#999999;
