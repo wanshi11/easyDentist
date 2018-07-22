@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.dentist.entity.Banner;
 import com.dentist.entity.BannerExample;
@@ -66,6 +67,10 @@ public class BannerServiceImpl implements BannerService {
 			LayuiPageParam param) {
 		// TODO Auto-generated method stub
 		BannerExample bannerExample = new BannerExample();
+		BannerExample.Criteria c = bannerExample.createCriteria();
+		if(!StringUtils.isEmpty(banner.getType())){
+			c.andTypeEqualTo(banner.getType());
+		}
 		
 		Map<String, String> params = new HashMap<>();
 		params.put("order", param.getOrder());
@@ -78,8 +83,13 @@ public class BannerServiceImpl implements BannerService {
 
 	@Override
 	public int selectCountByExample(Banner banner) {
-		// TODO Auto-generated method stub
-		return bannerMapper.countByExample(null);
+		BannerExample bannerExample = new BannerExample();
+		BannerExample.Criteria c = bannerExample.createCriteria();
+		if(!StringUtils.isEmpty(banner.getType())){
+			c.andTypeEqualTo(banner.getType());
+		}
+		
+		return bannerMapper.countByExample(bannerExample);
 	}
 
 	@Override

@@ -1,10 +1,16 @@
 package com.dentist.controller.admin;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dentist.cfg.Constant;
 import com.dentist.entity.Menu;
+import com.dentist.entity.Role;
 import com.dentist.entity.User;
+import com.dentist.pojo.TreeMenuView;
 import com.dentist.service.MenuService;
+import com.dentist.service.RoleMenuService;
+import com.dentist.service.RoleService;
+import com.dentist.utils.JsonUtils;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
 
@@ -25,8 +36,16 @@ import com.dentist.utils.LayuiPageParam;
 @RequestMapping(value = "/admin/menu")
 public class MenuController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
+	
 	@Autowired
 	private MenuService menuService;
+
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private RoleMenuService roleMenuService;
 	
 	/**
 	 * 到菜单列表页 
@@ -191,6 +210,83 @@ public class MenuController {
 		return "0";
 	}
 	
+//==========分配菜单=====
+	
+	/**
+	 * 到分配菜单页
+	 */
+	@RequestMapping(value="/toAllotMenus", method = RequestMethod.GET)
+	public String  toAllotMenus(Model model){
+		
+		List<Role> roles =roleService.getList(null);
+		
+		
+		model.addAttribute("roles", roles);
+		return "/admin/menu/allot_menus";
+	}
+	
+	@RequestMapping(value="/queryAllTreeMenuView")
+	@ResponseBody
+	public List<TreeMenuView> quertAllTreeMenuView(){
+		
+		List<TreeMenuView> treeMenus = new ArrayList<TreeMenuView>();
+		List<Menu> menus = menuService.getAllMenus();
+		
+		for (Menu menu : menus) {
+			if(menu.getParentid() == null){
+				TreeMenuView treeMenuView  = new TreeMenuView();
+				treeMenuView.setTitle(menu.getMenuname());
+				treeMenuView.setValue(menu.getId()+"");
+				treeMenuView.setData(new ArrayList<TreeMenuView>());
+				treeMenus.add(treeMenuView);
+			}
+		}
+		
+		Iterator<TreeMenuView> iter = treeMenus.iterator();
+		while(iter.hasNext()){
+			TreeMenuView parent = iter.next();
+			for (Menu menu : menus) {
+				if(menu.getParentid() != null && parent.getValue().equals(menu.getParentid()+"")){
+					TreeMenuView treeMenuView  = new TreeMenuView();
+					treeMenuView.setValue(menu.getId()+"");
+					treeMenuView.setTitle(menu.getMenuname());
+					treeMenuView.setData(new ArrayList<TreeMenuView>());
+					List<TreeMenuView> list = parent.getData();
+					list.add(treeMenuView);
+					parent.setData(list);
+				}
+			}
+		}
+		
+		
+		return treeMenus;
+	}
+	
+	
+	@RequestMapping(value="/allotMenus",method = RequestMethod.POST)
+	@ResponseBody
+	public String allotMenus(HttpServletRequest request){
+		User u = (User)request.getSession().getAttribute(Constant.LOGIN_USER);
+		
+		String list = request.getParameter("menuIdArray");
+		List<String> menuIdArray = JsonUtils.stringToList(list, String.class);
+		String roleId = request.getParameter("roleId");
+		
+		if(StringUtils.isEmpty(roleId)){
+			return "NO_ROLE";
+		}
+		
+		Set<String> menus = new HashSet<>(menuIdArray);
+		try {
+			roleMenuService.allotMenusByRoleId(roleId,menus,u);
+		} catch (Exception e) {
+			logger.error("分配菜单报错！！roleId:"+roleId+"menuIds:"+menus);
+			e.printStackTrace();
+			return "FAIL";
+		}
+		
+		return "SUCCESS";
+	}
 	
 	
 }

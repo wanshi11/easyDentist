@@ -84,15 +84,12 @@ public class LoginController {
 		List<UserRole> userRoles =  userRoleService.getList(ur);
 		
 		//根据角色Id查询出所有的菜单集合
-		
+		List<Menu> _menus = roleMunuService.queryMenusByRoles(userRoles);
 		//对菜单集合进行组装程List<MenuPermitView>
+		List<MenuPermitView> list = toMenuPermitList(_menus);
+	
 		
-		
-		
-		
-		
-		
-		request.getSession().setAttribute(Constant.LOGIN_MENUPERMITLIST, null);
+		request.getSession().setAttribute(Constant.LOGIN_MENUPERMITLIST, list);
 		request.getSession().setAttribute(Constant.LOGIN_USER, u);
 		return "/admin/index";
 	}
