@@ -85,11 +85,11 @@
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
 		</table> -->
 		
-		<table schema="" tableName="t_banner" 
+		<!-- <table schema="" tableName="t_banner" 
 			domainObjectName="Banner" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
-		</table>
+		</table> -->
 		
 		<!-- <table schema="" tableName="t_config" 
 			domainObjectName="SysConfig" enableCountByExample="true"
@@ -97,6 +97,11 @@
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
 		</table> -->
 		
+		<!-- <table schema="" tableName="t_doctor" 
+			domainObjectName="Doctor" enableCountByExample="true"
+			enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="true"> 
+		</table> -->
 		
 	</context>
 </generatorConfiguration>

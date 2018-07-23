@@ -2,7 +2,6 @@ package com.dentist.pojo;
 
 import java.util.List;
 
-import com.dentist.entity.Menu;
 
 /**
  * 

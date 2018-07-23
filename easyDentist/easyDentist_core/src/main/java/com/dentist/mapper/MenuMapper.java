@@ -2,8 +2,6 @@ package com.dentist.mapper;
 
 import com.dentist.entity.Menu;
 import com.dentist.entity.MenuExample;
-import com.dentist.entity.Role;
-import com.dentist.entity.RoleExample;
 
 import java.util.List;
 import java.util.Map;
