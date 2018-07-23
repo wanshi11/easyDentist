@@ -1,4 +1,19 @@
-﻿<!-- 底部 -->
+﻿
+<style type="text/css">
+       
+ #toTop {
+         display: none;text-decoration: none;position: fixed;
+         bottom: 10px;right: 10px;overflow: hidden;width: 50px;
+         height: 50px;border: none;text-indent: 100%;
+         background: url(/images/totop.jpg) no-repeat #1F2729;
+         text-align: center;
+         }
+</style>
+
+
+
+<!-- 底部 -->
+<a href="javascript:void(0)" id="toTop" style="display: none;"></a>
 <div class="footer"> 
 
     <div class="footer-copyright">
@@ -9,3 +24,24 @@
     </div>
 
 </div>
+<script type="text/javascript">
+$(function(){
+        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+        $(function () {
+            $(window).scroll(function(){
+                if ($(window).scrollTop()>100){
+                    $("#toTop").fadeIn(1500);
+                }
+                else
+                {
+                    $("#toTop").fadeOut(1000);
+                }
+            });
+            //当点击跳转链接后，回到页面顶部位置
+            $("#toTop").click(function(){
+                $('body,html').animate({scrollTop:0},1000);
+                return false;
+            });
+        });
+    });
+</script>
