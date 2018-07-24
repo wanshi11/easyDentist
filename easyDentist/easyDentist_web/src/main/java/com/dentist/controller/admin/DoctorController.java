@@ -1,12 +1,26 @@
 package com.dentist.controller.admin;
 
+import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dentist.service.DoctorService;
+import com.dentist.utils.DateUtil;
+import com.dentist.utils.JsonUtils;
 
 
 
@@ -17,6 +31,12 @@ public class DoctorController {
 	
 	@Autowired
 	private DoctorService doctorService;
+	
+	@Value("${pic_db_Path}")
+	private String pic_db_Path;
+	
+	@Value("${picPath}")
+	private String picPath;
 	
 	
 	/**
@@ -36,5 +56,42 @@ public class DoctorController {
 	public String addDoctor(){
 		
 		return "/admin/doctor/doctor_add";
+	}
+	
+	
+	/**
+	 * 上传医生一寸照
+	 * @return
+	 */
+	@RequestMapping(value = "/uploadInchPhoto",headers = "Accept=application/json",produces = {"application/json;charset=UTF-8"},method=RequestMethod.POST)
+	@ResponseBody
+	public String uploadThumbnail(@RequestParam MultipartFile myfile1,HttpServletRequest request){
+		
+        Map<String,Object> map= new HashMap<String,Object>();
+        if(myfile1.isEmpty()){
+             map.put( "error", "error");
+             map.put( "msg", "上传文件不能为空" );
+       } else{
+             String originalFilename=myfile1.getOriginalFilename();
+//             String fileBaseName=FilenameUtils.getBaseName(originalFilename);
+             String file_db_name = DateUtil.format(new Date(), "yyyyMMddHHmmss")+"_"+originalFilename;
+              try{
+          
+                   //String genePicPath=request.getSession().getServletContext().getRealPath(picPath+"art_thumbnail/");
+                    //把上传的图片放到服务器的文件夹下
+                   FileUtils.copyInputStreamToFile(myfile1.getInputStream(), new File(picPath+"art_thumbnail/",file_db_name));
+                    //coding
+                   map.put( "error", "success");
+                   map.put( "msg", "上传成功！");
+                   map.put( "imgurl", pic_db_Path+"art_thumbnail/"+file_db_name);
+                   
+             } catch (Exception e) {
+                   map.put( "error", "error");
+                   map.put( "msg",e.getMessage());
+                   
+             }
+       }
+       String result= JsonUtils.objectToString(map);
+        return result;
 	}
 }
