@@ -304,4 +304,17 @@
       createTime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <select id="selectWithPageByExample" resultMap="BaseResultMap"
+		parameterType="map">
+		select * from t_doctor
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+		<if test="example.orderByClause != null">
+			order by
+			${params.order} ${params.sort}
+		</if>
+		limit ${params.rowStart}, ${params.pageSize}
+	</select>
 </mapper>

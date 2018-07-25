@@ -49,7 +49,7 @@
 								<a  href="javascript:void(0)" onclick="searchBtn();" class="layui-btn layui-btn-primary layui-btn-sm">搜索</a>
 							</div>
 						</form>
-						<table class="layui-hide" id="roleTable" lay-filter="demo"></table>
+						<table class="layui-hide" id="doctorTable" lay-filter="demo"></table>
 
 					</div>
 				</div>
@@ -68,30 +68,25 @@
     	  var table = layui.table;
     	  
     	    mytable =  table.render({
-    	    elem: '#roleTable'
-    	    ,url:'${request.contextPath}/admin/role/roleList'
+    	    elem: '#doctorTable'
+    	    ,url:'${request.contextPath}/admin/doctor/doctorList'
     	    ,method:'post'
     	    ,cols: [[
-               /* {type:'numbers'} */
-              {type: 'checkbox'}
-    	      ,{field:'id', width:70, title: 'ID', sort: true}
-    	      ,{field:'rolename', width:100, title: '角色名称'}
-    	      ,{field:'description', width:200, title: '描述' }
-    	      ,{field:'operatorid', width:100, title: '操作员ID'}
-    	      ,{field:'operationtime', width:160, title: 'TIME', sort: true,templet:function(data){
-    	    	  return timestampToTime(data.operationtime);
+    	      {field:'id', width:70, title: 'ID', sort: true}
+    	      ,{field:'doctorname', width:100, title: '姓名'}
+    	      ,{field:'qualification', width:160, title: '职称', templet:function(data){
+    	    	  return showQualification(data);
+    	      }}
+    	      ,{field:'introduction', width:300, title: '重要简介'}
+    	      ,{field:'createtime', width:180, title: 'TIME', sort: true,templet:function(data){
+    	    	  return timestampToTime(data.createtime);
     	      }}
     	      ,{field:'right', title: '操作', width:120,toolbar:"#barDemo"}
     	    ]]
     	    ,where: {
     	    	
   		      }
-    	    ,page: {layout: ['limit', 'count', 'prev', 'page', 'next', 'skip']
-    	       //,curr: 5 //设定初始在第 5 页
-    	      //,groups: 1 //只显示 1 个连续页码
-    	      //,first: false //不显示首页
-    	      //,last: false //不显示尾页
-    	    }
+    	    ,page: {layout: ['limit', 'count', 'prev', 'page', 'next', 'skip']}
     	 
     	  });
     	
@@ -139,11 +134,24 @@
 		//条件查询
 		 mytable.reload({
 			where:{
-				"rolename": $("#rolename").val()
+				"doctorname": $("#doctorname").val()
 			}
 		}); 
 		};
 		
+	function showQualification(data){
+  	  if(data.qualification == 'ASSISTANT_PHYSICIAN'){
+		  return '助理医师';
+	  }else if(data.qualification == 'PRACTICE_PHYSICIAN'){
+		  return '执业医师';
+	  }else if(data.qualification == 'ATTENDING_PHYSICIAN'){
+		  return '主治医师';
+	  }else if(data.qualification == 'ASSOCIATE_CHIEF_PHYSICIAN'){
+		  return '副主任医师';
+	  }else{
+		  return '主任医师';
+	  }	
+	}	
 	
 
     </script>

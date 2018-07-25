@@ -3,6 +3,8 @@ package com.dentist.mapper;
 import com.dentist.entity.Doctor;
 import com.dentist.entity.DoctorExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface DoctorMapper {
@@ -27,4 +29,6 @@ public interface DoctorMapper {
     int updateByPrimaryKeySelective(Doctor record);
 
     int updateByPrimaryKey(Doctor record);
+
+	List<Doctor> selectWithPageByExample(@Param("example")DoctorExample doctorExample,@Param("params") Map<String, String> params);
 }

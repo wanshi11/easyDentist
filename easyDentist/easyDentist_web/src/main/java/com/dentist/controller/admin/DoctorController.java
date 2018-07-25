@@ -22,6 +22,8 @@ import com.dentist.entity.Doctor;
 import com.dentist.service.DoctorService;
 import com.dentist.utils.DateUtil;
 import com.dentist.utils.JsonUtils;
+import com.dentist.utils.LayuiPage;
+import com.dentist.utils.LayuiPageParam;
 
 
 
@@ -74,7 +76,15 @@ public class DoctorController {
 	}
 
 	
+	/**
+	 * 查询列表 
+	 */
+	@RequestMapping(value = "/doctorList",method=RequestMethod.POST)
+	@ResponseBody
+	public LayuiPage<Doctor> userList(Doctor doctor,LayuiPageParam param) {
 	
+		return doctorService.page(doctor, param);
+	}
 	
 	
 	
