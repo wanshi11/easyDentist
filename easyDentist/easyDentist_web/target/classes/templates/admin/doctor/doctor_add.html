@@ -29,7 +29,7 @@
   position:absolute;
   top:0;right:0;
   border:solid 2px #CCC;
-  width:200px;
+  width:100px;
   height:120px;
 }
 </style>
@@ -67,9 +67,17 @@
 											id="position" placeholder="请输入职位" ><br /> 
 											
 											
-											<label>资质</label>
-										<input class="form-control" name="qualification"
-											id="qualification" placeholder="请输入医生职称（资质）" ><br /> 
+											<div class="form-group">
+											<label for="name">资质</label> 
+											<select id="qualification" name="qualification" class="form-control">
+												<option>-请选择医生职称/资质-</option>
+												<option value="ASSISTANT_PHYSICIAN">助理医师</option>
+												<option value="PRACTICE_PHYSICIAN">执业医师</option>
+												<option value="ATTENDING_PHYSICIAN">主治医师</option>
+												<option value="ASSOCIATE_CHIEF_PHYSICIAN">副主任医师</option>
+												<option value="CHIEF_PHYSICIAN">主任医师</option>
+											</select>
+										</div>
 											
 											
 											<label>专业特长</label>
@@ -78,6 +86,8 @@
 											
 											
 											<label>重要简介</label>
+											<input hidden="hidden" name="introduction"
+											id="introduction">
 										   <input class="form-control" name="introduction1"
 											id="introduction1" placeholder="请输入重要简介一" >
 											<input class="form-control" name="introduction2"
@@ -113,7 +123,7 @@
 											<label for="inputfile">选择医生宣传照</label>
 											<input type="text" id="picpath" name="picpath" hidden="hidden"  />
 											 <input type="file" 
-												id="thumbtext" name="myfile2" onchange="uploadImage2(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
+												id="pictext" name="myfile2" onchange="uploadImage2(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
 											<p class="help-block">尺寸要求 366*500。</p>
 										<img class="image-thumb" id="pic"   src="/images/admin/thumb_default.jpg">
 										</div>
@@ -135,33 +145,49 @@
 
 
     <#include "/common/admin_js.html"/>
+    <script charset="utf-8" src="/js/ajaxfileupload.js"></script>
 	<!-- 后台公共js -->
 	<script type="text/javascript">
 	
+	function getIntroduction(){
+		var introduction1 = $("#introduction1").val() != "" ? $("#introduction1").val()+"#":"";
+		var introduction2 = $("#introduction2").val() != "" ? $("#introduction2").val()+"#":"";
+		var introduction3 = $("#introduction3").val() != "" ? $("#introduction3").val()+"#":"";
+		var introduction4 = $("#introduction4").val() != "" ? $("#introduction4").val()+"#":"";
+		var introduction5 = $("#introduction5").val() != "" ? $("#introduction5").val()+"#":"";
+		return introduction1+introduction2+introduction3+introduction4+introduction5;
+	}
+	
 	function add() {
 		
-		var rolename = $("#rolename").val();
-		var description = $("#description").val();
-		if(rolename == "" || description == ""){
-			layer.alert('表单数据不可以为空！');
+		var doctorname = $("#doctorname").val();
+		var position = $("#position").val();
+		var qualification = $("#qualification option:selected").val();
+		var major = $("#major").val();
+		var introduction = getIntroduction();
+		$("#introduction").attr("value",introduction);
+		console.log(introduction);
+		
+		if(doctorname == "" || position == "" || qualification == "" || major == "" || introduction == ""){
+			layer.alert('姓名/职位/资质/特长/重要简介 不可为空！！');
 			return false;
 		}
 	
-        $.ajax({
+         $.ajax({
         //几个参数需要注意一下
             type: "POST",//方法类型
-            url: "${request.contextPath}/admin/role/add" ,//url
+            url: "${request.contextPath}/admin/doctor/add" ,//url
             data: $('#subform').serialize(),
             success: function (result) {
             	
                 if(result == "ADD_SUCCESS"){
-                	layer.alert('新增角色成功！',function(index){
+                	layer.alert('添加成功！',function(index){
                 		window.location.href="${request.contextPath}/admin/role/toRoles";
                 	});
                 	//跳转到列表
                 }
                 if(result == "ADD_FAIL"){
-                	layer.alert('新增角色失败！',function(index){
+                	layer.alert('添加失败！',function(index){
                 	window.location.href='${request.contextPath}/admin/role/toAdd';
                 	});
                 }
@@ -172,7 +198,7 @@
             	 alert(XMLHttpRequest.responseText);
             	 alert(textStatus);
             	   }
-        });
+        }); 
     }
 	
 	
@@ -183,7 +209,6 @@
 	     //if(!preSubmitFileCheck(e)){
 	     //    return ;
 	    //} 
-	    alert(1);
            $.ajaxFileUpload
            (
                {
@@ -201,6 +226,42 @@
                            } else {                       //success
                         	   $("#inchphotopath").val(data.imgurl);
                               $("#inchphoto").attr("src", data.imgurl);
+                              layer.alert(data.msg);
+                           }
+                   },
+                   error: function (data, status, e)//服务器响应失败处理函数
+                   {
+                	   layer.alert(e);
+                   }
+               }
+           )	    
+	}
+	
+	
+function uploadImage2(e) {
+		
+	    //上传缩略图
+	    //图片的提前校验,如果返回false,则代表校验不成功
+	     //if(!preSubmitFileCheck(e)){
+	     //    return ;
+	    //} 
+           $.ajaxFileUpload
+           (
+               {
+                   url: '${request.contextPath}/admin/doctor/uploadDoctorPic', //用于文件上传的服务器端请求地址
+                   secureuri: false, //是否需要安全协议，一般设置为false
+                   fileElementId: 'pictext', //文件上传域的ID
+                   dataType: 'json', //返回值类型 一般设置为json
+                   type:'post',
+                   success: function (data, status)  //服务器成功响应处理函数
+                   {
+                           if (data.error == 'error') {  
+                        	   layer.alert(data.msg);
+                               //清空file  input框
+                               $("#pictext").val("");
+                           } else {                       //success
+                        	   $("#picpath").val(data.imgurl);
+                              $("#pic").attr("src", data.imgurl);
                               layer.alert(data.msg);
                            }
                    },

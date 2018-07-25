@@ -2,10 +2,12 @@ package com.dentist.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dentist.entity.Doctor;
+import com.dentist.mapper.DoctorMapper;
 import com.dentist.service.DoctorService;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
@@ -13,11 +15,14 @@ import com.dentist.utils.LayuiPageParam;
 @Transactional
 @Service("doctorService")
 public class DoctorServiceImpl implements DoctorService {
+	
+	@Autowired
+	private DoctorMapper doctorMapper;
 
 	@Override
 	public int add(Doctor model) {
 		// TODO Auto-generated method stub
-		return 0;
+		return doctorMapper.insertSelective(model);
 	}
 
 	@Override

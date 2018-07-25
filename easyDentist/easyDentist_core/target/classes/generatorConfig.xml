@@ -101,7 +101,7 @@
 			domainObjectName="Doctor" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
-		</table> -->
+		</table>  -->
 		
 	</context>
 </generatorConfiguration>

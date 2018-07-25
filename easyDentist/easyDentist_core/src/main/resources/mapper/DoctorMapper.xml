@@ -5,18 +5,10 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="doctorName" property="doctorname" jdbcType="VARCHAR" />
     <result column="education" property="education" jdbcType="VARCHAR" />
-    <result column="
-
-graduateSchool" property="
-
-graduateschool" jdbcType="VARCHAR" />
+    <result column="graduateSchool" property="graduateschool" jdbcType="VARCHAR" />
     <result column="position" property="position" jdbcType="VARCHAR" />
     <result column="introduction" property="introduction" jdbcType="VARCHAR" />
-    <result column="
-
-qualification" property="
-
-qualification" jdbcType="VARCHAR" />
+    <result column="qualification" property="qualification" jdbcType="VARCHAR" />
     <result column="major" property="major" jdbcType="VARCHAR" />
     <result column="picPath" property="picpath" jdbcType="VARCHAR" />
     <result column="inchPhotoPath" property="inchphotopath" jdbcType="VARCHAR" />
@@ -81,11 +73,7 @@ qualification" jdbcType="VARCHAR" />
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, doctorName, education, 
-
-graduateSchool, position, introduction, 
-
-qualification, 
+    id, doctorName, education, graduateSchool, position, introduction, qualification, 
     major, picPath, inchPhotoPath, createTime
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dentist.entity.DoctorExample" >
@@ -121,20 +109,12 @@ qualification,
   </delete>
   <insert id="insert" parameterType="com.dentist.entity.Doctor" >
     insert into t_doctor (id, doctorName, education, 
-      
-
-graduateSchool, position, introduction, 
-      
-
-qualification, major, picPath, 
+      graduateSchool, position, introduction, 
+      qualification, major, picPath, 
       inchPhotoPath, createTime)
     values (#{id,jdbcType=INTEGER}, #{doctorname,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
-      #{
-
-graduateschool,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
-      #{
-
-qualification,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{picpath,jdbcType=VARCHAR}, 
+      #{graduateschool,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{qualification,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{picpath,jdbcType=VARCHAR}, 
       #{inchphotopath,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.dentist.entity.Doctor" >
@@ -149,12 +129,8 @@ qualification,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{picpath,jdbcType=V
       <if test="education != null" >
         education,
       </if>
-      <if test="
-
-graduateschool != null" >
-        
-
-graduateSchool,
+      <if test="graduateschool != null" >
+        graduateSchool,
       </if>
       <if test="position != null" >
         position,
@@ -162,12 +138,8 @@ graduateSchool,
       <if test="introduction != null" >
         introduction,
       </if>
-      <if test="
-
-qualification != null" >
-        
-
-qualification,
+      <if test="qualification != null" >
+        qualification,
       </if>
       <if test="major != null" >
         major,
@@ -192,12 +164,8 @@ qualification,
       <if test="education != null" >
         #{education,jdbcType=VARCHAR},
       </if>
-      <if test="
-
-graduateschool != null" >
-        #{
-
-graduateschool,jdbcType=VARCHAR},
+      <if test="graduateschool != null" >
+        #{graduateschool,jdbcType=VARCHAR},
       </if>
       <if test="position != null" >
         #{position,jdbcType=VARCHAR},
@@ -205,12 +173,8 @@ graduateschool,jdbcType=VARCHAR},
       <if test="introduction != null" >
         #{introduction,jdbcType=VARCHAR},
       </if>
-      <if test="
-
-qualification != null" >
-        #{
-
-qualification,jdbcType=VARCHAR},
+      <if test="qualification != null" >
+        #{qualification,jdbcType=VARCHAR},
       </if>
       <if test="major != null" >
         #{major,jdbcType=VARCHAR},
@@ -244,14 +208,8 @@ qualification,jdbcType=VARCHAR},
       <if test="record.education != null" >
         education = #{record.education,jdbcType=VARCHAR},
       </if>
-      <if test="record.
-
-graduateschool != null" >
-        
-
-graduateSchool = #{record.
-
-graduateschool,jdbcType=VARCHAR},
+      <if test="record.graduateschool != null" >
+        graduateSchool = #{record.graduateschool,jdbcType=VARCHAR},
       </if>
       <if test="record.position != null" >
         position = #{record.position,jdbcType=VARCHAR},
@@ -259,14 +217,8 @@ graduateschool,jdbcType=VARCHAR},
       <if test="record.introduction != null" >
         introduction = #{record.introduction,jdbcType=VARCHAR},
       </if>
-      <if test="record.
-
-qualification != null" >
-        
-
-qualification = #{record.
-
-qualification,jdbcType=VARCHAR},
+      <if test="record.qualification != null" >
+        qualification = #{record.qualification,jdbcType=VARCHAR},
       </if>
       <if test="record.major != null" >
         major = #{record.major,jdbcType=VARCHAR},
@@ -290,18 +242,10 @@ qualification,jdbcType=VARCHAR},
     set id = #{record.id,jdbcType=INTEGER},
       doctorName = #{record.doctorname,jdbcType=VARCHAR},
       education = #{record.education,jdbcType=VARCHAR},
-      
-
-graduateSchool = #{record.
-
-graduateschool,jdbcType=VARCHAR},
+      graduateSchool = #{record.graduateschool,jdbcType=VARCHAR},
       position = #{record.position,jdbcType=VARCHAR},
       introduction = #{record.introduction,jdbcType=VARCHAR},
-      
-
-qualification = #{record.
-
-qualification,jdbcType=VARCHAR},
+      qualification = #{record.qualification,jdbcType=VARCHAR},
       major = #{record.major,jdbcType=VARCHAR},
       picPath = #{record.picpath,jdbcType=VARCHAR},
       inchPhotoPath = #{record.inchphotopath,jdbcType=VARCHAR},
@@ -319,14 +263,8 @@ qualification,jdbcType=VARCHAR},
       <if test="education != null" >
         education = #{education,jdbcType=VARCHAR},
       </if>
-      <if test="
-
-graduateschool != null" >
-        
-
-graduateSchool = #{
-
-graduateschool,jdbcType=VARCHAR},
+      <if test="graduateschool != null" >
+        graduateSchool = #{graduateschool,jdbcType=VARCHAR},
       </if>
       <if test="position != null" >
         position = #{position,jdbcType=VARCHAR},
@@ -334,14 +272,8 @@ graduateschool,jdbcType=VARCHAR},
       <if test="introduction != null" >
         introduction = #{introduction,jdbcType=VARCHAR},
       </if>
-      <if test="
-
-qualification != null" >
-        
-
-qualification = #{
-
-qualification,jdbcType=VARCHAR},
+      <if test="qualification != null" >
+        qualification = #{qualification,jdbcType=VARCHAR},
       </if>
       <if test="major != null" >
         major = #{major,jdbcType=VARCHAR},
@@ -362,18 +294,10 @@ qualification,jdbcType=VARCHAR},
     update t_doctor
     set doctorName = #{doctorname,jdbcType=VARCHAR},
       education = #{education,jdbcType=VARCHAR},
-      
-
-graduateSchool = #{
-
-graduateschool,jdbcType=VARCHAR},
+      graduateSchool = #{graduateschool,jdbcType=VARCHAR},
       position = #{position,jdbcType=VARCHAR},
       introduction = #{introduction,jdbcType=VARCHAR},
-      
-
-qualification = #{
-
-qualification,jdbcType=VARCHAR},
+      qualification = #{qualification,jdbcType=VARCHAR},
       major = #{major,jdbcType=VARCHAR},
       picPath = #{picpath,jdbcType=VARCHAR},
       inchPhotoPath = #{inchphotopath,jdbcType=VARCHAR},

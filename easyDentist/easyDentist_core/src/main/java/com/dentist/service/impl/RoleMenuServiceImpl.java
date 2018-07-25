@@ -12,10 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import com.dentist.cfg.Constant;
 import com.dentist.entity.Menu;
 import com.dentist.entity.MenuExample;
-import com.dentist.entity.RoleExample;
 import com.dentist.entity.RoleMenu;
 import com.dentist.entity.RoleMenuExample;
 import com.dentist.entity.User;
@@ -25,7 +23,6 @@ import com.dentist.mapper.RoleMenuMapper;
 import com.dentist.service.RoleMenuService;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 @Transactional
 @Service("roleMenuService")

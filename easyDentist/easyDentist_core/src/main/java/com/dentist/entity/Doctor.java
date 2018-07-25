@@ -49,11 +49,11 @@ public class Doctor {
         this.education = education == null ? null : education.trim();
     }
 
-    public String getgraduateschool() {
-        return  graduateschool;
+    public String getGraduateschool() {
+        return graduateschool;
     }
 
-    public void setgraduateschool(String graduateschool) {
+    public void setGraduateschool(String graduateschool) {
         this.graduateschool = graduateschool == null ? null : graduateschool.trim();
     }
 
@@ -73,11 +73,11 @@ public class Doctor {
         this.introduction = introduction == null ? null : introduction.trim();
     }
 
-    public String getqualification() {
+    public String getQualification() {
         return qualification;
     }
 
-    public void setqualification(String qualification) {
+    public void setQualification(String qualification) {
         this.qualification = qualification == null ? null : qualification.trim();
     }
 

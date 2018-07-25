@@ -28,6 +28,13 @@ public class Constant {
   public static final String  BANNER_FACILITY = "BANNER_FACILITY"; //设备
   
   
+  //医生职称、资质
+  public static final String  ASSISTANT_PHYSICIAN = "ASSISTANT_PHYSICIAN";  //助理
+  public static final String  PRACTICE_PHYSICIAN = "PRACTICE_PHYSICIAN";  //执业
+  public static final String  ATTENDING_PHYSICIAN = "ATTENDING_PHYSICIAN"; //主治
+  public static final String  ASSOCIATE_CHIEF_PHYSICIAN = "ASSOCIATE_CHIEF_PHYSICIAN"; //副主任
+  public static final String  CHIEF_PHYSICIAN = "CHIEF_PHYSICIAN"; //主任
+  
   
   
 

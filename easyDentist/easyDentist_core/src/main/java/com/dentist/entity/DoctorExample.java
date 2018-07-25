@@ -305,72 +305,72 @@ public class DoctorExample {
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolIsNull() {
+        public Criteria andGraduateschoolIsNull() {
             addCriterion("graduateSchool is null");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolIsNotNull() {
+        public Criteria andGraduateschoolIsNotNull() {
             addCriterion("graduateSchool is not null");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolEqualTo(String value) {
+        public Criteria andGraduateschoolEqualTo(String value) {
             addCriterion("graduateSchool =", value, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolNotEqualTo(String value) {
+        public Criteria andGraduateschoolNotEqualTo(String value) {
             addCriterion("graduateSchool <>", value, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolGreaterThan(String value) {
+        public Criteria andGraduateschoolGreaterThan(String value) {
             addCriterion("graduateSchool >", value, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolGreaterThanOrEqualTo(String value) {
+        public Criteria andGraduateschoolGreaterThanOrEqualTo(String value) {
             addCriterion("graduateSchool >=", value, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolLessThan(String value) {
+        public Criteria andGraduateschoolLessThan(String value) {
             addCriterion("graduateSchool <", value, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolLessThanOrEqualTo(String value) {
+        public Criteria andGraduateschoolLessThanOrEqualTo(String value) {
             addCriterion("graduateSchool <=", value, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolLike(String value) {
+        public Criteria andGraduateschoolLike(String value) {
             addCriterion("graduateSchool like", value, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolNotLike(String value) {
+        public Criteria andGraduateschoolNotLike(String value) {
             addCriterion("graduateSchool not like", value, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolIn(List<String> values) {
+        public Criteria andGraduateschoolIn(List<String> values) {
             addCriterion("graduateSchool in", values, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolNotIn(List<String> values) {
+        public Criteria andGraduateschoolNotIn(List<String> values) {
             addCriterion("graduateSchool not in", values, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolBetween(String value1, String value2) {
+        public Criteria andGraduateschoolBetween(String value1, String value2) {
             addCriterion("graduateSchool between", value1, value2, "graduateschool");
             return (Criteria) this;
         }
 
-        public Criteria andgraduateschoolNotBetween(String value1, String value2) {
+        public Criteria andGraduateschoolNotBetween(String value1, String value2) {
             addCriterion("graduateSchool not between", value1, value2, "graduateschool");
             return (Criteria) this;
         }
@@ -515,72 +515,72 @@ public class DoctorExample {
             return (Criteria) this;
         }
 
-        public Criteria andqualificationIsNull() {
+        public Criteria andQualificationIsNull() {
             addCriterion("qualification is null");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationIsNotNull() {
+        public Criteria andQualificationIsNotNull() {
             addCriterion("qualification is not null");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationEqualTo(String value) {
+        public Criteria andQualificationEqualTo(String value) {
             addCriterion("qualification =", value, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationNotEqualTo(String value) {
+        public Criteria andQualificationNotEqualTo(String value) {
             addCriterion("qualification <>", value, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationGreaterThan(String value) {
+        public Criteria andQualificationGreaterThan(String value) {
             addCriterion("qualification >", value, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationGreaterThanOrEqualTo(String value) {
+        public Criteria andQualificationGreaterThanOrEqualTo(String value) {
             addCriterion("qualification >=", value, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationLessThan(String value) {
+        public Criteria andQualificationLessThan(String value) {
             addCriterion("qualification <", value, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationLessThanOrEqualTo(String value) {
+        public Criteria andQualificationLessThanOrEqualTo(String value) {
             addCriterion("qualification <=", value, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationLike(String value) {
+        public Criteria andQualificationLike(String value) {
             addCriterion("qualification like", value, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationNotLike(String value) {
+        public Criteria andQualificationNotLike(String value) {
             addCriterion("qualification not like", value, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationIn(List<String> values) {
+        public Criteria andQualificationIn(List<String> values) {
             addCriterion("qualification in", values, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationNotIn(List<String> values) {
+        public Criteria andQualificationNotIn(List<String> values) {
             addCriterion("qualification not in", values, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationBetween(String value1, String value2) {
+        public Criteria andQualificationBetween(String value1, String value2) {
             addCriterion("qualification between", value1, value2, "qualification");
             return (Criteria) this;
         }
 
-        public Criteria andqualificationNotBetween(String value1, String value2) {
+        public Criteria andQualificationNotBetween(String value1, String value2) {
             addCriterion("qualification not between", value1, value2, "qualification");
             return (Criteria) this;
         }
