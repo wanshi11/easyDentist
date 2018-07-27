@@ -14,6 +14,7 @@ import com.dentist.service.UserService;
 import com.dentist.utils.IPUtils;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
+import com.dentist.utils.MD5Util;
 
 
 @Controller
@@ -80,6 +81,7 @@ public class UserController {
 			result = "USER_EXIST";
 			return result;
 		}
+		    u.setPassword(MD5Util.string2MD5(u.getPassword()));
 			u.setCreatetime(new Date());
 			u.setAdmin(false);
 			u.setIp(IPUtils.getLocalHostLANAddress().getHostAddress());
@@ -126,6 +128,29 @@ public class UserController {
 		return result;
 	}
 	
+	
+	/**
+	 * 修改用户
+	 */
+	@RequestMapping(value = "/changePassword",method=RequestMethod.POST)
+	@ResponseBody
+	public String changePassword(User u,String newpwd,String newpwdagin){
+		
+		User user = userService.queryUserById(u.getId());
+		if(!MD5Util.string2MD5(u.getPassword()).equals(user.getPassword())){
+			//原始密码错误
+			return "PWD_WRONG";
+		}
+		if(!newpwd.equals(newpwdagin)){
+			//新密码两次输入不一致
+			return "PWD_INCONSISTENT";
+		}
+		
+		user.setPassword(MD5Util.string2MD5(newpwd));
+		int num = userService.update(user);
+	
+		return num > 0 ? "SUCCESS":"FAIL";
+	}
 	
 	/**
 	 * 删除用户

@@ -10,28 +10,7 @@
 <meta name="author" content="">
 
 <title>修改医生信息</title> <#include "/common/admin_css.html"/>
-<style type="text/css">
-.jz10 {
-	margin-left: 10%;
-}
-.jz {
-	margin-left: 25%;
-}
-.form-group-myfile{
-   position:relative;
-   margin-bottom:15px;
-   height:120px;
-   width:420px;
-}
 
-.image-thumb{
-  position:absolute;
-  top:0;right:0;
-  border:solid 2px #CCC;
-  width:100px;
-  height:120px;
-}
-</style>
 </head>
 
 <body>
@@ -116,7 +95,7 @@
 											 <input type="file" 
 												id="inchphototext" name="myfile1" onchange="uploadImage1(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
 											<p class="help-block">尺寸要求 200*120。</p>
-										<img class="image-thumb" id="inchphoto"   src="${doctor.inchphotopath}">
+										<img class="image-doctor" id="inchphoto"   src="${doctor.inchphotopath}">
 										</div><br/>
 										
 										<div class="form-group-myfile">
@@ -125,7 +104,7 @@
 											 <input type="file" 
 												id="pictext" name="myfile2" onchange="uploadImage2(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
 											<p class="help-block">尺寸要求 366*500。</p>
-										<img class="image-thumb" id="pic"   src="${doctor.picpath}">
+										<img class="image-doctor" id="pic"   src="${doctor.picpath}">
 										</div>
 										
 										<div  class="jz">
@@ -191,13 +170,13 @@
             success: function (result) {
        
                 if(result == "EDIT_SUCCESS"){
-                	layer.alert('修改角色成功！',function(index){
+                	layer.alert('修改成功！',function(index){
                 		window.location.href="${request.contextPath}/admin/doctor/toDoctors";
                 	});
                 	//跳转到列表
                 }
                 if(result == "EDIT_FAIL"){
-                	layer.alert('修改角色失败！',function(index){
+                	layer.alert('修改失败！',function(index){
                 	window.location.href='${request.contextPath}/admin/doctor/toEdit?id='+$("#id").val();;
                 	});
                 }

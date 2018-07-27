@@ -1,0 +1,48 @@
+
+/*密码laber的样式*/
+.layui-form-label-mmclass {
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    width: 100px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+}
+
+.jz10 {
+	margin-left: 10%;
+}
+.jz {
+	margin-left: 25%;
+}
+.form-group-myfile{
+   position:relative;
+   margin-bottom:15px;
+   height:120px;
+   width:420px;
+}
+
+.image-thumb{
+  position:absolute;
+  top:0;right:0;
+  border:solid 2px #CCC;
+  width:200px;
+  height:120px;
+}
+
+.image-lunbo{
+  position:absolute;
+  top:0;right:0;
+  border:solid 2px #CCC;
+  width:200px;
+  height:120px;
+}
+
+.image-doctor{
+  position:absolute;
+  top:0;right:0;
+  border:solid 2px #CCC;
+  width:100px;
+  height:120px;
+}

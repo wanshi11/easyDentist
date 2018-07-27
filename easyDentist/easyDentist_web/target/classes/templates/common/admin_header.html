@@ -2,30 +2,7 @@
                 <a class="navbar-brand" href="${request.contextPath}/admin/index">轻松牙医后台管理</a>
                 <span class="navbar-brand">欢迎您,${LOGIN_USER.username?if_exists}.</span>
             </div>
-            <!-- /.navbar-header -->
-            
-      <!--       <div style="margin-left:5cm">
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">iOS</a></li>
-			<li><a href="#">SVN</a></li>
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					Java
-					<b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a href="#">jmeter</a></li>
-					<li><a href="#">EJB</a></li>
-					<li><a href="#">Jasper Report</a></li>
-					<li class="divider"></li>
-					<li><a href="#">分离的链接</a></li>
-					<li class="divider"></li>
-					<li><a href="#">另一个分离的链接</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div> -->
-            
+     
             <ul class="nav navbar-top-links navbar-right">
                 
                 <!-- /.dropdown -->
@@ -35,7 +12,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li class="divider"></li><!-- 分割样式 -->
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
+                        <li><a id="updatePwd" href="javascript:void(0);"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
                         </li>
                         <li class="divider"></li><!-- 分割样式 -->
                         <li><a href="${request.contextPath}/admin/logout"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
@@ -45,4 +22,37 @@
                 </li>
                 <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
+
+
+         <!-- 需要弹出的添加密码界面 -->
+        <div class="layui-row" id="changePwd" style="display: none;">
+            <div class="layui-col-md10">
+                <form class="layui-form" id="changePwdform"><br/>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label-mmclass">原始密码：</label>
+                        <div class="layui-input-block">
+                            <input type="hidden" name="id" id="id" value="${LOGIN_USER.id}">
+                            <input type="password" name="password" autocomplete="off" id="password" placeholder="请输入原始密码" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label-mmclass">新密码：</label>
+                        <div class="layui-input-block">
+                            <input type="password" name="newpwd" id="newpwd" placeholder="请输入新密码" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label-mmclass">再次输入：</label>
+                        <div class="layui-input-block">
+                            <input type="password" name="newpwdagin" id="newpwdagin" placeholder="请再次输入新密码"  class="layui-input">
+                        </div>
+                    </div>
+                   
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button type="button" onclick="changePwd();" id="changePwdBtn" class="layui-btn layui-btn-normal">点击修改密码</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>

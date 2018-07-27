@@ -11,28 +11,7 @@
 
 <title>添加医生</title> 
 <#include "/common/admin_css.html"/>
-<style type="text/css">
-.jz10 {
-	margin-left: 10%;
-}
-.jz {
-	margin-left: 25%;
-}
-.form-group-myfile{
-   position:relative;
-   margin-bottom:15px;
-   height:120px;
-   width:420px;
-}
 
-.image-thumb{
-  position:absolute;
-  top:0;right:0;
-  border:solid 2px #CCC;
-  width:100px;
-  height:120px;
-}
-</style>
 </head>
 
 <body>
@@ -116,7 +95,7 @@
 											 <input type="file" 
 												id="inchphototext" name="myfile1" onchange="uploadImage1(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
 											<p class="help-block">尺寸要求 200*120。</p>
-										<img class="image-thumb" id="inchphoto"   src="/images/admin/thumb_default.jpg">
+										<img class="image-doctor" id="inchphoto"   src="/images/admin/thumb_default.jpg">
 										</div><br/>
 										
 										<div class="form-group-myfile">
@@ -125,7 +104,7 @@
 											 <input type="file" 
 												id="pictext" name="myfile2" onchange="uploadImage2(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
 											<p class="help-block">尺寸要求 366*500。</p>
-										<img class="image-thumb" id="pic"   src="/images/admin/thumb_default.jpg">
+										<img class="image-doctor" id="pic"   src="/images/admin/thumb_default.jpg">
 										</div>
 										
 										<div  class="jz">

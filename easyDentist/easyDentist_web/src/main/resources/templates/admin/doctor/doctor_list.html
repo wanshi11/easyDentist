@@ -105,13 +105,13 @@
 			    	             data: {"id":data.id},
 			    	             success: function (result) {
 			    	                 if(result == "DELETE_SUCCESS"){
-			    	                 	layer.alert('删除角色成功！',function(index){
+			    	                 	layer.alert('删除成功！',function(index){
 			    	                		window.location.href="${request.contextPath}/admin/doctor/toDoctors";
 			    	                	});
 			    	                 	//跳转到列表
 			    	                 }
 			    	                 if(result == "DELETE_FAIL"){
-			    	                 	layer.alert('删除角色失败！',function(index){
+			    	                 	layer.alert('删除失败！',function(index){
 			    	                		window.location.href="${request.contextPath}/admin/doctor/toDoctors";
 			    	                	});
 			    	                 }

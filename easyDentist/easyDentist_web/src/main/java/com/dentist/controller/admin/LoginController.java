@@ -22,6 +22,7 @@ import com.dentist.service.MenuService;
 import com.dentist.service.RoleMenuService;
 import com.dentist.service.UserRoleService;
 import com.dentist.service.UserService;
+import com.dentist.utils.MD5Util;
 import com.dentist.utils.StringUtil;
 
 @Controller
@@ -64,7 +65,7 @@ public class LoginController {
 		}
 
 		User u = (User) userService.queryUserByUserName(name);
-		if (null == u || !u.getPassword().equals(pwd)) {
+		if (null == u || !u.getPassword().equals(MD5Util.string2MD5(pwd))) {
 			model.addAttribute("loginErr", "用户名或密码错误！");
 			return "/admin/login";
 		} 
