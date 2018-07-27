@@ -135,4 +135,10 @@ public class ArticleServiceImpl implements ArticleService {
 		return null;
 	}
 
+	@Override
+	public int deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

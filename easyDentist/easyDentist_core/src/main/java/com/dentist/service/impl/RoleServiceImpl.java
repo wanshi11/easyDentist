@@ -133,4 +133,10 @@ public class RoleServiceImpl implements RoleService {
 				return null;
 	}
 
+	@Override
+	public int deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

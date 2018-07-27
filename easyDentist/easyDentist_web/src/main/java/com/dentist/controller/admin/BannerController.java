@@ -118,17 +118,9 @@ public class BannerController {
 	@RequestMapping(value = "/delete",method=RequestMethod.POST)
 	@ResponseBody
 	public String delete(int id){
-		
-		String result = "";
-		Banner b = new Banner();
-		b.setId(id);
-		int num = bannerService.delete(b);
-		if(num > 0){
-			result="DELETE_SUCCESS";
-		}else{
-			result="DELETE_FAIL";
-		}
-		return result;
+	
+		int num = bannerService.deleteById(id);
+		 return num > 0 ? "DELETE_SUCCESS":"DELETE_FAIL";
 	}
 	
 	/**

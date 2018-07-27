@@ -101,18 +101,18 @@
 			    	     $.ajax({
 			    	         //几个参数需要注意一下
 			    	             type: "POST",//方法类型
-			    	             url: "${request.contextPath}/admin/role/delete" ,//url
+			    	             url: "${request.contextPath}/admin/doctor/delete" ,//url
 			    	             data: {"id":data.id},
 			    	             success: function (result) {
 			    	                 if(result == "DELETE_SUCCESS"){
 			    	                 	layer.alert('删除角色成功！',function(index){
-			    	                		window.location.href="${request.contextPath}/admin/role/toRoles";
+			    	                		window.location.href="${request.contextPath}/admin/doctor/toDoctors";
 			    	                	});
 			    	                 	//跳转到列表
 			    	                 }
 			    	                 if(result == "DELETE_FAIL"){
 			    	                 	layer.alert('删除角色失败！',function(index){
-			    	                		window.location.href="${request.contextPath}/admin/role/toRoles";
+			    	                		window.location.href="${request.contextPath}/admin/doctor/toDoctors";
 			    	                	});
 			    	                 }
 			    	             },
@@ -122,7 +122,7 @@
 			        layer.close(index);
 			      });
 			    } else if(obj.event === 'edit'){
-			      window.location.href="${request.contextPath}/admin/role/toEdit?id="+data.id;
+			      window.location.href="${request.contextPath}/admin/doctor/toEdit?id="+data.id;
 			    }
 			  });
     	    

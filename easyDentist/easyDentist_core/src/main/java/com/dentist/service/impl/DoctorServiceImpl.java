@@ -29,16 +29,11 @@ public class DoctorServiceImpl implements DoctorService {
 		return doctorMapper.insertSelective(model);
 	}
 
-	@Override
-	public int delete(Doctor model) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int update(Doctor model) {
 		// TODO Auto-generated method stub
-		return 0;
+		return doctorMapper.updateByPrimaryKeySelective(model);
 	}
 
 	@Override
@@ -92,6 +87,26 @@ public class DoctorServiceImpl implements DoctorService {
 		}
 		
 		return doctorMapper.countByExample(doctorExample);
+	}
+
+	@Override
+	public Doctor queryDoctorById(int id) {
+
+		return doctorMapper.selectByPrimaryKey(id);
+	}
+
+
+	@Override
+	public int deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return doctorMapper.deleteByPrimaryKey(id);
+	}
+
+
+	@Override
+	public int delete(Doctor model) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

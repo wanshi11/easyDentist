@@ -7,11 +7,7 @@ import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
 
 /**
- * 
- * mysite: http://www.xiudoua.com
- * @desc: 
- * @author: JustFresh
- * @date: 2018年5月25日 下午5:35:52 
+ * @date: 
  * @version: beta1.1
  */
 public interface IBaseService<T> {
@@ -25,18 +21,23 @@ public interface IBaseService<T> {
 	public int add(T model);
 	
 	/**
+	 * 通过实体删除一条记录的方法
+	 * @param param
+	 * @return
+	 */
+	public int delete(T model);
+	
+	/**
 	 * 通过主键删除一条记录的方法
 	 * @param param
 	 * @return
-	 * @throws FormException
 	 */
-	public int delete(T model);
+	public int deleteById(Integer id);
 	
 	/**
 	 * 修改一条数据的方法
 	 * @param param
 	 * @return
-	 * @throws FormException
 	 */
 	public int update(T model);
 	
@@ -44,7 +45,6 @@ public interface IBaseService<T> {
 	 * 通过主键查询数据详细的方法
 	 * @param param
 	 * @return
-	 * @throws FormException
 	 */
 	public T detail(T model);
 	
@@ -52,7 +52,6 @@ public interface IBaseService<T> {
 	 * 条件查询列表的方法
 	 * @param param
 	 * @return
-	 * @throws FormException
 	 */
 	public List<T> getList(T model);
 	
@@ -61,7 +60,6 @@ public interface IBaseService<T> {
 	 * @param model
 	 * @param param
 	 * @return
-	 * @throws FormException
 	 */
 	public LayuiPage<T> page(T model,LayuiPageParam param);
 	

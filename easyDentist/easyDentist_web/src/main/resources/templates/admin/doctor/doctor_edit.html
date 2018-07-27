@@ -9,13 +9,27 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>修改角色</title> <#include "/common/admin_css.html"/>
+<title>修改医生信息</title> <#include "/common/admin_css.html"/>
 <style type="text/css">
 .jz10 {
 	margin-left: 10%;
 }
 .jz {
 	margin-left: 25%;
+}
+.form-group-myfile{
+   position:relative;
+   margin-bottom:15px;
+   height:120px;
+   width:420px;
+}
+
+.image-thumb{
+  position:absolute;
+  top:0;right:0;
+  border:solid 2px #CCC;
+  width:100px;
+  height:120px;
 }
 </style>
 </head>
@@ -28,7 +42,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header">修改角色</h3>
+					<h3 class="page-header">修改医生信息</h3>
 				</div>
 			</div>
 
@@ -36,20 +50,84 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">EDIT_ROLE</div>
+						<div class="panel-heading">EDIT_DOCTOR</div>
 						<div class="panel-body">
 							<div class="row">
 
 								<form role="form" id="subform">
 									<div class="col-lg-5 jz10">
-										<label>角色名称</label>
-										<input  name="id" id="id" type="hidden" value="${role.id}" />
-										<input class="form-control" name="rolename"
-											id="rolename" value="${role.rolename}" placeholder="请输入角色名称" ><br /> 
-											<label>角色描述</label>
-										<input class="form-control" name="description" value="${role.description}"  id="description"
-											placeholder="请输入角色描述" ><br /> 
+										<label>医生姓名</label>
+										<input hidden="hidden" name="id" value="${doctor.id}" />
+										<input class="form-control" name="doctorname"
+											id="doctorname" placeholder="请输入医生姓名" value="${doctor.doctorname}" ><br /> 
 											
+											
+											<label>职位</label>
+										<input class="form-control" name="position"
+											id="position" placeholder="请输入职位" value="${doctor.position}"><br /> 
+											
+											
+											<div class="form-group">
+											<label for="name">资质</label> 
+											<select id="qualification" name="qualification" class="form-control">
+												<option>-请选择医生职称/资质-</option>
+												<option value="ASSISTANT_PHYSICIAN">助理医师</option>
+												<option value="PRACTICE_PHYSICIAN">执业医师</option>
+												<option value="ATTENDING_PHYSICIAN">主治医师</option>
+												<option value="ASSOCIATE_CHIEF_PHYSICIAN">副主任医师</option>
+												<option value="CHIEF_PHYSICIAN">主任医师</option>
+											</select>
+										</div>
+											
+											
+											<label>专业特长</label>
+										<input class="form-control" name="major"
+											id="major" placeholder="请输入医生专业特长" value="${doctor.major}"><br />
+											
+											
+											<label>重要简介</label>
+											<input hidden="hidden" name="introduction"
+											id="introduction" value="${doctor.introduction}" >
+										   <input class="form-control" name="introduction1"
+											id="introduction1" placeholder="请输入重要简介一" >
+											<input class="form-control" name="introduction2"
+											id="introduction2" placeholder="请输入重要简介二" >
+											<input class="form-control" name="introduction3"
+											id="introduction3" placeholder="请输入重要简介三" >
+											<input class="form-control" name="introduction4"
+											id="introduction4" placeholder="请输入重要简介四" >
+											<input class="form-control" name="introduction5"
+											id="introduction5" placeholder="请输入重要简介五" >
+											<p class="help-block">简介每条20字内，尽量保持整齐.</p><br /> 
+											
+											
+											<label>学历</label>
+										<input class="form-control" name="education"
+											id="education" placeholder="请输入医生学历" value="${doctor.education}"><br /> 
+											
+										
+											<label>毕业院校</label>
+										<input class="form-control" name="graduateschool"  id="graduateschool"
+											placeholder="请输入毕业院校"  value="${doctor.graduateschool}" ><br /> 
+											
+									   <div class="form-group-myfile">
+											<label for="inputfile">选择医生一寸照</label>
+											<input type="text" id="inchphotopath" name="inchphotopath" hidden="hidden" value="${doctor.inchphotopath}" />
+											 <input type="file" 
+												id="inchphototext" name="myfile1" onchange="uploadImage1(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
+											<p class="help-block">尺寸要求 200*120。</p>
+										<img class="image-thumb" id="inchphoto"   src="${doctor.inchphotopath}">
+										</div><br/>
+										
+										<div class="form-group-myfile">
+											<label for="inputfile">选择医生宣传照</label>
+											<input type="text" id="picpath" name="picpath" hidden="hidden" value="${doctor.picpath}" />
+											 <input type="file" 
+												id="pictext" name="myfile2" onchange="uploadImage2(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
+											<p class="help-block">尺寸要求 366*500。</p>
+										<img class="image-thumb" id="pic"   src="${doctor.picpath}">
+										</div>
+										
 										<div  class="jz">
 										<input type="button" value="点击修改" class="btn btn-default" onclick="edit()"  />
 										</div>
@@ -66,14 +144,41 @@
 
     <#include "/common/admin_js.html"/>
 	<!-- 后台公共js -->
+	<script charset="utf-8" src="/js/ajaxfileupload.js"></script>
 	<script type="text/javascript">
+	$(function(){
+		//select，radio回显
+		$("select option[value='${doctor.qualification}']").attr("selected",true); 
+		var introduction = $("#introduction").val();
+		var arr = introduction.split("#");
+		$.each(arr,function(index,j){
+			console.log(index+1);
+			console.log(j);
+			$(eval("introduction"+(index+1))).attr("value",j);
+		});
+		
+	});
+	
+	function getIntroduction(){
+		var introduction1 = $("#introduction1").val() != "" ? $("#introduction1").val()+"#":"";
+		var introduction2 = $("#introduction2").val() != "" ? $("#introduction2").val()+"#":"";
+		var introduction3 = $("#introduction3").val() != "" ? $("#introduction3").val()+"#":"";
+		var introduction4 = $("#introduction4").val() != "" ? $("#introduction4").val()+"#":"";
+		var introduction5 = $("#introduction5").val() != "" ? $("#introduction5").val()+"#":"";
+		return introduction1+introduction2+introduction3+introduction4+introduction5;
+	}
 		
 	function edit() {
+		var doctorname = $("#doctorname").val();
+		var position = $("#position").val();
+		var qualification = $("#qualification option:selected").val();
+		var major = $("#major").val();
+		var introduction = getIntroduction();
+		$("#introduction").attr("value",introduction);
+		console.log(introduction);
 		
-		var rolename = $("#rolename").val();
-		var description = $("#description").val();
-		if(rolename == "" || description == ""){
-			layer.alert('表单数据不可以为空！');
+		if(doctorname == "" || position == "" || qualification == "" || major == "" || introduction == ""){
+			layer.alert('姓名/职位/资质/特长/重要简介 不可为空！！');
 			return false;
 		}
 		
@@ -81,26 +186,19 @@
         $.ajax({
         //几个参数需要注意一下
             type: "POST",//方法类型
-            url: "${request.contextPath}/admin/role/edit" ,//url
+            url: "${request.contextPath}/admin/doctor/edit" ,//url
             data: $('#subform').serialize(),
             success: function (result) {
-            	
-            	if(result == "ROLE_EXIST"){
-                	layer.alert('该角色名已存在！',function(index){
-                	window.location.href='${request.contextPath}/admin/role/toEdit?id='+$("#id").val();;
-                	});
-                	//跳转到新增
-                }
-            	
+       
                 if(result == "EDIT_SUCCESS"){
                 	layer.alert('修改角色成功！',function(index){
-                		window.location.href="${request.contextPath}/admin/role/toRoles";
+                		window.location.href="${request.contextPath}/admin/doctor/toDoctors";
                 	});
                 	//跳转到列表
                 }
                 if(result == "EDIT_FAIL"){
                 	layer.alert('修改角色失败！',function(index){
-                	window.location.href='${request.contextPath}/admin/role/toEdit?id='+$("#id").val();;
+                	window.location.href='${request.contextPath}/admin/doctor/toEdit?id='+$("#id").val();;
                 	});
                 }
             },
@@ -113,6 +211,77 @@
         });
     }
 	
+	
+	function uploadImage1(e) {
+		
+	    //上传缩略图
+	    //图片的提前校验,如果返回false,则代表校验不成功
+	     //if(!preSubmitFileCheck(e)){
+	     //    return ;
+	    //} 
+           $.ajaxFileUpload
+           (
+               {
+                   url: '${request.contextPath}/admin/doctor/uploadInchPhoto', //用于文件上传的服务器端请求地址
+                   secureuri: false, //是否需要安全协议，一般设置为false
+                   fileElementId: 'inchphototext', //文件上传域的ID
+                   dataType: 'json', //返回值类型 一般设置为json
+                   type:'post',
+                   success: function (data, status)  //服务器成功响应处理函数
+                   {
+                           if (data.error == 'error') {  
+                        	   layer.alert(data.msg);
+                               //清空file  input框
+                               $("#inchphototext").val("");
+                           } else {                       //success
+                        	   $("#inchphotopath").val(data.imgurl);
+                              $("#inchphoto").attr("src", data.imgurl);
+                              layer.alert(data.msg);
+                           }
+                   },
+                   error: function (data, status, e)//服务器响应失败处理函数
+                   {
+                	   layer.alert(e);
+                   }
+               }
+           )	    
+	}
+	
+	
+function uploadImage2(e) {
+		
+	    //上传缩略图
+	    //图片的提前校验,如果返回false,则代表校验不成功
+	     //if(!preSubmitFileCheck(e)){
+	     //    return ;
+	    //} 
+           $.ajaxFileUpload
+           (
+               {
+                   url: '${request.contextPath}/admin/doctor/uploadDoctorPic', //用于文件上传的服务器端请求地址
+                   secureuri: false, //是否需要安全协议，一般设置为false
+                   fileElementId: 'pictext', //文件上传域的ID
+                   dataType: 'json', //返回值类型 一般设置为json
+                   type:'post',
+                   success: function (data, status)  //服务器成功响应处理函数
+                   {
+                           if (data.error == 'error') {  
+                        	   layer.alert(data.msg);
+                               //清空file  input框
+                               $("#pictext").val("");
+                           } else {                       //success
+                        	   $("#picpath").val(data.imgurl);
+                              $("#pic").attr("src", data.imgurl);
+                              layer.alert(data.msg);
+                           }
+                   },
+                   error: function (data, status, e)//服务器响应失败处理函数
+                   {
+                	   layer.alert(e);
+                   }
+               }
+           )	    
+	}
 
 	</script>
 	

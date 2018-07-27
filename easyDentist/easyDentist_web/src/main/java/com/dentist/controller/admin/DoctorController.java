@@ -87,16 +87,44 @@ public class DoctorController {
 	}
 	
 	
+	/**
+	 * 删除医生
+	 */
+	@RequestMapping(value = "/delete",method=RequestMethod.POST)
+	@ResponseBody
+	public String delete(Integer id){
+	
+		int num = doctorService.deleteById(id);
+	
+		return num > 0 ? "DELETE_SUCCESS":"DELETE_FAIL";
+	}
 	
 	
 	
+	/**
+	 * 到修改页面 
+	 */
+	@RequestMapping(value = "/toEdit")
+	public String editRole(Model model,int id){
+		
+		Doctor doctor = doctorService.queryDoctorById(id);
+		model.addAttribute("doctor", doctor);
+		
+		return "/admin/doctor/doctor_edit";
+	}
+
 	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 修改医生信息
+	 */
+	@RequestMapping(value = "/edit",method=RequestMethod.POST)
+	@ResponseBody
+	public String edit(Doctor doctor){
+		
+		doctor.setCreatetime(new Date());
+		int num = doctorService.update(doctor);
+		return num > 0 ? "EDIT_SUCCESS":"EDIT_FAIL";
+	}
 	
 	
 	

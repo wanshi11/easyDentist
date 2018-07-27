@@ -123,4 +123,10 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 		return menus;
 	}
 
+	@Override
+	public int deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

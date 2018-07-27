@@ -182,13 +182,13 @@
             	
                 if(result == "ADD_SUCCESS"){
                 	layer.alert('添加成功！',function(index){
-                		window.location.href="${request.contextPath}/admin/role/toRoles";
+                		window.location.href="${request.contextPath}/admin/doctor/toDoctors";
                 	});
                 	//跳转到列表
                 }
                 if(result == "ADD_FAIL"){
                 	layer.alert('添加失败！',function(index){
-                	window.location.href='${request.contextPath}/admin/role/toAdd';
+                	window.location.href='${request.contextPath}/admin/doctor/toDoctors';
                 	});
                 }
             },

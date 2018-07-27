@@ -90,4 +90,10 @@ public class UserRoleServiceImpl implements UserRoleService {
 		return userRoleMapper.deleteByExample(example);
 	}
 
+	@Override
+	public int deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

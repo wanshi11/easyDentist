@@ -178,6 +178,12 @@ public class MenuServiceImpl implements MenuService {
 		}
 		return null;
 	}
+
+	@Override
+	public int deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 	

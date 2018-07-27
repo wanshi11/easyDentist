@@ -110,4 +110,10 @@ public class BannerServiceImpl implements BannerService {
 		return bannerMapper.selectByExampleLimit6(bannerExample);
 	}
 
+	@Override
+	public int deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return bannerMapper.deleteByPrimaryKey(id);
+	}
+
 }

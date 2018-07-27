@@ -133,16 +133,9 @@ public class UserController {
 	@RequestMapping(value = "/delete",method=RequestMethod.POST)
 	@ResponseBody
 	public String delete(Integer id){
-		String result = "";
-		User u = userService.queryUserById(id);
-		int num = userService.delete(u);
-		if(num > 0){
-			result="DELETE_SUCCESS";
-		}else{
-			result="DELETE_FAIL";
-		}
-	
-		return result;
+		
+		int num = userService.deleteById(id);
+		return num > 0 ? "DELETE_SUCCESS":"DELETE_FAIL";
 	}
 	
 	/**
