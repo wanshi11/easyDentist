@@ -27,12 +27,22 @@
 
 		
 		
-		
-		<dependency>
+	   <dependency>
 	       <groupId>com.google.guava</groupId>
 	       <artifactId>guava-io</artifactId>
 	       <version>r03</version>
+        </dependency>  
+		<!-- 不清楚这些依赖，但是不加会报错 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
+        <dependency>
+          <groupId>com.diffplug.guava</groupId>
+          <artifactId>guava-cache</artifactId>
+          <version>19.0.0</version>
+        </dependency>  
+        <!-- 不清楚这些依赖，但是不加会报错 -->
 
 	 	 <!-- <dependency>
 			<groupId>ch.qos.logback</groupId>
