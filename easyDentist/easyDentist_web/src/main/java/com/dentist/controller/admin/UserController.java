@@ -134,10 +134,10 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/changePassword",method=RequestMethod.POST)
 	@ResponseBody
-	public String changePassword(User u,String newpwd,String newpwdagin){
+	public String changePassword(User u,String oldpwd,String newpwd,String newpwdagin){
 		
 		User user = userService.queryUserById(u.getId());
-		if(!MD5Util.string2MD5(u.getPassword()).equals(user.getPassword())){
+		if(!MD5Util.string2MD5(oldpwd).equals(user.getPassword())){
 			//原始密码错误
 			return "PWD_WRONG";
 		}

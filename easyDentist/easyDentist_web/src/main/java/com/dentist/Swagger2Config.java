@@ -21,27 +21,26 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
-	//swagger2µÄÅäÖÃÎÄ¼ş£¬ÕâÀï¿ÉÒÔÅäÖÃswagger2µÄÒ»Ğ©»ù±¾µÄÄÚÈİ£¬±ÈÈçÉ¨ÃèµÄ°üµÈµÈ
+	//swagger2çš„é…ç½®æ–‡ä»¶ï¼Œè¿™é‡Œå¯ä»¥é…ç½®swagger2çš„ä¸€äº›åŸºæœ¬çš„å†…å®¹ï¼Œæ¯”å¦‚æ‰«æçš„åŒ…ç­‰ç­‰
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                //Îªµ±Ç°°üÂ·¾¶
+                //ä¸ºå½“å‰åŒ…è·¯å¾„
                 .apis(RequestHandlerSelectors.basePackage("com.dentist.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
-    //¹¹½¨ apiÎÄµµµÄÏêÏ¸ĞÅÏ¢º¯Êı,×¢ÒâÕâÀïµÄ×¢½âÒıÓÃµÄÊÇÄÄ¸ö
+  //æ„å»º apiæ–‡æ¡£çš„è¯¦ç»†ä¿¡æ¯å‡½æ•°,æ³¨æ„è¿™é‡Œçš„æ³¨è§£å¼•ç”¨çš„æ˜¯å“ªä¸ª
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                //Ò³Ãæ±êÌâ
-                .title("SpringBootÊ¹ÓÃSwagger2¹¹½¨APIÎÄµµ")
-                //ÃèÊö
-                .description("restful·ç¸ñµÄAPI")
-                //´´½¨ÈË
+                 //é¡µé¢æ ‡é¢˜
+                .title("SpringBooté›†æˆSwagger2åœ¨çº¿APIæ–‡æ¡£")
+                //æè¿°
+                .description("restfulé£æ ¼çš„API")
                 //.termsOfServiceUrl(termsOfServiceUrl)
-                //°æ±¾ºÅ
+                //ç‰ˆæœ¬
                 .version("1.0")
                 .build();
     }

@@ -75,7 +75,7 @@ public class LoginController {
 			List<MenuPermitView> list = toMenuPermitList(menus);
 			request.getSession().setAttribute(Constant.LOGIN_MENUPERMITLIST, list);
 			request.getSession().setAttribute(Constant.LOGIN_USER, u);
-			return "/admin/index";
+			return "redirect:/admin/index";
 		}
 		
 		//根据用户ID查询所有的角色集合
@@ -92,7 +92,7 @@ public class LoginController {
 		
 		request.getSession().setAttribute(Constant.LOGIN_MENUPERMITLIST, list);
 		request.getSession().setAttribute(Constant.LOGIN_USER, u);
-		return "/admin/index";
+		return "redirect:/admin/index";
 	}
 	
 	
