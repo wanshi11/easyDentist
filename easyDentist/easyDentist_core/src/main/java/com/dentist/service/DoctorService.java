@@ -13,5 +13,7 @@ public interface DoctorService extends IBaseService<Doctor> {
 		int selectCountByExample(Doctor doctor);
 
 		Doctor queryDoctorById(int id);
+		
+		List<Doctor> getAllList();
 
 }

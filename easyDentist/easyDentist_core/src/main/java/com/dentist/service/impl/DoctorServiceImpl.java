@@ -109,4 +109,16 @@ public class DoctorServiceImpl implements DoctorService {
 		return 0;
 	}
 
+
+	@Override
+	public List<Doctor> getAllList() {
+		// TODO Auto-generated method stub
+		DoctorExample doctorExample = new DoctorExample();
+		DoctorExample.Criteria c = doctorExample.createCriteria();
+	    c.andPicpathIsNotNull();
+	    c.andInchphotopathIsNotNull();
+		
+		return doctorMapper.selectByExample(doctorExample);
+	}
+
 }

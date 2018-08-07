@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dentist.cfg.Constant;
 import com.dentist.entity.Banner;
+import com.dentist.entity.Doctor;
 import com.dentist.service.BannerService;
+import com.dentist.service.DoctorService;
 
 
 
@@ -25,7 +27,9 @@ import com.dentist.service.BannerService;
 public class IndexController {
 	
 	@Autowired
-	 private BannerService bannerService;
+	private BannerService bannerService;
+	@Autowired
+	private DoctorService doctorService;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
@@ -42,11 +46,15 @@ public class IndexController {
 		List<Banner> facility_banners = bannerService.queryBannerByType(Constant.BANNER_FACILITY);
 		List<Banner> lunbo_banners = bannerService.queryBannerByType(Constant.BANNER_LUNBO);
 		
+		//查询医生信息集合
+		List<Doctor> doctors = doctorService.getAllList();
+		
 		
 		mv.addObject("lunbo_banners", lunbo_banners);
 		mv.addObject("honor_banners", honor_banners);
 		mv.addObject("envir_banners", envir_banners);
 		mv.addObject("facility_banners", facility_banners);
+		mv.addObject("doctors", doctors);
 		return mv;
 	}
 	
