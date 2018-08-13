@@ -84,7 +84,9 @@
     	      {field:'id', width:70, title: 'ID', sort: true}
     	      ,{field:'bannername', width:200, title: 'banner名称(或描述)'}
     	      ,{field:'href', width:300, title: 'banner链接' }
-    	      ,{field:'type', width:150, title: 'banner类型'}
+    	      ,{field:'type', width:150, title: 'banner类型',templet:function(data){
+    	    	  return showBannerType(data);
+    	      }}
     	      ,{field:'status', width:150, title: 'banner状态'}
     	      ,{field:'right', title: '操作', width:120,toolbar:"#barDemo"}
     	    ]]
@@ -147,6 +149,18 @@
 			}
 		}); 
 		};
+		
+		function showBannerType(data){
+			if(data.type == 'BANNER_LUNBO'){
+				return "宣传轮播";
+			}else if(data.type == 'BANNER_ENVIRONMENT'){
+				return "医院环境";
+			}else if(data.type == 'BANNER_HOROR'){
+				return "医院荣誉";
+			}else if(data.type == 'BANNER_FACILITY'){
+				return "医院设备";
+			}
+		}
     
     </script>
     

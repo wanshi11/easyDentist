@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dentist.cfg.PermissionConstants;
 import com.dentist.entity.User;
+import com.dentist.interceptor.RequiredPermission;
 import com.dentist.service.UserService;
 import com.dentist.utils.IPUtils;
 import com.dentist.utils.LayuiPage;
@@ -28,6 +30,7 @@ public class UserController {
 	/**
 	 * 到后台用户列表页面 
 	 */
+	@RequiredPermission(PermissionConstants.ADMIN_PRODUCT_LIST) // 权限注解
 	@RequestMapping(value = "/toBgUser", method = RequestMethod.GET)
 	public String toBgUser(Model model) {
 

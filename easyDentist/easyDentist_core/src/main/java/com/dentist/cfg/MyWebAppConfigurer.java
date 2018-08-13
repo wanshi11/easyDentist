@@ -1,12 +1,19 @@
 package com.dentist.cfg;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.dentist.interceptor.SecurityInterceptor;
+
 /**
- * 配置自定义静态资源引用
+ * 配置自定义静态资源引用 
+ * AND
+ * 拦截器注入
  */
 @Configuration
 public class MyWebAppConfigurer extends WebMvcConfigurerAdapter{
@@ -31,8 +38,32 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter{
         registry.addResourceHandler(pic_db_Path+"**").addResourceLocations("file:"+picPath);
         
         //kindeditor文件上传路径地址配置
-        registry.addResourceHandler(kindeditor_files_db_path+"**").addResourceLocations("file:"+kindeditor_files_path);
+        registry.addResourceHandler(kindeditor_files_db_path+"**").addResourceLocations("file:"+kindeditor_files_path);  
+        
         super.addResourceHandlers(registry);
     }
+	
+	
+	
+	  @Bean  //注入拦截器
+	  public SecurityInterceptor securityInterceptor() {
+	        return new SecurityInterceptor();
+	  }
+	
+	 @Override
+	 public void addInterceptors(InterceptorRegistry registry) {
+	 registry.addInterceptor(securityInterceptor()).addPathPatterns("/admin/**");
+	 
+	 super.addInterceptors(registry);
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	
 }
