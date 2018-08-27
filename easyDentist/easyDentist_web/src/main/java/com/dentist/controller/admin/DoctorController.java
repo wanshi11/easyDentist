@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dentist.entity.Doctor;
+import com.dentist.interceptor.RequiredPermission;
 import com.dentist.service.DoctorService;
 import com.dentist.utils.DateUtil;
 import com.dentist.utils.JsonUtils;
@@ -45,6 +46,7 @@ public class DoctorController {
 	/**
 	 * 到医生列表页面 
 	 */
+	@RequiredPermission
 	@RequestMapping(value = "/toDoctors", method = RequestMethod.GET)
 	public String toDoctorList(Model model) {
 

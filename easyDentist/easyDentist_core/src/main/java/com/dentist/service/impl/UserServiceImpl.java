@@ -1,8 +1,11 @@
 package com.dentist.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +13,18 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import com.dentist.entity.Menu;
+import com.dentist.entity.MenuExample;
+import com.dentist.entity.RoleMenu;
+import com.dentist.entity.RoleMenuExample;
 import com.dentist.entity.User;
 import com.dentist.entity.UserExample;
+import com.dentist.entity.UserRole;
+import com.dentist.entity.UserRoleExample;
+import com.dentist.mapper.MenuMapper;
+import com.dentist.mapper.RoleMenuMapper;
 import com.dentist.mapper.UserMapper;
+import com.dentist.mapper.UserRoleMapper;
 import com.dentist.service.UserService;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
@@ -24,7 +36,14 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;
 	
+	@Autowired
+	private UserRoleMapper userRoleMapper;
 	
+	@Autowired
+	private RoleMenuMapper roleMenuMapper;
+	
+	@Autowired
+	private MenuMapper menuMapper;
 
 
 	public int add(User model) {
@@ -136,6 +155,48 @@ public class UserServiceImpl implements UserService {
 	public int deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		return userMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public List<Menu> queryMenusByUserId(Integer id) {
+		// TODO Auto-generated method stub
+		UserRoleExample userRoleExample = new UserRoleExample();
+		UserRoleExample.Criteria c = userRoleExample.createCriteria();
+		c.andUseridEqualTo(id);
+		List<UserRole> userRoles = userRoleMapper.selectByExample(userRoleExample);
+		
+		if (!CollectionUtils.isEmpty(userRoles)) {
+			
+			List<Integer> menuIds = new ArrayList<>();
+			RoleMenuExample roleMenuExample = new RoleMenuExample();
+			RoleMenuExample.Criteria c1 = roleMenuExample.createCriteria();
+			for (int i = 0; i < userRoles.size(); i++) {
+				Integer roleId = userRoles.get(i).getRoleid();
+				c1.andRoleidEqualTo(roleId);
+				
+				List<RoleMenu> roleMenus = roleMenuMapper.selectByExample(roleMenuExample);
+				for (int j = 0; !CollectionUtils.isEmpty(roleMenus) && j < roleMenus.size(); j++) {
+					menuIds.add(roleMenus.get(j).getMenuid());
+				}
+			}
+			//ListÈ¥ÖØ¸´
+			Set<Integer> menuIdSet = new HashSet<>(menuIds);
+			menuIds.clear();
+			menuIds.addAll(menuIdSet);
+			
+			List<Menu> menus = new ArrayList<>();
+			MenuExample menuExample = new MenuExample();
+			MenuExample.Criteria c2 = menuExample.createCriteria();
+			for (int K = 0;!CollectionUtils.isEmpty(menuIds) && K < menuIds.size(); K++) {
+				Integer menuId = menuIds.get(K);
+				c2.andIdEqualTo(menuId);
+				Menu mes = menuMapper.selectByPrimaryKey(menuId);
+				menus.add(mes);
+			}
+			
+			return menus;
+		}
+		return null;
 	}
 
 }

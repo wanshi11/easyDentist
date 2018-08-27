@@ -23,6 +23,7 @@ import com.dentist.cfg.Constant;
 import com.dentist.entity.Menu;
 import com.dentist.entity.Role;
 import com.dentist.entity.User;
+import com.dentist.interceptor.RequiredPermission;
 import com.dentist.pojo.TreeMenuView;
 import com.dentist.service.MenuService;
 import com.dentist.service.RoleMenuService;
@@ -50,6 +51,7 @@ public class MenuController {
 	/**
 	 * 到菜单列表页 
 	 */
+	@RequiredPermission
 	@RequestMapping(value="/toMenus", method = RequestMethod.GET)
 	public String  toMenus(){
 		
@@ -215,6 +217,7 @@ public class MenuController {
 	/**
 	 * 到分配菜单页
 	 */
+	@RequiredPermission
 	@RequestMapping(value="/toAllotMenus", method = RequestMethod.GET)
 	public String  toAllotMenus(Model model){
 		

@@ -2,6 +2,7 @@ package com.dentist.service;
 
 import java.util.List;
 
+import com.dentist.entity.Menu;
 import com.dentist.entity.User;
 import com.dentist.utils.LayuiPageParam;
 
@@ -21,6 +22,9 @@ public interface UserService extends IBaseService<User> {
 
 	//排除当前用户查询
 	User queryUserNotRepeatByUserName(String username,Integer id);
+
+	//根据用户Id查询所有的菜单
+	List<Menu> queryMenusByUserId(Integer id);
 	
 
 	

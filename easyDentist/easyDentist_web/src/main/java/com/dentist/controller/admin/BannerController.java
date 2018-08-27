@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dentist.entity.Banner;
+import com.dentist.interceptor.RequiredPermission;
 import com.dentist.service.BannerService;
 import com.dentist.utils.DateUtil;
 import com.dentist.utils.JsonUtils;
@@ -47,6 +48,7 @@ public class BannerController {
 	/**
 	 * 到banner列表页 
 	 */
+	@RequiredPermission
 	@RequestMapping(value="/toBanners", method = RequestMethod.GET)
 	public String  toBanners(){
 		

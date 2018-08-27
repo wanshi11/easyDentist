@@ -17,6 +17,7 @@ import com.dentist.cfg.Constant;
 import com.dentist.entity.Role;
 import com.dentist.entity.User;
 import com.dentist.entity.UserRole;
+import com.dentist.interceptor.RequiredPermission;
 import com.dentist.service.RoleService;
 import com.dentist.service.UserRoleService;
 import com.dentist.service.UserService;
@@ -41,6 +42,7 @@ public class RoleController {
 	/**
 	 * 到角色列表页 
 	 */
+	@RequiredPermission
 	@RequestMapping(value="/toRoles", method = RequestMethod.GET)
 	public String  toRoles(){
 		
@@ -180,6 +182,7 @@ public class RoleController {
 	/**
 	 * 到赋予角色页面
 	 */
+	@RequiredPermission
 	@RequestMapping(value = "/toGiveRoles",method=RequestMethod.GET)
 	public String toGiveRoles(Model model){
 		

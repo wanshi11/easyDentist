@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/dentist/cfg/Constant.java=UTF-8
+encoding//src/main/java/com/dentist/cfg/MyWebAppConfigurer.java=UTF-8
+encoding//src/main/java/com/dentist/interceptor/RequiredPermission.java=UTF-8
+encoding//src/main/java/com/dentist/interceptor/SecurityInterceptor.java=UTF-8
 encoding//src/main/java/com/dentist/pojo/MenuPermitView.java=UTF-8
 encoding//src/main/java/com/dentist/service/DoctorService.java=UTF-8
 encoding//src/main/java/com/dentist/service/IBaseService.java=UTF-8

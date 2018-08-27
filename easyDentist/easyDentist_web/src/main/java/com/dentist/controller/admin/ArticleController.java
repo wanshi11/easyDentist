@@ -23,6 +23,7 @@ import com.dentist.cfg.Constant;
 import com.dentist.entity.Article;
 import com.dentist.entity.ArticleExt;
 import com.dentist.entity.User;
+import com.dentist.interceptor.RequiredPermission;
 import com.dentist.service.ArticleExtService;
 import com.dentist.service.ArticleService;
 import com.dentist.utils.DateUtil;
@@ -50,6 +51,7 @@ public class ArticleController {
 	/**
 	 * 到文章列表页 
 	 */
+	@RequiredPermission
 	@RequestMapping(value="/toArticles", method = RequestMethod.GET)
 	public String  toArticles(){
 		

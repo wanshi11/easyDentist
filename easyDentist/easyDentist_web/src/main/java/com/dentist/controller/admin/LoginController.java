@@ -112,6 +112,14 @@ public class LoginController {
 	    return "/admin/index";
 	  }
 	
+	/**
+	 * 权限不足 
+	 */
+	@RequestMapping("/permission_error")
+	public String toPermission_error(HttpServletRequest request) {
+		
+	    return "/admin/permission_error";
+	  }
 	
 	/**
 	 * @param menus
