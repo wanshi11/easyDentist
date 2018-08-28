@@ -122,7 +122,8 @@
 		var thumbnailurl = $("#thumbnailurl").val();
 		var status = $("input[name='status']:checked").val();
 		var top = $("input[name='top']:checked").val();
-		var content = $("#content").val();
+		//var content = $("#content").val();
+		var content = editor.html();
 		console.log(title+"||"+keywords+"||"+articletype+"||"+introduction+"||"+thumbnailurl+"||"+status+"||"+top+"||"+content);
 		
 		if(content == ""){
