@@ -180,18 +180,7 @@ var huameiV3 = {
 		});
 		/*鍙充晶涓撳榧犳爣绉诲叆鐗规晥*/
 		memberShow("doctorsBox");
-		/*鍙充晶涓撳涓庢煡鎵惧垏鎹�*/
-		$(".stage1 .stage_b").slide({
-			mainCell: '.slides',
-			titCell: '.focus span',
-			effect: 'fold',
-			titOnClassName: 'active',
-			startFun: function(i, c) {
-				$(".stage1 .stage_b .focus .active_bg").css({
-					left: i * 50 + '%'
-				});
-			}
-		});
+		
 		/*宸︿晶涓撳澶у浘鍒囨崲*/
 		$(".stage1 .stage_a").mouseenter(function() {
 			$(".stage1 .stage_a").find(".preBtn,.nextBtn").fadeIn(600);
