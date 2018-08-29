@@ -39,7 +39,7 @@ public class ArticleExtServiceImpl implements ArticleExtService {
 	@Override
 	public int update(ArticleExt model) {
 		// TODO Auto-generated method stub
-		return 0;
+		return articleExtMapper.updateByPrimaryKeySelective(model);
 	}
 
 	@Override

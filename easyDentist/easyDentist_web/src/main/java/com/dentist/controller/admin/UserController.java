@@ -132,7 +132,7 @@ public class UserController {
 	
 	
 	/**
-	 * 修改用户
+	 * 修改密码
 	 */
 	@RequestMapping(value = "/changePassword",method=RequestMethod.POST)
 	@ResponseBody
