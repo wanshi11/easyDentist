@@ -54,7 +54,7 @@
 											</select>
 										</div>
                                         <label for="name">编辑文章</label>
-                                       <textarea style="width:650px;height: 400px;" id="content" name="content">${artE.content}</textarea><br/><br/>
+                                       <textarea style="width:650px;height: 400px;" id="content" name="content" >${artE.content}</textarea><br/><br/>
 
 										<div class="form-group">
 											<label for="name">文章简介</label>
@@ -105,7 +105,7 @@
 
 
     <#include "/common/admin_js.html"/>
-    <script charset="utf-8" src="/kindeditor/kindeditor-all-min.js"></script>
+    <script charset="utf-8" src="/kindeditor/kindeditor-all.js"></script>
     <script charset="utf-8" src="/js/ajaxfileupload.js"></script>
 	<!-- 后台公共js -->
 	<script type="text/javascript">
@@ -116,7 +116,7 @@
 		$("select option[value='${art.articletype}']").attr("selected",true); 
 		$("input[name='top'][value='${art.top}']").attr("checked","checked");
 		$("input[name='status'][value='${art.status}']").attr("checked","checked");
-		
+
 	});
 	
 	
@@ -150,20 +150,20 @@
             success: function (result) {
             	
             	if(result == "ARTICLE_EXIST"){
-                	layer.alert('该角色名已存在！',function(index){
+                	layer.alert('该文章标题已存在！',function(index){
                 	window.location.href='${request.contextPath}/admin/article/toEdit?id='+$("#id").val();;
                 	});
                 	//跳转到新增
                 }
             	
                 if(result == "EDIT_SUCCESS"){
-                	layer.alert('修改角色成功！',function(index){
+                	layer.alert('修改文章成功！',function(index){
                 		window.location.href="${request.contextPath}/admin/article/toArticles";
                 	});
                 	//跳转到列表
                 }
                 if(result == "EDIT_FAIL"){
-                	layer.alert('修改角色失败！',function(index){
+                	layer.alert('修改文章失败！',function(index){
                 	window.location.href='${request.contextPath}/admin/article/toEdit?id='+$("#id").val();;
                 	});
                 }
@@ -180,6 +180,7 @@
 
 	</script>
 	 <script type="text/javascript">
+	
     //KindEditor脚本
     var editor;
     KindEditor.ready(function(K) {
@@ -204,7 +205,7 @@
 									});
 		editor.sync();
 		//editor.html("content",'${artE.content}');
-		editor.html('${artE.content}');
+		//editor.html('${artE.content}');
 				});
     
 	</script>
