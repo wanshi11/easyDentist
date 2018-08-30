@@ -770,3 +770,24 @@ filter:alpha(opacity=40);position:absolute;bottom:0;z-index:1111;color:#fff;}
     padding:20px 0;
     line-height: 20px;
 }
+
+/*公司简介页面样式 */
+.introduction_main {
+	margin-top: 20px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.introduction_title{
+    color: #7194c3;
+    font-family: '微软雅黑';
+    font-size: 25px;
+}
+.cf{
+	height:40px;
+	color: #7194c3;
+    font-family: '微软雅黑';
+    font-size: 20px;
+}
+
+/*公司简介页面样式 */

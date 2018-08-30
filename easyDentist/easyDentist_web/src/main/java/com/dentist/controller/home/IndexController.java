@@ -64,5 +64,11 @@ public class IndexController {
 		
 		return "/home/map";
 	}
+	
+	@RequestMapping(value = "/introduction", method = RequestMethod.GET)
+	public String introduction(Model model) {
+		
+		return "/home/introduction";
+	}
 
 }
