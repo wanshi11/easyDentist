@@ -58,17 +58,37 @@ public class IndexController {
 		return mv;
 	}
 	
-	
+	/**
+	 * 到地图页
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/tomap", method = RequestMethod.GET)
 	public String toMap(Model model) {
 		
 		return "/home/map";
 	}
 	
+	/**
+	 * 到公司简介页
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/introduction", method = RequestMethod.GET)
 	public String introduction(Model model) {
 		
 		return "/home/introduction";
+	}
+	
+	/**
+	 * 到口腔技术介绍页（牙齿矫正）
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/oral/ycjz", method = RequestMethod.GET)
+	public String ycjz(Model model) {
+		
+		return "/home/oralTechnology/ycjz";
 	}
 
 }
