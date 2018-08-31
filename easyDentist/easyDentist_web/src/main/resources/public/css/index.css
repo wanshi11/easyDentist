@@ -109,7 +109,7 @@ section { width:100%;}
 .CdNavBox ul li a:hover {color:#fff; background:#fe9f02;text-decoration: none;}
 .CdNavBox ul li a.current { background:#fe9f02;}
 .CdNavBox .welcome{ width:190px; color:#fff; font-size:14px; font-weight:700; height:45px; line-height:40px; text-align:center;
- margin-right:20px; position:relative;}
+ margin-right:20px; position:relative;margin-top: 3px;}
 
 /*CSS导航特效======================================*/
 #easyDh { width:88.5%;height:80px; margin:0 auto; background:#fff;}
