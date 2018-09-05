@@ -15,7 +15,7 @@
     height: 100%;
 }
 .what_text{
-    width: 55%;
+    width: 57%;
     float: right;
     background: #eded21;
     margin-left: 3%;
@@ -37,4 +37,60 @@
     margin-top: 15px;
     margin-left: 35px;
 }
+
+.wh{
+    width: 100%;
+    background-color: black;
+    height: 280px;
+}
+.wh_box_1,.wh_box_2,.wh_box_3,.wh_box_4{
+    background-color: red;
+    width: 45%;
+    height: 40%;
+    float:left;
+}
+.wh_box_2{
+    float:right;
+}
+.wh_box_3{
+    float:left;
+    bottom: 0px;
+}
+.wh_box_4{
+    float:right;
+    bottom: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
