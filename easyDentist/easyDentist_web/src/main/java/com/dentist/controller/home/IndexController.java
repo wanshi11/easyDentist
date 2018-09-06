@@ -81,6 +81,17 @@ public class IndexController {
 	}
 	
 	/**
+	 * 到患者预约页面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/makeAppointment", method = RequestMethod.GET)
+	public String makeAppointment(Model model) {
+		
+		return "/home/mk_appointment";
+	}
+	
+	/**
 	 * 到口腔技术介绍页（牙齿矫正）
 	 * @param model
 	 * @return
