@@ -1,0 +1,45 @@
+.newcenter_main{
+    background-color: #e4eced;
+    width: 90%;
+    height: 1000px;
+    margin-top: 12px;
+    margin-left: 5%;
+}
+.new_left{
+    width: 80%;
+    height: 100%;
+    float: left;
+}
+.new_right{
+    background-color: #DBDDD3;
+    width: 18%;
+    height: 100%;
+    float: right;
+}
+.new_div{
+    width: 100%;
+    height: 95%;
+}
+.new_btns{
+    width: 100%;
+    height: 10%;
+}
+.new_art{
+	background-color: white;
+    width: 100%;
+    height: 86%;
+    margin-bottom: 0px;
+}
+.new_btn{
+    width: 15%;
+    height: 50%;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    background: #5faef2;
+    color: aliceblue;
+    float: left;
+    margin-left: 8%;
+    margin-top:2%;
+    font-size: 18px;
+    text-align: center;
+}

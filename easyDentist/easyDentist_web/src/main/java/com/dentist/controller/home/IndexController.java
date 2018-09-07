@@ -92,6 +92,27 @@ public class IndexController {
 	}
 	
 	/**
+	 * 到新闻中心页
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/newCenter", method = RequestMethod.GET)
+	public ModelAndView newCenter(Model model) {
+		
+		
+		ModelAndView mv = new ModelAndView("/home/newcenter");
+
+		List<Banner> lunbo_banners = bannerService.queryBannerByType(Constant.BANNER_LUNBO);
+		
+		//查询医生信息集合
+		List<Doctor> doctors = doctorService.getAllList();
+		
+		
+		mv.addObject("lunbo_banners", lunbo_banners);
+		return mv;
+	}
+	
+	/**
 	 * 到口腔技术介绍页（牙齿矫正）
 	 * @param model
 	 * @return

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<title>新闻中心</title>
+<link type="text/css" href="/css/style.css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="/css/index.css"  />
+<link type="text/css" rel="stylesheet" href="/css/news.css"  />
+<link type="text/css" rel="stylesheet" href="/layui_v2.3.0/css/layui.css"  />
+
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+<style type="text/css">
+.layui-laypage {
+    margin: -18px 0 0 25%;
+}
+</style>
+</head>
+
+<body>
+<#include "/common/home_header.html"/>
+<!--轮播器 -->
+   <#include "/common/home_lunbo.html"/>
+<!--轮播器 -->
+
+<!--牙科项目介绍 -->
+    <#include "/common/home_oral.html"/>
+<!--牙科项目介绍 -->
+
+<div class="newcenter_main">
+<div class="new_left">
+<div class="new_div">
+<div class="new_btns">
+<button class="new_btn" value="ARTICLE_NEWS">新闻动态</button>
+<button class="new_btn" value="ARTICLE_HEALTH">口腔知识</button>
+<button class="new_btn" value="ARTICLE_GY_ACTIVITY">优惠活动</button>
+<button class="new_btn" value="ARTICLE_YH_ACTIVITY">公益活动</button>
+</div>
+<div class="new_art">
+
+</div>
+</div>
+ <div id="pageView"></div>
+</div>
+<div class="new_right">
+</div>
+</div>
+<#include "/common/home_footer.html"/>
+<script src="/layui_v2.3.0/layui.all.js"  charset="utf-8" ></script>
+<script>
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  laypage.render({
+	    elem: 'pageView'
+	    ,count: 100
+	    ,theme: '#FFB800'
+	  });
+  
+});
+</script>
+</body>
+</html>

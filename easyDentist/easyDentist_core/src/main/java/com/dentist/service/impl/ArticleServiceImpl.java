@@ -16,6 +16,7 @@ import com.dentist.mapper.ArticleMapper;
 import com.dentist.service.ArticleService;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
+import com.dentist.utils.Pager;
 
 @Transactional
 @Service("articleService")
@@ -139,6 +140,13 @@ public class ArticleServiceImpl implements ArticleService {
 	public int deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	
+	@Override
+	public Pager<Article> queryArticlesByType(String type) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
