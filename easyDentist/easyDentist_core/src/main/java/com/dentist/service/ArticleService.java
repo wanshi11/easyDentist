@@ -27,5 +27,5 @@ public interface ArticleService extends IBaseService<Article>{
 	Article queryArticleNotRepeatByTitle(String title, Integer id);
 
 	//前台分页
-	Pager<Article> queryArticlesByType(String type);
+	Pager<Article> queryArticlesByType(String type,Integer currentPage);
 }

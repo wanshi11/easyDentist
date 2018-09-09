@@ -40,7 +40,12 @@
 
 </div>
 </div>
- <div id="pageView"></div>
+ <div id="pageView">
+ </div>
+ <input type="hidden" value="${informationCodeList.TotalPages}" id="pageTotal"> <!-- 总条数 -->
+<input type="hidden" value="${informationCodeList.number+1}" id="page">　　<!-- 第几页 -->
+ 
+ 
 </div>
 <div class="new_right">
 </div>
@@ -48,17 +53,50 @@
 <#include "/common/home_footer.html"/>
 <script src="/layui_v2.3.0/layui.all.js"  charset="utf-8" ></script>
 <script>
+$(document).ready(function(){
+	
 layui.use(['laypage', 'layer'], function(){
   var laypage = layui.laypage
   ,layer = layui.layer;
   
   laypage.render({
 	    elem: 'pageView'
-	    ,count: 100
+	    ,count: 31
+	    ,limit: 10
 	    ,theme: '#FFB800'
+	    ,jump: function(obj, first){
+	    	console.log(obj);
+	    	console.log(first);
+	    	        //得到了当前页，用于向服务端请求对应数据
+	    	        var curr = obj.curr -1;
+	    	        var self  = this;
+	    	        console.log(self);
+	    	        
+	    	        $.ajax({
+	    		        //几个参数需要注意一下
+	    		            type: "POST",//方法类型
+	    		            url: "${request.contextPath}/news/getPageInfo" ,//url
+	    		            data: {
+	    		            	type:"ARTICLE_NEWS",
+	    		            	currentPage:curr
+	    		            },
+	    		            success: function (result) {
+	    		            	console.log(result);
+	    		            	
+	    		            },
+	    		            error: function(XMLHttpRequest, textStatus, errorThrown) {
+	    		            	 alert(XMLHttpRequest.status);
+	    		            	 alert(XMLHttpRequest.readyState);
+	    		            	 alert(XMLHttpRequest.responseText);
+	    		            	 alert(textStatus);
+	    		            }
+	    		        });
+	    	    }
 	  });
   
 });
+});
 </script>
+
 </body>
 </html>

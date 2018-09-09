@@ -316,5 +316,15 @@
 		</if>
 		limit ${params.rowStart}, ${params.pageSize}
 	</select>
+	
+	<select id="queryArticlePageInfoByType" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select * from t_article where status !=0 and articleType = #{type}
+		order by top, createTime desc limit ${start}, ${size}
+	</select>
+	
+	
+  <select id="queryArticlePageCountByType"  resultType="java.lang.Integer" parameterType="java.lang.String">
+       select count(*)  from t_article where status !=0 and articleType = #{type}
+  </select>
     
 </mapper>

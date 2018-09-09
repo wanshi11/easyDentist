@@ -1,8 +1,7 @@
 package com.dentist.controller.home;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,9 +13,10 @@ import com.dentist.utils.Pager;
 
 /**
  * 
- * Ç°Ì¨ÐÂÎÅÖÐÐÄ
+ * æ–°é—»ä¸­å¿ƒæŽ§åˆ¶å™¨
  */
 @RequestMapping("/news")
+@Controller
 public class FArticleController {
 	
 	@Autowired
@@ -26,10 +26,10 @@ public class FArticleController {
 
 	
 	
-	@PostMapping("/getPage")
-	public Pager<Article> getPages(String type) {
+	@PostMapping("/getPageInfo")
+	public Pager<Article> getPages(String type,Integer currentPage) {
 		
-		Pager<Article> pager = articleService.queryArticlesByType(type);
+		Pager<Article> pager = articleService.queryArticlesByType(type,currentPage);
 		
 		return pager;
 	}

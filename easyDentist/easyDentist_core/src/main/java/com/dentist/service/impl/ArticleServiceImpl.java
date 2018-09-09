@@ -144,9 +144,30 @@ public class ArticleServiceImpl implements ArticleService {
 
 	
 	@Override
-	public Pager<Article> queryArticlesByType(String type) {
+	public Pager<Article> queryArticlesByType(String type,Integer currentPage) {
 		// TODO Auto-generated method stub
-		return null;
+		Pager<Article> pager = new Pager<>();
+		
+		int total = articleMapper.queryArticlePageCountByType(type);
+		pager.setTotal(total);
+		pager.setSize(pager.DEFAULT_PAGE_SIZE);
+		
+		List<Article> list = articleMapper.queryArticlePageInfoByType(currentPage*pager.DEFAULT_PAGE_SIZE, pager.DEFAULT_PAGE_SIZE, type);
+		pager.setDatas(list);
+		pager.setCurrentPage(currentPage+1);
+		
+		
+		return pager;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

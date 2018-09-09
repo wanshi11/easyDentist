@@ -36,4 +36,9 @@ public interface ArticleMapper {
     List<Article> selectWithPageByExample(@Param("example") ArticleExample example,@Param("params") Map<String, String> params);
 
     
+    List<Article> queryArticlePageInfoByType(@Param(value="start") Integer start,@Param(value="size") Integer size,@Param(value="type") String type);//start 从第几条数据开始
+    
+    Integer queryArticlePageCountByType(@Param(value="type") String type);//总条数
+    
+    
 }
