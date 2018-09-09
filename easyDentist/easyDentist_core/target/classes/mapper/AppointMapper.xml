@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dentist.mapper.AppointMapper" >
+  <resultMap id="BaseResultMap" type="com.dentist.entity.Appoint" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="patientName" property="patientname" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="clinic" property="clinic" jdbcType="VARCHAR" />
+    <result column="messageContent" property="messagecontent" jdbcType="VARCHAR" />
+    <result column="messageType" property="messagetype" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="doctorName" property="doctorname" jdbcType="VARCHAR" />
+    <result column="appointDate" property="appointdate" jdbcType="DATE" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="operatorId" property="operatorid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, patientName, phone, clinic, messageContent, messageType, status, doctorName, 
+    appointDate, remark, operatorId, createTime, updateTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dentist.entity.AppointExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_appointment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_appointment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_appointment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dentist.entity.AppointExample" >
+    delete from t_appointment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dentist.entity.Appoint" >
+    insert into t_appointment (id, patientName, phone, 
+      clinic, messageContent, messageType, 
+      status, doctorName, appointDate, 
+      remark, operatorId, createTime, 
+      updateTime)
+    values (#{id,jdbcType=INTEGER}, #{patientname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{clinic,jdbcType=VARCHAR}, #{messagecontent,jdbcType=VARCHAR}, #{messagetype,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{doctorname,jdbcType=VARCHAR}, #{appointdate,jdbcType=DATE}, 
+      #{remark,jdbcType=VARCHAR}, #{operatorid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dentist.entity.Appoint" >
+    insert into t_appointment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="patientname != null" >
+        patientName,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="clinic != null" >
+        clinic,
+      </if>
+      <if test="messagecontent != null" >
+        messageContent,
+      </if>
+      <if test="messagetype != null" >
+        messageType,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="doctorname != null" >
+        doctorName,
+      </if>
+      <if test="appointdate != null" >
+        appointDate,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="operatorid != null" >
+        operatorId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="patientname != null" >
+        #{patientname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="clinic != null" >
+        #{clinic,jdbcType=VARCHAR},
+      </if>
+      <if test="messagecontent != null" >
+        #{messagecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="messagetype != null" >
+        #{messagetype,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null" >
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="appointdate != null" >
+        #{appointdate,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorid != null" >
+        #{operatorid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dentist.entity.AppointExample" resultType="java.lang.Integer" >
+    select count(*) from t_appointment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_appointment
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.patientname != null" >
+        patientName = #{record.patientname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clinic != null" >
+        clinic = #{record.clinic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messagecontent != null" >
+        messageContent = #{record.messagecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messagetype != null" >
+        messageType = #{record.messagetype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorname != null" >
+        doctorName = #{record.doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appointdate != null" >
+        appointDate = #{record.appointdate,jdbcType=DATE},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorid != null" >
+        operatorId = #{record.operatorid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_appointment
+    set id = #{record.id,jdbcType=INTEGER},
+      patientName = #{record.patientname,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      clinic = #{record.clinic,jdbcType=VARCHAR},
+      messageContent = #{record.messagecontent,jdbcType=VARCHAR},
+      messageType = #{record.messagetype,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      doctorName = #{record.doctorname,jdbcType=VARCHAR},
+      appointDate = #{record.appointdate,jdbcType=DATE},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      operatorId = #{record.operatorid,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dentist.entity.Appoint" >
+    update t_appointment
+    <set >
+      <if test="patientname != null" >
+        patientName = #{patientname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="clinic != null" >
+        clinic = #{clinic,jdbcType=VARCHAR},
+      </if>
+      <if test="messagecontent != null" >
+        messageContent = #{messagecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="messagetype != null" >
+        messageType = #{messagetype,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null" >
+        doctorName = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="appointdate != null" >
+        appointDate = #{appointdate,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorid != null" >
+        operatorId = #{operatorid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dentist.entity.Appoint" >
+    update t_appointment
+    set patientName = #{patientname,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      clinic = #{clinic,jdbcType=VARCHAR},
+      messageContent = #{messagecontent,jdbcType=VARCHAR},
+      messageType = #{messagetype,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      doctorName = #{doctorname,jdbcType=VARCHAR},
+      appointDate = #{appointdate,jdbcType=DATE},
+      remark = #{remark,jdbcType=VARCHAR},
+      operatorId = #{operatorid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
