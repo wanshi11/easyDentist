@@ -36,7 +36,7 @@
 <button class="new_btn" value="ARTICLE_GY_ACTIVITY">优惠活动</button>
 <button class="new_btn" value="ARTICLE_YH_ACTIVITY">公益活动</button>
 </div>
-<div class="new_art">
+<div class="new_art" id="newsInfo">
 
 </div>
 </div>
@@ -54,6 +54,92 @@
 <script src="/layui_v2.3.0/layui.all.js"  charset="utf-8" ></script>
 <script>
 $(document).ready(function(){
+	
+    //ajax请求后台数据
+    getNewsPageInfo();
+	
+    toPage();
+
+});
+
+	//分页参数设置 这些全局变量关系到分页的功能
+	var startAllAppoint = 0;//开始页数
+	var limitAllAppoint = 10;//每页显示数据条数
+	var currentPageAllAppoint = 1;//当前页数
+	var dataLength = 0;//数据总条数
+	//ajax请求后台数据
+	function getNewsPageInfo(){
+		$.ajax({
+			type:"post",
+			async:false,
+			url:"${request.contextPath}/news/getPageInfo",
+			data:{
+        	type:"ARTICLE_NEWS",
+        	currentPage:startAllAppoint
+        },
+			success:function(result,status){
+				data=eval("("+result+")");
+				getNewsView(result.datas);
+				startAllAppoint = result.currentPage;//当前页数(后台返回)
+				dataLength  = result.total;//数据总条数
+			}
+		});
+		
+	}
+	
+	function getNewsView(data){
+		var s = "<tr><th>姓名</th><th>性别</th><th>电话</th><th>备案楼盘</th><th>已成交</th><th>归属经纪人</th><th>添加时间</th></tr>";
+		$.each(data,function(v,o){
+				s+='<tr><td>'+111+'</td>';
+				s+='<td>'+222+'</td>';
+				s+='<td>'+333+'</td>';
+				s+='<td>'+444+'</td>';
+				s+='<td>'+555+'</td>';
+				s+='<td>'+666+'</td>';
+				s+='<td>'+777+'</td></tr>';
+		});
+		if(data.length>0){
+			alert(11);
+			$("#newsInfo").html(s);
+		}else{
+			$("#page1").hide();
+			$("#newsInfo").html("<br/><span style='width:10%;height:30px;display:block;margin:0 auto;'>暂无数据</span>");
+		}
+		
+		
+	}
+	
+	function toPage(){
+		
+		layui.use(['laypage', 'layer'], function(){
+			  var laypage = layui.laypage
+			  ,layer = layui.layer;
+			  
+			  laypage.render({
+				    elem: 'pageView'
+				    ,count: dataLength //这个是后台返回的数据的总条数
+				    ,limit: limitAllAppoint   //每页显示的数据的条数,layui会根据count，limit进行分页的计算
+				    ,theme: '#FFB800'
+				    ,curr: currentPageAllAppoint
+					,skip: true
+					,jump: function(obj, first){
+					    	
+					    	currentPageAllAppoint = obj.curr;
+					    	startAllAppoint = (obj.curr-1)*obj.limit;
+					    	
+					      if(!first){ //一定要加此判断，否则初始时会无限刷新
+					    	  getNewsPageInfo();//一定要把翻页的ajax请求放到这里，不然会请求两次。
+					        
+					      }
+					    }
+			  
+			});
+		
+	});
+	};
+</script>
+<script>
+/* $(document).ready(function(){
 	
 layui.use(['laypage', 'layer'], function(){
   var laypage = layui.laypage
@@ -95,7 +181,7 @@ layui.use(['laypage', 'layer'], function(){
 	  });
   
 });
-});
+}); */
 </script>
 
 </body>
