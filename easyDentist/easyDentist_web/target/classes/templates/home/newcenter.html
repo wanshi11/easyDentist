@@ -31,157 +31,139 @@
 <div class="new_left">
 <div class="new_div">
 <div class="new_btns">
-<button class="new_btn" value="ARTICLE_NEWS">新闻动态</button>
+<#if (articleType == 'ARTICLE_NEWS') >
+<button class="new_btn activeBtn" value="ARTICLE_NEWS" ">新闻动态</button>
+<#else>
+<button class="new_btn" value="ARTICLE_NEWS" ">新闻动态</button>
+</#if>
+<#if (articleType == 'ARTICLE_HEALTH') >
+<button class="new_btn activeBtn" value="ARTICLE_HEALTH">口腔知识</button>
+<#else>
 <button class="new_btn" value="ARTICLE_HEALTH">口腔知识</button>
+</#if>
+<#if (articleType == 'ARTICLE_GY_ACTIVITY') >
+<button class="new_btn activeBtn" value="ARTICLE_GY_ACTIVITY">优惠活动</button>
+<#else>
 <button class="new_btn" value="ARTICLE_GY_ACTIVITY">优惠活动</button>
+</#if>
+<#if (articleType == 'ARTICLE_YH_ACTIVITY') >
+<button class="new_btn activeBtn" value="ARTICLE_YH_ACTIVITY">公益活动</button>
+<#else>
 <button class="new_btn" value="ARTICLE_YH_ACTIVITY">公益活动</button>
+</#if>
+<style type="text/css">
+			.pagediv{}
+			.pagediv ul{}
+			.activeBtn{background-color:#5399d5}
+			.pagediv ul li{float: left;background: #A2C2E1;margin-right: 5px;height: 22px;line-height: 22px;padding: 0px 4px;}
+			.pagediv ul li.active{background-color: #5faef2;}
+			.pagediv ul li:hover{background-color: #5399d5;}
+			.pagediv ul li a{color:#fff;}
+			.new_art h3{font-size: 18px;color: #2e4783;width: 80%;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+			.article_t_d{float: left;width: 740px;height: 120px;margin-left: 15px;}
+			.article_detail { width: 80%;margin-top: 10px;height: 60px;}
+			.top{
+    background: #5faef2;
+    width: 60px;
+    height: 30px;
+    margin-top: -15px;
+    margin-right: 0px;
+    position: absolute;
+    border-right-width: 0px;
+    border-right-style: solid;
+    margin-left: -42px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    line-height: 30px;
+}
+.article_tm{
+    color: #897575;
+    margin-top: 10px;
+}
+			</style>
 </div>
 <div class="new_art" id="newsInfo">
+                <#list pager.list as article >
+                <div class="article_info">
+				<img src="${article.thumbnailurl}" class="article_img">	
+				<div class="article_t_d">
+				<h3>${article.title}</h3>	
+				<p class="article_detail">
+				    ${article.introduction}
+				</p>
+				<p class="article_tm">${article.createtime?string('yyyy-MM-dd HH:mm')}</p>	
+				</div>
+				<#if article.top == 1>
+				<span class= "top">置顶</span>
+				</#if>
+                </div>
+				</#list>
+<div class="clear"></div>
+<!-- 分页部分 -->
+ <div class="pageView">
+			<div class="pageTotal">
+				当前第${pager.currentPage}/${pager.totalPage}页&nbsp;-&nbsp;共${pager.totalRecord}条记录
+			</div>
+			
+			
+			<div class="pagediv">
+				<ul>
+					<#if pager.currentPage == 1>
+						<li class="disabled"><a href="javascript: void(0)">首页</a></li>
+						<li class="disabled"><a href="javascript: void(0)">上一页</a></li>
+					</#if>
+					<#if pager.currentPage gt 1>
+						<li><a href="${request.contextPath}/home/newCenter?articleType=${articleType}&page=1">首页</a></li>
+						<li><a href="${request.contextPath}/home/newCenter?articleType=${articleType}&page=${pager.previousPage}">上一页</a></li>
+					</#if>
+					<#if pager.pageBar ??>
+					<#list pager.pageBar as num >
+							<#if num == pager.currentPage >
+								<li class="active"><a href="${request.contextPath}/home/newCenter?articleType=${articleType}&page=${num}">${num }</a></li>
+							</#if>
+							<#if num != pager.currentPage >
+								<li><a href="${request.contextPath}/home/newCenter?articleType=${articleType}&page=${num}">${num }</a></li>
+							</#if>
+						</#list>
+					</#if>
+				    <#if pager.currentPage == pager.totalPage>
+				    	<li class="disabled"><a href="javascript: void(0)">下一页</a></li>
+				    	<li class="disabled"><a href="javascript: void(0)">尾页</a></li>
+				    </#if>
+				     <#if pager.currentPage lt pager.totalPage >
+				    	<li><a href="${request.contextPath}/home/newCenter?articleType=${articleType}&page=${pager.nextPage}">下一页</a></li>
+				    	<li><a href="${request.contextPath}/home/newCenter?articleType=${articleType}&page=${pager.totalPage}">尾页</a></li>
+				    </#if>
+				 </ul>
+				 <div class="clear"></div>
+			</div>
+      </div>
+	<!-- 分页部分 -->
+</div>
+</div>
 
-</div>
-</div>
- <div id="pageView">
- </div>
- <input type="hidden" value="${informationCodeList.TotalPages}" id="pageTotal"> <!-- 总条数 -->
-<input type="hidden" value="${informationCodeList.number+1}" id="page">　　<!-- 第几页 -->
- 
- 
+
 </div>
 <div class="new_right">
 </div>
+<div class="clear"></div>
 </div>
 <#include "/common/home_footer.html"/>
-<script src="/layui_v2.3.0/layui.all.js"  charset="utf-8" ></script>
 <script>
-$(document).ready(function(){
+   $(function(){
 	
-    //ajax请求后台数据
-    getNewsPageInfo();
-	
-    toPage();
-
-});
-
-	//分页参数设置 这些全局变量关系到分页的功能
-	var startAllAppoint = 0;//开始页数
-	var limitAllAppoint = 10;//每页显示数据条数
-	var currentPageAllAppoint = 1;//当前页数
-	var dataLength = 0;//数据总条数
-	//ajax请求后台数据
-	function getNewsPageInfo(){
-		$.ajax({
-			type:"post",
-			async:false,
-			url:"${request.contextPath}/news/getPageInfo",
-			data:{
-        	type:"ARTICLE_NEWS",
-        	currentPage:startAllAppoint
-        },
-			success:function(result,status){
-				data=eval("("+result+")");
-				getNewsView(result.datas);
-				startAllAppoint = result.currentPage;//当前页数(后台返回)
-				dataLength  = result.total;//数据总条数
-			}
-		});
-		
-	}
-	
-	function getNewsView(data){
-		var s = "<tr><th>姓名</th><th>性别</th><th>电话</th><th>备案楼盘</th><th>已成交</th><th>归属经纪人</th><th>添加时间</th></tr>";
-		$.each(data,function(v,o){
-				s+='<tr><td>'+111+'</td>';
-				s+='<td>'+222+'</td>';
-				s+='<td>'+333+'</td>';
-				s+='<td>'+444+'</td>';
-				s+='<td>'+555+'</td>';
-				s+='<td>'+666+'</td>';
-				s+='<td>'+777+'</td></tr>';
-		});
-		if(data.length>0){
-			alert(11);
-			$("#newsInfo").html(s);
-		}else{
-			$("#page1").hide();
-			$("#newsInfo").html("<br/><span style='width:10%;height:30px;display:block;margin:0 auto;'>暂无数据</span>");
-		}
-		
-		
-	}
-	
-	function toPage(){
-		
-		layui.use(['laypage', 'layer'], function(){
-			  var laypage = layui.laypage
-			  ,layer = layui.layer;
-			  
-			  laypage.render({
-				    elem: 'pageView'
-				    ,count: dataLength //这个是后台返回的数据的总条数
-				    ,limit: limitAllAppoint   //每页显示的数据的条数,layui会根据count，limit进行分页的计算
-				    ,theme: '#FFB800'
-				    ,curr: currentPageAllAppoint
-					,skip: true
-					,jump: function(obj, first){
-					    	
-					    	currentPageAllAppoint = obj.curr;
-					    	startAllAppoint = (obj.curr-1)*obj.limit;
-					    	
-					      if(!first){ //一定要加此判断，否则初始时会无限刷新
-					    	  getNewsPageInfo();//一定要把翻页的ajax请求放到这里，不然会请求两次。
-					        
-					      }
-					    }
-			  
-			});
-		
-	});
-	};
-</script>
-<script>
-/* $(document).ready(function(){
-	
-layui.use(['laypage', 'layer'], function(){
-  var laypage = layui.laypage
-  ,layer = layui.layer;
+	   
+	   
+	   
+  $(".new_btn").click(function(){
+	  var type = $(this).val();
+	  window.location.href="${request.contextPath}/home/newCenter?articleType="+type+"&page=1";
+  });
   
-  laypage.render({
-	    elem: 'pageView'
-	    ,count: 31
-	    ,limit: 10
-	    ,theme: '#FFB800'
-	    ,jump: function(obj, first){
-	    	console.log(obj);
-	    	console.log(first);
-	    	        //得到了当前页，用于向服务端请求对应数据
-	    	        var curr = obj.curr -1;
-	    	        var self  = this;
-	    	        console.log(self);
-	    	        
-	    	        $.ajax({
-	    		        //几个参数需要注意一下
-	    		            type: "POST",//方法类型
-	    		            url: "${request.contextPath}/news/getPageInfo" ,//url
-	    		            data: {
-	    		            	type:"ARTICLE_NEWS",
-	    		            	currentPage:curr
-	    		            },
-	    		            success: function (result) {
-	    		            	console.log(result);
-	    		            	
-	    		            },
-	    		            error: function(XMLHttpRequest, textStatus, errorThrown) {
-	    		            	 alert(XMLHttpRequest.status);
-	    		            	 alert(XMLHttpRequest.readyState);
-	    		            	 alert(XMLHttpRequest.responseText);
-	    		            	 alert(textStatus);
-	    		            }
-	    		        });
-	    	    }
-	  });
-  
-});
-}); */
+   });
+   
+   
 </script>
 
 </body>

@@ -319,7 +319,7 @@
 	
 	<select id="queryArticlePageInfoByType" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select * from t_article where status !=0 and articleType = #{type}
-		order by top, createTime desc limit ${start}, ${size}
+		order by top desc, createTime desc limit ${start}, ${size}
 	</select>
 	
 	

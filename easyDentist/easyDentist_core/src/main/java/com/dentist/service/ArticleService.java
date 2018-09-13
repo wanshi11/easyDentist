@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.dentist.entity.Article;
 import com.dentist.utils.LayuiPageParam;
-import com.dentist.utils.Pager;
+import com.dentist.utils.Page;
 
 
 public interface ArticleService extends IBaseService<Article>{
@@ -27,5 +27,5 @@ public interface ArticleService extends IBaseService<Article>{
 	Article queryArticleNotRepeatByTitle(String title, Integer id);
 
 	//前台分页
-	Pager<Article> queryArticlesByType(String type,Integer currentPage);
+	Page<Article> queryArticlesByType(String type,Integer currentPage);
 }

@@ -1,7 +1,10 @@
 package com.dentist.controller.home;
 
+import io.swagger.models.Contact;
+
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dentist.cfg.Constant;
+import com.dentist.entity.Article;
 import com.dentist.entity.Banner;
 import com.dentist.entity.Doctor;
+import com.dentist.service.ArticleService;
 import com.dentist.service.BannerService;
 import com.dentist.service.DoctorService;
+import com.dentist.utils.Page;
 
 
 
@@ -30,6 +36,8 @@ public class IndexController {
 	private BannerService bannerService;
 	@Autowired
 	private DoctorService doctorService;
+	@Autowired
+	private ArticleService articleService;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
@@ -97,7 +105,7 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value = "/newCenter", method = RequestMethod.GET)
-	public ModelAndView newCenter(Model model) {
+	public ModelAndView newCenter(Model model,@Param("articleType") String articleType,@Param("page") Integer page) {
 		
 		
 		ModelAndView mv = new ModelAndView("/home/newcenter");
@@ -107,7 +115,11 @@ public class IndexController {
 		//查询医生信息集合
 		List<Doctor> doctors = doctorService.getAllList();
 		
+		//新闻分页
+        Page<Article> pager = articleService.queryArticlesByType(articleType,page);
 		
+        mv.addObject("articleType", articleType);
+		mv.addObject("pager", pager);
 		mv.addObject("lunbo_banners", lunbo_banners);
 		return mv;
 	}

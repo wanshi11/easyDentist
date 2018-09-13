@@ -2,13 +2,14 @@ package com.dentist.controller.home;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dentist.entity.Article;
 import com.dentist.service.ArticleExtService;
 import com.dentist.service.ArticleService;
-import com.dentist.utils.Pager;
+import com.dentist.utils.Page;
 
 
 /**
@@ -26,11 +27,13 @@ public class FArticleController {
 
 	
 	
-	@PostMapping("/getPageInfo")
-	public Pager<Article> getPages(String type,Integer currentPage) {
+	@GetMapping("/getPageInfo")
+	public String getPages(Model model,String type,Integer currentPage) {
 		
-		Pager<Article> pager = articleService.queryArticlesByType(type,currentPage);
+		Page<Article> pager = articleService.queryArticlesByType(type,currentPage);
 		
-		return pager;
+		model.addAttribute("pager", pager);
+		
+		return "/home/newcenter";
 	}
 }

@@ -1,9 +1,9 @@
 .newcenter_main{
     background-color: #e4eced;
-    width: 90%;
+    width: 1200px;
     height: 1000px;
     margin-top: 12px;
-    margin-left: 5%;
+    margin-left: 5.5%;
 }
 .new_left{
     width: 80%;
@@ -18,7 +18,7 @@
 }
 .new_div{
     width: 100%;
-    height: 95%;
+    height: 90%;
 }
 .new_btns{
     width: 100%;
@@ -27,7 +27,7 @@
 .new_art{
 	background-color: white;
     width: 100%;
-    height: 86%;
+    height: 100%;
     margin-bottom: 0px;
 }
 .new_btn{
@@ -43,3 +43,43 @@
     font-size: 18px;
     text-align: center;
 }
+.new_btn:hover{background-color: #5399d5;}
+
+.pageView{
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    padding: 20px auto;
+    margin-top: 15px;
+}
+.pageTotal{
+    width: 30%;
+    height: 30px;
+    float: left;
+}
+.pagediv{
+    float: left;
+    width: 70%;
+    height: 30px;
+    text-align: left;
+}
+
+.article_info{
+    height: 120px;
+    margin: 20px auto;
+    border:1px solid #d2cbed;
+    padding: 15px;
+}
+.article_info:first-child{margin: 0 auto;}
+
+.disabled{
+	display:none;
+}
+
+.article_img{
+	float:left;
+	width:170px;
+	height: 120px;
+}
+
+

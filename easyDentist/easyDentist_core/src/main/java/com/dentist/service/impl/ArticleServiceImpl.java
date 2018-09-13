@@ -10,12 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import com.dentist.cfg.Constant;
 import com.dentist.entity.Article;
 import com.dentist.entity.ArticleExample;
 import com.dentist.mapper.ArticleMapper;
 import com.dentist.service.ArticleService;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
+import com.dentist.utils.Page;
 import com.dentist.utils.Pager;
 
 @Transactional
@@ -144,17 +146,23 @@ public class ArticleServiceImpl implements ArticleService {
 
 	
 	@Override
-	public Pager<Article> queryArticlesByType(String type,Integer currentPage) {
+	public Page<Article> queryArticlesByType(String type,Integer currentPage) {
 		// TODO Auto-generated method stub
-		Pager<Article> pager = new Pager<>();
+		Page<Article> pager = new Page<>();
+		
+		if(StringUtils.isEmpty(type)){
+			type = Constant.ARTICLE_NEWS;
+		}
+		if(currentPage == null){
+			currentPage = 1;
+		}
 		
 		int total = articleMapper.queryArticlePageCountByType(type);
-		pager.setTotal(total);
-		pager.setSize(pager.DEFAULT_PAGE_SIZE);
+		pager.setTotalRecord(total);
 		
-		List<Article> list = articleMapper.queryArticlePageInfoByType(currentPage*pager.DEFAULT_PAGE_SIZE, pager.DEFAULT_PAGE_SIZE, type);
-		pager.setDatas(list);
-		pager.setCurrentPage(currentPage+1);
+		List<Article> list = articleMapper.queryArticlePageInfoByType((currentPage-1)*pager.getPageSize(), pager.getPageSize(), type);
+		pager.setList(list);
+		pager.setCurrentPage(currentPage);
 		
 		
 		return pager;

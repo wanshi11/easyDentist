@@ -1,5 +1,6 @@
 .oralmain{
-	margin: 5% 10% 0 10%;
+	width:1200px;
+	margin: 0 auto;
 }
 
 .oral_what{
@@ -47,26 +48,26 @@
 .wh_box_1{
 	background-color: red;
     width: 47%;
-    height: 41%;
+    height: 118px;
 	float:left;
 }
 .wh_box_2{
 	background-color: red;
     width: 47%;
-    height: 41%;
+    height: 118px;
     float:right;
 }
 .wh_box_3{
 	background-color: red;
     width: 47%;
-    height: 41%;
+    height: 118px;
     float:left;
     margin-top: 4%;
 }
 .wh_box_4{
 	background-color: red;
     width: 47%;
-    height: 41%;
+    height: 118px;
     float:right;
     margin-top: 4%;
 }
@@ -81,7 +82,7 @@
     font-style: normal;
     color:white;
     text-align:center;
-    line-height:100%;
+    line-height:118px;
     vertical-align:middle;
 }
 
