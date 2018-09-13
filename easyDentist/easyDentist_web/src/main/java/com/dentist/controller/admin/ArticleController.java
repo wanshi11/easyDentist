@@ -83,7 +83,8 @@ public class ArticleController {
 		    articleService.addArticle(article);
 		    
 		    articleExt.setArticleid(article.getId());
-		    articleExt.setReadvalue(0);
+		    //10到20的随机数
+		    articleExt.setReadvalue(Integer.parseInt((10+Math.random()*(11))+""));
 		    int num = articleExtService.add(articleExt);
 			if(num !=0){
 				result = "ADD_SUCCESS";
@@ -164,6 +165,24 @@ public class ArticleController {
 		model.addAttribute("artE", artE);
 		
 		return "/admin/article/article_edit";
+	}
+	
+	/**
+	 * 查看文章
+	 */
+	@RequestMapping(value = "/showArticleById")
+	public String showArticleById(Model model,int articleId){
+		
+		Article art = articleService.queryArticleById(articleId);
+		ArticleExt artE = articleExtService.queryArticleExtByarticleId(articleId);
+		
+		artE.setReadvalue(artE.getReadvalue()+1);
+		articleExtService.update(artE);
+	
+		model.addAttribute("art", art);
+		model.addAttribute("artE", artE);
+		
+		return "/home/news_detail";
 	}
 	
 	/**

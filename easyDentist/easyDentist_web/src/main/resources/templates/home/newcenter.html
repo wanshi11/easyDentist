@@ -59,7 +59,8 @@
 			.pagediv ul li.active{background-color: #5faef2;}
 			.pagediv ul li:hover{background-color: #5399d5;}
 			.pagediv ul li a{color:#fff;}
-			.new_art h3{font-size: 18px;color: #2e4783;width: 80%;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+			.new_art h3 a {font-size: 18px;color: #5c83e0;width: 80%;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+			.new_art h3 a:hover {color: #ff9f00;}
 			.article_t_d{float: left;width: 740px;height: 120px;margin-left: 15px;}
 			.article_detail { width: 80%;margin-top: 10px;height: 60px;}
 			.top{
@@ -88,14 +89,14 @@
                 <div class="article_info">
 				<img src="${article.thumbnailurl}" class="article_img">	
 				<div class="article_t_d">
-				<h3>${article.title}</h3>	
+				<h3><a href="${request.contextPath}/admin/article/showArticleById?articleId=${article.id}" >${article.title}</a></h3>	
 				<p class="article_detail">
 				    ${article.introduction}
 				</p>
 				<p class="article_tm">${article.createtime?string('yyyy-MM-dd HH:mm')}</p>	
 				</div>
 				<#if article.top == 1>
-				<span class= "top">置顶</span>
+				<span class= "top">TOP</span>
 				</#if>
                 </div>
 				</#list>
