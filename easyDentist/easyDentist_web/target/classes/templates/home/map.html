@@ -20,13 +20,26 @@
     float: left;
     margin-top:3%;
     width: 250px;
-    height: 350px;
+    height: 320px;
     margin-left:10%;
     }
     
     .map{
     width:697px;height:550px;border:#ccc solid 1px;
+    display: none;
     }
+    .mapBtn{
+    width: 100%;
+    height: 80px;
+    font-size: 18px;
+    color: white;
+    background: #A2C2E1;
+    border: 1px solid #c8afaf;
+}
+    .mapBtn:HOVER {
+	background: #1D72B6;
+}
+   .mapActive{display: block;}
 </style>
 <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 </head>
@@ -35,21 +48,23 @@
 <#include "/common/home_header.html"/>
 <img style="width: 100%;height: 400px;margin-top: -2px;" src="/images/ycdh/yc_03.jpg">
 
+<div style="height: 800px;">
 <div class="lxboard">
-
-
+<button id="ymBtn" class="mapBtn">怡美家园店</button>
+<button id="rqqBtn" class="mapBtn">瑞千秋佳苑店</button>
+<button id="llBtn" class="mapBtn">柳浪家园店</button>
+<button id="bcBtn" class="mapBtn">北辰香麓店</button>
 </div>
 <div class="mzlx">
     <div class="abname"> 门诊地址</div>
     <div class="lxc2" style="margin: 0px 0px 5px; padding: 0px; width: 700px; height: 60px; font-size: 16px; line-height: 24px; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(153, 153, 153); color: rgb(68, 68, 68); font-family: 微软雅黑, 'Microsoft Yahei', Tahoma, SimSun; "> 上海长宁区虹桥路1386号文广大厦2楼。咨询电话：021-52908085</div>
     <!--百度地图容器-->
-     <!--<div class="map" id="dituContent"></div>-->
-     <!-- <div class="map" id="dituContent1"></div>  -->
-    <!--  <div class="map" id="dituContent2"></div>  -->
+     <div class="map mapActive" id="dituContent"></div>
+     <div class="map" id="dituContent1"></div>
+     <div class="map" id="dituContent2"></div> 
      <div class="map" id="dituContent3"></div> 
   </div>
 </div>
-
 
 
   <#include "/common/home_footer.html"/>
@@ -94,7 +109,7 @@
     }
     
     //标注点数组
-    var markerArr = [{title:"新北口腔怡美店",content:"电话&nbsp;010-62880056",point:"116.329335|40.046483",isOpen:1,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+    var markerArr = [{title:"新北口腔(怡美家园店)",content:"电话&nbsp;010-62880056",point:"116.329335|40.046483",isOpen:1,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
 		 ];
     //创建marker
     function addMarker(){
@@ -452,6 +467,38 @@
     }
     
     initMap3();//创建和初始化地图
+</script>
+
+<script>
+$(function(){
+	
+/* 	$("#ymBtn").click(function(){
+	$("#ymBtn").addClass("mapActive");
+	//$("#ymBtn").siblings().removeClass("mapActive");	
+	});
+	
+	$("#rqqBtn").click(function(){
+		alert(2);
+	});
+	
+	$("#llBtn").click(function(){
+		alert(3);
+	});
+	
+	$("#bcBtn").click(function(){
+		alert(4);
+	}); */
+	
+	$(".mapBtn").hover(function(){
+		var _opt = $(this);
+		$(".map").eq(_opt.index()).addClass("mapActive").siblings().removeClass("mapActive");
+	});
+	
+});
+
+
+
+
 </script>
 
 </html>
