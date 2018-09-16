@@ -714,43 +714,8 @@ filter:alpha(opacity=40);position:absolute;bottom:0;z-index:1111;color:#fff;}
 .zjc2 a { color:#666666;}
 
 /*************************************************************/
-.abname { width:828px; height:30px; border-bottom:1px solid #B2B2B2; background:url(/images/abname.gif); font-size:20px; padding-top:33px;}
+.abname { width:800px; height:30px; border-bottom:1px solid #B2B2B2; background:url(/images/abname.gif); font-size:20px; padding-top:33px;}
 
-.hbc { width:700px; height:auto; padding:30px 0; font-size:16px; line-height:24px;}
-
-.hbclass { width:700px; height:45px; background:url(/images/dot2.gif) 0 10px repeat-x; font-size:18px;overflow: hidden;}
-
-.hbclass p { display:block; width:80px; height:30px; background:#FFFFFF; margin:0px;}
-
-.ghbox { width:700px; height:600px;}
-
-.oninput { width:345px; height:600px; border-right:1px solid #E0E0E0; float:left;}
-
-.ona1{ display:block; clear:both; height:auto; overflow:hidden; margin:20px 0 0; }
-
-.oninput label{display:block;text-align:right;width:60px;float:left; height:30px; line-height:30px;}
-
-.oninput span.required{display:block;font-weight:normal;text-align:left;padding-left:10px; float:left; height:30px; line-height:30px;}
-
-.oninput input.oninte{float:left;font-size:12px;border:solid 1px #E4E4E4;width:200px;margin:0px 0 0px 5px; display:block; height:30PX; line-height:30px; padding:0 2px;}
-
-.ondanxuan input{ margin:8px 0 0 10px;}
-
-.oninput textarea.oninte2{float:left;font-size:12px;border:solid 1px #E4E4E4;width:250px;margin:0px 0 0px 5px; height:127px; display:block; line-height:24px; padding:0 2px;}
-
-.oninput select{float:left;font-size:12px;width:80px;margin:0px 0 0px 5px; display:block; height:24PX; line-height:24px;}
-
-.oninput .onspan{ height:24PX; line-height:24px; float:left; text-align:right; width:60px; display:block;}
-
-.onbut{ padding:10px 0 0 75px; height:atuo; overflow:hidden;}
-
-.onbut button{ border:none; background:none; margin:0 5px; display:block; float:left;}
-
-.ghc2 { width:330px; height:600px; float:right;}
-
-.ghtxt { height:auto; padding-bottom:10px; margin-bottom:15px; border-bottom:1px dotted #888888; line-height:22px;}
-
-.ghp { width:530px; height:170px; border-top:1px solid #E0E0E0; background:url(/images/ghp.jpg) left no-repeat; padding:50px 0 0 170px; margin-top:40px; line-height:24px;}
 /**********************************/
 /* 搴曢儴 */
 .fr{ float:right;}

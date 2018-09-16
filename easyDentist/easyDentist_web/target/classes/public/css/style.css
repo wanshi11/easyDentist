@@ -42,7 +42,7 @@
 .zhuanjan2 { background:#ff9933; width:162px; height:50px; float:left; margin-left:17px; border-radius:35px; text-align:center;}
 .zhuanjan2 a{ font-size:16px; line-height:50px; color:#fff;}
 
-.stage1 .stage_b {width:452px;height:502px;background-color:#56a7e8;overflow:hidden; margin-left:16px;}
+.stage1 .mqs {width:452px;height:500PX;background-color:#CBF1F8;overflow:hidden; margin-left:16px;border:1px solid #DFDFDF}
 
 .doctorsBox .overlayer {left:0;top:0;width:100%;height:100%; background-color:rgba(0,0,0,.6);z-index:3;display:none;}
 .doctorsBox .popInfo {left:0;top:0;width:320px;height:125px; background-color:#FFF;z-index:4;display:none;}

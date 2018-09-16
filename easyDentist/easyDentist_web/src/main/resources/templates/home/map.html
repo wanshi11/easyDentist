@@ -34,12 +34,15 @@
     font-size: 18px;
     color: white;
     background: #A2C2E1;
-    border: 1px solid #c8afaf;
+    border: 1px solid #f2eeee;
 }
     .mapBtn:HOVER {
 	background: #1D72B6;
 }
    .mapActive{display: block;}
+   
+   .adress{margin: 0px 0px 5px;width: 700px; height: 60px; font-size: 16px; line-height: 24px; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(153, 153, 153); color: rgb(68, 68, 68); line-height: 60px; display: none;}
+   .adressActive{display: block;}
 </style>
 <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 </head>
@@ -50,14 +53,18 @@
 
 <div style="height: 800px;">
 <div class="lxboard">
-<button id="ymBtn" class="mapBtn">怡美家园店</button>
-<button id="rqqBtn" class="mapBtn">瑞千秋佳苑店</button>
-<button id="llBtn" class="mapBtn">柳浪家园店</button>
-<button id="bcBtn" class="mapBtn">北辰香麓店</button>
+<button  class="mapBtn">怡美家园店</button>
+<button  class="mapBtn">瑞千秋佳苑店</button>
+<button  class="mapBtn">柳浪家园店</button>
+<button  class="mapBtn">北辰香麓店</button>
 </div>
 <div class="mzlx">
-    <div class="abname"> 门诊地址</div>
-    <div class="lxc2" style="margin: 0px 0px 5px; padding: 0px; width: 700px; height: 60px; font-size: 16px; line-height: 24px; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(153, 153, 153); color: rgb(68, 68, 68); font-family: 微软雅黑, 'Microsoft Yahei', Tahoma, SimSun; "> 上海长宁区虹桥路1386号文广大厦2楼。咨询电话：021-52908085</div>
+    <div class="abname ">门诊地址</div>
+    <div class="adress adressActive"> 北京海淀区安宁庄西路15号5号楼1层3门101怡美家园店。<span style="color: #0039ff;">咨询电话：010-62880056</span></div>
+    <div class="adress" > 北京海淀区永丰路润千秋佳苑乙10号楼一层底商润千秋佳苑店。<span style="color: #0039ff;">咨询电话：010-62812799</span></div>
+    <div class="adress" > 北京海淀区厢黄旗东路柳浪家园15号楼底商柳浪家园店。<span style="color: #0039ff;">咨询电话：010-82396676</span></div>
+    <div class="adress" > 北京海淀区温泉显龙山路19号北辰香麓1幢1层北辰香麓店。<span style="color: #0039ff;">咨询电话：010-62495089</span></div>
+    
     <!--百度地图容器-->
      <div class="map mapActive" id="dituContent"></div>
      <div class="map" id="dituContent1"></div>
@@ -190,9 +197,12 @@
     //地图事件设置函数：
     function setMapEvent(){
         map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
-        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
-        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
-        map.enableKeyboard();//启用键盘上下左右键移动地图
+       // map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+       // map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+       // map.enableKeyboard();//启用键盘上下左右键移动地图
+        map.disableScrollWheelZoom();//禁用地图滚轮放大缩小，默认禁用(可不写)
+        map.disableDoubleClickZoom();//禁用鼠标双击放大
+        map.disableKeyboard();//禁用键盘上下左右键移动地图，默认禁用(可不写)
     }
     
     //地图控件添加函数：
@@ -289,9 +299,12 @@
     //地图事件设置函数：
     function setMapEvent(){
         map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
-        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
-        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
-        map.enableKeyboard();//启用键盘上下左右键移动地图
+       // map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+       // map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+       // map.enableKeyboard();//启用键盘上下左右键移动地图
+        map.disableScrollWheelZoom();//禁用地图滚轮放大缩小，默认禁用(可不写)
+        map.disableDoubleClickZoom();//禁用鼠标双击放大
+        map.disableKeyboard();//禁用键盘上下左右键移动地图，默认禁用(可不写)
     }
     
     //地图控件添加函数：
@@ -389,9 +402,12 @@
     //地图事件设置函数：
     function setMapEvent(){
         map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
-        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
-        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
-        map.enableKeyboard();//启用键盘上下左右键移动地图
+       // map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+       // map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+       // map.enableKeyboard();//启用键盘上下左右键移动地图
+        map.disableScrollWheelZoom();//禁用地图滚轮放大缩小，默认禁用(可不写)
+        map.disableDoubleClickZoom();//禁用鼠标双击放大
+        map.disableKeyboard();//禁用键盘上下左右键移动地图，默认禁用(可不写)
     }
     
     //地图控件添加函数：
@@ -469,29 +485,19 @@
     initMap3();//创建和初始化地图
 </script>
 
-<script>
+<script type="text/javascript">
 $(function(){
 	
-/* 	$("#ymBtn").click(function(){
-	$("#ymBtn").addClass("mapActive");
-	//$("#ymBtn").siblings().removeClass("mapActive");	
-	});
-	
-	$("#rqqBtn").click(function(){
-		alert(2);
-	});
-	
-	$("#llBtn").click(function(){
-		alert(3);
-	});
-	
-	$("#bcBtn").click(function(){
-		alert(4);
-	}); */
 	
 	$(".mapBtn").hover(function(){
 		var _opt = $(this);
+		
+		//设置地址
+		$(".adress").eq(_opt.index()).addClass("adressActive").siblings().removeClass("adressActive");
+		
+		//设置地图
 		$(".map").eq(_opt.index()).addClass("mapActive").siblings().removeClass("mapActive");
+		
 	});
 	
 });

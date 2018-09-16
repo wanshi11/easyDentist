@@ -7,12 +7,11 @@
 <meta name="keywords" content="新北口腔,北京牙科,北京牙齿种植,种植牙,牙齿矫正" />
 <link type="text/css" rel="stylesheet" href="/css/index.css"  />
 <link href="/css/style.css" rel="stylesheet"/>
+<script src="/js/indexApp.js"></script>
 <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 <script src="/js/jquery.SuperSlide.2.1.1.source.js"></script> 
 <script src="/js/expert.js"></script>
-<script src="/js/indexApp.js"></script>
 <script src="/layui_v2.3.0/layui.all.js"  charset="utf-8" ></script>
-
 
 </head>
 <body onselectstart="return false;">
@@ -108,8 +107,59 @@
             </div> </#list>
           </div>
         </div>
-        <div class="stage_b fr">
-      
+        <style>
+/* .pd5{ padding-top:5px}
+.dis{display:block}
+.undis{display:none} */
+
+.mqs {width:452px;height:500PX;background-color:#CBF1F8;overflow:hidden; margin-left:16px;border:1px solid #DFDFDF}
+#mq{width:410px;height:60px; margin:0 auto; text-align:left;}
+#mq ul{ width:100%;}
+#mq ul li{padding:11px 10px 12px 10px; height: 101px;width: 380px; overflow:hidden ;text-align:left; border-bottom:1px dashed #CCCCCC }
+#mq ul li .vo1,#mq ul li .vo2{height: 23px;; width:100%; overflow:hidden}
+#mq ul li .vo1 .name{ float:left;width: 300px; height:18px; line-height:18px}
+#mq ul li .vo1 .name span{ float:left; color:#ED701A;width: 80px; height:24px; line-height:18px;overflow:hidden;text-overflow:ellipsis;}
+#mq ul li .vo1 .name span a{ color:#ED701A ;font-family: Georgia;}
+#mq ul li .vo1 .name em{ float:left; line-height:18px; height:18px; font-style:normal}
+#mq ul li .vo1 .time{ float:right; overflow:hidden; width:68px; text-align:right;line-height:18px; height:18px; color:#888888}
+#mq ul li .vo2{ line-height:18px;text-overflow:ellipsis}
+        </style>
+        
+        <div class="mqs fr">
+         <div id="mq" onmouseover=iScrollAmount=0 style="OVERFLOW: hidden; WIDTH:410px; margin:0 auto; HEIGHT:480px;" onmouseout=iScrollAmount=1>
+        <ul>
+            <li>
+                <div class="vo1">
+                    <div class="name"><span><nobr><a href="http://www.divcss5.com/">QUESTION</a></nobr></span><em>购买了</em></div>
+                    <div class="time">09-01 08:10</div>
+                </div>
+                <div class="vo2"><nobr>统一阿萨姆 500ml/瓶x1 咪咪虾味</nobr></div>
+            </li>
+            
+            <li>
+                <div class="vo1">
+                    <div class="name"><span><nobr><a href="http://www.css5.com.cn/">QUESTION</a></nobr></span><em>购买了</em></div>
+                    <div class="time">09-01 08:10</div>
+                </div>
+                <div class="vo2"><nobr>统一阿萨姆 500ml/瓶x1 咪咪虾味</nobr></div>
+            </li>
+            <li>
+                <div class="vo1">
+                    <div class="name"><span><nobr><a href="http://www.divcss5.com/">QUESTION</a></nobr></span><em>购买了</em></div>
+                    <div class="time">09-01 08:10</div>
+                </div>
+                <div class="vo2"><nobr>统一阿萨姆 500ml/瓶x1 咪咪虾味</nobr></div>
+            </li>
+            <li>
+                <div class="vo1">
+                    <div class="name"><span><nobr><a href="http://www.divcss5.com/">QUESTION</a></nobr></span><em>购买了</em></div>
+                    <div class="time">09-01 08:10</div>
+                </div>
+                <div class="vo2"><nobr>统一阿萨姆 500ml/瓶x1 咪咪虾味</nobr></div>
+            </li>
+         
+        </ul>
+    </div>
       </div>
     </div>
   </div>
@@ -198,13 +248,10 @@
   </div>
 </section>
 <div class="clear"></div>
+<script src="/js/muqruujs.js"></script>
 <!--尾部 --> 
 
 <#include "/common/home_footer.html"/>
 </body>
-<script>
-function changeAColor(){
-	console.log($(this));
-}
-</script>
+
 </html>
