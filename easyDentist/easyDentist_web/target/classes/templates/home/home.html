@@ -136,7 +136,14 @@ background: linear-gradient(to right, transparent, #fff 55%);
 #mq ul li .vo1 .name span a{ color:#ED701A ;font-family: Georgia;}
 #mq ul li .vo1 .name em{ float:left; line-height:18px; height:18px; font-style:normal}
 #mq ul li .vo1 .time{ float:right; overflow:hidden; width:68px; text-align:right;line-height:18px; height:18px; color:#888888}
-#mq ul li .vo2{ line-height:18px;text-overflow:ellipsis}
+#mq ul li .vo2{ line-height:21px;position: relative; max-height: 84px;overflow: hidden;}
+#mq ul li .vo2::after{content: "..."; position: absolute; bottom: 0; right: 0; padding-left: 40px;
+background: -webkit-linear-gradient(left, transparent, #fff 55%);
+background: -o-linear-gradient(right, transparent, #fff 55%);
+background: -moz-linear-gradient(right, transparent, #fff 55%);
+background: linear-gradient(to right, transparent, #fff 55%);
+}
+
         </style>
         
         <div class="mqs fr">
@@ -146,10 +153,10 @@ background: linear-gradient(to right, transparent, #fff 55%);
          <#list qas as qa>
             <li>
                 <div class="vo1">
-                    <div class="name"><span><nobr><a href="http://www.divcss5.com/">QUESTION</a></nobr></span><em>${qa.question}</em></div>
+                    <div class="name"><span><a href="http://www.divcss5.com/">QUESTION</a></span><em>${qa.question}</em></div>
                     <div class="time">${qa.time?string('MM-dd')}</div>
                 </div>
-                <div class="vo2"><nobr>${qa.answer}</nobr></div>
+                <div class="vo2">${qa.answer}</div>
             </li>
             </#list>
         </ul>
@@ -181,16 +188,16 @@ background: linear-gradient(to right, transparent, #fff 55%);
 				href="javascript:void(0)" >门牙掉了一小块</a> <a
 				href="javascript:void(0)" >洗牙痛吗</a> <a
 				href="javascript:void(0)" >虎牙怎么办</a> <a
-				href="javascript:void(0)" onclick="">在线预约医生</a><a
+				href="javascript:void(0)" >在线预约医生</a><a
 				href="javascript:void(0)" >白领矫正牙齿</a><a
 				href="javascript:void(0)" >牙齿断了一半怎么办</a> <a
 				href="javascript:void(0)" >牙齿发黄</a> <a
 				href="javascript:void(0)" >牙齿不齐</a> <a
-				href="javascript:void(0)" onclick="">点击咨询医生</a> <a
+				href="javascript:void(0)" >点击咨询医生</a> <a
 				href="javascript:void(0)" >儿童正畸</a> <a
 				href="javascript:void(0)" >牙齿美白多少钱</a> <a
 				href="javascript:void(0)" >暴牙</a> <a
-				href="javascript:void(0)" onclick="">官网挂号窗口</a> <a
+				href="javascript:void(0)" >官网挂号窗口</a> <a
 				href="javascript:void(0)" >哪些明星做了牙齿矫正</a>
 		</div>
 	</div>
@@ -260,7 +267,8 @@ $(function(){
 	    this.b = Math.floor(Math.random()*255);
 	    this.color = 'rgba('+ this.r +','+ this.g +','+ this.b +',0.8)';
 	    
-        $(this).css("color",this.color).siblings().css("color","#555555");
+        $(this).css("color",this.color);
+       // .siblings().css("color","#555555")
 	});
 	
 });
