@@ -12,7 +12,15 @@
 <script src="/js/jquery.SuperSlide.2.1.1.source.js"></script> 
 <script src="/js/expert.js"></script>
 <script src="/layui_v2.3.0/layui.all.js"  charset="utf-8" ></script>
-
+<style>
+.intro{position: relative; line-height: 22px; max-height: 44px;overflow: hidden;}
+.intro::after{content: "..."; position: absolute; bottom: 0; right: 0; padding-left: 40px;
+background: -webkit-linear-gradient(left, transparent, #fff 55%);
+background: -o-linear-gradient(right, transparent, #fff 55%);
+background: -moz-linear-gradient(right, transparent, #fff 55%);
+background: linear-gradient(to right, transparent, #fff 55%);
+}
+</style>
 </head>
 <body onselectstart="return false;">
 <#include "/common/home_header.html"/>
@@ -38,17 +46,23 @@
           <div class="tit"><span></span>新北动态
             <div class="titwenzi">/News</div>
             </div>
-        <div class="tab_box"> <div class="newspic"><a href="/news/sbdt/4001.html" title="王申：“80后”种植牙医，带着“死磕”精神热血前行"><img src="/images/171113/1-1G113142050Y8.png" width="180" height="200" /></a> </div>
-
+        <div class="tab_box"> 
+        <div class="newspic">
+         <#list articles as article>
+         <#if article_index == 0>  
+        <a href="${request.contextPath}/admin/article/showArticleById?articleId=${article.id}" title="${article.title}"><img src="${article.thumbnailurl}" width="180" /></a>
+        </#if>
+        </#list>
+        
+         </div>
           <dl>
-            <dt>如今再提起“80后”，大多数人印象里还是那群热血沸腾的...<a href="/news/sbdt/4001.html">【详情】</a></dt>
+       <#list articles as article>
+         <#if article_index == 0>
+            <dt class="intro">${article.introduction}<a href="${request.contextPath}/admin/article/showArticleById?articleId=${article.id}">【详情】</a></dt>
+          </#if>
 
-            <dd><a href="/news/sbdt/4001.html" title="王申：“80后”种植牙医，带着“死磕”精神热血前行">王申：“80后”种植牙医，带着“死磕”精神</a></dd>
-<dd><a href="/news/sbdt/3999.html" title="特惠来袭，给牙齿来一场“变形记”，全程征集对牙齿不满意的你">特惠来袭，给牙齿来一场“变形记”，全程征</a></dd>
-<dd><a href="/news/sbdt/3998.html" title="新北暑期爱牙公益 季末美牙特惠来袭">新北暑期爱牙公益 季末美牙特惠来袭</a></dd>
-<dd><a href="/news/sbdt/3997.html" title="暑期活动丨带孩子实践+学习，来新北争当小牙医吧!">暑期活动丨带孩子实践+学习，来新北争当小牙</a></dd>
-<dd><a href="/news/sbdt/3994.html" title="矫牙心愿美丽蜕变：新北慈善爱心公益计划 打造“黄金微笑”助美起航">矫牙心愿美丽蜕变：新北慈善爱心公益计划</a></dd>
-
+           <dd style="height: 30px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="${request.contextPath}/admin/article/showArticleById?articleId=${article.id}" title="${article.title}">${article.title}</a></dd>
+          </#list>
           </dl>
         </div>
     </div>
@@ -126,38 +140,18 @@
         </style>
         
         <div class="mqs fr">
+        <input hidden="hidden" id="qasLen" value="${qas?size}" />
          <div id="mq" onmouseover=iScrollAmount=0 style="OVERFLOW: hidden; WIDTH:410px; margin:0 auto; HEIGHT:480px;" onmouseout=iScrollAmount=1>
         <ul>
+         <#list qas as qa>
             <li>
                 <div class="vo1">
-                    <div class="name"><span><nobr><a href="http://www.divcss5.com/">QUESTION</a></nobr></span><em>购买了</em></div>
-                    <div class="time">09-01 08:10</div>
+                    <div class="name"><span><nobr><a href="http://www.divcss5.com/">QUESTION</a></nobr></span><em>${qa.question}</em></div>
+                    <div class="time">${qa.time?string('MM-dd')}</div>
                 </div>
-                <div class="vo2"><nobr>统一阿萨姆 500ml/瓶x1 咪咪虾味</nobr></div>
+                <div class="vo2"><nobr>${qa.answer}</nobr></div>
             </li>
-            
-            <li>
-                <div class="vo1">
-                    <div class="name"><span><nobr><a href="http://www.css5.com.cn/">QUESTION</a></nobr></span><em>购买了</em></div>
-                    <div class="time">09-01 08:10</div>
-                </div>
-                <div class="vo2"><nobr>统一阿萨姆 500ml/瓶x1 咪咪虾味</nobr></div>
-            </li>
-            <li>
-                <div class="vo1">
-                    <div class="name"><span><nobr><a href="http://www.divcss5.com/">QUESTION</a></nobr></span><em>购买了</em></div>
-                    <div class="time">09-01 08:10</div>
-                </div>
-                <div class="vo2"><nobr>统一阿萨姆 500ml/瓶x1 咪咪虾味</nobr></div>
-            </li>
-            <li>
-                <div class="vo1">
-                    <div class="name"><span><nobr><a href="http://www.divcss5.com/">QUESTION</a></nobr></span><em>购买了</em></div>
-                    <div class="time">09-01 08:10</div>
-                </div>
-                <div class="vo2"><nobr>统一阿萨姆 500ml/瓶x1 咪咪虾味</nobr></div>
-            </li>
-         
+            </#list>
         </ul>
     </div>
       </div>
@@ -174,30 +168,30 @@
 		</div>
 		<div class="picimg2">
 			<a href="javascript:void(0)" onmouseover="return changeAColor();">牙齿矫正</a> <a
-				href="javascript:void(0)" onclick="">隐形矫正牙齿</a> <a
-				href="javascript:void(0)" onclick="">烤瓷牙的寿命</a> <a
-				href="javascript:void(0)" onclick="">牙齿矫正的最佳年龄</a> <a
-				href="javascript:void(0)" onclick="">托槽矫正</a> <a
-				href="javascript:void(0)" onclick="">牙套要带多久</a> <a
-				href="javascript:void(0)" onclick="">牙齿矫正多少钱</a> <a
-				href="javascript:void(0)" onclick="">牙齿不齐</a> <a
-				href="javascript:void(0)" onclick="">虎牙</a> <a
-				href="javascript:void(0)" onclick="">全瓷牙价格</a> <a
-				href="javascript:void(0)" onclick="">烤瓷牙</a> <a
-				href="javascript:void(0)" onclick="">烤瓷牙价格</a> <a
-				href="javascript:void(0)" onclick="">门牙掉了一小块</a> <a
-				href="javascript:void(0)" onclick="">牙齿断了一半怎么办</a> <a
-				href="javascript:void(0)" onclick="">牙齿发黄</a> <a
-				href="javascript:void(0)" onclick="">暴牙</a> <a
-				href="javascript:void(0)" onclick="">牙齿美白多少钱</a> <a
-				href="javascript:void(0)" onclick="">洗牙痛吗</a> <a
-				href="javascript:void(0)" onclick="">儿童正畸</a> <a
-				href="javascript:void(0)" onclick="">学生矫正牙齿</a> <a
-				href="javascript:void(0)" onclick="">教师牙齿矫正</a> <a
-				href="javascript:void(0)" onclick="">白领矫正牙齿</a> <a
-				href="javascript:void(0)" onclick="">哪些明星做了牙齿矫正</a> <a
+				href="javascript:void(0)" >烤瓷牙的寿命</a> <a
+				href="javascript:void(0)" >牙齿矫正的最佳年龄</a> <a
+				href="javascript:void(0)" >牙齿矫正多少钱</a> <a
+				href="javascript:void(0)" >牙套要带多久</a> <a
+				href="javascript:void(0)" >托槽矫正</a> <a
+				href="javascript:void(0)" >全瓷牙价格</a> <a
+				href="javascript:void(0)" >隐形矫正牙齿</a> <a
+				href="javascript:void(0)" >学生矫正牙齿</a> <a
+				href="javascript:void(0)" >烤瓷牙价格</a> <a
+				href="javascript:void(0)" >烤瓷牙</a> <a
+				href="javascript:void(0)" >门牙掉了一小块</a> <a
+				href="javascript:void(0)" >洗牙痛吗</a> <a
+				href="javascript:void(0)" >虎牙怎么办</a> <a
+				href="javascript:void(0)" onclick="">在线预约医生</a><a
+				href="javascript:void(0)" >白领矫正牙齿</a><a
+				href="javascript:void(0)" >牙齿断了一半怎么办</a> <a
+				href="javascript:void(0)" >牙齿发黄</a> <a
+				href="javascript:void(0)" >牙齿不齐</a> <a
+				href="javascript:void(0)" onclick="">点击咨询医生</a> <a
+				href="javascript:void(0)" >儿童正畸</a> <a
+				href="javascript:void(0)" >牙齿美白多少钱</a> <a
+				href="javascript:void(0)" >暴牙</a> <a
 				href="javascript:void(0)" onclick="">官网挂号窗口</a> <a
-				href="javascript:void(0)" onclick="">咨询一下在线医生窗口</a>
+				href="javascript:void(0)" >哪些明星做了牙齿矫正</a>
 		</div>
 	</div>
 	</section>
@@ -253,5 +247,26 @@
 
 <#include "/common/home_footer.html"/>
 </body>
+<script>
+$(function(){
+	
+	
+	//标签字体随机变色
+	$(".picimg2 a").hover(function(){
+		var _opt = $(this);
+		
+		this.r = Math.floor(Math.random()*255);
+	    this.g = Math.floor(Math.random()*255);
+	    this.b = Math.floor(Math.random()*255);
+	    this.color = 'rgba('+ this.r +','+ this.g +','+ this.b +',0.8)';
+	    
+        $(this).css("color",this.color).siblings().css("color","#555555");
+	});
+	
+});
+
+
+</script>
+
 
 </html>

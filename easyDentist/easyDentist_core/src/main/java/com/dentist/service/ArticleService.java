@@ -28,4 +28,7 @@ public interface ArticleService extends IBaseService<Article>{
 
 	//前台分页
 	Page<Article> queryArticlesByType(String type,Integer currentPage);
+
+	//前6条数据
+	List<Article> queryTop5Article();
 }

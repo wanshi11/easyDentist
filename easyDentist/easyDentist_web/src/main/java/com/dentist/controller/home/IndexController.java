@@ -1,7 +1,5 @@
 package com.dentist.controller.home;
 
-import io.swagger.models.Contact;
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -18,9 +16,11 @@ import com.dentist.cfg.Constant;
 import com.dentist.entity.Article;
 import com.dentist.entity.Banner;
 import com.dentist.entity.Doctor;
+import com.dentist.entity.QuestionA;
 import com.dentist.service.ArticleService;
 import com.dentist.service.BannerService;
 import com.dentist.service.DoctorService;
+import com.dentist.service.QaService;
 import com.dentist.utils.Page;
 
 
@@ -38,6 +38,8 @@ public class IndexController {
 	private DoctorService doctorService;
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private QaService qaService;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
@@ -49,6 +51,7 @@ public class IndexController {
 		
 		ModelAndView mv = new ModelAndView("/home/home");
 
+	    //查询bannner
 		List<Banner> honor_banners = bannerService.queryBannerByType(Constant.BANNER_HOROR);
 		List<Banner> envir_banners = bannerService.queryBannerByType(Constant.BANNER_ENVIRONMENT);
 		List<Banner> facility_banners = bannerService.queryBannerByType(Constant.BANNER_FACILITY);
@@ -57,12 +60,19 @@ public class IndexController {
 		//查询医生信息集合
 		List<Doctor> doctors = doctorService.getAllList();
 		
+		//查询问答集合
+		List<QuestionA> qas = qaService.getList(null);
+		//查询前6条文章
+		List<Article> articles = articleService.queryTop5Article();
+		
 		
 		mv.addObject("lunbo_banners", lunbo_banners);
 		mv.addObject("honor_banners", honor_banners);
 		mv.addObject("envir_banners", envir_banners);
 		mv.addObject("facility_banners", facility_banners);
 		mv.addObject("doctors", doctors);
+		mv.addObject("articles", articles);
+		mv.addObject("qas", qas);
 		return mv;
 	}
 	

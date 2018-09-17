@@ -59,7 +59,9 @@ public class QuestionAServiceImpl implements  QaService{
 	@Override
 	public List<QuestionA> getList(QuestionA model) {
 		// TODO Auto-generated method stub
-		return null;
+		QuestionAExample qAExample = new QuestionAExample();
+		QuestionAExample.Criteria c = qAExample.createCriteria();
+		return questionAMapper.selectByExample(qAExample);
 	}
 
 	@Override

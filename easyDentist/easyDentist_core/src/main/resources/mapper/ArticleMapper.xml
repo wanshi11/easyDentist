@@ -326,5 +326,11 @@
   <select id="queryArticlePageCountByType"  resultType="java.lang.Integer" parameterType="java.lang.String">
        select count(*)  from t_article where status !=0 and articleType = #{type}
   </select>
+  
+  
+  <select id="queryTop5Article" resultMap="BaseResultMap">
+		select * from t_article where status !=0 
+		order by top desc, createTime desc limit 0, 5
+	</select>
     
 </mapper>

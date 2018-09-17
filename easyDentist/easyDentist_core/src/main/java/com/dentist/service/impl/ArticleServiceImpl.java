@@ -168,6 +168,12 @@ public class ArticleServiceImpl implements ArticleService {
 		return pager;
 	}
 
+	@Override
+	public List<Article> queryTop5Article() {
+		
+		return articleMapper.queryTop5Article();
+	}
+
 	
 	
 	
