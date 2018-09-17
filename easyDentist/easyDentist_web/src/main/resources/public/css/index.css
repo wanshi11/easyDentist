@@ -303,7 +303,7 @@ section { width:100%;}
 .tab_menu li.selected { color:#4b4b4b;}
 .tab_menu li.selected .roat{transform:rotate(180deg);-webkit-transform:rotate(180deg);}
 .tab_box{width:470px;height:220px;clear:both;position:relative;}
-.tab_box .newspic{width:180px; height:200px;padding-top:20px;float:left;overflow:hidden}
+.tab_box .newspic{width:180px; height:200px;padding-top:20px;float:left;overflow:hidden;border: 1px solid #e7e7e7;}
 .tab_box dl{width:280px;height:auto; float:right;} 
 .tab_box dl dt {font-size:16px;margin:15px 3px 15px 0;}
 .tab_box dl dt a{color:#7194c3;}

@@ -71,6 +71,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 		return null;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void allotMenusByRoleId(String roleId, Set<String> menus,User u) {
 		
@@ -97,6 +98,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 	
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Menu> queryMenusByRoles(List<UserRole> userRoles) {
 		RoleMenuExample roleMenuExample = new RoleMenuExample();

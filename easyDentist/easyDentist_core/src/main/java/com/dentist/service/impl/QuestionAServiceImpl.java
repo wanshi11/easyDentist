@@ -12,8 +12,6 @@ import org.springframework.util.StringUtils;
 
 import com.dentist.entity.QuestionA;
 import com.dentist.entity.QuestionAExample;
-import com.dentist.entity.Role;
-import com.dentist.entity.RoleExample;
 import com.dentist.mapper.QuestionAMapper;
 import com.dentist.service.QaService;
 import com.dentist.utils.LayuiPage;
@@ -56,6 +54,7 @@ public class QuestionAServiceImpl implements  QaService{
 		return null;
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public List<QuestionA> getList(QuestionA model) {
 		// TODO Auto-generated method stub
