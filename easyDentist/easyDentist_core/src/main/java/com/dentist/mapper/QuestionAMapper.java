@@ -3,6 +3,8 @@ package com.dentist.mapper;
 import com.dentist.entity.QuestionA;
 import com.dentist.entity.QuestionAExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface QuestionAMapper {
@@ -27,4 +29,7 @@ public interface QuestionAMapper {
     int updateByPrimaryKeySelective(QuestionA record);
 
     int updateByPrimaryKey(QuestionA record);
+
+	List<QuestionA> selectWithPageByExample(@Param("example") QuestionAExample qAExample,
+			@Param("params") Map<String, String> params);
 }

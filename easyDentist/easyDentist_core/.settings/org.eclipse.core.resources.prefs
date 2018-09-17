@@ -8,6 +8,7 @@ encoding//src/main/java/com/dentist/service/ArticleService.java=UTF-8
 encoding//src/main/java/com/dentist/service/DoctorService.java=UTF-8
 encoding//src/main/java/com/dentist/service/IBaseService.java=UTF-8
 encoding//src/main/java/com/dentist/service/MenuService.java=UTF-8
+encoding//src/main/java/com/dentist/service/QaService.java=UTF-8
 encoding//src/main/java/com/dentist/service/RoleService.java=UTF-8
 encoding//src/main/java/com/dentist/service/UserService.java=UTF-8
 encoding//src/main/java/com/dentist/service/impl/ArticleServiceImpl.java=UTF-8
