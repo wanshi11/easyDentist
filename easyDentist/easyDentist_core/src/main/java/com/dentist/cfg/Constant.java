@@ -16,10 +16,6 @@ public class Constant {
   public static final String  ARTICLE_GY_ACTIVITY = "ARTICLE_GY_ACTIVITY";//公益活动
   public static final String  ARTICLE_YH_ACTIVITY = "ARTICLE_YH_ACTIVITY";//优惠活动
   
-  //留言类型
-  public static final String  LEAVE_MSG_ADVICE = "LEAVE_MSG_ADVICE"; //建议
-  public static final String  LEAVE_MSG_YUYUE = "LEAVE_MSG_YUYUE"; //预约
-  public static final String  LEAVE_MSG_ZIXUN = "LEAVE_MSG_ZIXUN"; //咨询
   
   //BANNER类型
   public static final String  BANNER_LUNBO = "BANNER_LUNBO"; //轮播
@@ -36,6 +32,21 @@ public class Constant {
   public static final String  CHIEF_PHYSICIAN = "CHIEF_PHYSICIAN"; //主任
   
   
+  /* 预约模块 */
+  //预约模块 留言类型
+  public static final String  LEAVE_MSG_ADVICE = "LEAVE_MSG_ADVICE"; //建议
+  public static final String  LEAVE_MSG_YUYUE = "LEAVE_MSG_YUYUE"; //预约
+  public static final String  LEAVE_MSG_ZIXUN = "LEAVE_MSG_ZIXUN"; //咨询
   
-
+  //预约模块 预约状态
+  public static final String  WAITING_REPLY = "WAITING_REPLY"; //待处理
+  public static final String  APPOINT_DOWN = "APPOINT_DOWN"; //完成
+  
+  //诊所名称
+  public static final String  CLINIC_YM = "CLINIC_YM"; //怡美店
+  public static final String  CLINIC_MLW = "CLINIC_RQQJY"; //润千秋佳苑店
+  public static final String  CLINIC_LL = "CLINIC_LL"; //柳浪店
+  public static final String  CLINIC_BCXL = "CLINIC_BCXL"; //北辰香麓店
+  
+  
 }

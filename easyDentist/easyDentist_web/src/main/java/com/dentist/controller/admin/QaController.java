@@ -34,11 +34,11 @@ public class QaController {
 	 
 	
 	/**
-	 * 到角色列表页 
+	 * 到问答列表页 
 	 */
 	@RequiredPermission
 	@RequestMapping(value="/toQas", method = RequestMethod.GET)
-	public String  toRoles(){
+	public String  toQas(){
 		
 		return "/admin/qa/qa_list";
 	}

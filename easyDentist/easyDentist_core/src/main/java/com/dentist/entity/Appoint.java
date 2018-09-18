@@ -29,7 +29,7 @@ public class Appoint {
 
     private Date updatetime;
 
-    public Integer getId() {
+    public Integer getId(){
         return id;
     }
 

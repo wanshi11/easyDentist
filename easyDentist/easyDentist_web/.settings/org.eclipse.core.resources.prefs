@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/dentist/Swagger2Config.java=UTF-8
+encoding//src/main/java/com/dentist/controller/admin/AppointController.java=UTF-8
 encoding//src/main/java/com/dentist/controller/admin/ArticleController.java=UTF-8
 encoding//src/main/java/com/dentist/controller/admin/BannerController.java=UTF-8
 encoding//src/main/java/com/dentist/controller/admin/DoctorController.java=UTF-8
