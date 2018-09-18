@@ -21,6 +21,8 @@ public class Appoint {
 
     private Date appointdate;
 
+    private String searchcode;
+
     private String remark;
 
     private Integer operatorid;
@@ -29,7 +31,7 @@ public class Appoint {
 
     private Date updatetime;
 
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
 
@@ -99,6 +101,14 @@ public class Appoint {
 
     public void setAppointdate(Date appointdate) {
         this.appointdate = appointdate;
+    }
+
+    public String getSearchcode() {
+        return searchcode;
+    }
+
+    public void setSearchcode(String searchcode) {
+        this.searchcode = searchcode == null ? null : searchcode.trim();
     }
 
     public String getRemark() {

@@ -11,6 +11,7 @@
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="doctorName" property="doctorname" jdbcType="VARCHAR" />
     <result column="appointDate" property="appointdate" jdbcType="DATE" />
+    <result column="searchCode" property="searchcode" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="operatorId" property="operatorid" jdbcType="INTEGER" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
@@ -76,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, patientName, phone, clinic, messageContent, messageType, status, doctorName, 
-    appointDate, remark, operatorId, createTime, updateTime
+    appointDate, searchCode, remark, operatorId, createTime, updateTime
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dentist.entity.AppointExample" >
     select
@@ -113,13 +114,13 @@
     insert into t_appointment (id, patientName, phone, 
       clinic, messageContent, messageType, 
       status, doctorName, appointDate, 
-      remark, operatorId, createTime, 
-      updateTime)
+      searchCode, remark, operatorId, 
+      createTime, updateTime)
     values (#{id,jdbcType=INTEGER}, #{patientname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{clinic,jdbcType=VARCHAR}, #{messagecontent,jdbcType=VARCHAR}, #{messagetype,jdbcType=VARCHAR}, 
       #{status,jdbcType=VARCHAR}, #{doctorname,jdbcType=VARCHAR}, #{appointdate,jdbcType=DATE}, 
-      #{remark,jdbcType=VARCHAR}, #{operatorid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP})
+      #{searchcode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{operatorid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.dentist.entity.Appoint" >
     insert into t_appointment
@@ -150,6 +151,9 @@
       </if>
       <if test="appointdate != null" >
         appointDate,
+      </if>
+      <if test="searchcode != null" >
+        searchCode,
       </if>
       <if test="remark != null" >
         remark,
@@ -191,6 +195,9 @@
       </if>
       <if test="appointdate != null" >
         #{appointdate,jdbcType=DATE},
+      </if>
+      <if test="searchcode != null" >
+        #{searchcode,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -242,6 +249,9 @@
       <if test="record.appointdate != null" >
         appointDate = #{record.appointdate,jdbcType=DATE},
       </if>
+      <if test="record.searchcode != null" >
+        searchCode = #{record.searchcode,jdbcType=VARCHAR},
+      </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
@@ -270,6 +280,7 @@
       status = #{record.status,jdbcType=VARCHAR},
       doctorName = #{record.doctorname,jdbcType=VARCHAR},
       appointDate = #{record.appointdate,jdbcType=DATE},
+      searchCode = #{record.searchcode,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
       operatorId = #{record.operatorid,jdbcType=INTEGER},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
@@ -305,6 +316,9 @@
       <if test="appointdate != null" >
         appointDate = #{appointdate,jdbcType=DATE},
       </if>
+      <if test="searchcode != null" >
+        searchCode = #{searchcode,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
@@ -330,12 +344,14 @@
       status = #{status,jdbcType=VARCHAR},
       doctorName = #{doctorname,jdbcType=VARCHAR},
       appointDate = #{appointdate,jdbcType=DATE},
+      searchCode = #{searchcode,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       operatorId = #{operatorid,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       updateTime = #{updatetime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
   
   <select id="selectWithPageByExample" resultMap="BaseResultMap"
 		parameterType="map">
@@ -349,5 +365,5 @@
 		</if>
 		limit ${params.rowStart}, ${params.pageSize}
 	</select>
-  
+	
 </mapper>

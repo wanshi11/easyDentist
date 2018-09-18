@@ -103,17 +103,17 @@
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
 		</table>  -->
 		
-	<!-- 	<table schema="" tableName="t_appointment" 
+	 	<table schema="" tableName="t_appointment" 
 			domainObjectName="Appoint" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
-		</table> -->
+		</table> 
 		
 		
-		<table schema="" tableName="t_qa" 
+		<!-- <table schema="" tableName="t_qa" 
 			domainObjectName="QuestionA" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true"> 
-		</table>
+		</table> -->
 	</context>
 </generatorConfiguration>

@@ -742,6 +742,76 @@ public class AppointExample {
             return (Criteria) this;
         }
 
+        public Criteria andSearchcodeIsNull() {
+            addCriterion("searchCode is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeIsNotNull() {
+            addCriterion("searchCode is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeEqualTo(String value) {
+            addCriterion("searchCode =", value, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeNotEqualTo(String value) {
+            addCriterion("searchCode <>", value, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeGreaterThan(String value) {
+            addCriterion("searchCode >", value, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeGreaterThanOrEqualTo(String value) {
+            addCriterion("searchCode >=", value, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeLessThan(String value) {
+            addCriterion("searchCode <", value, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeLessThanOrEqualTo(String value) {
+            addCriterion("searchCode <=", value, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeLike(String value) {
+            addCriterion("searchCode like", value, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeNotLike(String value) {
+            addCriterion("searchCode not like", value, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeIn(List<String> values) {
+            addCriterion("searchCode in", values, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeNotIn(List<String> values) {
+            addCriterion("searchCode not in", values, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeBetween(String value1, String value2) {
+            addCriterion("searchCode between", value1, value2, "searchcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchcodeNotBetween(String value1, String value2) {
+            addCriterion("searchCode not between", value1, value2, "searchcode");
+            return (Criteria) this;
+        }
+
         public Criteria andRemarkIsNull() {
             addCriterion("remark is null");
             return (Criteria) this;
