@@ -21,7 +21,11 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header">【回复咨询/进行回访】</h3>
+				<#if (appoint.messagetype == 'LEAVE_MSG_YUYUE') >
+					<h3 class="page-header">【致电回访】</h3>
+					<#else>
+					<h3 class="page-header">【回复留言咨询】</h3>
+				</#if>	
 				</div>
 			</div>
 
@@ -68,6 +72,7 @@
 										<textarea style="width:450px;height:100px;" name="messageContent"  id="messageContent"
 										   disabled="disabled"	>${appoint.messagecontent}</textarea><br/><br/>
 										   
+										   <#if (appoint.messagetype == 'LEAVE_MSG_YUYUE') >
 										   <label>预约医生</label>
 										   <input class="form-control" name="doctorname"  id="doctorname"
 										  value="${appoint.doctorname}"	placeholder="请输入预约的医生"><br/>
@@ -75,15 +80,19 @@
 										  <label>预约时间</label>
                                           <input type="text" class="layui-input" name="appointdate"  id="appointdate"
                                           value="${appoint.appointdate?string('YYYY-MM-dd')}" placeholder="yyyy年MM月dd日"><br/>
-      
-										  
-										  <label>回访备注(咨询回复)</label>
-										<textarea style="width:450px;height:100px;" name="remark"  id="remark"
-										  ></textarea><br/><br/><br/>
-										   
-											
-										<div  class="jz">
-										<input type="button" value="点击处理" class="btn btn-default" onclick="edit()"  />
+                                          </#if>
+
+										<#if (appoint.messagetype == 'LEAVE_MSG_YUYUE') >
+										<label>回访备注</label> <#else> <label>留言咨询回复</label>
+										</#if>
+										<textarea style="width: 450px; height: 100px;" name="remark"
+											id="remark"></textarea>
+										<br /> <br /> <br />
+
+
+										<div class="jz">
+											<input type="button" value="点击处理" class="btn btn-default"
+												onclick="edit()" />
 										</div>
 									</div>
 								</form>
