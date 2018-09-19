@@ -18,6 +18,7 @@ import com.dentist.entity.Menu;
 import com.dentist.entity.User;
 import com.dentist.entity.UserRole;
 import com.dentist.pojo.MenuPermitView;
+import com.dentist.service.AppointService;
 import com.dentist.service.MenuService;
 import com.dentist.service.RoleMenuService;
 import com.dentist.service.UserRoleService;
@@ -42,6 +43,9 @@ public class LoginController {
 	
 	@Autowired
 	private MenuService menuService;
+	
+	@Autowired
+	private  AppointService appointService;
 	
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -106,8 +110,15 @@ public class LoginController {
 	
 	
 	@RequestMapping("/index")
-	public String toIndex(HttpServletRequest request) {
-		//TODO查询统计数据
+	public String toIndex(Model model,HttpServletRequest request) {
+		
+		
+		//查询未处理留言、未处理预约数据
+		int YYNum = appointService.queryNot_YYNums();
+		int ZXNum = appointService.queryNot_ZXNums();		
+		
+		model.addAttribute("YYNum", YYNum);
+		model.addAttribute("ZXNum", ZXNum);
 		
 	    return "/admin/index";
 	  }

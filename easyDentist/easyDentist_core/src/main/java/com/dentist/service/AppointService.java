@@ -18,6 +18,11 @@ public interface AppointService extends IBaseService<Appoint> {
 	
 	//根据条件查询总数据条数
 	int selectCountByExample(Appoint appoint);
+
+	//查询未处理预约个数
+	int queryNot_YYNums();
+    //查询未处理留言个数
+	int queryNot_ZXNums();
 	
 
 }
