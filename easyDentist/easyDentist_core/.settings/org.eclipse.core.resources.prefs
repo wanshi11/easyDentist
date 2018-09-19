@@ -16,6 +16,7 @@ encoding//src/main/java/com/dentist/service/UserService.java=UTF-8
 encoding//src/main/java/com/dentist/service/impl/AppointServiceImpl.java=UTF-8
 encoding//src/main/java/com/dentist/service/impl/ArticleServiceImpl.java=UTF-8
 encoding//src/main/java/com/dentist/service/impl/RoleMenuServiceImpl.java=UTF-8
+encoding//src/main/java/com/dentist/utils/CsvUtil.java=UTF-8
 encoding//src/main/java/com/dentist/utils/DateUtil.java=UTF-8
 encoding//src/main/java/com/dentist/utils/IPUtils.java=UTF-8
 encoding//src/main/java/com/dentist/utils/LayuiPage.java=UTF-8

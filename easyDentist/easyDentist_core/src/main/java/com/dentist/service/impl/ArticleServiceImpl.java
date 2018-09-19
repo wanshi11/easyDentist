@@ -18,7 +18,6 @@ import com.dentist.service.ArticleService;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
 import com.dentist.utils.Page;
-import com.dentist.utils.Pager;
 
 @Transactional
 @Service("articleService")

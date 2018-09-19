@@ -23,6 +23,9 @@ public interface AppointService extends IBaseService<Appoint> {
 	int queryNot_YYNums();
     //查询未处理留言个数
 	int queryNot_ZXNums();
+
+	//返回csv文件信息（导出文件）
+	List<String> queryCSVList(Appoint appoint);
 	
 
 }

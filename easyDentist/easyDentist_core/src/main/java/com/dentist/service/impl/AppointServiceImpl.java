@@ -1,5 +1,9 @@
 package com.dentist.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +18,7 @@ import com.dentist.entity.Appoint;
 import com.dentist.entity.AppointExample;
 import com.dentist.mapper.AppointMapper;
 import com.dentist.service.AppointService;
+import com.dentist.utils.DateUtil;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
 
@@ -154,7 +159,72 @@ public class AppointServiceImpl implements  AppointService{
 		
 		return appointMapper.countByExample(example);
 	}
+
 	
+	@Override
+	public List<String> queryCSVList(Appoint appoint) {
+		// TODO Auto-generated method stub
+		AppointExample example = new AppointExample();
+		AppointExample.Criteria c = example.createCriteria();
+		if(null != appoint && !StringUtils.isEmpty(appoint.getMessagetype())){
+			c.andMessagetypeEqualTo(appoint.getMessagetype());
+		}
+		
+		if(null != appoint && !StringUtils.isEmpty(appoint.getStatus())){
+			c.andStatusEqualTo(appoint.getStatus());
+		}
+		
+		if(null != appoint && !StringUtils.isEmpty(appoint.getClinic())){
+			c.andClinicEqualTo(appoint.getClinic());
+		}
+		
+		if(null != appoint && !StringUtils.isEmpty(appoint.getDoctorname())){
+			c.andDoctornameLike('%'+appoint.getDoctorname()+'%');
+		}
+		
+		List<Appoint> aList = appointMapper.selectByExample(example);
+		List<String> returnData = prepareData(aList);
+		
+		return returnData;
+	}
+	
+	 /* 组合数据 */
+	 private List<String> prepareData(List<Appoint> list){
+	        List<String> returnData = new ArrayList<String>();
+	        
+	            if(null != list){
+	            	StringBuffer headerData = new StringBuffer();
+	            	headerData.append("患者名").append(",");
+	            	headerData.append("患者电话").append(",");
+	            	headerData.append("消息类型").append(",");
+	            	headerData.append("诊所").append(",");
+	            	headerData.append("医生名").append(",");
+	            	headerData.append("预约日期").append(",");
+	            	headerData.append("消息状态").append(",");
+	            	headerData.append("创建时间");
+	            	
+	                for(int i=0;i<list.size();i++){
+	                	Appoint appoint = list.get(i);
+	                	StringBuffer writerData = new StringBuffer();
+	                	writerData.append("\t"+appoint.getPatientname()).append(",");
+	                	writerData.append("\t"+appoint.getPhone()).append(",");
+	                	writerData.append("\t"+appoint.getMessagetype()).append(",");
+	                	writerData.append("\t"+appoint.getClinic()).append(",");
+	                	writerData.append("\t"+appoint.getDoctorname()).append(",");
+	                	writerData.append("\t"+DateUtil.dateToString(appoint.getAppointdate(), "YYYY-MM-dd")).append(",");
+	                	writerData.append("\t"+appoint.getStatus()).append(",");
+	                	writerData.append("\t"+DateUtil.dateToString(appoint.getCreatetime(), "YYYY-MM-dd HH:mm:ss"));
+	                	
+	                	if(i == 0){
+	                		returnData.add(headerData.toString());
+	                	}
+	                	
+	                	returnData.add(writerData.toString());
+	                } 
+	            }
+	        
+	        return returnData;
+	    }
 	
 	
 }

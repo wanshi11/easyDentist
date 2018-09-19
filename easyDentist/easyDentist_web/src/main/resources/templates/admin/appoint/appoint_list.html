@@ -17,7 +17,12 @@
     border: 1px solid #60b0d6;
     font-size: 10px;
     padding: 3px 3px;
-}
+    }
+    
+    .excel{
+    float: right;
+    margin: -3px auto;
+    }
     
     .paramdiv{
     clear: both;
@@ -42,9 +47,11 @@
 							href="${request.contextPath}/admin/qa/toAdd">添加问答</a> -->
 					</p><br/>
 					<div class="panel panel-default">
-						<div class="panel-heading">检索消息列表</div>
+						<div class="panel-heading">检索消息列表 
+						<button id="excelBtn" class="excel"  >导出EXCEL</button>
+						</div>
 						<br />
-						<form method="post">
+						<form id="subform" method="post">
 							<div class="paramdiv">
 							<div style="height: 30px;">
 								 <label class="xiaoxilabel">消息类型:&nbsp;&nbsp;</label>
@@ -103,8 +110,8 @@
     	    ,method:'post'
     	    ,cols: [[
                /* {type:'numbers'} */
-               {type: 'checkbox'}
-    	      ,{field:'id', width:70, title: 'ID', sort: true}
+               /* {type: 'checkbox'}, */
+    	       {field:'id', width:70, title: 'ID', sort: true}
     	      ,{field:'patientname', width:100, title: '患者名'}
     	      ,{field:'phone', width:120, title: '手机号' }
     	      ,{field:'clinic', width:120, title: '诊所', templet:function(data){
@@ -227,6 +234,37 @@
     		});
     	 
        }
+       
+       $("#excelBtn").click(function(){
+    	  
+    	  $.ajax({
+    	        //几个参数需要注意一下
+    	            type: "POST",//方法类型
+    	            url: "${request.contextPath}/admin/appoint/exportCSV" ,//url
+    	            data: $('#subform').serialize(),
+    	            success: function (result) {
+    	            	
+    	              /*   if(result == "EDIT_SUCCESS"){
+    	                	layer.alert('消息已处理！',function(index){
+    	                		window.location.href="${request.contextPath}/admin/appoint/toAppoints";
+    	                	});
+    	                	//跳转到列表
+    	                }
+    	                if(result == "EDIT_FAIL"){
+    	                	layer.alert('消息处理失败！',function(index){
+    	                	window.location.href='${request.contextPath}/admin/appoint/toEdit?id='+$("#id").val();;
+    	                	});
+    	                } */
+    	            },
+    	            error: function(XMLHttpRequest, textStatus, errorThrown) {
+    	            	 alert(XMLHttpRequest.status);
+    	            	 alert(XMLHttpRequest.readyState);
+    	            	 alert(XMLHttpRequest.responseText);
+    	            	 alert(textStatus);
+    	            	   }
+    	        });
+    	  
+       });
 		
 	
 
