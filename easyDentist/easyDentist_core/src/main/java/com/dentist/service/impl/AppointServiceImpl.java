@@ -242,7 +242,7 @@ public class AppointServiceImpl implements  AppointService{
 				 return "北辰香麓店";
 			 }else if(clinic.equals(Constant.CLINIC_MLW)){
 				 
-				 return "润千秋佳苑";
+				 return "润千秋佳苑店";
 			 }
 			 
 		 }
