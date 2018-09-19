@@ -208,11 +208,11 @@ public class AppointServiceImpl implements  AppointService{
 	                	StringBuffer writerData = new StringBuffer();
 	                	writerData.append("\t"+appoint.getPatientname()).append(",");
 	                	writerData.append("\t"+appoint.getPhone()).append(",");
-	                	writerData.append("\t"+appoint.getMessagetype()).append(",");
-	                	writerData.append("\t"+appoint.getClinic()).append(",");
+	                	writerData.append("\t"+showMessageType(appoint.getMessagetype())).append(",");
+	                	writerData.append("\t"+showClinic(appoint.getClinic())).append(",");
 	                	writerData.append("\t"+appoint.getDoctorname()).append(",");
 	                	writerData.append("\t"+DateUtil.dateToString(appoint.getAppointdate(), "YYYY-MM-dd")).append(",");
-	                	writerData.append("\t"+appoint.getStatus()).append(",");
+	                	writerData.append("\t"+showStatus(appoint.getStatus())).append(",");
 	                	writerData.append("\t"+DateUtil.dateToString(appoint.getCreatetime(), "YYYY-MM-dd HH:mm:ss"));
 	                	
 	                	if(i == 0){
@@ -225,6 +225,66 @@ public class AppointServiceImpl implements  AppointService{
 	        
 	        return returnData;
 	    }
+	 
+	 @SuppressWarnings("unused")
+	private String showClinic(String clinic){
+		 
+		 if(!StringUtils.isEmpty(clinic)){
+			 
+			 if(clinic.equals(Constant.CLINIC_YM)){
+				 
+				 return "怡美店";
+			 }else if(clinic.equals(Constant.CLINIC_LL)){
+				 
+				 return "柳浪店";
+			 }else if(clinic.equals(Constant.CLINIC_BCXL)){
+				 
+				 return "北辰香麓店";
+			 }else if(clinic.equals(Constant.CLINIC_MLW)){
+				 
+				 return "润千秋佳苑";
+			 }
+			 
+		 }
+		 
+		 return "";
+		 
+	 }
+	 
+	 private String showStatus(String status){
+        if(!StringUtils.isEmpty(status)){
+			 
+			 if(status.equals(Constant.WAITING_REPLY)){
+				 
+				 return "未处理";
+			 }else if(status.equals(Constant.APPOINT_DOWN)){
+				 
+				 return "已处理";
+			 }
+			 
+		 }
+		 
+		 return "";
+	 }
+	 
+	 private String showMessageType(String messageType){
+	        if(!StringUtils.isEmpty(messageType)){
+				 
+				 if(messageType.equals(Constant.LEAVE_MSG_ADVICE)){
+					 
+					 return "建议&意见";
+				 }else if(messageType.equals(Constant.LEAVE_MSG_YUYUE)){
+					 
+					 return "就诊预约";
+				 }else if(messageType.equals(Constant.LEAVE_MSG_ZIXUN)){
+					 
+					 return "咨询留言";
+				 }
+				 
+			 }
+			 
+			 return "";
+		 }
 	
 	
 }
