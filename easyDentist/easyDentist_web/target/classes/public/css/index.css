@@ -645,7 +645,7 @@ filter:alpha(opacity=40);position:absolute;bottom:0;z-index:1111;color:#fff;}
 	}
 
 .GY2EasyD_right{
-	background:#f5caca;/*#e3e3e3*/
+	background:#e3e3e3; /*#f5caca;*/
 	width:735px;
 	height:500px;
 	float:left;

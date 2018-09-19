@@ -42,7 +42,7 @@
 .zhuanjan2 { background:#ff9933; width:162px; height:50px; float:left; margin-left:17px; border-radius:35px; text-align:center;}
 .zhuanjan2 a{ font-size:16px; line-height:50px; color:#fff;}
 
-.stage1 .mqs {width:452px;height:500PX;background-color:#CBF1F8;overflow:hidden; margin-left:16px;border:1px solid #DFDFDF}
+.stage1 .mqs {width:452px;height:500PX;/* background-color:#CBF1F8; */overflow:hidden; margin-left:16px;border:1px solid #DFDFDF}
 
 .doctorsBox .overlayer {left:0;top:0;width:100%;height:100%; background-color:rgba(0,0,0,.6);z-index:3;display:none;}
 .doctorsBox .popInfo {left:0;top:0;width:320px;height:125px; background-color:#FFF;z-index:4;display:none;}
@@ -50,4 +50,21 @@
 .doctorsBox .popInfo .addInfoList {width:200px;height:125px;padding:15px;}
 .doctorsBox .popInfo h5 {font-size:18px;color:#000;line-height:32px;}
 .doctorsBox .popInfo p {font-size:14px;color:#666;line-height:24px;}
-/* #QIAO_INVITE_CONTAINER{display:none} */
+
+/* qa模块样式*/
+.mqs {width:452px;height:500PX;background-color:#F2F1DC;overflow:hidden; margin-left:16px;border:1px solid #DFDFDF}
+#mq{width:410px;height:60px; margin:0 auto; text-align:left;}
+#mq ul{ width:100%;}
+#mq ul li{padding:10px 10px 10px 10px; height: 104px;width: 380px; overflow:hidden ;text-align:left; border-bottom:1px dashed #CCCCCC }
+#mq ul li .vo1,#mq ul li .vo2{height: 23px;; width:100%; overflow:hidden}
+#mq ul li .vo1 .name{ float:left;width: 300px; height:18px; line-height:18px}
+#mq ul li .vo1 .name span{ float:left; color:#ED701A;width: 80px; height:24px; line-height:18px;overflow:hidden;text-overflow:ellipsis;}
+#mq ul li .vo1 .name span a{ color:#ED701A ;font-family: Georgia;}
+#mq ul li .vo1 .name em{ float:left; line-height:18px; height:18px; font-style:normal}
+#mq ul li .vo1 .time{ float:right; overflow:hidden; width:68px; text-align:right;line-height:18px; height:18px; color:#888888;}
+#mq ul li .vo2{ line-height:21px;color: #598ebd;font-size: 16px;line-height: 1.7em;height: 84px;word-break: break-all;word-wrap: break-word;}
+#mq ul li .vo2::after{content: "...";};
+
+
+
+
