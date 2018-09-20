@@ -71,9 +71,14 @@ background: linear-gradient(to right, transparent, #fff 55%);
         <div class="titwenzi">/Video</div>
       </div>
       <div class="video">
-         <iframe   allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"
-         src=""
-         height="180" width="250" frameborder="0"></iframe>
+         <!-- <iframe   allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"
+         src="/video/aojiao.mp4"
+         height="180" width="250" frameborder="0"></iframe>  -->
+         
+        <!--  <vedio  height="180" width="250"  autoplay="autoplay" preload="auto" controls="controls" >
+         <source src="/video/aojiao.mp4" type="video/mp4" />
+                         您的浏览器不支持html5的video标签
+         </vedio> -->
 
       </div>
       <p>口腔小知识.</p>
@@ -100,12 +105,25 @@ background: linear-gradient(to right, transparent, #fff 55%);
                     <h5><span>${doctor.doctorname}</span>${doctor.position}</h5>
                   </div>
                   <div class="zhuanjiaxwz3">
-                    <p><span>资质：</span>${doctor.qualification}</p>
+                    <p><span>资质：</span>
+                    <#if (doctor.qualification == 'ASSISTANT_PHYSICIAN')>
+                                                        助理医师
+                     <#elseif (doctor.qualification == 'PRACTICE_PHYSICIAN') >
+                                                        职业医师
+                     <#elseif (doctor.qualification == 'ATTENDING_PHYSICIAN') >
+                                                        主治医师
+                     <#elseif (doctor.qualification == 'ASSOCIATE_CHIEF_PHYSICIAN') >
+                                                         副主任医师
+                     <#else>
+                                                        主任医师
+                    </#if>
+                    </p>
                   </div>
                   <div class="zhuanjiaxwz4">
                     <p><span>擅长：</span>${doctor.major}</p>
                   </div>
                   <div class="zhuanjiaxwz2">
+                  <input hidden="hidden" value="${doctor.introduction}" id="introduction" />
                     <p><span>★</span> 20年口腔正畸修复临床工作经验<br>
                       <span>★</span> 国内最早接受隐形正畸培训医生<br>
                       <span>★</span> 隐形矫正、美容修复全能手术专家<br>
@@ -232,6 +250,10 @@ background: linear-gradient(to right, transparent, #fff 55%);
 <script>
 $(function(){
 	
+	var introduction = $("#introduction").val();
+	console.log(introduction);
+	var intro = introduction.split("#");
+	console.log(intro);
 	
 	//标签字体随机变色
 	$(".picimg2 a").hover(function(){
