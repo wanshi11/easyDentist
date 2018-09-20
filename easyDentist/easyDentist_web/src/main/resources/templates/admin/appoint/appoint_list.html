@@ -51,7 +51,7 @@
 						<button id="excelBtn" class="excel"  >导出EXCEL</button>
 						</div>
 						<br />
-						<form id="subform" method="post">
+						<form id="subform" method="post" action="${request.contextPath}/admin/appoint/exportCSV">
 							<div class="paramdiv">
 							<div style="height: 30px;">
 								 <label class="xiaoxilabel">消息类型:&nbsp;&nbsp;</label>
@@ -236,15 +236,17 @@
        }
        
        $("#excelBtn").click(function(){
+    	   
+    	   $("#subform").submit(); 
     	  
-    	  $.ajax({
+    	/*   $.ajax({
     	        //几个参数需要注意一下
     	            type: "POST",//方法类型
     	            url: "${request.contextPath}/admin/appoint/exportCSV" ,//url
     	            data: $('#subform').serialize(),
     	            success: function (result) {
     	            	
-    	              /*   if(result == "EDIT_SUCCESS"){
+    	               if(result == "EDIT_SUCCESS"){
     	                	layer.alert('消息已处理！',function(index){
     	                		window.location.href="${request.contextPath}/admin/appoint/toAppoints";
     	                	});
@@ -254,7 +256,7 @@
     	                	layer.alert('消息处理失败！',function(index){
     	                	window.location.href='${request.contextPath}/admin/appoint/toEdit?id='+$("#id").val();;
     	                	});
-    	                } */
+    	                } 
     	            },
     	            error: function(XMLHttpRequest, textStatus, errorThrown) {
     	            	 alert(XMLHttpRequest.status);
@@ -262,7 +264,7 @@
     	            	 alert(XMLHttpRequest.responseText);
     	            	 alert(textStatus);
     	            	   }
-    	        });
+    	        }); */
     	  
        });
 		
