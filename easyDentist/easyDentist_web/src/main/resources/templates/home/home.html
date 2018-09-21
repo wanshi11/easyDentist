@@ -123,12 +123,12 @@ background: linear-gradient(to right, transparent, #fff 55%);
                     <p><span>擅长：</span>${doctor.major}</p>
                   </div>
                   <div class="zhuanjiaxwz2">
-                  <input hidden="hidden" value="${doctor.introduction}" id="introduction" />
-                    <p><span>★</span> 20年口腔正畸修复临床工作经验<br>
-                      <span>★</span> 国内最早接受隐形正畸培训医生<br>
-                      <span>★</span> 隐形矫正、美容修复全能手术专家<br>
-                      <span>★</span> 曾于北京大学接受系统培训<br>
-                      <span>★</span> 国内牙齿修复手术量领先医生</p>
+                      <p>
+                      <#list  (doctor.introduction) ? split("#") as per>
+                        <span>★</span> ${per}<br>
+                      </#list>
+                      </p>
+                      
                   </div>
                 </div>
                 <!-- <div class="zhuanjanbox">
@@ -249,11 +249,7 @@ background: linear-gradient(to right, transparent, #fff 55%);
 </body>
 <script>
 $(function(){
-	
-	var introduction = $("#introduction").val();
-	console.log(introduction);
-	var intro = introduction.split("#");
-	console.log(intro);
+
 	
 	//标签字体随机变色
 	$(".picimg2 a").hover(function(){

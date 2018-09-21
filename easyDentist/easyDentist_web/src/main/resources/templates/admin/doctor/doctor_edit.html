@@ -144,7 +144,9 @@
 		var introduction3 = $("#introduction3").val() != "" ? $("#introduction3").val()+"#":"";
 		var introduction4 = $("#introduction4").val() != "" ? $("#introduction4").val()+"#":"";
 		var introduction5 = $("#introduction5").val() != "" ? $("#introduction5").val()+"#":"";
-		return introduction1+introduction2+introduction3+introduction4+introduction5;
+		
+		var  introdu = introduction1+introduction2+introduction3+introduction4+introduction5;
+		return introdu.substr(0, introdu.length - 1);
 	}
 		
 	function edit() {
