@@ -9,6 +9,7 @@
 <link type="text/css" rel="stylesheet" href="/layui_v2.3.0/css/layui.css"  />
 <link type="text/css" rel="stylesheet" href="/css/appoint.css"  />
 <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/js/gVerify.js"></script>
 <script src="/layui_v2.3.0/layui.all.js"  charset="utf-8" ></script>
 <style type="text/css">
 .appoint_left{
@@ -89,6 +90,13 @@ float: left;
     padding-left: 10px;
     border: 1px solid #35a9bc;
 }
+.vcodeC{
+    height: 30px;
+    width: 200px;
+    margin-left: 5px;
+    padding-left: 10px;
+    border: 1px solid #35a9bc;
+}
 .textC{
 width:350px;height:120px;
 padding-left: 10px;
@@ -143,6 +151,9 @@ resize:none;
 <div class="Textclass"><label class="textlb">预约描述</label>
 <textarea class="textC" name="messageContent"  id="messageContent"></textarea>
 </div>
+<div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
+<div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
+</div>
 </form>
 </div>
 <div  id="zx" class="appointform">
@@ -160,6 +171,9 @@ resize:none;
 		<input id="messagetype" name="messagetype" hidden="hidden"  value ="LEAVE_MSG_ZIXUN" />
 <div class="Textclass"><label class="textlb">留言咨询</label>
 <textarea class="textC" name="messageContent"  id="messageContent"></textarea>
+</div>
+<div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
+<div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
 </div>
 </form>
 </div>
@@ -179,6 +193,9 @@ resize:none;
 <div class="Textclass"><label class="textlb">建议/意见</label>
 <textarea class="textC" name="messageContent"  id="messageContent"></textarea>
 </div>
+<div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
+<div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
+</div>
 </form>
 </div>
 </div>
@@ -188,12 +205,17 @@ resize:none;
 <script>
 $(function(){
 	
+ 	var verifyCode = new GVerify("v_container"); 
+
+	
 	
 	$(".appointBtn").hover(function(){
 		var _opt = $(this);
 		
-		//设置地图
+		//设置FORM表单
 		$(".appointform").eq(_opt.index()).addClass("active").siblings().removeClass("active");
+		//var verifyCode = new GVerify("v_container");
+		
 		
 	});
 	
