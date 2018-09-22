@@ -7,24 +7,207 @@
 <link type="text/css" href="/css/style.css" rel="stylesheet"/>
 <link type="text/css" rel="stylesheet" href="/css/index.css"  />
 <link type="text/css" rel="stylesheet" href="/layui_v2.3.0/css/layui.css"  />
-
+<link type="text/css" rel="stylesheet" href="/css/appoint.css"  />
 <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+<script src="/layui_v2.3.0/layui.all.js"  charset="utf-8" ></script>
 <style type="text/css">
+.appoint_left{
+width: 250px;
+height: 800px;
+float: left;
+background-image:url(../images/home/appoint.png);
+}
+.appoint_right{
+width: 930px;
+height: 800px;
+float: right;
+}
+.btnClass{
+    width: 250px;
+    height: 150px;
+    font-size: 18px;
+    margin-top:150px;  
+}
+.appointBtn{
+    width: 250px;
+    height: 50px;
+     color:#453196; 
+}
+.appointBtn:hover{
+     border:1px solid gray;
+     color:white; 
+}
+.appointform{
+    width: 600px;
+    background-color: antiquewhite;
+    margin: 150px auto auto 80px;
+    display: none;
+}
+.active{
+display: block;
+}
+.Aspan{
+    width: 100px;
+    height: 40px;
+    background-color: #c2d76f;
+}
+.Inputclass{
+    width: 600px;
+    height: 50px;
+    line-height:50px;
+    background-color: #ebf5c5;
+    font-size: 15px;
+}
+.Textclass{ width: 600px;
+    height: 120px;
+    line-height:50px;
+    background-color: #ebf5c5;
+    font-size: 15px;
+    
+}
+.Ainput{
+ margin-right: 200px;
+}
+.lb{
+display:inline-block;width:100px;text-align:right;
+padding-right: 10px;
+color: #108eb7;
+background-color: #ebf5c5;
+}
 
+.textlb{
+display:inline-block;width:100px;text-align:right;
+padding-right: 10px;
+color: #108eb7;
+background-color: #ebf5c5;
+float: left;
+}
+.inputC{
+    height: 30px;
+    width: 300px;
+    margin-left: 5px;
+    padding-left: 10px;
+    border: 1px solid #35a9bc;
+}
+.textC{
+width:350px;height:100px;
+padding-left: 10px;
+margin-left: 5px;
+border: 1px solid #35a9bc;
+margin-top: 10px;
+}
+.layui-input{
+    height: 32px;
+    width: 300px;
+    margin-left: 32px; 
+    padding-left: 10px;
+    border: 1px solid #35a9bc;
+    float: right;
+    vertical-align: middle;
+    margin-top: -41px;
+    margin-right: 185px;
+}
 </style>
 </head>
 
 <body>
 <#include "/common/home_header.html"/>
-<img style="width: 100%;height: 400px;margin-top: -2px;" src="/images/ycdh/yc_03.jpg">  
-
+<img style="width: 100%;height: 340px;margin-top: -2px;" src="/images/ycdh/yc_03.jpg">  
 
 <div class="appointMain">
+<div class="appoint_left">
+<div class="btnClass">
+<button class="appointBtn"  id="yyBtn">在线预约</button>
+<button class="appointBtn" id="lyBtn">留言咨询</button>
+<button class="appointBtn" id="jyBtn">我要吐槽</button>
+</div>
+</div>
+<div class="appoint_right">
+
+
+<div  id="yy" class="appointform active">
+<form method="post">
+<div class="Inputclass"><label class="lb">☆姓名</label><input id="patientname" name="patientname"  class="inputC" placeholder ="请输入您的姓名"  /></div>
+<div class="Inputclass"><label class="lb">☆手机号</label><input id="phone" name="phone" class="inputC" placeholder ="请输入您的手机号码" /></div>
+<div class="Inputclass"><label class="lb">☆选择诊所</label> <select id="clinic" name="clinic" class="inputC">
+								<option>-请选择诊所-</option>
+								<option value="CLINIC_YM">怡美家园店</option>
+								<option value="CLINIC_RQQJY">润千秋佳苑店</option>
+								<option value="CLINIC_LL">柳浪家园店</option>
+								<option value="CLINIC_BCXL">北辰香麓店</option>
+							</select>
+						</div>
+		<input id="messagetype" name="messagetype" hidden="hidden"  value ="LEAVE_MSG_YUYUE" />
+<div class="Inputclass"><label class="lb">预约时间</label><input id="appointdate" name="appointdate"  class="layui-input" placeholder ="请选择预约时间"  /></div>		
+<div class="Textclass"><label class="textlb">预约描述</label>
+<textarea class="textC" name="messageContent"  id="messageContent"></textarea>
+</div>
+</form>
+</div>
+<div  id="zx" class="appointform">
+<form method="post">
+<div class="Inputclass"><label class="lb">☆姓名</label><input id="patientname" name="patientname"  class="inputC" placeholder ="请输入您的姓名"  /></div>
+<div class="Inputclass"><label class="lb">☆手机号</label><input id="phone" name="phone" class="inputC" placeholder ="请输入您的手机号码" /></div>
+<div class="Inputclass"><label class="lb">选择诊所</label> <select id="clinic" name="clinic" class="inputC">
+								<option>-请选择诊所-</option>
+								<option value="CLINIC_YM">怡美家园店</option>
+								<option value="CLINIC_RQQJY">润千秋佳苑店</option>
+								<option value="CLINIC_LL">柳浪家园店</option>
+								<option value="CLINIC_BCXL">北辰香麓店</option>
+							</select>
+						</div>
+		<input id="messagetype" name="messagetype" hidden="hidden"  value ="LEAVE_MSG_YUYUE" />
+<div class="Textclass"><label class="textlb">留言内容</label>
+<textarea class="textC" name="messageContent"  id="messageContent"></textarea>
+</div>
+</form>
+</div>
+<div  id="jy" class="appointform">
+<form method="post">
+<div class="Inputclass"><label class="lb">☆姓名</label><input id="patientname" name="patientname"  class="inputC" placeholder ="请输入您的姓名"  /></div>
+<div class="Inputclass"><label class="lb">☆手机号</label><input id="phone" name="phone" class="inputC" placeholder ="请输入您的手机号码" /></div>
+<div class="Inputclass"><label class="lb">选择诊所</label> <select id="clinic" name="clinic" class="inputC">
+								<option>-请选择诊所-</option>
+								<option value="CLINIC_YM">怡美家园店</option>
+								<option value="CLINIC_RQQJY">润千秋佳苑店</option>
+								<option value="CLINIC_LL">柳浪家园店</option>
+								<option value="CLINIC_BCXL">北辰香麓店</option>
+							</select>
+						</div>
+		<input id="messagetype" name="messagetype" hidden="hidden"  value ="LEAVE_MSG_YUYUE" />
+<div class="Textclass"><label class="textlb">建议/意见</label>
+<textarea class="textC" name="messageContent"  id="messageContent"></textarea>
+</div>
+</form>
+</div>
+</div>
 
 </div>
 <#include "/common/home_footer.html"/>
 <script>
+$(function(){
+	
+	
+	$(".appointBtn").hover(function(){
+		var _opt = $(this);
+		
+		//设置地图
+		$(".appointform").eq(_opt.index()).addClass("active").siblings().removeClass("active");
+		
+	});
+	
+});
 
+layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	  //常规用法
+	  laydate.render({
+	    elem: '#appointdate'
+	    ,calendar: true   //日历节日提醒
+	    ,theme: '#347f98'  //主题颜色
+	  });
+});
 </script>
 </body>
 </html>
