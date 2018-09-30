@@ -98,12 +98,12 @@
                 ctx.stroke();
             }*/
             /**绘制干扰点**/
-            for(var i = 0; i < this.options.width/4; i++) {
+          /*  for(var i = 0; i < this.options.width/4; i++) {
                 ctx.fillStyle = randomColor(0, 255);
                 ctx.beginPath();
                 ctx.arc(randomNum(0, this.options.width), randomNum(0, this.options.height), 1, 0, 2 * Math.PI);
                 ctx.fill();
-            }
+            }*/
         },
         
         /**验证验证码**/

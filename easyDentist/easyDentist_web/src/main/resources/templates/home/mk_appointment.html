@@ -43,7 +43,7 @@
 
 
 <div  id="yy" class="appointform active">
-<form method="post">
+<form id="yyForm" method="post">
 <div class="Inputclass"><label class="lb">☆姓名</label><input id="patientname" name="patientname"  class="inputC" placeholder ="请输入您的姓名"  /></div>
 <div class="Inputclass"><label class="lb">☆手机号</label><input id="phone" name="phone" class="inputC" placeholder ="请输入您的手机号码" /></div>
 <div class="Inputclass"><label class="lb">☆选择诊所</label> <select id="clinic" name="clinic" class="inputC">
@@ -57,7 +57,7 @@
 		<input id="messagetype" name="messagetype" hidden="hidden"  value ="LEAVE_MSG_YUYUE" />
 <div class="Inputclass"><label class="lb">预约时间</label><input id="appointdate" name="appointdate"  class="layui-input" placeholder ="请选择预约时间"  /></div>		
 <div class="Textclass"><label class="textlb">预约描述</label>
-<textarea class="textC" name="messageContent"  id="messageContent" placeholder="请填写预约信息"></textarea>
+<textarea class="textC" name="messageContent"  id="messageContent" placeholder="如有需要，请补充说明您的预约情况。稍后我们将会给您回访电话，详细确定预约情况，感谢您的信任！"></textarea>
 </div>
 <div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
 <div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
@@ -70,7 +70,7 @@
 </form>
 </div>
 <div  id="zx" class="appointform">
-<form method="post">
+<form id="zxForm" method="post">
 <div class="Inputclass"><label class="lb">☆姓名</label><input id="patientname" name="patientname"  class="inputC" placeholder ="请输入您的姓名"  /></div>
 <div class="Inputclass"><label class="lb">☆手机号</label><input id="phone" name="phone" class="inputC" placeholder ="请输入您的手机号码" /></div>
 <div class="Inputclass"><label class="lb">选择诊所</label> <select id="clinic" name="clinic" class="inputC">
@@ -83,10 +83,10 @@
 						</div>
 		<input id="messagetype" name="messagetype" hidden="hidden"  value ="LEAVE_MSG_ZIXUN" />
 <div class="Textclass"><label class="textlb">留言咨询</label>
-<textarea class="textC" name="messageContent"  id="messageContent"></textarea>
+<textarea class="textC" name="messageContent"  id="messageContent" placeholder="请尽可能详细的描述您的口腔问题，我们将在3天内回复您的问题."></textarea>
 </div>
 <div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
-<div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
+<div id="v_container1" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
 </div>
 <div class="Inputclass"></div>
 <div class="Inputclass">
@@ -96,10 +96,10 @@
 </form>
 </div>
 <div  id="jy" class="appointform">
-<form method="post">
+<form id="jyForm" method="post">
 <div class="Inputclass"><label class="lb">☆姓名</label><input id="patientname" name="patientname"  class="inputC" placeholder ="请输入您的姓名"  /></div>
 <div class="Inputclass"><label class="lb">☆手机号</label><input id="phone" name="phone" class="inputC" placeholder ="请输入您的手机号码" /></div>
-<div class="Inputclass"><label class="lb">选择诊所</label> <select id="clinic" name="clinic" class="inputC">
+<div class="Inputclass"><label class="lb">☆选择诊所</label> <select id="clinic" name="clinic" class="inputC">
 								<option>-请选择诊所-</option>
 								<option value="CLINIC_YM">怡美家园店</option>
 								<option value="CLINIC_RQQJY">润千秋佳苑店</option>
@@ -109,10 +109,10 @@
 						</div>
 		<input id="messagetype" name="messagetype" hidden="hidden"  value ="LEAVE_MSG_ADVICE" />
 <div class="Textclass"><label class="textlb">建议/意见</label>
-<textarea class="textC" name="messageContent"  id="messageContent"></textarea>
+<textarea class="textC" name="messageContent"  id="messageContent" placeholder="请您填写对我们工作的意见或者建议，您的口腔健康是我们进步的动力.谢谢！" ></textarea>
 </div>
 <div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
-<div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
+<div id="v_container2" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
 </div>
 <div class="Inputclass"></div>
 <div class="Inputclass">
@@ -129,6 +129,8 @@
 $(function(){
 	
  	var verifyCode = new GVerify("v_container"); 
+ 	var verifyCode1 = new GVerify("v_container1");
+ 	var verifyCode2 = new GVerify("v_container2");
 
 	
 	
