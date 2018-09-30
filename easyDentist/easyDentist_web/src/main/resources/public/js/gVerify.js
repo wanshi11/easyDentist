@@ -23,6 +23,8 @@
         this._init();
         this.refresh();
     }
+    
+   
 
     GVerify.prototype = {
         /**版本号**/

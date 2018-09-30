@@ -86,7 +86,7 @@
 <textarea class="textC" name="messageContent"  id="messageContent" placeholder="请尽可能详细的描述您的口腔问题，我们将在3天内回复您的问题."></textarea>
 </div>
 <div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
-<div id="v_container1" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
+<div id="v_container2" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
 </div>
 <div class="Inputclass"></div>
 <div class="Inputclass">
@@ -112,7 +112,7 @@
 <textarea class="textC" name="messageContent"  id="messageContent" placeholder="请您填写对我们工作的意见或者建议，您的口腔健康是我们进步的动力.谢谢！" ></textarea>
 </div>
 <div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
-<div id="v_container2" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
+<div id="v_container3" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
 </div>
 <div class="Inputclass"></div>
 <div class="Inputclass">
@@ -128,10 +128,8 @@
 <script>
 $(function(){
 	
- 	var verifyCode = new GVerify("v_container"); 
- 	var verifyCode1 = new GVerify("v_container1");
- 	var verifyCode2 = new GVerify("v_container2");
-
+ 	var verifyCode = new GVerify("v_container",1); 
+ 
 	
 	
 	$(".appointBtn").hover(function(){
