@@ -83,8 +83,8 @@ public class ArticleController {
 		    articleService.addArticle(article);
 		    
 		    articleExt.setArticleid(article.getId());
-		    //10到20的随机数
-		    articleExt.setReadvalue(Integer.parseInt((10+Math.random()*(11))+""));
+		    //20的随机数
+		    articleExt.setReadvalue(Integer.parseInt(((int)(Math.random() * 20))+""));
 		    int num = articleExtService.add(articleExt);
 			if(num !=0){
 				result = "ADD_SUCCESS";
