@@ -57,9 +57,9 @@
 		<input id="messagetype" name="messagetype" hidden="hidden"  value ="LEAVE_MSG_YUYUE" />
 <div class="Inputclass"><label class="lb">预约时间</label><input id="appointdate" name="appointdate"  class="layui-input" placeholder ="请选择预约时间"  /></div>		
 <div class="Textclass"><label class="textlb">预约描述</label>
-<textarea class="textC" name="messageContent"  id="messageContent" placeholder="如有需要，请补充说明您的预约情况。稍后我们将会给您回访电话，详细确定预约情况，感谢您的信任！"></textarea>
+<textarea class="textC" name="messagecontent"  id="messagecontent" placeholder="如有需要，请补充说明您的预约情况。稍后我们将会给您回访电话，详细确定预约情况，感谢您的信任！"></textarea>
 </div>
-<div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
+<div class="Inputclass"><label class="lb">验证码</label><input id="vcode" name="vcode"  class="vcodeC" placeholder ="请输入验证码"  />
 <!-- <div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div> -->
 <img style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;" src="${request.contextPath}/appoint/verification" id="CreateCheckCode" 
             class="checkcode" onclick="this.src='${request.contextPath}/appoint/verification?' + Math.random()" />
@@ -67,8 +67,8 @@
 </div>
 <div class="Inputclass"></div>
 <div class="Inputclass">
-<button class="mk_apointBtn" type="button"  onblur="submit()" >提交</button> 
-<button class="mk_apointBtn" onclick="reset();" type="button" >重置</button>
+<input class="mk_apointBtn" type="button" value="提交"  onclick="tosubmit('yyForm');" ></input>
+<input class="mk_apointBtn" type="button" onclick="reset();" value="重置"></input>
 </div>
 </form>
 </div>
@@ -86,17 +86,17 @@
 						</div>
 		<input id="messagetype" name="messagetype" hidden="hidden"  value ="LEAVE_MSG_ZIXUN" />
 <div class="Textclass"><label class="textlb">留言咨询</label>
-<textarea class="textC" name="messageContent"  id="messageContent" placeholder="请尽可能详细的描述您的口腔问题，我们将在3天内回复您的问题."></textarea>
+<textarea class="textC" name="messagecontent"  id="messagecontent" placeholder="请尽可能详细的描述您的口腔问题，我们将在3天内回复您的问题."></textarea>
 </div>
-<div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
+<div class="Inputclass"><label class="lb">验证码</label><input id="vcode" name="vcode"  class="vcodeC" placeholder ="请输入验证码"  />
 <!-- <div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div> -->
 <img style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;" src="${request.contextPath}/appoint/verification" id="CreateCheckCode" 
             class="checkcode" onclick="this.src='${request.contextPath}/appoint/verification?' + Math.random()" />
 </div>
 <div class="Inputclass"></div>
 <div class="Inputclass">
-<button class="mk_apointBtn" type="button" >提交</button> 
-<button class="mk_apointBtn" onclick="reset();" type="button">重置</button>
+<input class="mk_apointBtn" type="button" onclick="tosubmit('zxForm');" value="提交"/>
+<input class="mk_apointBtn" type="button" onclick="reset();" value="重置"></input>
 </div>
 </form>
 </div>
@@ -114,17 +114,17 @@
 						</div>
 		<input id="messagetype" name="messagetype" hidden="hidden"  value ="LEAVE_MSG_ADVICE" />
 <div class="Textclass"><label class="textlb">建议/意见</label>
-<textarea class="textC" name="messageContent"  id="messageContent" placeholder="请您填写对我们工作的意见或者建议，您的口腔健康是我们进步的动力.谢谢！" ></textarea>
+<textarea class="textC" name="messagecontent"  id="messagecontent" placeholder="请您填写对我们工作的意见或者建议，您的口腔健康是我们进步的动力.谢谢！" ></textarea>
 </div>
-<div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
+<div class="Inputclass"><label class="lb">验证码</label><input id="vcode" name="vcode"  class="vcodeC" placeholder ="请输入验证码"  />
 <!-- <div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div> -->
 <img style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;" src="${request.contextPath}/appoint/verification" id="CreateCheckCode" 
             class="checkcode" onclick="this.src='${request.contextPath}/appoint/verification?' + Math.random()" />
 </div>
 <div class="Inputclass"></div>
 <div class="Inputclass">
-<button class="mk_apointBtn" type="button" >提交</button> 
-<button class="mk_apointBtn" onclick="reset();" type="button">重置</button>
+<input class="mk_apointBtn" type="button" value="提交" onclick="tosubmit('jyForm');"  />
+<input class="mk_apointBtn" type="button" onclick="reset();" value="重置" />
 </div>
 </form>
 </div>
@@ -146,27 +146,22 @@ $(function(){
 	
 });
 
-   function submit(){
-	   alert(11);
-	     
-
-		 /* $.ajax({
+   function tosubmit(formId){
+	   
+		   $.ajax({
 		        //几个参数需要注意一下
 		            type: "POST",//方法类型
-		            url: "${request.contextPath}/admin/banner/edit" ,//url
-		            data: $('#subform').serialize(),
+		            url: "${request.contextPath}/appoint/addAppoint" ,//url
+		            data: $('#'+ formId).serialize(),
 		            success: function (result) {
 		            	
-		                if(result == "EDIT_SUCCESS"){
-		                	layer.alert('修改轮播成功！',function(index){
-		                		window.location.href="${request.contextPath}/admin/banner/toBanners";
-		                	});
-		                	//跳转到列表
+		                if(result == "ADD_SUCCESS"){
+		                	layer.alert("信息已提交，感谢您的信任☺.");
+		                	reset();
 		                }
-		                if(result == "EDIT_FAIL"){
-		                	layer.alert('修改轮播失败！',function(index){
-		                	window.location.href='${request.contextPath}/admin/banner/toEdit?id='+$("#id").val();;
-		                	});
+		                if(result == "ADD_FAIL"){
+		                	layer.alert("信息提交失败，请联系管理员!");
+		                	reset();
 		                }
 		            },
 		            error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -175,7 +170,7 @@ $(function(){
 		            	 alert(XMLHttpRequest.responseText);
 		            	 alert(textStatus);
 		            	   }
-		        }); */
+		        });  
 	   
    }
    

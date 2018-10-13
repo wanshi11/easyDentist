@@ -1,6 +1,7 @@
 package com.dentist.controller.home;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dentist.cfg.Constant;
+import com.dentist.entity.Appoint;
 import com.dentist.service.AppointService;
 import com.dentist.utils.SCaptcha;
 
@@ -28,8 +31,22 @@ public class HomeAppointController {
 	
 	
 	
+	@RequestMapping(value = "/addAppoint", method=RequestMethod.POST)
+    @ResponseBody
+	public String add(Appoint app,HttpServletRequest request){
+		String result = "";
+		
+		    app.setStatus(Constant.WAITING_REPLY);
+		    app.setCreatetime(new Date());
+			int num = appointService.add(app);
+			if(num !=0){
+				result = "ADD_SUCCESS";
+			}else{
+				result = "ADD_FAIL";
+			}
 	
-	
+		return result;
+	}
 	
 	
 	

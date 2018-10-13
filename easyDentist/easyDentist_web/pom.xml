@@ -8,7 +8,6 @@
 	</parent>
 	<groupId>com.dentist</groupId>
 	<artifactId>easyDentist_web</artifactId>
-	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
 
@@ -72,6 +71,18 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
+			
+			<!-- JustFresh 2018-04-04 Begin Spring Boot Maven plugin能够将Spring Boot应用打包为可执行的jar或war文件，然后以通常的方式运行Spring Boot应用 -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!-- JustFresh 2018-04-04 Begin 解决中文乱码问题 -->
+			        <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>  
+			        <!-- JustFresh 2018-04-04 End 解决中文乱码问题 -->
+			    </configuration>
+			</plugin>
+			<!-- JustFresh 2018-04-04 End Spring Boot Maven plugin能够将Spring Boot应用打包为可执行的jar或war文件，然后以通常的方式运行Spring Boot应用 -->
 		</plugins>
 	</build>
 

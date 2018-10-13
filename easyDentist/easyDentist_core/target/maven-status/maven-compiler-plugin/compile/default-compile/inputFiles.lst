@@ -31,7 +31,9 @@ E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\denti
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\mapper\AppointMapper.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\SysConfigExample.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\utils\JsonUtils.java
+E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\utils\ReadFontByteProperties.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\utils\MD5Util.java
+E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\utils\SCaptcha.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\UserExample.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\Appoint.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\AppointExample.java
@@ -44,8 +46,8 @@ E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\denti
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\interceptor\SecurityInterceptor.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\utils\Page.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\mapper\ArticleExtMapper.java
-E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\service\DoctorService.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\ArticleExt.java
+E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\service\DoctorService.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\service\impl\ArticleServiceImpl.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\RoleMenuExample.java
 E:\gitWorkspace\easyDentist\easyDentist\easyDentist_core\src\main\java\com\dentist\entity\Doctor.java
