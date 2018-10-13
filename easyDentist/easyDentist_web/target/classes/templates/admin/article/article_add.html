@@ -119,7 +119,7 @@
 		var keywords = $("#keywords").val();
 		var articletype = $("#articletype option:selected").val();
 		var introduction = $("#introduction").val();
-		var thumbnailurl = $("#thumbnailurl").val();
+		//var thumbnailurl = $("#thumbnailurl").val();
 		var status = $("input[name='status']:checked").val();
 		var top = $("input[name='top']:checked").val();
 		//var content = $("#content").val();
@@ -130,7 +130,7 @@
 			layer.alert('文章内容不可以为空！');
 			return false;
 		}
-		if(title == "" || keywords == "" || articletype == "" || introduction == "" || thumbnailurl == ""){
+		if(title == "" || keywords == "" || articletype == "" || introduction == "" ){
 			layer.alert('表单数据不可以为空！');
 			return false;
 		}

@@ -60,12 +60,15 @@
 <textarea class="textC" name="messageContent"  id="messageContent" placeholder="如有需要，请补充说明您的预约情况。稍后我们将会给您回访电话，详细确定预约情况，感谢您的信任！"></textarea>
 </div>
 <div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
-<div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
+<!-- <div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div> -->
+<img style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;" src="${request.contextPath}/appoint/verification" id="CreateCheckCode" 
+            class="checkcode" onclick="this.src='${request.contextPath}/appoint/verification?' + Math.random()" />
+
 </div>
 <div class="Inputclass"></div>
 <div class="Inputclass">
-<button class="mk_apointBtn" >提交</button> 
-<button class="mk_apointBtn" >重置</button>
+<button class="mk_apointBtn" type="button"  onblur="submit()" >提交</button> 
+<button class="mk_apointBtn" onclick="reset();" type="button" >重置</button>
 </div>
 </form>
 </div>
@@ -86,12 +89,14 @@
 <textarea class="textC" name="messageContent"  id="messageContent" placeholder="请尽可能详细的描述您的口腔问题，我们将在3天内回复您的问题."></textarea>
 </div>
 <div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
-<div id="v_container2" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
+<!-- <div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div> -->
+<img style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;" src="${request.contextPath}/appoint/verification" id="CreateCheckCode" 
+            class="checkcode" onclick="this.src='${request.contextPath}/appoint/verification?' + Math.random()" />
 </div>
 <div class="Inputclass"></div>
 <div class="Inputclass">
-<button class="mk_apointBtn" >提交</button> 
-<button class="mk_apointBtn" >重置</button>
+<button class="mk_apointBtn" type="button" >提交</button> 
+<button class="mk_apointBtn" onclick="reset();" type="button">重置</button>
 </div>
 </form>
 </div>
@@ -112,12 +117,14 @@
 <textarea class="textC" name="messageContent"  id="messageContent" placeholder="请您填写对我们工作的意见或者建议，您的口腔健康是我们进步的动力.谢谢！" ></textarea>
 </div>
 <div class="Inputclass"><label class="lb">验证码</label><input id="patientname" name="patientname"  class="vcodeC" placeholder ="请输入验证码"  />
-<div id="v_container3" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div>
+<!-- <div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div> -->
+<img style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;" src="${request.contextPath}/appoint/verification" id="CreateCheckCode" 
+            class="checkcode" onclick="this.src='${request.contextPath}/appoint/verification?' + Math.random()" />
 </div>
 <div class="Inputclass"></div>
 <div class="Inputclass">
-<button class="mk_apointBtn" >提交</button> 
-<button class="mk_apointBtn" >重置</button>
+<button class="mk_apointBtn" type="button" >提交</button> 
+<button class="mk_apointBtn" onclick="reset();" type="button">重置</button>
 </div>
 </form>
 </div>
@@ -128,21 +135,69 @@
 <script>
 $(function(){
 	
- 	var verifyCode = new GVerify("v_container",1); 
- 
 	
-	
-	$(".appointBtn").hover(function(){
+	$(".appointBtn").click(function(){
 		var _opt = $(this);
 		
 		//设置FORM表单
 		$(".appointform").eq(_opt.index()).addClass("active").siblings().removeClass("active");
-		//var verifyCode = new GVerify("v_container");
-		
-		
+
 	});
 	
 });
+
+   function submit(){
+	   alert(11);
+	     
+
+		 /* $.ajax({
+		        //几个参数需要注意一下
+		            type: "POST",//方法类型
+		            url: "${request.contextPath}/admin/banner/edit" ,//url
+		            data: $('#subform').serialize(),
+		            success: function (result) {
+		            	
+		                if(result == "EDIT_SUCCESS"){
+		                	layer.alert('修改轮播成功！',function(index){
+		                		window.location.href="${request.contextPath}/admin/banner/toBanners";
+		                	});
+		                	//跳转到列表
+		                }
+		                if(result == "EDIT_FAIL"){
+		                	layer.alert('修改轮播失败！',function(index){
+		                	window.location.href='${request.contextPath}/admin/banner/toEdit?id='+$("#id").val();;
+		                	});
+		                }
+		            },
+		            error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            	 alert(XMLHttpRequest.status);
+		            	 alert(XMLHttpRequest.readyState);
+		            	 alert(XMLHttpRequest.responseText);
+		            	 alert(textStatus);
+		            	   }
+		        }); */
+	   
+   }
+   
+  function reset(){
+	  $(':input','#zxForm')
+	  .not(':button, :submit, :reset, :hidden')
+	  .val('')
+	  .removeAttr('checked')
+	  .removeAttr('selected');
+	  
+	  $(':input','#yyForm')
+	  .not(':button, :submit, :reset, :hidden')
+	  .val('')
+	  .removeAttr('checked')
+	  .removeAttr('selected');
+	  
+	  $(':input','#jyForm')
+	  .not(':button, :submit, :reset, :hidden')
+	  .val('')
+	  .removeAttr('checked')
+	  .removeAttr('selected');
+  }
 
 layui.use('laydate', function(){
 	  var laydate = layui.laydate;

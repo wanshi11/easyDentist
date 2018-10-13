@@ -1,23 +1,17 @@
 package com.dentist.controller.admin;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,10 +21,9 @@ import com.dentist.interceptor.RequiredPermission;
 import com.dentist.service.AppointService;
 import com.dentist.service.UserService;
 import com.dentist.utils.CsvUtil;
-import com.dentist.utils.DateUtil;
 import com.dentist.utils.LayuiPage;
 import com.dentist.utils.LayuiPageParam;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.dentist.utils.SCaptcha;
 
 
 /**
@@ -42,7 +35,7 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
 @RequestMapping(value = "/admin/appoint")
 public class AppointController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AppointController.class);
 
 	
 	@Autowired
@@ -192,5 +185,6 @@ public class AppointController {
 		CsvUtil.download(response);
 		
 	}
+	
 	
 }

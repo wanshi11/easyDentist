@@ -93,7 +93,8 @@ float: left;
 }
 .textC{
 width:350px;height:120px;
-padding-left: 10px;
+padding-left: 8px;
+padding-right: 8px;
 margin-left: 5px;
 border: 1px solid #35a9bc;
 margin-top: 10px;
