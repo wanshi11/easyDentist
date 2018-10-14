@@ -21,6 +21,8 @@ public class Appoint {
 
     private Date appointdate;
 
+    private String dentalproject;
+
     private String searchcode;
 
     private String remark;
@@ -101,6 +103,14 @@ public class Appoint {
 
     public void setAppointdate(Date appointdate) {
         this.appointdate = appointdate;
+    }
+
+    public String getDentalproject() {
+        return dentalproject;
+    }
+
+    public void setDentalproject(String dentalproject) {
+        this.dentalproject = dentalproject == null ? null : dentalproject.trim();
     }
 
     public String getSearchcode() {

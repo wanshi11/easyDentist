@@ -1,12 +1,11 @@
 package com.dentist.mapper;
 
+import com.dentist.entity.Appoint;
+import com.dentist.entity.AppointExample;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-
-import com.dentist.entity.Appoint;
-import com.dentist.entity.AppointExample;
 
 public interface AppointMapper {
     int countByExample(AppointExample example);
@@ -31,7 +30,6 @@ public interface AppointMapper {
 
     int updateByPrimaryKey(Appoint record);
 
-	List<Appoint> selectWithPageByExample(@Param("example") AppointExample example,
+    List<Appoint> selectWithPageByExample(@Param("example") AppointExample example,
 			@Param("params") Map<String, String> params);
-
 }

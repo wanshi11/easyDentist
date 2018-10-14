@@ -63,6 +63,20 @@
 								<option value="CLINIC_BCXL">北辰香麓店</option>
 							</select>
 						</div>
+						<div class="Inputclass">
+							<label class="lb">☆选择项目</label> <select id="dentalproject" name="dentalproject"
+								class="inputC">
+								<option>-请选择项目-</option>
+								<option value="DENTAL_CHILD">儿科</option>
+								<option value="DENTAL_ZJ">正畸</option>
+								<option value="DENTAL_ZZ">种植</option>
+								<option value="DENTAL_XF">修复</option>
+								<option value="DENTAL_YWK">牙外科</option>
+								<option value="DENTAL_YZ">牙周</option>
+								<option value="DENTAL_GG">根管</option>
+								<option value="DENTAL_OTHER">其他</option>
+							</select>
+						</div>
 						<input id="messagetype" name="messagetype" hidden="hidden"
 							value="LEAVE_MSG_YUYUE" />
 						<div class="Inputclass">
@@ -111,6 +125,20 @@
 								<option value="CLINIC_RQQJY">润千秋佳苑店</option>
 								<option value="CLINIC_LL">柳浪家园店</option>
 								<option value="CLINIC_BCXL">北辰香麓店</option>
+							</select>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">☆选择项目</label> <select id="dentalproject" name="dentalproject"
+								class="inputC">
+								<option>-请选择项目-</option>
+								<option value="DENTAL_CHILD">儿科</option>
+								<option value="DENTAL_ZJ">正畸</option>
+								<option value="DENTAL_ZZ">种植</option>
+								<option value="DENTAL_XF">修复</option>
+								<option value="DENTAL_YWK">牙外科</option>
+								<option value="DENTAL_YZ">牙周</option>
+								<option value="DENTAL_GG">根管</option>
+								<option value="DENTAL_OTHER">其他</option>
 							</select>
 						</div>
 						<input id="messagetype" name="messagetype" hidden="hidden"
@@ -219,6 +247,7 @@
 				var phone = $("#phone").val();	
 				var patientname = $("patientname").val();
 				var clinic = $("#clinic option:selected").val(); 
+				var dentalproject = $("#dentalproject option:selected").val(); 
 				var messagecontent = $("#messagecontent").val();
 				var vcode = $("#vcode").val();
 				
@@ -229,12 +258,12 @@
 		            } 
 				
 				if(formId == 'yyForm'){
-					if(patientname == "" || clinic == "" || vcode == ""){
+					if(patientname == "" || clinic == "" || vcode == "" || dentalproject == ""){
 						layer.alert("请填写完整 ☆  标项内容！");
 						return false;
 					}
 				}else if(formId == 'zxForm'){
-					if(patientname == "" || messagecontent == "" || vcode == ""){
+					if(patientname == "" || messagecontent == "" || vcode == "" || dentalproject == ""){
 						layer.alert("请填写完整 ☆ 标项内容！");
 						return false;
 					}

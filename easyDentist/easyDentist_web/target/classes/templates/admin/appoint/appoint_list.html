@@ -120,6 +120,9 @@
     	      ,{field:'messagetype', width:120, title: '消息类型', templet:function(data){
     	    	  return showMessageType(data);
     	      }}
+    	      ,{field:'dentalproject', width:120, title: '项目类型', templet:function(data){
+    	    	  return showDentalProject(data);
+    	      }}
     	      ,{field:'doctorname', width:120, title: '医生名' }
     	      ,{field:'status', width:120, title: '消息状态', templet:function(data){
     	    	  return showStatus(data);
@@ -211,12 +214,37 @@
      }
     function showStatus(data){
     	if(data.status == "WAITING_REPLY" && data.messagetype == "LEAVE_MSG_YUYUE"){
-   		 return "待回访"
+   		 return "待回访";
    	 }else if(data.status == "WAITING_REPLY" && data.messagetype == "LEAVE_MSG_ZIXUN"){
-   		 return "待回复"
+   		 return "待回复";
    	 }else if(data.status == "APPOINT_DOWN"){
    		 return "已处理";
    	 }
+    	
+    }
+    
+    function showDentalProject(data){
+    	
+    	if(data.dentalproject == "DENTAL_CHILD" ){
+      		 return "儿科";
+      	 }else if(data.dentalproject == "DENTAL_ZJ" ){
+      		 return "正畸";
+      	 }else if(data.dentalproject == "DENTAL_ZZ" ){
+      		 return "种植";
+      	 }else if(data.dentalproject == "DENTAL_XF" ){
+      		 return "修复";
+      	 }else if(data.dentalproject == "DENTAL_YWK" ){
+      		 return "牙外科";
+      	 }else if(data.dentalproject == "DENTAL_YZ" ){
+      		 return "牙周";
+      	 }else if(data.dentalproject == "DENTAL_GG" ){
+      		 return "根管";
+      	 }else if(data.dentalproject == "DENTAL_OTHER" ){
+      		 return "其他";
+      	 }else{
+      		 return "";
+      	 }
+    	
     	
     }
     

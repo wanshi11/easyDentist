@@ -742,6 +742,76 @@ public class AppointExample {
             return (Criteria) this;
         }
 
+        public Criteria andDentalprojectIsNull() {
+            addCriterion("dentalProject is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectIsNotNull() {
+            addCriterion("dentalProject is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectEqualTo(String value) {
+            addCriterion("dentalProject =", value, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectNotEqualTo(String value) {
+            addCriterion("dentalProject <>", value, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectGreaterThan(String value) {
+            addCriterion("dentalProject >", value, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectGreaterThanOrEqualTo(String value) {
+            addCriterion("dentalProject >=", value, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectLessThan(String value) {
+            addCriterion("dentalProject <", value, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectLessThanOrEqualTo(String value) {
+            addCriterion("dentalProject <=", value, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectLike(String value) {
+            addCriterion("dentalProject like", value, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectNotLike(String value) {
+            addCriterion("dentalProject not like", value, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectIn(List<String> values) {
+            addCriterion("dentalProject in", values, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectNotIn(List<String> values) {
+            addCriterion("dentalProject not in", values, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectBetween(String value1, String value2) {
+            addCriterion("dentalProject between", value1, value2, "dentalproject");
+            return (Criteria) this;
+        }
+
+        public Criteria andDentalprojectNotBetween(String value1, String value2) {
+            addCriterion("dentalProject not between", value1, value2, "dentalproject");
+            return (Criteria) this;
+        }
+
         public Criteria andSearchcodeIsNull() {
             addCriterion("searchCode is null");
             return (Criteria) this;

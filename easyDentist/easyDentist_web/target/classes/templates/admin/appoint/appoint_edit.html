@@ -67,7 +67,22 @@
 												<option value="LEAVE_MSG_ZIXUN">留言咨询</option>
 											</select>
 										</div>
-											
+										
+										<div class="form-group">
+											<label for="name">牙科项目</label> 
+											<select id="dentalproject" name="dentalproject" class="form-control" val="${appoint.dentalproject}">
+												<option>-确认项目类型-</option>
+												<option value="DENTAL_CHILD">儿科</option>
+												<option value="DENTAL_ZJ">正畸</option>
+												<option value="DENTAL_ZZ">种植</option>
+												<option value="DENTAL_XF">修复</option>
+												<option value="DENTAL_YWK">牙外科</option>
+												<option value="DENTAL_YZ">牙周</option>
+												<option value="DENTAL_GG">根管</option>
+												<option value="DENTAL_OTHER">其他</option>
+											</select>
+										</div>
+										
 											<label>患者留言</label>
 										<textarea style="width:450px;height:100px;" name="messageContent"  id="messageContent"
 										   disabled="disabled"	>${appoint.messagecontent}</textarea><br/><br/>
@@ -112,6 +127,7 @@
 		//回填类型
 		$("select option[value='${appoint.messagetype}']").attr("selected",true); 
 		$("select option[value='${appoint.clinic}']").attr("selected",true); 
+		$("select option[value='${appoint.dentalproject}']").attr("selected",true); 
 	});
 	
 	layui.use('laydate', function(){
