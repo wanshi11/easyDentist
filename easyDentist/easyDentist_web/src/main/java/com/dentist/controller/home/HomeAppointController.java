@@ -31,6 +31,18 @@ public class HomeAppointController {
 	
 	
 	
+	
+	/**
+	 * 到留言回复页
+	 */
+	@RequestMapping(value = "/appointReply", method=RequestMethod.GET)
+	public String appointReply(){
+	
+		return "/home/appoint_reply";
+	}
+	
+	
+	
 	@RequestMapping(value = "/addAppoint", method=RequestMethod.POST)
     @ResponseBody
 	public String add(Appoint app,HttpServletRequest request){
