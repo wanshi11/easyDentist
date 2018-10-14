@@ -116,13 +116,13 @@
 			    	             success: function (result) {
 			    	                 if(result == "DELETE_SUCCESS"){
 			    	                	 
-			    	                 	layer.alert('删除轮播成功！',function(index){
+			    	                 	layer.alert('删除图片成功！',function(index){
 			    	                		window.location.href="${request.contextPath}/admin/banner/toBanners";
 			    	                	});
 			    	                 	//跳转到列表
 			    	                 }
 			    	                 if(result == "DELETE_FAIL"){
-			    	                 	layer.alert('删除轮播失败！',function(index){
+			    	                 	layer.alert('删除图片失败！',function(index){
 			    	                		window.location.href="${request.contextPath}/admin/banner/toBanners";
 			    	                	});
 			    	                 }

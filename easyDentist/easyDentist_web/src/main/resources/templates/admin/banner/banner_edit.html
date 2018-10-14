@@ -122,13 +122,13 @@
 		            success: function (result) {
 		            	
 		                if(result == "EDIT_SUCCESS"){
-		                	layer.alert('修改轮播成功！',function(index){
+		                	layer.alert('修改图片成功！',function(index){
 		                		window.location.href="${request.contextPath}/admin/banner/toBanners";
 		                	});
 		                	//跳转到列表
 		                }
 		                if(result == "EDIT_FAIL"){
-		                	layer.alert('修改轮播失败！',function(index){
+		                	layer.alert('修改图片失败！',function(index){
 		                	window.location.href='${request.contextPath}/admin/banner/toEdit?id='+$("#id").val();;
 		                	});
 		                }

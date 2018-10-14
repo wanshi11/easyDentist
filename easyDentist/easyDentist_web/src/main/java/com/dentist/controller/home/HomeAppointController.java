@@ -36,13 +36,18 @@ public class HomeAppointController {
 	public String add(Appoint app,HttpServletRequest request){
 		String result = "";
 		
-		    app.setStatus(Constant.WAITING_REPLY);
-		    app.setCreatetime(new Date());
-			int num = appointService.add(app);
-			if(num !=0){
-				result = "ADD_SUCCESS";
-			}else{
-				result = "ADD_FAIL";
+		    try {
+		    	app.setStatus(Constant.WAITING_REPLY);
+			    app.setCreatetime(new Date());
+				int num = appointService.add(app);
+				if(num !=0){
+					result = "ADD_SUCCESS";
+				}else{
+					result = "ADD_FAIL";
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
 			}
 	
 		return result;
@@ -71,8 +76,32 @@ public class HomeAppointController {
        SCaptcha instance = new SCaptcha();
        //将验证码存入session
        session.setAttribute("verification", instance.getCode());
+       
        //向页面输出验证码图片
        instance.write(response.getOutputStream());
+   }
+	
+	/**
+	 * 校验验证码
+	 */
+	@RequestMapping(value = "/checkVcode", method = RequestMethod.POST)
+    @ResponseBody
+    public String checkVcode(HttpServletRequest request, HttpServletResponse response, String vcode, HttpSession session) {
+      
+		String sessionVcode = (String)session.getAttribute("verification");
+		System.out.println(sessionVcode);
+		/*try {
+			this.verification( request,  response,  session);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		if(vcode.equals(sessionVcode)){
+			return "1";
+		}else{
+			return "0";
+		}
+	
    }
 
 }

@@ -69,7 +69,7 @@
 											<input type="text" id="picurl" name="picurl" hidden="hidden"  />
 											 <input type="file" 
 												id="pictext" name="myfile" onchange="ajaxFileUpload();" accept="image/jpg,image/jpeg,image/gif,image/png">
-											<p class="help-block">轮播尺寸要求： 1440*440。</p>
+											<p class="help-block">轮播尺寸要求： 1268.05 * 340。</p>
 										<img class="image-lunbo" id="pic"   src="/images/admin/thumb_default.jpg">
 										</div>
 										
@@ -113,13 +113,13 @@
             success: function (result) {
             	
                 if(result == "ADD_SUCCESS"){
-                	layer.alert('新增轮播图成功！',function(index){
+                	layer.alert('新增图片成功！',function(index){
                 		window.location.href="${request.contextPath}/admin/banner/toBanners";
                 	});
                 	//跳转到列表
                 }
                 if(result == "ADD_FAIL"){
-                	layer.alert('新增轮播图失败！',function(index){
+                	layer.alert('新增图片失败！',function(index){
                 	window.location.href='${request.contextPath}/admin/banner/toAdd';
                 	});
                 }
