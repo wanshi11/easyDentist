@@ -1,20 +1,20 @@
 .appointMain{
 	width: 1200px;
 	/* background: whitesmoke; */
-	height: 800px;
+	height: 580px;
 	margin-left: 5.5%;
 	margin-top: 5px;
 }
 
 .appoint_left{
 width: 250px;
-height: 800px;
+height: 580px;
 float: left;
 background-image:url(../images/home/appoint.png);
 }
 .appoint_right{
 width: 930px;
-height: 800px;
+height: 580px; 
 float: right;
 }
 .btnClass{
@@ -34,8 +34,7 @@ float: right;
 }
 .appointform{
     width: 600px;
-    background-color: antiquewhite;
-    margin: 150px auto auto 80px;
+    margin: 10px auto auto 30px;
     display: none;
 }
 .active{
