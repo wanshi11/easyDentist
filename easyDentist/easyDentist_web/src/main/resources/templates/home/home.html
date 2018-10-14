@@ -50,7 +50,13 @@ background: linear-gradient(to right, transparent, #fff 55%);
         <div class="newspic">
          <#list articles as article>
          <#if article_index == 0>  
-        <a href="${request.contextPath}/admin/article/showArticleById?articleId=${article.id}" title="${article.title}"><img src="${article.thumbnailurl}" width="180" /></a>
+        <a href="${request.contextPath}/admin/article/showArticleById?articleId=${article.id}" title="${article.title}">
+        <#if article.thumbnailurl != ''>
+				<img src="${article.thumbnailurl}" width="180" />
+				<#else>
+				<img src="/images/home/article_deful.png" width="180" />
+			</#if>
+        </a>
         </#if>
         </#list>
         
