@@ -224,7 +224,6 @@ public class AppointServiceImpl implements  AppointService{
 	        return returnData;
 	    }
 	 
-	 @SuppressWarnings("unused")
 	private String showClinic(String clinic){
 		 
 		 if(!StringUtils.isEmpty(clinic)){
