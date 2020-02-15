@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dentist.entity.Doctor;
 import com.dentist.interceptor.RequiredPermission;
 import com.dentist.service.DoctorService;
+import com.dentist.service.PoliclinicService;
 import com.dentist.utils.DateUtil;
 import com.dentist.utils.JsonUtils;
 import com.dentist.utils.LayuiPage;
@@ -37,6 +38,9 @@ public class PoliclinicController {
 	
 	@Autowired
 	private DoctorService doctorService;
+	
+	@Autowired
+	private PoliclinicService policlinicService;
 	
 	
 	@Value("${pic_db_Path}")
