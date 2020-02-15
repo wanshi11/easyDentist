@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>添加医生</title> 
+<#include "/common/admin_css.html"/>
+
+</head>
+
+<body>
+
+	<div id="wrapper">
+		<#include "/common/admin_header_left.html"/>
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header">添加医生</h3>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">添加一个新的医生信息吧</div>
+						<div class="panel-body">
+							<div class="row">
+
+								<form role="form" id="subform">
+									<div class="col-lg-5 jz10">
+										<label>医生姓名</label>
+										<input class="form-control" name="doctorname"
+											id="doctorname" placeholder="请输入医生姓名" ><br /> 
+											
+											
+											<label>职位</label>
+										<input class="form-control" name="position"
+											id="position" placeholder="请输入职位" ><br /> 
+											
+											
+											<div class="form-group">
+											<label for="name">资质</label> 
+											<select id="qualification" name="qualification" class="form-control">
+												<option>-请选择医生职称/资质-</option>
+												<option value="ASSISTANT_PHYSICIAN">助理医师</option>
+												<option value="PRACTICE_PHYSICIAN">执业医师</option>
+												<option value="ATTENDING_PHYSICIAN">主治医师</option>
+												<option value="ASSOCIATE_CHIEF_PHYSICIAN">副主任医师</option>
+												<option value="CHIEF_PHYSICIAN">主任医师</option>
+											</select>
+										</div>
+										
+										<div class="form-group">
+											<label for="name">所在诊所</label> 
+											<select id="clinic" name="clinic" class="form-control" >
+												<option>-请确认诊所-</option>
+												<option value="CLINIC_YM">怡美家园店</option>
+												<option value="CLINIC_RQQJY">润千秋佳苑店</option>
+												<option value="CLINIC_LL">柳浪家园店</option>
+												<option value="CLINIC_BCXL">北辰香麓店</option>
+											</select>
+										</div>
+											
+											
+											<label>专业特长</label>
+										<input class="form-control" name="major"
+											id="major" placeholder="请输入医生专业特长" ><br />
+											
+											
+											<label>重要简介</label>
+											<input hidden="hidden" name="introduction"
+											id="introduction">
+										   <input class="form-control" name="introduction1"
+											id="introduction1" placeholder="请输入重要简介一" >
+											<input class="form-control" name="introduction2"
+											id="introduction2" placeholder="请输入重要简介二" >
+											<input class="form-control" name="introduction3"
+											id="introduction3" placeholder="请输入重要简介三" >
+											<input class="form-control" name="introduction4"
+											id="introduction4" placeholder="请输入重要简介四" >
+											<input class="form-control" name="introduction5"
+											id="introduction5" placeholder="请输入重要简介五" >
+											<p class="help-block">简介每条20字内，尽量保持整齐.</p><br /> 
+											
+											
+											<label>学历</label>
+										<input class="form-control" name="education"
+											id="education" placeholder="请输入医生学历" ><br /> 
+											
+										
+											<label>毕业院校</label>
+										<input class="form-control" name="graduateschool"  id="graduateschool"
+											placeholder="请输入毕业院校" ><br /> 
+											
+									   <div class="form-group-myfile">
+											<label for="inputfile">医生团队照片</label>
+											<input type="text" id="inchphotopath" name="inchphotopath" hidden="hidden"  />
+											 <input type="file" 
+												id="inchphototext" name="myfile1" onchange="uploadImage1(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
+											<p class="help-block">尺寸要求 200*200。</p>
+										<img class="image-doctor" id="inchphoto"   src="/images/admin/thumb_default.jpg">
+										</div><br/>
+										
+										<div class="form-group-myfile">
+											<label for="inputfile">首页医生轮播照</label>
+											<input type="text" id="picpath" name="picpath" hidden="hidden"  />
+											 <input type="file" 
+												id="pictext" name="myfile2" onchange="uploadImage2(event);" accept="image/jpg, image/jpeg, image/gif, image/png">
+											<p class="help-block">尺寸要求 366*500。</p>
+										<img class="image-doctor" id="pic"   src="/images/admin/thumb_default.jpg">
+										</div>
+										
+										<div  class="jz">
+										<input type="button" value="提交" class="btn btn-default" onclick="add()"  />
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<button class="btn btn-default" type="reset">重置</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+    <#include "/common/admin_js.html"/>
+    <script charset="utf-8" src="/js/ajaxfileupload.js"></script>
+	<!-- 后台公共js -->
+	<script type="text/javascript">
+	
+	function getIntroduction(){
+		var introduction1 = $("#introduction1").val() != "" ? $("#introduction1").val()+"#":"";
+		var introduction2 = $("#introduction2").val() != "" ? $("#introduction2").val()+"#":"";
+		var introduction3 = $("#introduction3").val() != "" ? $("#introduction3").val()+"#":"";
+		var introduction4 = $("#introduction4").val() != "" ? $("#introduction4").val()+"#":"";
+		var introduction5 = $("#introduction5").val() != "" ? $("#introduction5").val()+"#":"";
+		
+		var  introdu = introduction1+introduction2+introduction3+introduction4+introduction5;
+		return introdu.substr(0, introdu.length - 1);
+	}
+	
+	function add() {
+		
+		var doctorname = $("#doctorname").val();
+		var position = $("#position").val();
+		var qualification = $("#qualification option:selected").val();
+		var clinic = $("#clinic option:selected").val();
+		var major = $("#major").val();
+		var introduction = getIntroduction();
+		$("#introduction").attr("value",introduction);
+		console.log(introduction);
+		
+		if(doctorname == "" || position == "" || qualification == "" || major == "" || introduction == "" || clinic == ""){
+			layer.alert('姓名/职位/门诊/资质/特长/重要简介 不可为空！！');
+			return false;
+		}
+	
+         $.ajax({
+        //几个参数需要注意一下
+            type: "POST",//方法类型
+            url: "${request.contextPath}/admin/doctor/add" ,//url
+            data: $('#subform').serialize(),
+            success: function (result) {
+            	
+                if(result == "ADD_SUCCESS"){
+                	layer.alert('添加成功！',function(index){
+                		window.location.href="${request.contextPath}/admin/doctor/toDoctors";
+                	});
+                	//跳转到列表
+                }
+                if(result == "ADD_FAIL"){
+                	layer.alert('添加失败！',function(index){
+                	window.location.href='${request.contextPath}/admin/doctor/toDoctors';
+                	});
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            	 alert(XMLHttpRequest.status);
+            	 alert(XMLHttpRequest.readyState);
+            	 alert(XMLHttpRequest.responseText);
+            	 alert(textStatus);
+            	   }
+        }); 
+    }
+	
+	
+	function uploadImage1(e) {
+		
+	    //上传缩略图
+	    //图片的提前校验,如果返回false,则代表校验不成功
+	     //if(!preSubmitFileCheck(e)){
+	     //    return ;
+	    //} 
+           $.ajaxFileUpload
+           (
+               {
+                   url: '${request.contextPath}/admin/doctor/uploadInchPhoto', //用于文件上传的服务器端请求地址
+                   secureuri: false, //是否需要安全协议，一般设置为false
+                   fileElementId: 'inchphototext', //文件上传域的ID
+                   dataType: 'json', //返回值类型 一般设置为json
+                   type:'post',
+                   success: function (data, status)  //服务器成功响应处理函数
+                   {
+                           if (data.error == 'error') {  
+                        	   layer.alert(data.msg);
+                               //清空file  input框
+                               $("#inchphototext").val("");
+                           } else {                       //success
+                        	   $("#inchphotopath").val(data.imgurl);
+                              $("#inchphoto").attr("src", data.imgurl);
+                              layer.alert(data.msg);
+                           }
+                   },
+                   error: function (data, status, e)//服务器响应失败处理函数
+                   {
+                	   layer.alert(e);
+                   }
+               }
+           )	    
+	}
+	
+	
+function uploadImage2(e) {
+		
+	    //上传缩略图
+	    //图片的提前校验,如果返回false,则代表校验不成功
+	     //if(!preSubmitFileCheck(e)){
+	     //    return ;
+	    //} 
+           $.ajaxFileUpload
+           (
+               {
+                   url: '${request.contextPath}/admin/doctor/uploadDoctorPic', //用于文件上传的服务器端请求地址
+                   secureuri: false, //是否需要安全协议，一般设置为false
+                   fileElementId: 'pictext', //文件上传域的ID
+                   dataType: 'json', //返回值类型 一般设置为json
+                   type:'post',
+                   success: function (data, status)  //服务器成功响应处理函数
+                   {
+                           if (data.error == 'error') {  
+                        	   layer.alert(data.msg);
+                               //清空file  input框
+                               $("#pictext").val("");
+                           } else {                       //success
+                        	   $("#picpath").val(data.imgurl);
+                              $("#pic").attr("src", data.imgurl);
+                              layer.alert(data.msg);
+                           }
+                   },
+                   error: function (data, status, e)//服务器响应失败处理函数
+                   {
+                	   layer.alert(e);
+                   }
+               }
+           )	    
+	}
+
+
+	</script>
+	
+
+</body>
+
+</html>

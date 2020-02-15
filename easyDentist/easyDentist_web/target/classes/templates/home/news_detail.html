@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<title>新闻详情</title>
+<link type="text/css" href="/css/style.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="/css/index.css" />
+
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/js/love.js"></script>
+<style type="text/css">
+#new_detail img {
+	max-width: 700px;
+}
+
+.read {
+	color: #b7aa98;
+	padding-right: 50px;
+	text-align: right;
+	border-bottom: 1px solid #ddd;
+}
+
+.title {
+	font-size: 17px;
+	font-weight: bold;
+	color: #333;
+}
+
+.line {
+	width: 100%;
+	height: 1px;
+	background: #dbdbdb;
+}
+
+.time {
+	margin-top: 1em;
+	color: #333;
+	font-size: 12px;
+	margin-bottom: 20px;
+}
+
+.bottom_ {
+	padding-top: 2em;
+	color: #666;
+	font-size: 14px;
+}
+
+.bottom_ li {
+	list-style: disc inside;
+	color: #163d7d;
+}
+</style>
+</head>
+
+<body>
+	<#include "/common/home_header.html"/>
+
+	<div style="background: #F5F5F5;padding-top: 20px;padding-bottom: 20px;">
+
+		 <!-- <img style="width: 100%; height: 400px; margin-top: -2px;"
+			src="/images/home/ccks.jpg" />  -->
+		<div id="new_detail"
+			style="width: 1000px; margin: 0px auto 0px auto; font-size: 15px; border: 1px solid #ddd; padding: 20px; line-height: 2.5em; word-break: break-all; word-wrap: break-word; background-color: white;">
+			<div class="top-title">
+				<p class="title">${art.title}</p>
+				<div class="line"></div>
+				<div class="time">发布时间 : ${art.createtime?string("yyyy-MM-dd")}</div>
+			</div>
+			${artE.content}
+			<div class="read">已浏览:${artE.readvalue} 次</div>
+			<div class="bottom_">
+				<ul>
+				    <#if preAticle ??>
+					<li><a href="${request.contextPath}/news/showNewById?articleId=${preAticle.id}">上一篇 : ${preAticle.title}</a></li>
+					</#if>
+					<#if nextAticle ??>
+					<li><a href="${request.contextPath}/news/showNewById?articleId=${nextAticle.id}">下一篇 : ${nextAticle.title}</a></li>
+					</#if>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<#include "/common/home_footer.html"/>
+	<script>
+
+</script>
+</body>
+</html>

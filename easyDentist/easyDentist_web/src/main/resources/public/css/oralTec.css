@@ -1,0 +1,166 @@
+.oralTechnologyMain{
+
+font-family: '微软雅黑';
+line-height: 22px;
+font-size: 14px;
+margin-top: 20px;
+color:#6d6d6d;
+}
+
+.Title {
+    background: url(/images/home/oralTechnology/line_start.png) left bottom no-repeat;
+    margin: 50px auto;
+        margin-bottom: 50px;
+    margin-bottom: 0;
+}
+.Title2 {
+    background: url(/images/home/oralTechnology/line_center.png) no-repeat;
+        background-position-x: 0%;
+        background-position-y: 0%;
+    background-position: 0 -70px;
+}
+
+.Title3 {
+    height: 18px;
+    background: url(/images/home/oralTechnology/line_center.png) no-repeat;
+        background-position-x: 0%;
+        background-position-y: 0%;
+    background-position: 0 -130px;
+    width: 1100px;
+    margin: 30px auto;
+        margin-top: 30px;
+    padding-left: 35px;
+    margin-top: 0;
+}
+
+.oralTote {
+    height: 50px;
+    padding-left: 35px;
+    width: 1100px;
+    margin: 0 auto;
+    line-height: 22px;
+    color: #bququf;
+    text-align: left;
+    font-size: 12px;
+}
+
+.oralTote h2 {
+    font-size: 26px;
+    color: #6286c0;
+    font-weight: bold;
+}
+
+.what-Warp {
+    width: 1100px;
+    margin: 0 auto;
+    background: url(/images/home/oralTechnology/line_end.png) left top repeat-y;
+    padding: 16px 0 37px 35px;
+}
+
+.wat_left {
+    float: left;
+    width: 481px;
+}
+.wat-Right {
+    float: right;
+    width: 550px;
+    line-height: 25px;
+}
+.wat-Right P{
+	margin: 30px 0;
+	color: #6d6d6d;
+	}
+
+.start {
+    width: 245px;
+    height: 42px;
+    background: #6286c0;
+    line-height: 42px;
+    font-size: 18px;
+}
+
+.start a {
+     display: block; 
+    color: #fff;
+    text-align: center;
+}
+
+.cen {
+    text-align: center;
+}
+
+.harmDiv {
+    width: 1100px;
+}
+.harmBox {
+    width: 450px;
+    float: left;
+    margin-right: 100px;
+}
+.harmL {
+    float: left;
+    width: 98px;
+    height: 98px;
+    background: url(/images/home/oralTechnology/myzj_30.png) no-repeat;
+    line-height: 98px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: #fff;
+}
+.harmR {
+    float: right;
+    width: 322px;
+}
+.harmR p {
+    line-height: 22px;
+    margin-top: 5px;
+}
+
+.harmR h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+.quesBox {
+    float: left;
+    width: 203px;
+    height: 159px;
+    background: #6286c0;
+    margin-right: 10px;
+    color: #fff;
+    padding: 40px 30px;
+}
+
+.B2 {
+    background: #f1f6ff;
+    color: #616161;
+}
+
+.quTit {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.quTit .quT1 {
+    float: left;
+    width: 38px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 41px;
+    font-weight: bold;
+    border-right: 1px solid #fff;
+    margin: 5px 10px 0 0;
+}
+
+.quTit .quT2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.quTit .quT3 {
+    border-right: 1px solid #616161;
+    color: #616161;
+}
+

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>轮播管理</title>
+
+    <#include "/common/admin_css.html"/>
+    <style>
+    .layui-laypage-btn{
+    color: #333;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+       <#include "/common/admin_header_left.html"/>
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header">轮播管理</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>
+						<a type="button" class="btn btn-info"
+							href="${request.contextPath}/admin/banner/toAdd">添加BANNER图</a>
+					</p><br/>
+					<div class="panel panel-default">
+					
+					<div class="panel-heading">检索BANNER列表</div>
+						<br />
+					 	<form class="layui-form layui-form-pane">
+							<div style="width: 60%;">
+							<div class="layui-form-item">
+							<div style="width: 70%">
+											<select id="type" name="type" class="form-control">
+												<option>-请BANNER类型-</option>
+												<option value="BANNER_LUNBO">轮播宣传</option>
+												<option value="BANNER_ENVIRONMENT">医院环境</option>
+												<option value="BANNER_HOROR">医院荣誉</option>
+												<option value="BANNER_FACILITY">医院设备</option>
+											</select></div>
+							</div>
+							<a  href="javascript:void(0)" onclick="searchBtn();" class="layui-btn layui-btn-primary layui-btn-sm">搜索</a>
+							</div>
+						</form>
+					
+						<table class="layui-hide" id="bannerTable" lay-filter="demo"></table>
+
+					</div>
+				</div>
+				
+			</div>
+		</div>
+    </div>
+
+    
+   <#include "/common/admin_js.html"/> <!-- 后台公共js -->
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    var mytable= null;
+  
+    
+    layui.use('table', function(){
+    	  var table = layui.table;
+    	  
+    	    mytable =  table.render({
+    	    elem: '#bannerTable'
+    	    ,url:'${request.contextPath}/admin/banner/bannerList'
+    	    ,method:'post'
+    	    ,cols: [[
+               /* {type:'numbers'} */
+              /* {type: 'checkbox'} */
+    	      {field:'id', width:70, title: 'ID', sort: true}
+    	      ,{field:'bannername', width:200, title: 'banner名称(或描述)'}
+    	      ,{field:'href', width:300, title: 'banner链接' }
+    	      ,{field:'type', width:150, title: 'banner类型',templet:function(data){
+    	    	  return showBannerType(data);
+    	      }}
+    	      ,{field:'status', width:150, title: 'banner状态'}
+    	      ,{field:'right', title: '操作', width:120,toolbar:"#barDemo"}
+    	    ]]
+    	    ,where: {
+    	    	
+  		      }
+    	    ,page: {layout: ['limit', 'count', 'prev', 'page', 'next', 'skip']
+    	       //,curr: 5 //设定初始在第 5 页
+    	      //,groups: 1 //只显示 1 个连续页码
+    	      //,first: false //不显示首页
+    	      //,last: false //不显示尾页
+    	    }
+    	 
+    	  });
+    	
+    	    
+    	    table.on('tool(demo)', function(obj){
+			    var data = obj.data;
+			    if(obj.event === 'del'){
+			      layer.confirm('真的删除行么', function(index){
+			        
+			    	     $.ajax({
+			    	         //几个参数需要注意一下
+			    	             type: "POST",//方法类型
+			    	             url: "${request.contextPath}/admin/banner/delete" ,//url
+			    	             data: {"id":data.id},
+			    	             success: function (result) {
+			    	                 if(result == "DELETE_SUCCESS"){
+			    	                	 
+			    	                 	layer.alert('删除图片成功！',function(index){
+			    	                		window.location.href="${request.contextPath}/admin/banner/toBanners";
+			    	                	});
+			    	                 	//跳转到列表
+			    	                 }
+			    	                 if(result == "DELETE_FAIL"){
+			    	                 	layer.alert('删除图片失败！',function(index){
+			    	                		window.location.href="${request.contextPath}/admin/banner/toBanners";
+			    	                	});
+			    	                 }
+			    	             },
+			    	            
+			    	         });
+			    	  
+			        layer.close(index);
+			      });
+			    } else if(obj.event === 'edit'){
+			      window.location.href="${request.contextPath}/admin/banner/toEdit?id="+data.id;
+			    }
+			  });
+    	    
+
+    	});
+    
+  function searchBtn(){
+		
+		//条件查询
+		 mytable.reload({
+			where:{
+				"type": $("#type option:selected").val()
+			}
+		}); 
+		};
+		
+		function showBannerType(data){
+			if(data.type == 'BANNER_LUNBO'){
+				return "宣传轮播";
+			}else if(data.type == 'BANNER_ENVIRONMENT'){
+				return "医院环境";
+			}else if(data.type == 'BANNER_HOROR'){
+				return "医院荣誉";
+			}else if(data.type == 'BANNER_FACILITY'){
+				return "医院设备";
+			}
+		}
+    
+    </script>
+    
+    <script type="text/html" id="barDemo">
+    <a  class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+
+</body>
+
+</html>

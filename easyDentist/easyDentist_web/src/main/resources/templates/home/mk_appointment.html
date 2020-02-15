@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<title>预约留言</title>
+<link type="text/css" href="/css/style.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="/css/index.css" />
+<link type="text/css" rel="stylesheet"
+	href="/layui_v2.3.0/css/layui.css" />
+<link type="text/css" rel="stylesheet" href="/css/appoint.css" />
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/js/gVerify.js"></script>
+<script src="/layui_v2.3.0/layui.all.js" charset="utf-8"></script>
+<style type="text/css">
+.layui-input {
+	height: 32px;
+	width: 312px;
+	padding-left: 10px;
+	border: 1px solid #3C7FC9;
+	float: right;
+	vertical-align: middle;
+	margin-top: 10px;
+	margin-right: 43px;
+}
+</style>
+</head>
+
+<body>
+	<#include "/common/home_header.html"/>
+	<img style="width: 100%; height: 340px; margin-top: -3px;"
+		src="/images/home/yuyue_banner.jpg" />
+        <div class="appointMain-box">
+		<div class="appointMain">
+			<div class="appoint_left">
+					<button class="appointBtn" id="yyBtn">线上预约</button>
+					<button class="appointBtn" id="lyBtn">留言咨询</button>
+					<button class="appointBtn" id="jyBtn">我要吐槽</button>
+					<a id="cklyBtn" href="${request.contextPath}/appoint/appointReply">查看留言回复</a>
+			</div>
+			<div class="appoint_right">
+
+             <div style="position: absolute;" >
+				<div id="yy" class="appointform active">
+					<form id="yyForm" method="post">
+						<div class="Inputclass">
+							<label class="lb">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label><input id="patientname"
+								name="patientname" class="inputC" placeholder="请输入您的姓名" /><span class="xing">☆</span>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">联系电话</label><input id="phone" name="phone"
+								class="inputC" placeholder="请输入您的手机号码" /><span class="xing">☆</span>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">选择诊所</label> <select id="clinic" name="clinic"
+								class="selectC">
+								<option>-请选择诊所-</option>
+								<option value="CLINIC_YM">怡美家园店</option>
+								<option value="CLINIC_RQQJY">润千秋佳苑店</option>
+								<option value="CLINIC_LL">柳浪家园店</option>
+								<option value="CLINIC_BCXL">北辰香麓店</option>
+							</select><span class="xing">☆</span>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">选择项目</label> <select id="dentalproject" name="dentalproject"
+								class="selectC">
+								<option>-请选择项目-</option>
+								<option value="DENTAL_CHILD">儿科</option>
+								<option value="DENTAL_ZJ">正畸</option>
+								<option value="DENTAL_ZZ">种植</option>
+								<option value="DENTAL_XF">修复</option>
+								<option value="DENTAL_YWK">牙外科</option>
+								<option value="DENTAL_YZ">牙周</option>
+								<option value="DENTAL_GG">根管</option>
+								<option value="DENTAL_OTHER">其他</option>
+							</select><span class="xing">☆</span>
+						</div>
+						<input id="messagetype" name="messagetype" hidden="hidden"
+							value="LEAVE_MSG_YUYUE" />
+						<div class="Inputclass">
+							<label class="lb">预约时间</label><input id="appointdate"
+								name="appointdate" class="layui-input" placeholder="请选择预约时间" />
+						</div>
+						<div class="Textclass" id="yyTextarea">
+							<label class="textlb">预约描述</label>
+							<textarea class="textC" name="messagecontent" id="messagecontent"
+								placeholder="如有需要，请补充说明您的预约情况。稍后我们将会给您回访电话，详细确定预约情况，感谢您的信任！"></textarea>
+								<span class="wordwrap"><var class="word">200</var>/200</span>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">验  证  码</label><input id="vcode" name="vcode"
+								class="vcodeC" placeholder="请输入验证码" /><span class="xing">☆</span>
+							<!-- <div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div> -->
+							<img
+								src="${request.contextPath}/appoint/verification"
+								id="CreateCheckCode" class="checkcode"
+								onclick="this.src='${request.contextPath}/appoint/verification?' + Math.random()" />
+
+						</div>
+						<div class="Inputclass"></div>
+						<div class="Inputclass">
+							<input class="mk_apointBtn" type="button" value="提交"
+								onclick="tosubmit('yyForm');"></input> <input
+								class="mk_apointBtn" type="button" onclick="reset();" value="重置"></input>
+						</div>
+					</form>
+				</div>
+				<div id="zx" class="appointform">
+					<form id="zxForm" method="post">
+						<div class="Inputclass">
+							<label class="lb">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label><input id="patientname"
+								name="patientname" class="inputC" placeholder="请输入您的姓名" /><span class="xing">☆</span>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">联系电话</label><input id="phone" name="phone"
+								class="inputC" placeholder="请输入您的手机号码" /><span class="xing">☆</span>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">选择诊所</label> <select id="clinic" name="clinic"
+								class="selectC">
+								<option>-请选择诊所-</option>
+								<option value="CLINIC_YM">怡美家园店</option>
+								<option value="CLINIC_RQQJY">润千秋佳苑店</option>
+								<option value="CLINIC_LL">柳浪家园店</option>
+								<option value="CLINIC_BCXL">北辰香麓店</option>
+							</select>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">选择项目</label> <select id="dentalproject" name="dentalproject"
+								class="selectC">
+								<option>-请选择项目-</option>
+								<option value="DENTAL_CHILD">儿科</option>
+								<option value="DENTAL_ZJ">正畸</option>
+								<option value="DENTAL_ZZ">种植</option>
+								<option value="DENTAL_XF">修复</option>
+								<option value="DENTAL_YWK">牙外科</option>
+								<option value="DENTAL_YZ">牙周</option>
+								<option value="DENTAL_GG">根管</option>
+								<option value="DENTAL_OTHER">其他</option>
+							</select><span class="xing">☆</span>
+						</div>
+						<input id="messagetype" name="messagetype" hidden="hidden"
+							value="LEAVE_MSG_ZIXUN" />
+						<div class="Textclass" id="lyTextarea">
+							<label class="textlb">留言咨询</label>
+							<textarea class="textC" name="messagecontent" id="messagecontent"
+								placeholder="请尽可能详细的描述您的口腔问题，我们会尽快回复您的问题！"></textarea>
+								<span class="wordwrap"><var class="word">200</var>/200</span>
+								<span class="xing">☆</span>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">验  证  码</label><input id="vcode" name="vcode"
+								class="vcodeC" placeholder="请输入验证码" /><span class="xing">☆</span>
+							<!-- <div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div> -->
+							<img
+								src="${request.contextPath}/appoint/verification"
+								id="CreateCheckCode" class="checkcode"
+								onclick="this.src='${request.contextPath}/appoint/verification?' + Math.random()" />
+						</div>
+						<div class="Inputclass"></div>
+						<div class="Inputclass">
+							<input class="mk_apointBtn" type="button"
+								onclick="tosubmit('zxForm');" value="提交" /> <input
+								class="mk_apointBtn" type="button" onclick="reset();" value="重置"></input>
+						</div>
+					</form>
+				</div>
+				<div id="jy" class="appointform">
+					<form id="jyForm" method="post">
+						<div class="Inputclass">
+							<label class="lb">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label><input id="patientname"
+								name="patientname" class="inputC" placeholder="请输入您的姓名" /><span class="xing">☆</span>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">联系电话</label><input id="phone" name="phone"
+								class="inputC" placeholder="请输入您的手机号码" /><span class="xing">☆</span>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">选择诊所</label> <select id="clinic" name="clinic"
+								class="selectC">
+								<option>-请选择诊所-</option>
+								<option value="CLINIC_YM">怡美家园店</option>
+								<option value="CLINIC_RQQJY">润千秋佳苑店</option>
+								<option value="CLINIC_LL">柳浪家园店</option>
+								<option value="CLINIC_BCXL">北辰香麓店</option>
+							</select><span class="xing">☆</span>
+						</div>
+						<input id="messagetype" name="messagetype" hidden="hidden"
+							value="LEAVE_MSG_ADVICE" />
+						<div class="Textclass" id="jyTextarea">
+							<label class="textlb">建议/意见</label>
+							<textarea class="textC" name="messagecontent" id="messagecontent"
+								placeholder="请您填写对我们工作的意见或者建议，谢谢您的关注！"></textarea>
+								<span class="wordwrap"><var class="word">200</var>/200</span>
+								<span class="xing">☆</span>
+						</div>
+						<div class="Inputclass">
+							<label class="lb">验  证  码</label><input id="vcode" name="vcode"
+								class="vcodeC" placeholder="请输入验证码" /><span class="xing">☆</span>
+							<!-- <div id="v_container" style="width: 125px;height: 30px;float: right;margin-top: 9px;margin-right: 125px;"></div> -->
+							<img
+								src="${request.contextPath}/appoint/verification"
+								id="CreateCheckCode" class="checkcode"
+								onclick="this.src='${request.contextPath}/appoint/verification?' + Math.random()" />
+						</div>
+						<div class="Inputclass"></div>
+						<div class="Inputclass">
+							<input class="mk_apointBtn" type="button" value="提交"
+								onclick="tosubmit('jyForm');" /> <input class="mk_apointBtn"
+								type="button" onclick="reset();" value="重置" />
+						</div>
+					</form>
+				</div></div>
+				<div class="ap-desc">
+				<div class="ap-text">
+				感谢您对新北口腔的关注！请填写左表，留言咨询、反馈意见。我们在收到您的留言后，会及时回复您。
+				</div><div  class="ap-img">
+				<img  style="height: 220px;" src="/images/home/ap_xb.jpg" />
+				</div>
+				</div>
+			</div>
+
+		</div> 
+		</div><#include "/common/home_footer.html"/> <script>
+		
+		function reset() {
+			$(':input', '#zxForm').not(':button, :submit, :reset, :hidden')
+					.val('').removeAttr('checked').removeAttr('selected');
+
+			$(':input', '#yyForm').not(':button, :submit, :reset, :hidden')
+					.val('').removeAttr('checked').removeAttr('selected');
+
+			$(':input', '#jyForm').not(':button, :submit, :reset, :hidden')
+					.val('').removeAttr('checked').removeAttr('selected');
+		}
+		
+			$(function() {
+
+				$(".appointBtn").click(
+						function() {
+							var _opt = $(this);
+							console.log(_opt.index());
+
+							//设置FORM表单隐藏或显示
+							$(".appointform").eq(_opt.index()).addClass(
+									"active").siblings().removeClass("active");
+							
+							//重新发送验证码
+							//var formId = $("form").eq(_opt.index()).attr("id");
+							$(".checkcode").eq(_opt.index()).attr("src","${request.contextPath}/appoint/verification?" + Math.random());
+							
+							reset();
+							
+							//设置初始化字数
+							var wordCount =  $(".TextClass").eq(_opt.index());
+							textArea = wordCount.find("textarea"),
+					        word = wordCount.find(".word");
+					        //调用
+					        statInputNum(textArea,word);
+						});
+
+			});
+			
+
+
+			function tosubmit(formId) {
+				var phone = $("#" + formId + " input[name='phone']").val();	
+				var patientname = $("#" + formId + " input[name='patientname']").val();
+				var clinic = $("#" + formId + " select[name='clinic']  option:selected ").val(); 
+				var dentalproject = $("#" + formId + " select[name='dentalproject']  option:selected").val(); 
+				var messagecontent = $("#" + formId + " textarea[name='messagecontent']").val();
+				var vcode = $("#" + formId + " input[name='vcode']").val();
+				
+				 var myreg=/^1[345789]\d{9}$/;
+		            if (!myreg.test(phone)) {
+		            	layer.msg("手机号码格式不正确！");
+		                return false;
+		            } 
+				
+				if(formId == 'yyForm'){
+					if(patientname == "" || clinic == "" || vcode == "" || dentalproject == ""){
+						layer.msg("请填写完整 ☆ 标项内容！");
+						return false;
+					}
+				}else if(formId == 'zxForm'){
+					if(patientname == "" || messagecontent == "" || vcode == "" || dentalproject == ""){
+						layer.msg("请填写完整 ☆ 标项内容！");
+						return false;
+					}
+				}else if(formId == 'jyForm'){
+					if(patientname == "" || messagecontent == "" || vcode == "" || clinic == ""){
+						layer.msg("请填写完整 ☆ 标项内容！");
+						return false;
+					}
+				}
+				
+
+				$.ajax({
+					//几个参数需要注意一下
+					type : "POST",//方法类型
+					url : "${request.contextPath}/appoint/checkVcode",//url
+					async: false,
+					data : {"vcode" : vcode},
+					success : function(result) {
+						if(result != '1'){
+							console.info($("#"+formId).find("img"));
+							//刷新验证码img
+							$("#"+formId).find("img").attr("src","${request.contextPath}/appoint/verification?" + Math.random());
+							layer.msg("请填写正确的验证码信息.");
+							return false;
+						}else{
+							
+							$.ajax({
+								type : "POST",//方法类型
+								url : "${request.contextPath}/appoint/addAppoint",//url
+								async: false,
+								data : $('#'+formId).serialize(),
+								success : function(da) {
+									if (da == "ADD_SUCCESS") {
+										layer.msg("信息已提交，感谢您的信任☺.");
+										reset();
+									}
+									if (da == "ADD_FAIL") {
+										layer.alert("信息提交失败，请联系管理员!");
+										reset();
+									} 
+								},
+					            error: function(XMLHttpRequest, textStatus, errorThrown) {
+					            	 alert(XMLHttpRequest.status);
+					            	 alert(XMLHttpRequest.readyState);
+					            	 alert(XMLHttpRequest.responseText);
+					            	 alert(textStatus);
+					            	   }
+							});
+						}
+					}
+				});
+
+			}
+
+			
+
+			layui.use('laydate', function() {
+				var laydate = layui.laydate;
+
+				//常规用法
+				laydate.render({
+					elem : '#appointdate',
+					calendar : true //日历节日提醒
+					,
+					theme : '#347f98' //主题颜色
+				});
+			});
+		</script>
+<script>
+    $(function(){
+
+        //先选出 textarea 和 统计字数 dom 节点
+        var wordCount1 = $("#yyTextarea"),
+                textArea1 = wordCount1.find("textarea"),
+                word1 = wordCount1.find(".word");
+        
+        var wordCount2 = $("#lyTextarea"),
+        textArea2 = wordCount2.find("textarea"),
+        word2 = wordCount2.find(".word");
+        
+        var wordCount3 = $("#jyTextarea"),
+        textArea3 = wordCount3.find("textarea"),
+        word3 = wordCount3.find(".word");
+        //调用
+        statInputNum(textArea1,word1);
+        statInputNum(textArea2,word2);
+        statInputNum(textArea3,word3);
+
+    });
+    /*
+     * 剩余字数统计
+     * 注意 最大字数只需要在放数字的节点哪里直接写好即可 如：<var class="word">200</var>
+     */
+    function statInputNum(textArea,numItem) {
+        var max = numItem.text(),
+                curLength;
+        textArea[0].setAttribute("maxlength", max);
+        curLength = textArea.val().length;
+        numItem.text(max - curLength);
+        textArea.on('input propertychange', function () {
+            var _value = $(this).val().replace(/\n/gi,"");
+            numItem.text(max - _value.length);
+        });
+    }
+</script>
+</body>
+</html>

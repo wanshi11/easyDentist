@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="answer" content="">
+<meta name="author" content="">
+
+<title>处理消息</title> <#include "/common/admin_css.html"/>
+
+</head>
+
+<body>
+
+	<div id="wrapper">
+		<#include "/common/admin_header_left.html"/>
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+				<#if (appoint.messagetype == 'LEAVE_MSG_YUYUE') >
+					<h3 class="page-header">【致电回访】</h3>
+					<#else>
+					<h3 class="page-header">【回复留言咨询】</h3>
+				</#if>	
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">EDIT_APPOINT</div>
+						<div class="panel-body">
+							<div class="row">
+
+								<form role="form" id="subform">
+									<div class="col-lg-5 jz10">
+										<input  name="id" id="id" type="hidden" value="${appoint.id}" />
+										<label>患者名</label>
+										<input class="form-control" name="patientname"
+											id="patientname"  value="${appoint.patientname}" placeholder="请输入患者名" ><br /> 
+											<label>患者电话</label>
+										<input class="form-control" name="phone"  id="phone"
+										  value="${appoint.phone}" disabled="disabled"	placeholder="请输入患者电话"><br/>
+										
+											<div class="form-group">
+											<label for="name">所在诊所</label> 
+											<select id="clinic" name="clinic" class="form-control" val="${appoint.clinic}">
+												<option>-请确认诊所-</option>
+												<option value="CLINIC_YM">怡美家园店</option>
+												<option value="CLINIC_RQQJY">润千秋佳苑店</option>
+												<option value="CLINIC_LL">柳浪家园店</option>
+												<option value="CLINIC_BCXL">北辰香麓店</option>
+											</select>
+										</div>
+										
+										<div class="form-group">
+											<label for="name">消息类型</label> 
+											<select id="messagetype" name="messagetype" class="form-control" val="${appoint.messagetype}">
+												<option>-确认消息类型-</option>
+												<option value="LEAVE_MSG_ADVICE">意见&建议</option>
+												<option value="LEAVE_MSG_YUYUE">预约就诊</option>
+												<option value="LEAVE_MSG_ZIXUN">留言咨询</option>
+											</select>
+										</div>
+										
+										<div class="form-group">
+											<label for="name">牙科项目</label> 
+											<select id="dentalproject" name="dentalproject" class="form-control" val="${appoint.dentalproject}">
+												<option>-确认项目类型-</option>
+												<option value="DENTAL_CHILD">儿科</option>
+												<option value="DENTAL_ZJ">正畸</option>
+												<option value="DENTAL_ZZ">种植</option>
+												<option value="DENTAL_XF">修复</option>
+												<option value="DENTAL_YWK">牙外科</option>
+												<option value="DENTAL_YZ">牙周</option>
+												<option value="DENTAL_GG">根管</option>
+												<option value="DENTAL_OTHER">其他</option>
+											</select>
+										</div>
+										
+											<label>患者留言</label>
+										<textarea style="width:450px;height:100px;" name="messageContent"  id="messageContent"
+										   disabled="disabled"	>${appoint.messagecontent}</textarea><br/><br/>
+										   
+										   <#if (appoint.messagetype == 'LEAVE_MSG_YUYUE') >
+										   <label>预约医生</label>
+										   <input class="form-control" name="doctorname"  id="doctorname"
+										  value="${appoint.doctorname}"	placeholder="请输入预约的医生"><br/>
+										  
+										  <label>预约时间</label>
+                                          <input type="text" class="layui-input" name="appointdate"  id="appointdate"
+                                          value="${appoint.appointdate?string('YYYY-MM-dd')}" placeholder="yyyy年MM月dd日"><br/>
+                                          </#if>
+
+										<#if (appoint.messagetype == 'LEAVE_MSG_YUYUE') >
+										<label>回访备注</label> <#else> <label>留言咨询回复</label>
+										</#if>
+										<textarea style="width: 450px; height: 100px;" name="remark"
+											id="remark"></textarea>
+										<br /> <br /> <br />
+
+
+										<div class="jz">
+											<input type="button" value="点击处理" class="btn btn-default"
+												onclick="edit()" />
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+    <#include "/common/admin_js.html"/>
+	<!-- 后台公共js -->
+	<script type="text/javascript">
+	$(function(){
+		//回填类型
+		$("select option[value='${appoint.messagetype}']").attr("selected",true); 
+		$("select option[value='${appoint.clinic}']").attr("selected",true); 
+		$("select option[value='${appoint.dentalproject}']").attr("selected",true); 
+	});
+	
+	layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  
+		  //常规用法
+		  laydate.render({
+		    elem: '#appointdate'
+		    ,calendar: true   //日历节日提醒
+		    ,theme: '#393D49'  //主题颜色
+		  });
+	});
+		
+	function edit() {
+		
+		var question = $("#question").val();
+		var answer = $("#answer").val();
+		if(question == "" || answer == ""){
+			layer.alert('表单数据不可以为空！');
+			return false;
+		}
+		
+		
+        $.ajax({
+        //几个参数需要注意一下
+            type: "POST",//方法类型
+            url: "${request.contextPath}/admin/appoint/edit" ,//url
+            data: $('#subform').serialize(),
+            success: function (result) {
+            	
+                if(result == "EDIT_SUCCESS"){
+                	layer.alert('消息已处理！',function(index){
+                		window.location.href="${request.contextPath}/admin/appoint/toAppoints";
+                	});
+                	//跳转到列表
+                }
+                if(result == "EDIT_FAIL"){
+                	layer.alert('消息处理失败！',function(index){
+                	window.location.href='${request.contextPath}/admin/appoint/toEdit?id='+$("#id").val();;
+                	});
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            	 alert(XMLHttpRequest.status);
+            	 alert(XMLHttpRequest.readyState);
+            	 alert(XMLHttpRequest.responseText);
+            	 alert(textStatus);
+            	   }
+        });
+    }
+	
+
+	</script>
+	
+
+</body>
+
+</html>

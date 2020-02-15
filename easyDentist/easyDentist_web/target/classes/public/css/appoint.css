@@ -1,0 +1,386 @@
+.appointMain-box {
+	background: #f5f5f5;
+	position: relative;
+}
+
+.appointMain {
+	width: 1200px;
+	min-height: 600px;
+	margin: 1px auto;
+	position: relative;
+	border: 1px solid #ddd;
+	padding: 10px;
+	background: #fff;
+}
+
+.appoint_left {
+	width: 250px;
+	height: 580px;
+	float: left;
+	background-image: url(../images/home/appoint_left.jpg);
+}
+
+.appoint_right {
+	width: 950px;
+	height: 580px;
+	float: right;
+}
+
+#yyBtn {
+	width: 120px;
+	height: 35px;
+	color: #3C7FC9;
+	margin-top: 200px;
+	background-color: white;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+#lyBtn {
+	width: 120px;
+	height: 35px;
+	color: #3C7FC9;
+	margin-top: 297px;
+	float: right;
+	background-color: white;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+#jyBtn {
+	width: 120px;
+	height: 35px;
+	color: #3C7FC9;
+	margin-top: 169px;
+	float: left;
+	background-color: white;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+#cklyBtn {
+	width: 90px;
+	height: 35px;
+	color: #3f56b9;
+	margin-top: 222px;
+	float: right;
+	font-size: 14px;
+	text-decoration: underline;
+}
+
+.appointBtn:hover {
+	border: 1px solid #3C7FC9;
+}
+
+.appointform {
+	width: 470px;;
+	display: none;
+}
+
+.active {
+	display: block;
+}
+
+.Aspan {
+	width: 100px;
+	height: 40px;
+	background-color: #c2d76f;
+}
+
+.Inputclass {
+	/* width: 550px; */
+	height: 50px;
+	line-height: 50px;
+	/* background-color: #ebf5c5; */
+	font-size: 15px;
+}
+
+.Textclass {
+	height: 155px;
+	line-height: 50px;
+	font-size: 15px;
+	position: relative;
+}
+
+.Textclass .wordwrap {
+	position: absolute;
+	right: 48px;
+	bottom: 0px;
+	color: #666666;
+}
+
+.Textclass .word {
+	color: #fb5656;
+	padding: 0 4px;
+}
+
+.Ainput {
+	margin-right: 200px;
+}
+
+.lb {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+	padding-right: 10px;
+	color: #3C7FC9;
+	/* background-color: #ebf5c5; */
+}
+
+.textlb {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+	padding-right: 10px;
+	color: #3C7FC9;
+	/* background-color: #ebf5c5; */
+	float: left;
+}
+
+.inputC {
+	height: 30px;
+	width: 300px;
+	margin-left: 5px;
+	padding-left: 10px;
+	border: 1px solid #3C7FC9;
+}
+
+.selectC {
+	height: 30px;
+	width: 312px;
+	margin-left: 1px;
+	padding-left: 10px;
+	border: 1px solid #3C7FC9;
+	color: gray;
+}
+
+.vcodeC {
+	height: 30px;
+	width: 158px;
+	margin-left: 5px;
+	padding-left: 10px;
+	border: 1px solid #3C7FC9;
+}
+
+.checkcode {
+	width: 125px;
+	height: 30px;
+	float: right;
+	margin-top: 9px;
+	margin-right: 42px;
+}
+
+.textC {
+	width: 300px;
+	height: 130px;
+	padding: 2px 5px;
+	margin-left: 5px;
+	border: 1px solid #3C7FC9;
+	margin-top: 10px;
+	resize: none;
+}
+
+.mk_apointBtn {
+	width: 85px;
+	height: 30px;
+	float: left;
+	margin: auto 15px;
+	text-align: center;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	border: 1px solid #3C7FC9;
+	cursor: pointer;
+	background-color: white;
+	color: #3C7FC9;
+}
+
+.mk_apointBtn:first-child {
+	margin-left: 150px;
+}
+
+.ap-desc {
+	width: 470px;
+	height: 100%;
+	float: right;
+	position: relative;
+}
+
+.ap-text {
+	height: 250px;
+	width: 95%;
+	font-size: 30px;
+	/* font-family: monospace; */
+	color: #3C7FC9; /*#163d7d*/
+	font-weight: bold;
+	margin-top: 30px;
+}
+
+}
+.ap-img {
+	width: 470px;
+	margin-left: 25px;
+}
+
+.xing {
+	color: #3C7FC9;
+	margin: auto 2px;
+}
+
+/*--------------reply-----------*/
+.replyMain-box {
+	background: #f5f5f5;
+	padding-bottom: 60px;
+	position: relative;
+}
+
+.replyMain {
+	width: 1100px;
+	min-height: 600px;
+	margin: 0 auto;
+	position: relative;
+	border: 1px solid #ddd;
+	padding: 20px;
+	background: #fff;
+}
+
+.seach-box {
+	width: 100%;
+	padding: 1em 0;
+	background: url(../images/home/reply_zy_bg.jpg) no-repeat left top
+		#98bbe3;
+}
+
+.seach {
+	margin: 0 4%;
+}
+
+.cf {
+	height: 40px;
+	color: #7194c3;
+	font-family: '微软雅黑';
+	font-size: 20px;
+}
+/* .cf::after {
+    content: '';
+    display: table;
+    clear: both;
+} */
+/* .cf::before {
+    content: '';
+    display: table;
+} */
+.inps {
+	width: 300px;
+	margin-right: 5%;
+	float: left;
+	font-size: 14px;
+	font-family: "
+	Microsoft
+}
+
+.inp-1 {
+	width: 100%;
+	height: 2.6em;
+	line-height: 2.6em;
+	border: 1px solid #999;
+	text-indent: 10px;
+	box-sizing: border-box;
+}
+
+.seach-btn {
+	width: 12%;
+	height: 2.3em;
+	color: #ffffff;
+	background: #163d7d;
+	border: none;
+	font-size: 16px;
+	margin-left: 80px;
+	cursor: pointer;
+}
+
+.ui-li {
+	padding: 1.5em 0;
+	border-top: 1px solid #cccccc;
+}
+
+.reply-box {
+	min-height: 230px;
+	border-bottom: 1px;
+}
+
+.reply-box-s {
+	height: 50px;
+	background-color: #f8f8f8;
+}
+
+.reply-box-z {
+	height: 90px;
+}
+
+.reply-box-x {
+	height: 90px;
+}
+
+.reply-ly {
+	margin-top: 5px;
+	height: 80px;
+	line-height: 80px;
+	width: 15%;
+	font-size: 25px;
+	background-color: #5db1b4;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	border-left: 6px solid #163d7d;
+	position: absolute;
+	letter-spacing: 15px;
+}
+
+.reply-hf {
+	margin-top: 5px;
+	height: 80px;
+	line-height: 80px;
+	width: 15%;
+	font-size: 25px;
+	background-color: #bcd152;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	border-left: 6px solid #c8b316;
+	position: absolute;
+	letter-spacing: 15px;
+}
+
+.reply-textC {
+	width: 81%;
+	height: 78px;
+	position: absolute;
+	margin-left: 176px;
+	margin-top: 5px;
+	border: 1px dashed #999;
+}
+
+.reply-textarea {
+	width: 100%;
+	height: 80%;
+	resize: none;
+	line-height: 22px;
+	font-size: 16px;
+	letter-spacing: 3px;
+	color: #494e50;
+	text-indent: 1em;
+}
+
+.reply-date {
+	width: 100%;
+	height: 20%;
+	color: #999;
+	margin-left: 20px;
+}
+
+.s-text {
+	margin-left: 15px;
+	font-size: 18px;
+	letter-spacing: 3px;
+	line-height: 50px;
+}
