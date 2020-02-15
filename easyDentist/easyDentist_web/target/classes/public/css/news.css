@@ -1,0 +1,146 @@
+.newcenter_main{
+    width: 1200px;
+    margin: 12px auto;
+}
+.new_left{
+	background-color: #F2F2F2;
+    width: 80%;
+    float: left;
+}
+.new_right{
+    width: 18%;
+    float: right;
+    background-color: #F5F5F5; /*#f7f9cf;*/
+}
+.dentalTel {
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #D5D5D5;
+    cursor: pointer;
+}
+.telAn{
+	width: 100%;
+	background-color: #eaeaea;
+}
+.telAn p{
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 5px;
+    color: #666666;
+}
+.telAn p span{
+color: #157FDB
+}
+.textSpan{
+	font-size: 17px;
+	margin-left: 10px;
+	line-height: 100px;
+}
+.textSpan::HOVER{
+	color: #157FDB;
+}
+.adress {
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #D5D5D5;
+    cursor: pointer;
+}
+.adressAn{
+	background-color: #eaeaea;
+	padding-left: 5px;
+    padding-right: 5px;
+}
+.adressAn h2{
+    font-size: 16px;
+    color: #666666;
+    line-height: 25px;
+}
+.adressAn span {
+	word-wrap: break-word;
+	overflow: hidden;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	overflow: hidden;
+	font-size: 16px;
+	line-height: 25px;
+	color: #157FDB;
+}
+
+.weChat {
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #D5D5D5;
+    cursor: pointer;
+}
+.weChatAn{
+	width: 100%;
+	height: 200px;
+	background-color: white;
+}
+
+.new_div{
+    width: 100%;
+}
+.new_btns{
+    width: 100%;
+    height: 90px;
+}
+.new_art{
+    width: 100%;
+    margin-bottom: 0px;
+}
+.new_btn{
+    width: 15%;
+    height: 50%;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    background: #157fdb;
+    color: aliceblue;
+    float: left;
+    margin-left: 8%;
+    margin-top:2%;
+    font-size: 18px;
+    text-align: center;
+}
+.new_btn:hover{background-color: #f6b93e;}
+
+.pageView{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding: 20px auto;
+    margin-top: 15px;
+}
+.pageTotal{
+    width: 30%;
+    height: 30px;
+    float: left;
+}
+.pagediv{
+    float: left;
+    width: 70%;
+    height: 30px;
+    text-align: left;
+}
+
+.article_info{
+	background-color: white;
+    height: 120px;
+    margin: 20px auto;
+    border:1px solid #d2cbed;
+    padding: 15px;
+}
+.article_info:first-child{margin: 0 auto;}
+
+.disabled{
+	display:none;
+}
+
+.article_img{
+	float:left;
+	width:170px;
+	/* height: 120px; */
+}
+
+

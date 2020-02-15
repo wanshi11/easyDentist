@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>文章管理</title>
+
+    <#include "/common/admin_css.html"/>
+    <style>
+    .layui-laypage-btn{
+    color: #333;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+       <#include "/common/admin_header_left.html"/>
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header">文章管理</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>
+						<a type="button" class="btn btn-info"
+							href="${request.contextPath}/admin/article/toAdd">添加文章</a>
+					</p><br/>
+					<div class="panel panel-default">
+						<div class="panel-heading">检索文章列表</div>
+						<br />
+					 	<form class="layui-form layui-form-pane">
+							<div class="layui-form-item">
+								<label class="layui-form-label">文章标题</label>
+								<div class="layui-input-inline">
+									<input name="title" id="title" lay-verify="required"
+										placeholder="输入文章标题查询" autocomplete="off" class="layui-input"
+										type="text">
+								</div>
+								<a  href="javascript:void(0)" onclick="searchBtn();" class="layui-btn layui-btn-primary layui-btn-sm">搜索</a>
+							</div>
+						</form>
+						<table class="layui-hide" id="articleTable" lay-filter="demo"></table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+
+    
+   <#include "/common/admin_js.html"/> <!-- 后台公共js -->
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    var mytable= null;
+  
+    
+    layui.use('table', function(){
+    	  var table = layui.table;
+    	  
+    	    mytable =  table.render({
+    	    elem: '#articleTable'
+    	    ,url:'${request.contextPath}/admin/article/articleList'
+    	    ,method:'post'
+    	    ,cols: [[
+               /* {type:'numbers'} */
+              /* {type: 'checkbox'} */
+    	      {field:'id', width:70, title: 'ID', sort: true}
+    	      ,{field:'title', width:180, title: '文章标题'}
+    	      ,{field:'keywords', width:180, title: '关键字' }
+    	      ,{field:'articletype', width:120, title: '文章类型',templet:function(data){
+    	    	  return changeArticleType(data);
+    	      }}
+    	      ,{field:'top', width:120, title: '是否置顶',templet:function(data){
+    	    	  return changeTop(data);
+    	      }}
+    	      ,{field:'status', width:120, title: '是否启用',templet:function(data){
+    	    	  return changeStatus(data);
+    	      }}
+    	      ,{field:'createtime', width:160, title: 'TIME', sort: true,templet:function(data){
+    	    	  return timestampToTime(data.createtime);
+    	      }}
+    	      ,{field:'right', title: '操作', width:120,toolbar:"#barDemo"}
+    	    ]]
+    	    ,count:15
+    	    ,theme:'orange'
+    	    ,where: {
+    	    	
+  		      }
+    	    ,page: {layout: ['limit', 'count', 'prev', 'page', 'next', 'skip']
+    	       //,curr: 5 //设定初始在第 5 页
+    	      //,groups: 1 //只显示 1 个连续页码
+    	      //,first: false //不显示首页
+    	      //,last: false //不显示尾页
+    	    }
+    	 
+    	  });
+    	
+    	    
+    	    table.on('tool(demo)', function(obj){
+			    var data = obj.data;
+			    if(obj.event === 'detail'){
+			      layer.msg('ID：'+ data.id + ' 的查看操作');
+			    } else if(obj.event === 'del'){
+			      layer.confirm('真的删除行么', function(index){
+			        
+			    	     $.ajax({
+			    	         //几个参数需要注意一下
+			    	             type: "POST",//方法类型
+			    	             url: "${request.contextPath}/admin/article/delete" ,//url
+			    	             data: {"id":data.id},
+			    	             success: function (result) {
+			    	                 if(result == "DELETE_SUCCESS"){
+			    	                 	layer.alert('删除文章成功！',function(index){
+			    	                		window.location.href="${request.contextPath}/admin/article/toArticles";
+			    	                	});
+			    	                 	//跳转到列表
+			    	                 }
+			    	                 if(result == "DELETE_FAIL"){
+			    	                 	layer.alert('删除文章失败！',function(index){
+			    	                		window.location.href="${request.contextPath}/admin/article/toArticles";
+			    	                	});
+			    	                 }
+			    	             },
+			    	            
+			    	         });
+			    	  
+			        layer.close(index);
+			      });
+			    } else if(obj.event === 'edit'){
+			      window.location.href="${request.contextPath}/admin/article/toEdit?id="+data.id;
+			    }
+			  });
+    	    
+
+    	});
+    
+      function searchBtn(){
+		
+		//条件查询
+		 mytable.reload({
+			where:{
+				"title": $("#title").val()
+			}
+		}); 
+		};
+		
+	   function changeArticleType(data){
+		   if(data.articletype == "ARTICLE_NEWS"){
+			   return "新闻";
+		   }else if(data.articletype == "ARTICLE_HEALTH"){
+			   return "口腔健康";
+		   }else if(data.articletype == "ARTICLE_GY_ACTIVITY"){
+			   return "公益活动";
+		   }else if(data.articletype == "ARTICLE_YH_ACTIVITY"){
+			   return "优惠活动";
+		   }
+	   }	
+	   
+	   function changeStatus(data){
+ 
+		   if(data.status == "1")
+			   return "是";
+		   else
+			   return "否";
+		   
+	   }
+	   
+	   function changeTop(data){
+		   if(data.top == 1)
+			   return "是";
+		   else
+			   return "否";
+		   	
+	   }
+	
+
+    </script>
+    
+    <script type="text/html" id="barDemo">
+    <a  class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<title>医生团队</title>
+<link type="text/css" href="/css/style.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="/css/index.css" />
+<link type="text/css" rel="stylesheet"
+	href="/layui_v2.3.0/css/layui.css" />
+<link type="text/css" rel="stylesheet" href="/css/doctor.css" />
+
+<link href="/select2/select2.min.css" rel="stylesheet" />
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/select2/select2.full.js"></script>
+<script src="/layui_v2.3.0/layui.all.js" charset="utf-8"></script>
+<style type="text/css">
+.pageView {
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	padding: 20px auto;
+	margin-top: 15px;
+}
+
+.pageTotal {
+	width: 40%;
+	height: 30px;
+	float: left;
+	margin: 10px auto;
+}
+
+.pagediv {
+	float: left;
+	width: 60%;
+	height: 30px;
+	text-align: left;
+	margin: 10px auto;
+}
+
+.pagediv ul li {
+	float: left;
+	background: #A2C2E1;
+	margin-right: 5px;
+	height: 22px;
+	line-height: 22px;
+	padding: 0px 4px;
+}
+
+.pagediv ul li.active {
+	background-color: #5faef2;
+}
+
+.pagediv ul li:hover {
+	background-color: #5399d5;
+}
+
+.pagediv ul li a {
+	color: #fff;
+}
+
+.disabled {
+	display: none;
+}
+
+/* select2调整样式 */
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 0px;
+}
+.select2-container .select2-selection--single {
+    cursor: pointer;
+    display: block;
+    height: 35px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    height: 35px;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 35px;
+}
+</style>
+</head>
+
+<body>
+	<#include "/common/home_header.html"/>
+	<section class="doctorMain-box">
+	<div class="doctorMain">
+		<div class="seach-box">
+			<div class="seach">
+				<div class="inps-box cf">
+
+					<div class="inps">
+						<select id="clinic" class="inp-2">
+							<option value="">选择诊所</option>
+							<option value="CLINIC_YM">怡美家园店</option>
+							<option value="CLINIC_RQQJY">润千秋佳苑店</option>
+							<option value="CLINIC_LL">柳浪家园店</option>
+							<option value="CLINIC_BCXL">北辰香麓店</option>
+						</select>
+					</div>
+
+
+
+
+					<div class="inps">
+						<input class="inp-1" id="doctorname" placeholder="请输入医生姓名" />
+					</div>
+					<button class="seach-btn" type="button" id="seach">搜索</button>
+				</div>
+			</div>
+		</div>
+		<div class="list-box">
+			<ul>
+
+				<#list pager.list as doctor >
+				<li class="ui-li">
+					<div class="doctor-box">
+
+						<div class="doctor-left">
+							<img class="doctor-img" src="${doctor.inchphotopath}"></img>
+						</div>
+						<div class="doctor-right">
+							<p class="title">
+								${doctor.doctorname} <#if (doctor.position != '') > <span
+									class="title-text"><i><img class="icon"
+										src="/images/zhiwei.png" /></i>${doctor.position}</span> </#if> <#if
+								(doctor.education != '') > <span class="title-text"><i><img
+										class="icon" src="/images/xuewei.png" /></i>${doctor.education }</span>
+								</#if> <#if (doctor.graduateschool != '') > <span
+									class="title-text"><i><img class="icon"
+										src="/images/school.png" /></i>${doctor.graduateschool}</span> </#if>
+							</p>
+							<div class="line"></div>
+							<div class="doctor-pf">
+								<dl>
+									<dt style="float: left; letter-spacing: 3px;">
+										<p>总评分:</p>
+									</dt>
+									<dd>
+										<span> 
+										<span class="point">${doctor.point}</span> 
+										<span style="margin-left: 30px; color: gray;">|</span>
+											 <a class="doctor-pf-btn" id="${doctor.id}_zy"   onclick="addpoint(this,'zy','${doctor.id}');" >专业<i class="point-zy"></i></a> 
+											 <a class="doctor-pf-btn" id="${doctor.id}_fw" onclick="addpoint(this,'fw','${doctor.id}');">服务<i class="point-fw"></i></a> 
+											 <a class="doctor-pf-btn" id="${doctor.id}_gt" onclick="addpoint(this,'gt','${doctor.id}');">沟通<i class="point-gt"></i></a>
+										</span>
+									</dd>
+								</dl>
+								<p style="clear: both;"></p>
+							</div>
+							<div
+								style="width: 100%; font-size: 15px; line-height: 30px; color: #545353;">
+								<div class="doc-clinic">
+									<span style="color: #666; margin-right: 10px;">诊所:</span> <#if
+									(doctor.clinic == 'CLINIC_YM')> 新北口腔（怡美家园店） <#elseif
+									(doctor.clinic == 'CLINIC_RQQJY') > 新北口腔（润千秋佳苑店） <#elseif
+									(doctor.clinic == 'CLINIC_LL') > 新北口腔（柳浪家园店） <#elseif
+									(doctor.clinic == 'CLINIC_BCXL') > 新北口腔（北辰香麓店） </#if>
+								</div>
+								<div class="doc-sc">
+									<span style="color: #666; margin-right: 10px;">擅长:</span>${doctor.major}
+								</div>
+							</div>
+							<p style="clear: both;"></p>
+							<div class="jianjie">
+								<div style="width: 70%; float: left;">
+									<div class="jianjieLabel">
+										<span style="color: #666; float: left;">简介:</span>
+									</div>
+									<div class="jianjieText">
+										<#list (doctor.introduction) ? split("#") as per> <span
+											class="jianjie-span">★</span> ${per} <br> </#list> 
+									</div>
+									<p style="clear: both;"></p>
+								</div>
+								<button type="button" class="zixunBtn" title="留言咨询">留言咨询</button>
+								<button type="button" class="yuyueBtn" onclick="ib_wopen();" title="在线咨询">在线咨询</button>
+							</div>
+						</div>
+						<p style="clear: both;"></p>
+					</div>
+				</li> </#list>
+
+			</ul>
+
+		</div>
+
+		<div class="clear"></div>
+		<!-- 分页部分 -->
+		<div class="pageView">
+			<div class="pageTotal">
+				当前第${pager.currentPage}/${pager.totalPage}页&nbsp;-&nbsp;共${pager.totalRecord}条记录
+			</div>
+			<div class="pagediv">
+				<ul>
+					<#if pager.currentPage == 1>
+					<li class="disabled"><a href="javascript: void(0)">首页</a></li>
+					<li class="disabled"><a href="javascript: void(0)">上一页</a></li>
+					</#if> <#if pager.currentPage gt 1>
+					<li><a
+						href="${request.contextPath}/appoint/appointReply?page=1">首页</a></li>
+					<li><a
+						href="${request.contextPath}/appoint/appointReply?page=${pager.previousPage}">上一页</a></li>
+					</#if> <#if pager.pageBar ??> <#list pager.pageBar as num > <#if
+					num == pager.currentPage >
+					<li class="active"><a
+						href="${request.contextPath}/appoint/appointReply?page=${num}">${num
+							}</a></li> </#if> <#if num != pager.currentPage >
+					<li><a
+						href="${request.contextPath}/appoint/appointReply?page=${num}">${num
+							}</a></li> </#if> </#list> </#if> <#if pager.currentPage ==
+					pager.totalPage>
+					<li class="disabled"><a href="javascript: void(0)">下一页</a></li>
+					<li class="disabled"><a href="javascript: void(0)">尾页</a></li>
+					</#if> <#if pager.currentPage lt pager.totalPage >
+					<li><a
+						href="${request.contextPath}/appoint/appointReply?page=${pager.nextPage}">下一页</a></li>
+					<li><a
+						href="${request.contextPath}/appoint/appointReply?page=${pager.totalPage}">尾页</a></li>
+					</#if>
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<!-- 分页部分 -->
+
+	</div>
+	</section>
+	<#include "/common/home_footer.html"/>
+</body>
+<script type="text/javascript">
+     $(function(){
+    	 //初始化select框
+    	 $("#clinic").select2();
+    	 
+    	 //初始化 专业 - 服务 - 沟通是否高亮
+    	 //这里设计成 : a标签的id与cookieName是一致的
+    	 $(".doctor-pf-btn").each(function(){
+    		 
+    		    var id = $(this).attr("id");
+    		    var cookieValue = getCookie(id);
+    		    if(cookieValue !=null && cookieValue == id){
+    		    	
+    		    	var higclass = "point-"+id.substring(id.length-2,id.length)+"-on";
+    		    	$(this).find("i").addClass(higclass);
+    		    }
+    		  });
+    	 
+     })
+     
+     function addpoint(obj,str,doctorId){
+    	 
+     	//判断是否存在cookie
+     	//存在 -- 提示已点赞
+     	//不存在 -- 图片高亮 && 存入cookie
+     	var cookieName = doctorId+"_"+str;
+     	if(cookieName == getCookie(cookieName)){
+     		layer.msg("您已点赞~");
+     	}else{
+     	setCookie(cookieName,cookieName);
+     	    
+     	$.ajax({
+			type : "POST",//方法类型
+			url : "${request.contextPath}/doctor/addPoint",//url
+			data : {"doctorId":doctorId},
+			success : function(da) {
+			   //更新该医生的分数
+			   $(obj).parent().find(".point").text(da);
+			   console.info($(obj).parent().find(".point").text());
+			}
+		});
+     	
+     	}
+     	
+    	if(str == "zy"){
+    		$(obj).find("i").addClass("point-zy-on");
+    	}else if(str == "fw"){
+    		$(obj).find("i").addClass("point-fw-on");
+    	}else if(str == "gt"){
+    		$(obj).find("i").addClass("point-gt-on");
+    	} 
+    	 
+    	 
+     };
+     
+   //存cookie
+	function setCookie(name, value) {
+		var Days = 10;   //10天的cookie过期时间
+		var exp = new Date();
+		exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+		document.cookie = name + "=" + escape(value) + ";expires="
+				+ exp.toGMTString();
+	}
+   
+	function getCookie(name) {
+		var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+		if (arr = document.cookie.match(reg))
+			return unescape(arr[2]);
+		else
+			return null;
+	}
+	
+
+	$("#seach")
+			.click(
+					function() {
+						var doctorname = $("#doctorname").val();
+						var clinic = $("#clinic option:selected").val();
+						window.location.href = "${request.contextPath}/home/doctorlist?doctorname="
+								+ doctorname + "&clinic=" + clinic + "&page=1";
+					});
+	
+	$(".zixunBtn").click(function(){
+		window.location.href="${request.contextPath}/home/makeAppointment";
+	});
+	
+	
+</script>
+</html>

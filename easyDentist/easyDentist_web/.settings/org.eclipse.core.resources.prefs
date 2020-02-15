@@ -7,6 +7,7 @@ encoding//src/main/java/com/dentist/controller/admin/DoctorController.java=UTF-8
 encoding//src/main/java/com/dentist/controller/admin/KindEditorController.java=UTF-8
 encoding//src/main/java/com/dentist/controller/admin/LoginController.java=UTF-8
 encoding//src/main/java/com/dentist/controller/admin/MenuController.java=UTF-8
+encoding//src/main/java/com/dentist/controller/admin/PoliclinicController.java=UTF-8
 encoding//src/main/java/com/dentist/controller/admin/QaController.java=UTF-8
 encoding//src/main/java/com/dentist/controller/admin/RoleController.java=UTF-8
 encoding//src/main/java/com/dentist/controller/admin/UserController.java=UTF-8

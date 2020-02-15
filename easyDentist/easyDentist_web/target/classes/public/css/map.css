@@ -1,0 +1,105 @@
+.mapMain-box {
+	margin: 0;
+	padding: 0;
+	background: #f5f5f5;
+}
+
+.mapMain {
+	height: 1000px;
+	width: 1100px;
+	margin: 0px auto;
+	position: relative;
+	border: 1px solid #ddd;
+	padding: 20px;
+	background: #fff;
+}
+
+.iw_poi_title {
+	color: #CC5522;
+	font-size: 14px;
+	font-weight: bold;
+	overflow: hidden;
+	padding-right: 13px;
+	white-space: nowrap
+}
+
+.iw_poi_content {
+	font: 12px arial, sans-serif;
+	overflow: visible;
+	padding-top: 4px;
+	white-space: -moz-pre-wrap;
+	word-wrap: break-word
+}
+
+.mzlx {
+	margin-left: 30px;
+	float: left;
+}
+
+.lxboard {
+	background-color: #EEEEE0;
+	float: left;
+	margin-top: 6%;
+	width: 280px;
+	height: 320px;
+	margin-left:30px;
+}
+
+.map {
+	width: 697px;
+	height: 550px;
+	border: #ccc solid 1px;
+	display: none;
+}
+
+.mapBtn {
+	width: 100%;
+	height: 80px;
+	font-size: 18px;
+	color: white;
+	background: #C9E7A3;
+	border: 1px solid #f2eeee;
+	cursor: pointer;
+}
+
+.mapBtn:HOVER {
+	background: #8AD95A;
+}
+
+.mapBtnActive {
+	background: #8AD95A;
+}
+
+.mapActive {
+	display: block;
+}
+
+.adress {
+	margin: 0px 0px 5px;
+	width: 700px;
+	height: 60px;
+	font-size: 16px;
+	line-height: 24px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: rgb(153, 153, 153);
+	color: rgb(68, 68, 68);
+	line-height: 60px;
+	display: none;
+}
+
+.adressActive {
+	display: block;
+}
+
+.lux {
+	color: rgb(68, 68, 68);
+	font-family: 微软雅黑, 'Microsoft Yahei', Tahoma, SimSun;
+	line-height: 18px;
+	background-color: #d2d2d2;
+	display: none;
+}
+
+.luxActive {
+	display: block;
+}
